@@ -1,0 +1,1 @@
+<span {{ $attributes->merge(['class' => 'text-xs font-semibold uppercase tracking-[0.3em] text-primary']) }}>{{ $slot }}</span>

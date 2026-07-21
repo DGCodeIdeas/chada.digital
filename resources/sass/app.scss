@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] { display: none !important; }
+
+/* Contact form custom styles */
+.chada-honeypot {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+.chada-field-input.is-invalid {
+  @apply border-red-500 focus:border-red-500 focus:ring-red-500;
+}
+
+.chada-error-msg:empty,
+#chada-form-error:empty {
+  display: none;
+}
+
+/* Showcase page styles */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.filter-btn[data-active='true'] {
+  @apply border-blue-500 bg-blue-500/20 text-blue-500;
+}

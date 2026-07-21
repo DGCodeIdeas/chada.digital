@@ -1,0 +1,89 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ── 1. Checkout ────────────────────────────────────────────────
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # ── 2. Install Bun ─────────────────────────────────────────────
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      # ── 3. Cache node_modules (saves build time & bandwidth) ───────
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
+      # ── 4. Install JS deps & build production assets ───────────────
+      #    Assets are compiled HERE (free GitHub Actions minutes),
+      #    NOT on EC2. This keeps the server CPU credits intact.
+      - name: Install JS dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build production assets
+        run: bun run prod
+
+      # ── 5. Cache Composer (speeds up subsequent runs) ──────────────
+      - name: Cache Composer packages
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      # ── 6. Install PHP deps (no dev) ───────────────────────────────
+      - name: Install Composer dependencies
+        uses: php-actions/composer@v6
+        with:
+          php_version: "8.2"
+          args: --no-dev --optimize-autoloader --no-interaction
+
+      # ── 7. Deploy via rsync ────────────────────────────────────────
+      #    Only syncs changed files. Excludes dev artefacts.
+      - name: Write SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Sync files to EC2
+        run: |
+          rsync -az --delete \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='node_modules' \
+            --exclude='chada-digital-static' \
+            --exclude='.env' \
+            --exclude='storage/logs/*' \
+            --exclude='storage/framework/cache/*' \
+            --exclude='storage/framework/sessions/*' \
+            --exclude='storage/framework/views/*' \
+            --exclude='bootstrap/cache/*' \
+            --exclude='database/database.sqlite' \
+            -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no" \
+            ./ ubuntu@${{ secrets.EC2_HOST }}:/var/www/chada-digital/
+
+      # ── 8. Post-deploy artisan commands ───────────────────────────
+      #    Runs on EC2 via SSH. Fast — no compilation, just cache writes.
+      - name: Run post-deploy tasks on EC2
+        run: |
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no \
+            ubuntu@${{ secrets.EC2_HOST }} \
+            'cd /var/www/chada-digital && bash scripts/post-deploy.sh'
