@@ -42,6 +42,13 @@
                 >
                     Recruitment
                 </button>
+                <button
+                    type="button"
+                    class="filter-btn inline-flex items-center rounded-full border border-border bg-card/50 px-5 py-2.5 text-sm font-medium text-foreground transition-all duration-300 hover:bg-primary/10 hover:text-primary"
+                    data-category="Artisan"
+                >
+                    Artisan
+                </button>
             </div>
         </div>
     </section>
@@ -88,6 +95,14 @@
                     'category' => 'Recruitment',
                     'image' => 'project-hirebase.jpg',
                     'alt' => 'HIREBASE'
+                ])
+                @include('partials.showcase-project-card', [
+                    'slug' => 'timber-mill',
+                    'title' => 'TimberMill',
+                    'description' => 'Bespoke Furniture — Artisan Woodworking Studio',
+                    'category' => 'Artisan',
+                    'image' => 'project-timbermill.jpg',
+                    'alt' => 'TimberMill'
                 ])
             </div>
         </div>
