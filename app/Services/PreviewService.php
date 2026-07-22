@@ -38,6 +38,12 @@ class PreviewService
                 'thumbnail' => '/assets/images/project-sterling.jpg',
                 'category' => 'Construction',
             ],
+            'timber-mill' => [
+                'title' => 'TimberMill',
+                'description' => 'Bespoke Furniture — Artisan Woodworking Studio',
+                'thumbnail' => '/assets/images/project-timbermill.jpg',
+                'category' => 'Artisan',
+            ],
         ];
     }
 

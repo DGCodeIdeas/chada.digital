@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TimberMill — Bespoke Furniture & Joinery</title>
+  <meta name="description" content="Handcrafted furniture and architectural millwork for those who value permanence. Every piece built to order, built to last." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #111009;
+      --bg-warm:   #18140e;
+      --surface:   #1e1a12;
+      --border:    rgba(200,170,100,0.15);
+      --gold:      #c8aa64;
+      --gold-dim:  #a08845;
+      --cream:     #f0e6d0;
+      --muted:     #9a8f7e;
+      --text:      #e8dcc8;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── NAV ─────────────────────────────────────────── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 2.5rem;
+      background: linear-gradient(to bottom, rgba(17,16,9,0.95) 0%, transparent 100%);
+      backdrop-filter: blur(2px);
+      transition: background 0.3s;
+    }
+    .nav.scrolled { background: rgba(17,16,9,0.97); }
+
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: var(--cream);
+    }
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links { display: flex; gap: 2.5rem; }
+    .nav-links a {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--cream); }
+
+    .nav-cta {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: 1px solid var(--gold-dim);
+      color: var(--gold);
+      padding: 0.55rem 1.4rem;
+      border-radius: 2px;
+      transition: all 0.25s;
+    }
+    .nav-cta:hover { background: var(--gold); color: var(--bg); }
+
+    .nav-mobile-toggle { display: none; background: none; border: none; cursor: pointer; color: var(--cream); }
+
+    /* ── HERO ────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      height: 100vh; min-height: 600px;
+      display: flex; align-items: flex-end;
+      padding: 0 2.5rem 6rem;
+      overflow: hidden;
+    }
+    .hero-img {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=1600&h=900&fit=crop&q=85');
+      background-size: cover; background-position: center 30%;
+    }
+    .hero-img::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(17,16,9,0.95) 0%,
+        rgba(17,16,9,0.55) 45%,
+        rgba(17,16,9,0.2) 100%
+      );
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 680px; }
+    .hero-label {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--cream);
+      margin-bottom: 1.5rem;
+    }
+    .hero-title em { font-style: italic; color: var(--gold); }
+    .hero-sub {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 460px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 0.85rem 2rem; border-radius: 2px;
+      transition: all 0.25s;
+      cursor: pointer;
+    }
+    .btn-primary { background: var(--gold); color: var(--bg); border: 1px solid var(--gold); }
+    .btn-primary:hover { background: #d4b870; border-color: #d4b870; }
+    .btn-ghost { background: transparent; color: var(--cream); border: 1px solid rgba(240,230,208,0.3); }
+    .btn-ghost:hover { border-color: var(--cream); }
+
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; right: 2.5rem; z-index: 1;
+      display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+      font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .hero-scroll-line {
+      width: 1px; height: 50px;
+      background: linear-gradient(to bottom, var(--gold-dim), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+
+    /* ── SECTION COMMON ──────────────────────────────── */
+    .section { padding: 6rem 2.5rem; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gold); display: block; margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      font-weight: 300; line-height: 1.15;
+      color: var(--cream);
+    }
+    .section-title em { font-style: italic; }
+    .divider {
+      width: 40px; height: 1px;
+      background: var(--gold-dim);
+      margin: 1.5rem 0;
+    }
+    .section-desc {
+      font-size: 0.9rem; color: var(--muted);
+      max-width: 520px; line-height: 1.85;
+    }
+
+    /* ── FEATURED PIECES ─────────────────────────────── */
+    .pieces-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      margin-top: 4rem;
+    }
+    .piece-card { position: relative; overflow: hidden; aspect-ratio: 3/4; cursor: pointer; }
+    .piece-card.large { grid-row: span 2; aspect-ratio: auto; }
+    .piece-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .piece-card:hover img { transform: scale(1.04); }
+    .piece-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(17,16,9,0.88) 0%, transparent 55%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 2rem;
+      opacity: 0.9;
+      transition: opacity 0.3s;
+    }
+    .piece-card:hover .piece-overlay { opacity: 1; }
+    .piece-cat {
+      font-size: 0.62rem; font-weight: 500;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.4rem;
+    }
+    .piece-name {
+      font-family: var(--font-serif);
+      font-size: 1.4rem; font-weight: 400;
+      color: var(--cream); line-height: 1.2;
+    }
+    .piece-mat {
+      font-size: 0.75rem; color: var(--muted);
+      margin-top: 0.3rem;
+    }
+
+    /* ── ABOUT ───────────────────────────────────────── */
+    .about { background: var(--bg-warm); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .about-img-wrap { position: relative; }
+    .about-img-wrap img {
+      width: 100%; aspect-ratio: 3/4;
+      object-fit: cover;
+    }
+    .about-img-accent {
+      position: absolute;
+      bottom: -1.5rem; right: -1.5rem;
+      width: 55%;
+      border: 2px solid var(--bg-warm);
+    }
+    .about-text { padding: 2rem 0; }
+    .about-text p { font-size: 0.9rem; color: var(--muted); line-height: 1.9; margin-bottom: 1.2rem; }
+    .about-text p:first-of-type { font-family: var(--font-serif); font-size: 1.2rem; color: var(--text); line-height: 1.7; }
+    .about-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2rem; margin-top: 3rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .stat-num {
+      font-family: var(--font-serif);
+      font-size: 2.8rem; font-weight: 300;
+      color: var(--gold); line-height: 1;
+    }
+    .stat-label { font-size: 0.72rem; color: var(--muted); margin-top: 0.4rem; letter-spacing: 0.08em; }
+
+    /* ── PROCESS ─────────────────────────────────────── */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+    .process-step { position: relative; padding-left: 1rem; border-left: 1px solid var(--border); }
+    .process-num {
+      font-family: var(--font-serif);
+      font-size: 3.5rem; font-weight: 300;
+      color: var(--gold); opacity: 0.25;
+      line-height: 1; margin-bottom: 1rem;
+    }
+    .process-name {
+      font-family: var(--font-serif);
+      font-size: 1.25rem; font-weight: 400;
+      color: var(--cream); margin-bottom: 0.75rem;
+    }
+    .process-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.8; }
+
+    /* ── GALLERY STRIP ───────────────────────────────── */
+    .gallery-strip {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.5px;
+    }
+    .gallery-strip-item { overflow: hidden; aspect-ratio: 1; }
+    .gallery-strip-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      filter: brightness(0.8);
+    }
+    .gallery-strip-item:hover img { transform: scale(1.06); filter: brightness(1); }
+
+    /* ── TESTIMONIAL ─────────────────────────────────── */
+    .testimonial {
+      background: var(--bg-warm);
+      text-align: center;
+      padding: 7rem 2.5rem;
+    }
+    .testimonial-quote {
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-weight: 300; font-style: italic;
+      color: var(--cream); line-height: 1.5;
+      max-width: 820px; margin: 0 auto 2.5rem;
+    }
+    .testimonial-quote::before { content: '\201C'; color: var(--gold); margin-right: 0.1em; }
+    .testimonial-quote::after  { content: '\201D'; color: var(--gold); margin-left:  0.1em; }
+    .testimonial-author { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+
+    /* ── CONTACT ─────────────────────────────────────── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      margin-top: 4rem;
+      align-items: start;
+    }
+    .contact-info p { font-size: 0.9rem; color: var(--muted); line-height: 1.85; margin-bottom: 2rem; }
+    .contact-detail { margin-bottom: 1.5rem; }
+    .contact-detail-label { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+    .contact-detail-val { font-size: 0.9rem; color: var(--text); }
+
+    .form-row { margin-bottom: 1.5rem; }
+    .form-row label { display: block; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+    .form-row input,
+    .form-row select,
+    .form-row textarea {
+      width: 100%; padding: 0.85rem 1rem;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text); font-family: var(--font-sans); font-size: 0.875rem;
+      outline: none; border-radius: 2px;
+      transition: border-color 0.2s;
+    }
+    .form-row input:focus,
+    .form-row select:focus,
+    .form-row textarea:focus { border-color: var(--gold-dim); }
+    .form-row textarea { resize: vertical; min-height: 120px; }
+    .form-row select option { background: var(--surface); }
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer {
+      background: #0c0b07;
+      padding: 3rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .footer-logo { font-family: var(--font-serif); font-size: 1.2rem; color: var(--cream); letter-spacing: 0.12em; }
+    .footer-logo span { color: var(--gold); }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--cream); }
+    .footer-copy { font-size: 0.72rem; color: var(--muted); opacity: 0.6; }
+
+    /* ── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .pieces-grid { grid-template-columns: repeat(2, 1fr); }
+      .piece-card.large { grid-row: span 1; aspect-ratio: 3/4; }
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-mobile-toggle { display: block; }
+      .hero { padding: 0 1.5rem 5rem; }
+      .section { padding: 4rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-img-accent { display: none; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .gallery-strip { grid-template-columns: repeat(3, 1fr); }
+      .gallery-strip-item:nth-child(n+4) { display: none; }
+      .pieces-grid { grid-template-columns: 1fr; }
+      .about-stats { grid-template-columns: repeat(3, 1fr); }
+      .process-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .form-row-2 { grid-template-columns: 1fr; }
+      footer { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="#" class="nav-logo">Timber<span>Mill</span></a>
+    <div class="nav-links">
+      <a href="#pieces">Collection</a>
+      <a href="#about">Atelier</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Commission</a>
+    </div>
+    <a href="#contact" class="nav-cta">Begin a Commission</a>
+    <button class="nav-mobile-toggle" aria-label="Menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-img"></div>
+    <div class="hero-content">
+      <span class="hero-label">Est. 2009 &nbsp;·&nbsp; Lagos &amp; London</span>
+      <h1 class="hero-title">Crafted for<br><em>permanence</em></h1>
+      <p class="hero-sub">Bespoke furniture and architectural millwork, handmade in solid hardwood. Each commission is a collaboration — from the first sketch to the final fitting.</p>
+      <div class="hero-actions">
+        <a href="#pieces" class="btn btn-primary">
+          View Collection
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a href="#contact" class="btn btn-ghost">Commission a Piece</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- FEATURED PIECES -->
+  <section class="section" id="pieces">
+    <div class="section-inner">
+      <span class="section-label">Featured Work</span>
+      <h2 class="section-title">The <em>Collection</em></h2>
+      <div class="divider"></div>
+      <p class="section-desc">A selection of recent commissions. Every piece is unique — built to a client's precise dimensions, timber choice, and finish.</p>
+
+      <div class="pieces-grid">
+        <div class="piece-card large">
+          <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&h=1200&fit=crop&q=80" alt="Alderton Dining Table" loading="lazy" />
+          <div class="piece-overlay">
+            <span class="piece-cat">Dining</span>
+            <div class="piece-name">Alderton Table</div>
+            <div class="piece-mat">American White Oak · 2.8m — Bespoke</div>
+          </div>
+        </div>
+        <div class="piece-card">
+          <img src="https://images.unsplash.com/photo-1538688525198-9b88f6f53126?w=600&h=800&fit=crop&q=80" alt="Reading Chair" loading="lazy" />
+          <div class="piece-overlay">
+            <span class="piece-cat">Seating</span>
+            <div class="piece-name">Holloway Chair</div>
+            <div class="piece-mat">Walnut · Leather — Bespoke</div>
+          </div>
+        </div>
+        <div class="piece-card">
+          <img src="https://images.unsplash.com/photo-1592078615290-033ee584e267?w=600&h=800&fit=crop&q=80" alt="Library Shelving" loading="lazy" />
+          <div class="piece-overlay">
+            <span class="piece-cat">Storage</span>
+            <div class="piece-name">Arched Library</div>
+            <div class="piece-mat">Painted Oak · Full Height — Bespoke</div>
+          </div>
+        </div>
+        <div class="piece-card">
+          <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=800&fit=crop&q=80" alt="Bedroom Suite" loading="lazy" />
+          <div class="piece-overlay">
+            <span class="piece-cat">Bedroom</span>
+            <div class="piece-name">Soane Bed Frame</div>
+            <div class="piece-mat">Smoked Oak · King — Bespoke</div>
+          </div>
+        </div>
+        <div class="piece-card">
+          <img src="https://images.unsplash.com/photo-1577140917170-285929fb55b7?w=600&h=800&fit=crop&q=80" alt="Side Table" loading="lazy" />
+          <div class="piece-overlay">
+            <span class="piece-cat">Occasional</span>
+            <div class="piece-name">Finch Side Table</div>
+            <div class="piece-mat">Black Walnut · Brass — Bespoke</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY STRIP -->
+  <div class="gallery-strip" aria-hidden="true">
+    <div class="gallery-strip-item"><img src="https://images.unsplash.com/photo-1567538096621-38d2284b23ff?w=400&h=400&fit=crop&q=75" alt="" loading="lazy" /></div>
+    <div class="gallery-strip-item"><img src="https://images.unsplash.com/photo-1616627547584-bf28cee262db?w=400&h=400&fit=crop&q=75" alt="" loading="lazy" /></div>
+    <div class="gallery-strip-item"><img src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=400&h=400&fit=crop&q=75" alt="" loading="lazy" /></div>
+    <div class="gallery-strip-item"><img src="https://images.unsplash.com/photo-1588854337115-1c67d9247e4d?w=400&h=400&fit=crop&q=75" alt="" loading="lazy" /></div>
+    <div class="gallery-strip-item"><img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=400&h=400&fit=crop&q=75" alt="" loading="lazy" /></div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="section about" id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-img-wrap">
+          <img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=700&h=950&fit=crop&q=85" alt="Craftsman at work" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1611269154421-4e27233ac5c7?w=400&h=300&fit=crop&q=80" alt="Workshop detail" loading="lazy" class="about-img-accent" />
+        </div>
+        <div class="about-text">
+          <span class="section-label">The Atelier</span>
+          <h2 class="section-title">Wood has a<br><em>memory</em> of its own</h2>
+          <div class="divider"></div>
+          <p>Every piece that leaves our workshop carries the grain, knots, and character of its tree — no two are ever alike. That specificity is not an imperfection; it is the point.</p>
+          <p>TimberMill was founded in 2009 by master craftsman Emeka Osei, who trained in traditional cabinetmaking before establishing his studio in Lagos. Today we work with private clients, architects, and interior designers across West Africa and the UK.</p>
+          <p>We work exclusively in solid hardwood — American white oak, black walnut, iroko, and afromosia. No veneers, no MDF, no shortcuts.</p>
+          <div class="about-stats">
+            <div>
+              <div class="stat-num">340+</div>
+              <div class="stat-label">Commissions Delivered</div>
+            </div>
+            <div>
+              <div class="stat-num">15yr</div>
+              <div class="stat-label">In the Atelier</div>
+            </div>
+            <div>
+              <div class="stat-num">6–8</div>
+              <div class="stat-label">Weeks Lead Time</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section" id="process">
+    <div class="section-inner">
+      <span class="section-label">How It Works</span>
+      <h2 class="section-title">From brief to<br><em>finished piece</em></h2>
+      <div class="divider"></div>
+      <p class="section-desc">Every commission follows the same four-stage process — deliberate, unhurried, and fully transparent at each step.</p>
+
+      <div class="process-grid">
+        <div class="process-step">
+          <div class="process-num">01</div>
+          <div class="process-name">Consultation</div>
+          <p class="process-desc">We begin with a conversation — in-person at the workshop or over video. We discuss the space, intended use, timber preferences, and any reference imagery you have in mind.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">02</div>
+          <div class="process-name">Design &amp; Quotation</div>
+          <p class="process-desc">We produce scaled drawings and a detailed quotation within five working days. Revisions are welcome at this stage — there is no cost until you are satisfied with the design.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">03</div>
+          <div class="process-name">Making</div>
+          <p class="process-desc">Lead time is typically six to eight weeks. You are welcome to visit the workshop mid-build. We send photographic updates at each major stage — milling, joinery, and finishing.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">04</div>
+          <div class="process-name">Delivery &amp; Fitting</div>
+          <p class="process-desc">We deliver and install the piece ourselves — no couriers. Built-in furniture includes on-site finishing and a one-year structural warranty as standard.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <blockquote class="testimonial">
+    <p class="testimonial-quote">The walnut desk TimberMill made for my study is the finest piece of furniture I own. It will outlast me by centuries — and that was exactly what I asked for.</p>
+    <cite class="testimonial-author">— Adaeze Nwosu, Private Commission, Lagos</cite>
+  </blockquote>
+
+  <!-- CONTACT / COMMISSION -->
+  <section class="section" id="contact">
+    <div class="section-inner">
+      <span class="section-label">Begin a Commission</span>
+      <h2 class="section-title">Tell us about<br>your <em>project</em></h2>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="divider"></div>
+          <p>We accept a limited number of new commissions each quarter. To start a conversation, fill in the form and we will be in touch within two working days.</p>
+          <div class="contact-detail">
+            <div class="contact-detail-label">Workshop</div>
+            <div class="contact-detail-val">14 Adeniyi Jones Avenue, Ikeja, Lagos</div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-label">Email</div>
+            <div class="contact-detail-val">hello@timbermill.studio</div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-label">London Studio (by appointment)</div>
+            <div class="contact-detail-val">Bermondsey Street, London SE1</div>
+          </div>
+        </div>
+        <form onsubmit="handleSubmit(event)">
+          <div class="form-row-2 form-row">
+            <div class="form-row">
+              <label for="name">Your name</label>
+              <input type="text" id="name" placeholder="Full name" />
+            </div>
+            <div class="form-row">
+              <label for="email">Email address</label>
+              <input type="email" id="email" placeholder="you@email.com" />
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="type">Type of commission</label>
+            <select id="type">
+              <option value="" disabled selected>Please select…</option>
+              <option>Dining table</option>
+              <option>Desk or home office</option>
+              <option>Bedroom furniture</option>
+              <option>Storage &amp; shelving</option>
+              <option>Architectural joinery</option>
+              <option>Other / not sure yet</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="message">Tell us about your project</label>
+            <textarea id="message" placeholder="Dimensions, timber preference, budget guide, timeline, any other details…"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+            Send Enquiry
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Timber<span>Mill</span></div>
+    <div class="footer-links">
+      <a href="#pieces">Collection</a>
+      <a href="#about">Atelier</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Commission</a>
+    </div>
+    <div class="footer-copy">&copy; 2024 TimberMill Studio. All rights reserved.</div>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // Form submit
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type=submit]');
+      btn.textContent = 'Enquiry Sent — We\'ll Be in Touch';
+      btn.style.background = '#3a7c5c';
+      btn.style.borderColor = '#3a7c5c';
+      btn.disabled = true;
+    }
+  </script>
+</body>
+</html>
