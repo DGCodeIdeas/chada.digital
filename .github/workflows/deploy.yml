@@ -78,7 +78,7 @@ jobs:
             --exclude='bootstrap/cache/*' \
             --exclude='database/database.sqlite' \
             -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no" \
-            ./ ubuntu@${{ secrets.EC2_HOST }}:/var/www/chada-digital/
+            ./ ubuntu@${{ secrets.EC2_HOST }}:~/devstack-manager/projects/chadadigital.com/
 
       # ── 8. Post-deploy artisan commands ───────────────────────────
       #    Runs on EC2 via SSH. Fast — no compilation, just cache writes.
@@ -86,4 +86,4 @@ jobs:
         run: |
           ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no \
             ubuntu@${{ secrets.EC2_HOST }} \
-            'cd /var/www/chada-digital && bash scripts/post-deploy.sh'
+            'bash ~/devstack-manager/projects/chadadigital.com/scripts/post-deploy-dstack.sh'
