@@ -1,4 +1,4 @@
-name: Deploy to EC2
+name: Deploy chada.digital to EC2
 
 on:
   push:
@@ -8,54 +8,42 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      # ── 1. Checkout ────────────────────────────────────────────────
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # ── 2. Install Bun ─────────────────────────────────────────────
       - name: Set up Bun
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
 
-      # ── 3. Cache node_modules (saves build time & bandwidth) ───────
       - name: Cache node_modules
         uses: actions/cache@v4
         with:
           path: node_modules
           key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-bun-
+          restore-keys: ${{ runner.os }}-bun-
 
-      # ── 4. Install JS deps & build production assets ───────────────
-      #    Assets are compiled HERE (free GitHub Actions minutes),
-      #    NOT on EC2. This keeps the server CPU credits intact.
+      # Assets compiled HERE on free CI — never on EC2.
       - name: Install JS dependencies
         run: bun install --frozen-lockfile
 
       - name: Build production assets
-        run: bun run prod
+        run: bun run prod       # → public/js, public/css, public/mix-manifest.json
 
-      # ── 5. Cache Composer (speeds up subsequent runs) ──────────────
       - name: Cache Composer packages
         uses: actions/cache@v4
         with:
           path: vendor
           key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-
+          restore-keys: ${{ runner.os }}-composer-
 
-      # ── 6. Install PHP deps (no dev) ───────────────────────────────
       - name: Install Composer dependencies
         uses: php-actions/composer@v6
         with:
-          php_version: "8.2"
+          php_version: "8.5"
           args: --no-dev --optimize-autoloader --no-interaction
 
-      # ── 7. Deploy via rsync ────────────────────────────────────────
-      #    Only syncs changed files. Excludes dev artefacts.
       - name: Write SSH key
         run: |
           mkdir -p ~/.ssh
@@ -69,7 +57,6 @@ jobs:
             --exclude='.git' \
             --exclude='.github' \
             --exclude='node_modules' \
-            --exclude='chada-digital-static' \
             --exclude='.env' \
             --exclude='storage/logs/*' \
             --exclude='storage/framework/cache/*' \
@@ -78,12 +65,10 @@ jobs:
             --exclude='bootstrap/cache/*' \
             --exclude='database/database.sqlite' \
             -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no" \
-            ./ ubuntu@${{ secrets.EC2_HOST }}:~/devstack-manager/projects/chadadigital.com/
+            ./ ubuntu@${{ secrets.EC2_HOST }}:/opt/dstack-panel/projects/chada.digital/
 
-      # ── 8. Post-deploy artisan commands ───────────────────────────
-      #    Runs on EC2 via SSH. Fast — no compilation, just cache writes.
       - name: Run post-deploy tasks on EC2
         run: |
           ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no \
             ubuntu@${{ secrets.EC2_HOST }} \
-            'bash ~/devstack-manager/projects/chadadigital.com/scripts/post-deploy-dstack.sh'
+            'bash /opt/dstack-panel/projects/chada.digital/scripts/post-deploy-dstack.sh'
