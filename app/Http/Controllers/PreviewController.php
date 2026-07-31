@@ -1,10 +1,11 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Services\PreviewService;
-use Illuminate\View\View;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\File;
+use Illuminate\View\View;
 
 class PreviewController extends Controller
 {
@@ -15,10 +16,14 @@ class PreviewController extends Controller
     public function show(string $slug): View|Response
     {
         $preview = $this->previewService->get($slug);
-        if (!$preview) { abort(404); }
+        if (! $preview) {
+            abort(404);
+        }
 
         $previewPath = public_path("demos/{$slug}");
-        if (!File::exists($previewPath)) { abort(404); }
+        if (! File::exists($previewPath)) {
+            abort(404);
+        }
 
         return view('pages.preview', [
             'preview' => $preview,
@@ -36,13 +41,17 @@ class PreviewController extends Controller
     public function subpage(string $slug, string $subpage): View|Response
     {
         $preview = $this->previewService->get($slug);
-        if (!$preview) { abort(404); }
+        if (! $preview) {
+            abort(404);
+        }
 
         $subpagePath = public_path("demos/{$slug}/{$subpage}");
-        if (!File::exists($subpagePath)) {
+        if (! File::exists($subpagePath)) {
             $subpagePath = public_path("demos/{$slug}/{$subpage}/index.html");
         }
-        if (!File::exists($subpagePath)) { abort(404); }
+        if (! File::exists($subpagePath)) {
+            abort(404);
+        }
 
         return view('pages.preview', [
             'preview' => $preview,

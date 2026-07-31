@@ -1,9 +1,10 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Services\PreviewService;
-use Illuminate\View\View;
 use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class PageController extends Controller
 {
@@ -51,6 +52,7 @@ class PageController extends Controller
         }
 
         $xml = view('sitemap', ['urls' => $urls])->render();
+
         return response($xml, 200, ['Content-Type' => 'application/xml']);
     }
 }
