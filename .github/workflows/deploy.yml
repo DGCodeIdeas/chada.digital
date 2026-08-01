@@ -53,17 +53,22 @@ jobs:
 
       - name: Sync files to EC2
         run: |
-          rsync -az --delete \
+          rsync -rlz --delete \
+            --rsync-path="sudo rsync" \
+            --no-perms --no-owner --no-group --omit-dir-times --no-times \
             --exclude='.git' \
             --exclude='.github' \
             --exclude='node_modules' \
+            --exclude='.composer' \
             --exclude='.env' \
+            --exclude='.env.bak.*' \
             --exclude='storage/logs/*' \
             --exclude='storage/framework/cache/*' \
             --exclude='storage/framework/sessions/*' \
             --exclude='storage/framework/views/*' \
             --exclude='bootstrap/cache/*' \
             --exclude='database/database.sqlite' \
+            --exclude='database/chada.db' \
             -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no" \
             ./ ubuntu@${{ secrets.EC2_HOST }}:/opt/dstack-panel/projects/chada.digital/
 
