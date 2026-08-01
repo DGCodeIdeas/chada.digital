@@ -76,4 +76,4 @@ jobs:
         run: |
           ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no \
             ubuntu@${{ secrets.EC2_HOST }} \
-            'bash /opt/dstack-panel/projects/chada.digital/scripts/post-deploy-dstack.sh'
+            'sudo bash /opt/dstack-panel/projects/chada.digital/scripts/post-deploy-dstack.sh'
