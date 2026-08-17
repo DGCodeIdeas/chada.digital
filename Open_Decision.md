@@ -1,5 +1,6 @@
 # Open_Decision.md — Chada Digital Redesign
 
+> **Author:** DGCodeIdeas
 > **Project:** chada.digital website redesign  
 > **Reference:** https://wabdigital.com/  
 > **Decision Date:** August 2026  
