@@ -1,5 +1,6 @@
 # Redesign.md — Chada Digital Website Redesign
 
+> **Author:** DGCodeIdeas
 > **Project:** chada.digital redesign  
 > **Reference:** https://wabdigital.com/ (minimalist + case-study-driven aesthetic)  
 > **Stack:** Custom Laravel 12 + Blade + Tailwind CSS v3 + Laravel Mix + jQuery  
