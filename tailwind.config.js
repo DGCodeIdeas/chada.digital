@@ -7,10 +7,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: '#fafafa',
+        background: '#f4f2ee',
         foreground: '#171717',
         card: {
-          DEFAULT: '#ffffff',
+          DEFAULT: '#fbfaf8',
           foreground: '#171717',
         },
         primary: {
