@@ -144,6 +144,13 @@ All existing routes preserved with 301 redirects where paths change.
 ## 5. Design System Changes
 
 ### 5.1 tailwind.config.js
+
+> **Update (Aug 19, 2026):** `background` and `card.DEFAULT` were adjusted during live
+> testing to a warmer off-white — `#f4f2ee` / `#fbfaf8` — replacing the `#fafafa` /
+> `#ffffff` shown below. This was a deliberate call made against the running build, not
+> a spec error; the values below are kept as the original documented baseline. Treat
+> `#f4f2ee` / `#fbfaf8` as current for `background` and `card.DEFAULT`.
+
 ```javascript
 module.exports = {
   content: [
@@ -153,10 +160,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: '#fafafa',      // was #0e1b2e
+        background: '#fafafa',      // was #0e1b2e — see live-test update above
         foreground: '#171717',      // was #f8fafc
         card: {
-          DEFAULT: '#ffffff',
+          DEFAULT: '#ffffff',       // see live-test update above
           foreground: '#171717',
         },
         primary: {
