@@ -1,0 +1,1 @@
+<span <?php echo e($attributes->merge(['class' => 'text-xs font-semibold uppercase tracking-[0.3em] text-primary'])); ?>><?php echo e($slot); ?></span><?php /**PATH /home/dgi/www/chada.digital/resources/views/components/section-badge.blade.php ENDPATH**/ ?>
