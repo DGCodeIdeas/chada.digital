@@ -1,13 +1,12 @@
-<header class="sticky top-0 z-50 border-b border-border/40 bg-background/85 backdrop-blur-xl">
-    <div class="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-6">
+<header class="sticky top-0 z-50 border-b border-neutral-200 bg-background/85 backdrop-blur-xl">
+    <div class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-6">
         <a class="inline-flex items-center" href="<?php echo e(url('/')); ?>">
             <img alt="Chada Digital — Digital Solutions That Scale Businesses" class="h-12 md:h-14 w-auto object-contain" src="<?php echo e(asset('chada-logo-horizontal.png')); ?>" />
         </a>
         <nav class="hidden items-center gap-7 lg:flex">
-            <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="<?php echo e(url('/')); ?>">Home</a>
-            <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="<?php echo e(url('/#about')); ?>">About Us</a>
+            <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="<?php echo e(route('work')); ?>">Work</a>
             <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="<?php echo e(url('/#services')); ?>">Services</a>
-            <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="<?php echo e(url('/#portfolio')); ?>">Our Work</a>
+            <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="<?php echo e(url('/#process')); ?>">Process</a>
             <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="<?php echo e(url('/#products')); ?>">Products</a>
             <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="<?php echo e(url('/#contact')); ?>">Contact</a>
         </nav>
@@ -21,10 +20,9 @@
     </div>
     <div id="mobile-menu" class="hidden lg:hidden" aria-hidden="true">
         <nav class="flex flex-col gap-4 border-t border-border/40 bg-background/95 px-6 py-6 backdrop-blur-xl">
-            <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="<?php echo e(url('/')); ?>">Home</a>
-            <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="<?php echo e(url('/#about')); ?>">About Us</a>
+            <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="<?php echo e(route('work')); ?>">Work</a>
             <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="<?php echo e(url('/#services')); ?>">Services</a>
-            <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="<?php echo e(url('/#portfolio')); ?>">Our Work</a>
+            <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="<?php echo e(url('/#process')); ?>">Process</a>
             <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="<?php echo e(url('/#products')); ?>">Products</a>
             <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="<?php echo e(url('/#contact')); ?>">Contact</a>
             <a class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 text-xs font-semibold uppercase tracking-widest text-primary-foreground transition-transform hover:-translate-y-0.5" href="<?php echo e(url('/#contact')); ?>">Start a Project</a>

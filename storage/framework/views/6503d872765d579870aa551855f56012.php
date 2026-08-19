@@ -13,19 +13,19 @@
 
     <div class="chada-form-group">
         <label class="mb-2 block text-sm font-medium" for="name">Name<span class="ml-0.5 text-primary" aria-hidden="true">*</span></label>
-        <input id="name" name="name" type="text" required placeholder="Your name" class="chada-field-input w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors" />
+        <input id="name" name="name" type="text" required placeholder="Your name" class="chada-field-input w-full rounded-xl border border-border bg-neutral-50 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors" />
         <p class="chada-error-msg mt-1.5 text-xs font-medium text-red-500" role="alert"></p>
     </div>
 
     <div class="chada-form-group">
         <label class="mb-2 block text-sm font-medium" for="email">Email<span class="ml-0.5 text-primary" aria-hidden="true">*</span></label>
-        <input id="email" name="email" type="email" required placeholder="your@email.com" class="chada-field-input w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors" />
+        <input id="email" name="email" type="email" required placeholder="your@email.com" class="chada-field-input w-full rounded-xl border border-border bg-neutral-50 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors" />
         <p class="chada-error-msg mt-1.5 text-xs font-medium text-red-500" role="alert"></p>
     </div>
 
     <div class="chada-form-group">
         <label class="mb-2 block text-sm font-medium" for="message">Message<span class="ml-0.5 text-primary" aria-hidden="true">*</span></label>
-        <textarea id="message" name="message" rows="5" required placeholder="Tell us about your project..." class="chada-field-input w-full resize-none rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors"></textarea>
+        <textarea id="message" name="message" rows="5" required placeholder="Tell us about your project..." class="chada-field-input w-full resize-none rounded-xl border border-border bg-neutral-50 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors"></textarea>
         <p class="chada-error-msg mt-1.5 text-xs font-medium text-red-500" role="alert"></p>
     </div>
 
