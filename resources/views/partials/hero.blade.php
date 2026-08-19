@@ -3,7 +3,7 @@
     <div class="relative mx-auto max-w-3xl text-center">
         <div class="flex flex-col items-center">
             <span class="mb-5 inline-block text-xs font-semibold uppercase tracking-[0.3em] text-primary">Based in Lagos &middot; Serving the World</span>
-            <h1 class="font-display text-3xl font-bold leading-[1.1] tracking-tight md:text-5xl">
+            <h1 class="font-display text-4xl font-bold leading-[1.1] tracking-tight md:text-5xl">
                 Digital Solutions That<br/><span class="text-primary">Help Businesses Grow</span>.
             </h1>
             <p class="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">We engineer high-performance websites, command-attention brands, and intelligent automation for ambitious teams across Nigeria and beyond.</p>
