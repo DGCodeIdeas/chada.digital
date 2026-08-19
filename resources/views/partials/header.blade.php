@@ -1,7 +1,7 @@
 <header class="sticky top-0 z-50 border-b border-neutral-200 bg-background/85 backdrop-blur-xl">
     <div class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-6">
         <a class="inline-flex items-center" href="{{ url('/') }}">
-            <img alt="Chada Digital — Digital Solutions That Scale Businesses" class="h-12 md:h-14 w-auto object-contain" src="{{ asset('chada-logo-horizontal.png') }}" />
+            <img alt="Chada Digital — Digital Solutions That Scale Businesses" class="h-12 md:h-14 w-auto object-contain" src="{{ asset('chada-logo-horizontal-dark.png') }}" />
         </a>
         <nav class="hidden items-center gap-7 lg:flex">
             <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="{{ route('work') }}">Work</a>
