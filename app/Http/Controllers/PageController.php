@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\CaseStudyService;
 use App\Services\PreviewService;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
@@ -9,7 +10,8 @@ use Illuminate\View\View;
 class PageController extends Controller
 {
     public function __construct(
-        protected PreviewService $previewService
+        protected PreviewService $previewService,
+        protected CaseStudyService $caseStudyService
     ) {}
 
     public function home(): View
@@ -30,7 +32,7 @@ class PageController extends Controller
             'meta' => [
                 'title' => 'Chada Digital — Digital Solutions That Scale Businesses',
                 'description' => 'A selection of recent work across industries and use cases.',
-                'canonical' => route('showcase'),
+                'canonical' => route('work'),
                 'ogImage' => asset('og-image.jpg'),
             ],
         ]);
@@ -40,12 +42,20 @@ class PageController extends Controller
     {
         $urls = [
             ['loc' => route('home'), 'changefreq' => 'weekly', 'priority' => '1.0'],
-            ['loc' => route('showcase'), 'changefreq' => 'weekly', 'priority' => '0.9'],
+            ['loc' => route('work'), 'changefreq' => 'monthly', 'priority' => '0.8'],
         ];
 
         foreach ($this->previewService->all() as $slug => $preview) {
             $urls[] = [
                 'loc' => route('preview.show', $slug),
+                'changefreq' => 'monthly',
+                'priority' => '0.8',
+            ];
+        }
+
+        foreach ($this->caseStudyService->all() as $slug => $study) {
+            $urls[] = [
+                'loc' => route('case-study.show', $slug),
                 'changefreq' => 'monthly',
                 'priority' => '0.8',
             ];

@@ -7,21 +7,22 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: '#0e1b2e',
-        foreground: '#f8fafc',
+        background: '#fafafa',
+        foreground: '#171717',
         card: {
-          DEFAULT: '#0b1526',
-          foreground: '#f8fafc',
+          DEFAULT: '#ffffff',
+          foreground: '#171717',
         },
         primary: {
-          DEFAULT: '#3b82f6',
+          DEFAULT: '#2563eb',
           foreground: '#ffffff',
         },
         muted: {
-          DEFAULT: '#1e293b',
-          foreground: '#94a3b8',
+          DEFAULT: '#f5f5f5',
+          foreground: '#525252',
         },
-        border: 'rgba(148, 163, 184, 0.1)',
+        border: '#e5e5e5',
+        accent: '#0a0a0a',
       },
       fontFamily: {
         display: ['Outfit', 'sans-serif'],
