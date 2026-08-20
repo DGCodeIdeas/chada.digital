@@ -2,7 +2,7 @@
     <div class="mx-auto max-w-7xl">
         <div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
             <div class="max-w-xs">
-                <img alt="Chada Digital" class="h-10 w-auto object-contain" src="{{ asset('chada-logo-horizontal.png') }}" />
+                <img alt="Chada Digital" class="h-10 w-auto object-contain" src="{{ asset('chada-logo-horizontal-dark.png') }}" />
                 <p class="mt-4 text-sm leading-relaxed text-muted-foreground">Digital solutions that help businesses grow, automate, and scale.</p>
             </div>
             <nav class="flex flex-wrap items-center gap-x-8 gap-y-3">
