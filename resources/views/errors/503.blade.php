@@ -17,7 +17,8 @@
 
         <div class="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
             <svg class="h-7 w-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17L4.929 21m8.749-13.749c.34-.34.815-.421 1.229-.24l.4.174a2.652 2.652 0 001.905-.14l.774-.387a2.652 2.652 0 011.905-.14l.4.174c.414.181.889.1 1.229-.24l.774-.774a2.652 2.652 0 00.53-2.858l-.174-.4a2.652 2.652 0 00-2.858-.53l-.774.387a2.652 2.652 0 01-1.905.14l-.4-.174a2.652 2.652 0 00-1.905.14l-.774.387a2.652 2.652 0 01-1.229.24z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2" />
+                <circle cx="12" cy="12" r="9" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
         </div>
 
