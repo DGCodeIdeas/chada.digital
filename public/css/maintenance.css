@@ -1,18 +1,8 @@
 /*
-  maintenance.css
-  ----------------
-  Standalone stylesheet for resources/views/errors/503.blade.php ONLY.
-
-  Deliberately NOT part of the Tailwind/Mix build pipeline (app.scss -> app.css).
-  This file is committed directly and served as-is via asset('css/maintenance.css') —
-  it must keep working even if the asset build failed, which is a realistic reason
-  the site could be showing a 503 in the first place. Do not @import Tailwind here
-  and do not reference mix-manifest.json for this page.
-
-  Values are hand-matched to the live tokens in tailwind.config.js as of 2026-08-19
-  (see Redesign.md §5.1 for the live-test note on background/card). If those tokens
-  change again, update the hex values below too — this file won't pick them up
-  automatically.
+  Styles for the site's maintenance page.
+  Kept self-contained on purpose — don't merge this into the main stylesheet.
+  Colors are matched by hand to the current brand palette; update manually if
+  the palette changes, since this file won't inherit changes automatically.
 */
 
 :root {
@@ -38,8 +28,7 @@ body {
 body {
   background: var(--background);
   color: var(--foreground);
-  /* System font stack only — no external font request, so this page never
-     waits on (or breaks over) a network font fetch during an outage. */
+  /* System fonts only, for speed and reliability. */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter,
     Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
