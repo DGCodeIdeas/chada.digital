@@ -5,7 +5,7 @@
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <meta name="author" content="Chada Digital" />
 <meta name="copyright" content="Chada Digital" />
-<meta name="theme-color" content="#0e1b2e" />
+<meta name="theme-color" content="#f4f2ee" />
 <title>{{ $meta['title'] ?? config('app.name', 'Chada Digital') }}</title>
 <meta name="description" content="{{ $meta['description'] ?? 'We engineer high-performance websites, command-attention brands, and intelligent automation for ambitious teams across Nigeria and beyond.' }}" />
 <link rel="canonical" href="{{ $meta['canonical'] ?? 'https://www.chadadigital.com' }}" />
@@ -30,5 +30,5 @@
 <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32.png') }}" />
 <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}" />
-<meta name="msapplication-TileColor" content="#0e1b2e" />
+<meta name="msapplication-TileColor" content="#f4f2ee" />
 @include('partials.structured-data')

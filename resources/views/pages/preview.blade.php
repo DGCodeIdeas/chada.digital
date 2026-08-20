@@ -32,7 +32,7 @@ main {
      data-slug="{{ $slug }}"
      data-subpage="{{ $subpage ?? '' }}"
      data-preview='@json($preview)'
-     data-return-url="{{ route('showcase') }}">
+      data-return-url="{{ route('work') }}">
 
     <!-- Splash Overlay -->
     <div id="preview-splash" class="fixed inset-0 z-50 flex items-center justify-center bg-background/95 backdrop-blur-sm">

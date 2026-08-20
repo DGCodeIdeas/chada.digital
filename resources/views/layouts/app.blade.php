@@ -14,7 +14,6 @@
     </main>
     
     @include('partials.footer')
-    @include('partials.projects-modal')
     
     <script src="{{ mix('js/app.js') }}"></script>
     @stack('scripts')

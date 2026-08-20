@@ -17,22 +17,11 @@ class PageController extends Controller
     public function home(): View
     {
         return view('pages.home', [
+            'studies' => $this->caseStudyService->collection(),
             'meta' => [
                 'title' => 'Chada Digital — Digital Solutions That Scale Businesses',
                 'description' => 'We engineer high-performance websites, command-attention brands, and intelligent automation for ambitious teams across Nigeria and beyond.',
                 'canonical' => route('home'),
-                'ogImage' => asset('og-image.jpg'),
-            ],
-        ]);
-    }
-
-    public function showcase(): View
-    {
-        return view('pages.showcase', [
-            'meta' => [
-                'title' => 'Chada Digital — Digital Solutions That Scale Businesses',
-                'description' => 'A selection of recent work across industries and use cases.',
-                'canonical' => route('work'),
                 'ogImage' => asset('og-image.jpg'),
             ],
         ]);

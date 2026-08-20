@@ -30,7 +30,7 @@ main {
      data-slug="<?php echo e($slug); ?>"
      data-subpage="<?php echo e($subpage ?? ''); ?>"
      data-preview='<?php echo json_encode($preview, 15, 512) ?>'
-     data-return-url="<?php echo e(route('showcase')); ?>">
+      data-return-url="<?php echo e(route('work')); ?>">
 
     <!-- Splash Overlay -->
     <div id="preview-splash" class="fixed inset-0 z-50 flex items-center justify-center bg-background/95 backdrop-blur-sm">

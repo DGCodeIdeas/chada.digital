@@ -9,13 +9,10 @@ window.jQuery = $;
 import { toast } from './modules/toast';
 import { initMobileNav } from './modules/mobile-nav';
 import { initChadaContactForm } from './modules/contact-form';
-import { initProjectsModal } from './modules/projects-modal';
-
 // Expose modules globally for legacy compatibility (Sterling & Vale demo)
 window.toast = toast;
 window.initMobileNav = initMobileNav;
 window.initChadaContactForm = initChadaContactForm;
-window.initProjectsModal = initProjectsModal;
 
 // Initialize on DOM ready
 $(() => {
@@ -25,9 +22,6 @@ $(() => {
 
     // Contact form
     initChadaContactForm();
-
-    // Projects modal (View All Projects)
-    initProjectsModal();
 
     // Showcase category filtering
     initShowcaseFilters();

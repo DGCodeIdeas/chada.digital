@@ -6,7 +6,7 @@
     @include('partials.process')     {{-- id="process" --}}
     @include('partials.about')
     @include('partials.services')
-    @include('partials.portfolio')   {{-- becomes case-studies in Phase 3 --}}
+    @include('partials.case-studies')
     @include('partials.products')
     @include('partials.contact')
 @endsection

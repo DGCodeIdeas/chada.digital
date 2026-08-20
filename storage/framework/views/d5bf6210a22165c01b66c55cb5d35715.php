@@ -5,7 +5,7 @@
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <meta name="author" content="Chada Digital" />
 <meta name="copyright" content="Chada Digital" />
-<meta name="theme-color" content="#0e1b2e" />
+<meta name="theme-color" content="#f4f2ee" />
 <title><?php echo e($meta['title'] ?? config('app.name', 'Chada Digital')); ?></title>
 <meta name="description" content="<?php echo e($meta['description'] ?? 'We engineer high-performance websites, command-attention brands, and intelligent automation for ambitious teams across Nigeria and beyond.'); ?>" />
 <link rel="canonical" href="<?php echo e($meta['canonical'] ?? 'https://www.chadadigital.com'); ?>" />
@@ -30,5 +30,5 @@
 <link rel="icon" href="<?php echo e(asset('favicon.ico')); ?>" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="<?php echo e(asset('favicon-32.png')); ?>" />
 <link rel="apple-touch-icon" href="<?php echo e(asset('apple-touch-icon.png')); ?>" />
-<meta name="msapplication-TileColor" content="#0e1b2e" />
+<meta name="msapplication-TileColor" content="#f4f2ee" />
 <?php echo $__env->make('partials.structured-data', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /home/dgi/www/chada.digital/resources/views/partials/meta.blade.php ENDPATH**/ ?>
