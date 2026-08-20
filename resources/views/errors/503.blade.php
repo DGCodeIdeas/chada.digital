@@ -5,36 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex">
     <title>We'll be right back — Chada Digital</title>
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    {{-- Deliberately NOT mix('css/app.css') — that depends on a successful CI build
+         and mix-manifest.json, either of which could be exactly why this page is
+         being shown. This file is committed directly and has no build dependency. --}}
+    <link rel="stylesheet" href="{{ asset('css/maintenance.css') }}">
 </head>
-<body class="bg-background text-foreground antialiased">
-    <main class="flex min-h-screen flex-col items-center justify-center px-6 text-center">
+<body>
+    <main class="maintenance-page">
         <img
             src="{{ asset('chada-logo-horizontal-dark.png') }}"
             alt="Chada Digital"
-            class="h-9 w-auto mb-12"
+            class="maintenance-logo"
         />
 
-        <div class="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-            <svg class="h-7 w-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+        <div class="maintenance-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2" />
                 <circle cx="12" cy="12" r="9" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
         </div>
 
-        <h1 class="font-display text-2xl font-bold tracking-tight md:text-4xl">
-            We're making a few updates
-        </h1>
-        <p class="mt-4 max-w-md text-muted-foreground">
+        <h1 class="maintenance-title">We're making a few updates</h1>
+        <p class="maintenance-text">
             Chada Digital is offline briefly for scheduled maintenance. We'll be back
             shortly — thanks for bearing with us.
         </p>
 
-        <p class="mt-10 text-xs uppercase tracking-widest text-muted-foreground">
+        <p class="maintenance-contact">
             Need us urgently?
-            <a href="mailto:info@chadadigital.com" class="text-primary hover:underline">
-                info@chadadigital.com
-            </a>
+            <a href="mailto:info@chadadigital.com">info@chadadigital.com</a>
         </p>
     </main>
 </body>
