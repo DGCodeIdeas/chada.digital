@@ -608,10 +608,32 @@ Add `/work` and all `/case-study/{slug}` URLs to sitemap generation in `PageCont
 | OG image (new) | 1200×630 | Update with new branding |
 | Process icons (4) | 48×48 | Lucide icons or custom SVG |
 
-### 10.2 Logo Variant
-The current `chada-logo-horizontal.png` may not work on light backgrounds. **Decision needed:**
-- Option A: Create `chada-logo-dark.png` (dark text version)
-- Option B: Use SVG logo with `currentColor` fill
+### 10.2 Logo Variant — RESOLVED (Aug 19, 2026)
+Went with Option A. `public/chada-logo-horizontal-dark.png` was created (icon mark
+unchanged — it already read fine on light backgrounds; wordmark recolored to `#171717`,
+tagline to `#525252`, matching the live foreground/muted tokens). `header.blade.php`
+and `footer.blade.php` both point to it now. See §10.3 for a third place this logo
+problem showed up.
+
+### 10.3 Maintenance Page Assets (added Aug 19, 2026)
+`resources/views/errors/503.blade.php` and `public/css/maintenance.css` were added to
+replace Laravel's default plain-text 503 output. Two things about these worth knowing
+if anyone touches the design tokens later:
+
+- **`maintenance.css` is hand-authored and committed directly** — it is deliberately
+  *not* part of the Tailwind/Mix build (`app.scss` → `app.css`). The 503 page is
+  a plausible place to land during a broken deploy, so it can't depend on the same
+  build pipeline that might be the reason it's showing. `public/css/app.css` and
+  `public/js/app.js` are both gitignored/build-only; `maintenance.css` is not.
+- **Its color values are hand-copied, not generated.** `background`, `foreground`,
+  `primary`, `muted-foreground`, and `border` are hardcoded hex values matching
+  `tailwind.config.js` as of this date (including the live-test `#f4f2ee`/`#fbfaf8`
+  values noted in §5.1, not the original `#fafafa`/`#ffffff`). **If the palette
+  changes again, this file will not pick it up automatically** — update
+  `public/css/maintenance.css` by hand alongside `tailwind.config.js`.
+- The page also uses `chada-logo-horizontal-dark.png` and a system-font stack
+  (no Google Fonts request), for the same reason — minimize what has to succeed
+  for the maintenance page itself to render.
 
 ---
 
@@ -652,7 +674,7 @@ The current `chada-logo-horizontal.png` may not work on light backgrounds. **Dec
 
 | Risk | Impact | Mitigation |
 |------|--------|------------|
-| Logo doesn't work on light bg | High | Create dark variant before development |
+| Logo doesn't work on light bg | ~~High~~ Resolved Aug 19 | Dark variant created: `chada-logo-horizontal-dark.png` (see §10.2) |
 | Case study content not ready | High | Use placeholder data; content can be swapped later |
 | Client logos not available | Medium | Use generic industry icons or text names |
 | Workflow diagrams too complex | Medium | Start with static CSS; enhance with JS later |
@@ -715,7 +737,7 @@ The current `chada-logo-horizontal.png` may not work on light backgrounds. **Dec
 1. **Client logos:** Do we have permission to display client logos? Which ones?
 2. **Case study metrics:** Are the WAB-style metrics hypothetical or do we have real numbers?
 3. **Pricing:** Should products show "starting at" pricing?
-4. **New logo variant:** Do we need a dark-text logo for light backgrounds?
+4. ~~**New logo variant:** Do we need a dark-text logo for light backgrounds?~~ Resolved Aug 19 — see §10.2.
 5. **Blog:** WAB doesn't have a blog; do we want one?
 6. **Testimonials:** Do we have client quotes for case studies?
 
