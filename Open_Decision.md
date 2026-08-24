@@ -1,310 +1,168 @@
-# Open_Decision.md — Chada Digital Redesign
+# Open_Decision.md — Chada Digital Redesign (V2: WAB Digital Replicate)
 
-> **Author:** DGCodeIdeas
-> **Project:** chada.digital website redesign  
-> **Reference:** https://wabdigital.com/  
-> **Decision Date:** August 2026  
-> **Decision Owner:** Product/Design Lead (post-meeting consensus)  
-> **Audience:** Technical team, stakeholders, laymen, future hires  
+> For the whole team — technical and non-technical. Supersedes
+> `Open_Decision_V1_LIGHT_THEME_ARCHIVED.md`. Read `Redesign.md` first — this
+> doc is the list of things that need real answers before that spec can be
+> built.
 
----
+## How to use this doc
 
-## 1. Why Are We Redesigning?
-
-### The Problem
-The current Chada Digital website looks like a generic dark-mode SaaS template. It:
-- **Blends in** with every other "tech studio" site
-- **Hides our best work** behind iframe previews with no context
-- **Lacks proof** — no metrics, no process transparency, no client stories
-- **Feels small** — service cards and product grids make us look like a tool shop, not a strategic partner
-
-### The Opportunity
-WAB Digital (https://wabdigital.com/) demonstrates that **showing your process and results** builds more trust than showing screenshots. Their site:
-- Leads with **backend workflow diagrams** ("This is HOW we do it")
-- Leads with **hard numbers** ("$343K generated", "1,200% increase")
-- Leads with **client names** ("Healthtracka", "Mantrac CAT Nigeria")
-- Uses a **clean, minimalist aesthetic** that feels premium and confident
-
-### The Consensus
-In the August 2026 meeting, the team agreed:
-> *"We want it minimalist like WAB Digital and its features."*
-
-This document translates that consensus into concrete decisions.
+Most of what's below isn't a design or engineering question — it's content
+and business positioning that only the Founder/team can answer. Several
+sections in `Redesign.md` are fully blocked until their corresponding
+question here is answered, not just "better with an answer." Those are
+marked **BLOCKING**.
 
 ---
 
-## 2. What "Minimalist Like WAB Digital" Means
+## Q1 — Hero headline and value proposition
 
-### It Does NOT Mean
-- ❌ Boring or empty
-- ❌ Removing all color
-- ❌ Losing personality
-- ❌ Copying WAB's exact content
+**Plain language:** WAB's homepage opens with one confident sentence about
+what they do for clients. Chada needs its own equivalent — this is a
+positioning statement, not a design choice, so it shouldn't be written by
+whoever's building the page.
 
-### It DOES Mean
-- ✅ **More whitespace** — let content breathe
-- ✅ **Fewer sections, deeper content** — quality over quantity
-- ✅ **Results-first** — metrics before descriptions
-- ✅ **Process-visible** — show the backend workflow, not just the frontend
-- ✅ **Light background** — white/off-white instead of dark navy
-- ✅ **Restrained color** — one accent color (blue), mostly black/gray/white
-- ✅ **Editorial typography** — large headlines, readable body text
-
-### The Visual Shift
-| Before | After |
-|--------|-------|
-| Dark navy background (`#0e1b2e`) | White/off-white (`#fafafa`) |
-| Gradient glow blobs | Clean, no decorative noise |
-| 6-7 sections on home page | 5-6 sections, more depth each |
-| "Services That Drive Real Results" | "$343K Generated for Healthtracka" |
-| Screenshot grids | Workflow diagrams + metrics |
-| "View Our Work" CTA | "View Case Study" CTA |
+**BLOCKING** for §3.1. Needs: one sentence, in the Founder's own words if
+possible, about the core outcome Chada delivers.
 
 ---
 
-## 3. Key Decisions Made
+## Q2 — Client logos for the trust bar
 
-### Decision 1: Light Theme
-**What:** Switch from dark navy to white/light gray.  
-**Why:** Dark themes feel "developer-tool"; light themes feel "agency-professional". WAB, Ogilvy, Pentagram — top agencies use light. It also prints better and feels more accessible.  
-**Impact:** Every Blade partial needs restyling. Logo may need a dark variant.  
-**Status:** ✅ Decided. No objections raised.
+**Plain language:** Same open item carried over from V1 — do we have
+permission to show real client logos, and which ones?
 
-### Decision 2: Case Studies Replace Portfolio
-**What:** Instead of showing 6 project screenshots in a grid, we show 6-8 detailed case studies with metrics, workflow diagrams, and narratives.  
-**Why:** A screenshot says "we made a website." A case study says "we generated $343K in revenue by rebuilding a diagnostic funnel with WooCommerce, Paystack, and custom forms." The second sells the *outcome*, not the *output*.  
-**Impact:** New data structure (`CaseStudyService`), new pages (`/work`, `/case-study/{slug}`), new components (workflow diagrams, metric badges).  
-**Status:** ✅ Decided. Content team to provide case study copy.
-
-### Decision 3: Workflow Diagrams
-**What:** Every case study shows a visual pipeline of the automation/backend workflow (e.g., Meta Ads → Landing Page → Paystack → CRM).  
-**Why:** This is WAB's signature feature. It proves technical competence without requiring the visitor to read code. It turns abstract "automation" into concrete steps.  
-**Impact:** New Blade component (`x-workflow-diagram`). Pure CSS/SVG — no libraries needed.  
-**Status:** ✅ Decided. Design team to approve diagram style.
-
-### Decision 4: Keep Existing Tech Stack
-**What:** Laravel 12, Blade, Tailwind v3, Laravel Mix, jQuery, AWS EC2.  
-**Why:** The redesign is front-end and content only. No framework benefit from changing stacks. Laravel 12 is current. Migration would add 2+ weeks.  
-**Impact:** Zero infrastructure changes. Developers use existing patterns.  
-**Status:** ✅ Decided unanimously.
-
-### Decision 5: Preserve Demo Iframe System
-**What:** The 6 demo projects in `public/demos/` stay exactly as they are.  
-**Why:** They are independent, read-only, and still valuable. Case studies will LINK to them as "Live Demo" instead of EMBEDDING them as the primary content.  
-**Impact:** No changes to demos. Preview controller stays.  
-**Status:** ✅ Decided.
-
-### Decision 6: Rename /showcase to /work
-**What:** The portfolio page moves from `/showcase` to `/work`. Old URL 301 redirects.  
-**Why:** "Work" is agency-standard (WAB uses it implicitly). "Showcase" sounds like a template gallery.  
-**Impact:** One redirect rule. Update any external links.  
-**Status:** ✅ Decided.
-
-### Decision 7: Add Process Section
-**What:** New home page section: "Our Process" (Discover → Design → Build → Scale).  
-**Why:** WAB doesn't explicitly label this, but their workflow diagrams ARE their process. We make it explicit. It answers "how do you work?" before the client asks.  
-**Impact:** One new partial. Can reuse for proposals.  
-**Status:** ✅ Decided.
-
-### Decision 8: Trust Bar (Client Logos)
-**What:** Strip of client logos below the hero.  
-**Why:** Social proof in the first viewport. WAB uses client names heavily; logos are the visual equivalent.  
-**Impact:** Need client permission for logos. Need logo assets.  
-**Status:** ⚠️ Decided PENDING client logo availability. Fallback: use text names or skip.
+**Status:** Still unresolved (was also open in V1). Not blocking anything
+else — the trust bar already renders nothing until this is answered.
 
 ---
 
-## 4. What Stays the Same
+## Q3 — The six tiered offers
 
-| Element | Why It Stays |
-|---------|-------------|
-| **Laravel 12 + Blade** | Framework is current; no migration benefit |
-| **Tailwind CSS v3** | Still supported; v4 migration out of scope |
-| **Laravel Mix + Bun** | Build pipeline works; no reason to change |
-| **Contact form backend** | Logic is fine; only styling changes |
-| **Demo iframe previews** | Independent assets; still valuable |
-| **SEO meta system** | Structure is good; content updates only |
-| **Sitemap generation** | Works; just add new routes |
-| **Mobile navigation pattern** | Proven; just restyle |
-| **Honeypot spam protection** | Still effective |
+**Plain language:** WAB's whole homepage is structured around six clickable
+options, each answering "what do you want us to do for you?" — from
+"teach me to do it myself" up to full-service. Chada needs its own six
+(or however many makes sense), and they need to reflect real things Chada
+actually sells, not invented-for-the-mockup copy.
 
----
-
-## 5. What's New
-
-| Feature | What It Does | Who Cares |
-|---------|-------------|-----------|
-| **Case Study Pages** | Deep-dive project stories with metrics | Prospects who need proof |
-| **Workflow Diagrams** | Visual automation pipelines | Technical buyers |
-| **Metric Badges** | "$343K Generated" prominently displayed | Business owners |
-| **Process Section** | "How we work" in 4 steps | Prospects evaluating process |
-| **Trust Bar** | Client logo strip | Everyone (social proof) |
-| **Light Theme** | White background, editorial feel | Designers, brand perception |
-| **/work Page** | Filterable case study grid | Prospects browsing portfolio |
-| **Tech Stack Labels** | "Built with Laravel, Paystack, Meta Ads" | Technical stakeholders |
+**BLOCKING** for §3.3, and arguably the most structurally important
+decision in this whole document, since it's the section WAB's entire funnel
+is built around. Needs: a working session with the Founder to define the
+tiers, likely 3-6 of them, each with a name, a one-line description, and a
+CTA destination (does it link to a contact form, a specific package page,
+a calendar booking link?).
 
 ---
 
-## 6. For Non-Technical Stakeholders
+## Q4 — Lead-qualification quiz: how real does it need to be?
 
-### What You Need to Know
-1. **This is a redesign, not a rebuild.** The "engine" (Laravel) stays. We're changing the "bodywork" (HTML/CSS) and the "story" (content).
-2. **It will take ~1 week of development** after content is ready.
-3. **You need to provide:**
-   - Case study content (client names, metrics, challenge/solution/results)
-   - Client logos (with permission)
-   - New hero copy (or approve our draft)
-   - Any new images (or we use placeholders)
-4. **The old site stays live** until we flip the switch. No downtime.
-5. **Your email and phone** on the contact page stay the same.
+**Plain language:** WAB has a short "are you ready to scale?" quiz-style
+section before asking visitors to talk to sales. We can build this as a full
+interactive quiz with scoring, or as a much simpler static section with one
+button. The two options are very different amounts of engineering work.
 
-### What You DON'T Need to Worry About
-- ❌ Server crashes — no infrastructure changes
-- ❌ Losing data — no database changes
-- ❌ Broken demos — iframe previews untouched
-- ❌ SEO disaster — 301 redirects preserve rankings
+**BLOCKING** for §3.4 scope/estimate, not for starting other work.
 
----
+- **Option A — Full interactive quiz.** Multi-step, scored, probably routes
+  to different outcomes/CTAs based on answers. Real build (custom
+  component or a form tool integration).
+- **Option B — Static section + external tool.** A short "signs you're
+  ready" section linking out to a Typeform/Tally/similar embedded form.
+  Much faster to ship.
+- **Option C — Skip for v1.** Just the CTA, no quiz framing at all, revisit
+  later.
 
-## 7. For Technical Team
-
-### What You Need to Know
-1. **Read `Redesign.md`** — it has file-by-file instructions, component specs, and acceptance criteria.
-2. **Branch:** Create `feat/redesign-wabdigital` from `main`.
-3. **Constraints:**
-   - Use `mix()` not `@vite()`
-   - Use `bun` not `npm`
-   - Never touch `public/demos/`
-   - Follow existing Blade patterns (partials, components, layouts)
-4. **New files:** `CaseStudyService`, `CaseStudyController`, workflow diagram component, case study detail page.
-5. **Modified files:** Almost every partial and the Tailwind config.
-6. **No new dependencies** — pure Tailwind + Blade + optional Alpine.js.
-
-### Architecture Decision Records (ADRs)
-
-**ADR-001: Hardcoded Case Study Data**  
-We use a PHP array in `CaseStudyService` (same pattern as `PreviewService`) instead of a database table. Why: case studies change infrequently; no admin panel exists; avoids migration complexity. If we later need a CMS, we migrate to Eloquent models.
-
-**ADR-002: CSS-Only Workflow Diagrams**  
-We use Tailwind flexbox + SVG arrows instead of a charting library (D3, Mermaid). Why: zero dependencies, fast render, easy to style, works without JS. If complexity grows, we can upgrade to Mermaid later.
-
-**ADR-003: Keep jQuery for Existing Modules**  
-New interactivity (filters, tabs) should use Alpine.js or vanilla JS. Existing jQuery modules (mobile nav, contact form, projects modal) stay as-is to avoid regression.
+`Redesign.md` recommends starting with B and treating A as a later
+enhancement, but that's a recommendation, not a decision made here.
 
 ---
 
-## 8. Open Questions & Blockers
+## Q5 — Testimonials: do we have any?
 
-| # | Question | Owner | Status | Impact if Unresolved |
-|---|----------|-------|--------|----------------------|
-| 1 | Do we have client permission for logos? | Business Dev | ⚠️ Open | Trust bar delayed or skipped |
-| 2 | Are case study metrics real or estimated? | Operations | ⚠️ Open | Cannot publish fake numbers |
-| 3 | Do we have a dark-text logo variant? | Design | ⚠️ Open | May need to create one |
-| 4 | Should products show pricing? | Product | ⚠️ Open | Affects products section design |
-| 5 | Do we have client testimonials/quotes? | Business Dev | ⚠️ Open | Case studies less persuasive |
-| 6 | Should we add a blog? | Marketing | ⚠️ Open | Out of scope for now; can add later |
-| 7 | Which 6-8 case studies do we feature? | Operations | ⚠️ Open | Blocks content population |
+**Plain language:** WAB has a dedicated "what clients say" section. Does
+Chada have real client testimonials (written or video) we're allowed to
+publish? If not, this section can't ship in this redesign pass, full stop —
+there's no responsible placeholder version of a testimonial the way there
+was for the old case-study system (a fake testimonial attributed to no one
+is just as much a fabricated claim as a fake metric attributed to a real
+client would have been).
 
-### How to Resolve
-- **Questions 1, 5, 7:** Business Dev to email clients for permission and quotes.
-- **Question 2:** Operations to provide real numbers or approve "representative" metrics with disclaimers.
-- **Question 3:** Design to deliver `chada-logo-dark.png` or SVG by Day 1 of dev.
-- **Question 4:** Product to decide before Phase 2 (home page build).
-- **Question 6:** Marketing to propose blog strategy separately; not a blocker.
+**BLOCKING** for §3.5 — if the answer is "not yet," this section should be
+cut from the v1 build rather than shipped empty or faked, and revisited once
+testimonials exist.
 
 ---
 
-## 9. Success Metrics
+## Q6 — Founder bio content
 
-How do we know the redesign worked?
+**Plain language:** WAB's homepage includes a personal, first-person bio
+block for their founder — photo, background, credentials. If Chada is doing
+the same, we need the real content: a headshot and a short bio in the
+Founder's own words or approved by them directly.
 
-| Metric | Current | Target | How to Measure |
-|--------|---------|--------|---------------|
-| Homepage bounce rate | ? | -15% | Google Analytics 4 |
-| Time on page (home) | ? | +30% | Google Analytics 4 |
-| Contact form submissions | ? | +25% | Backend logs |
-| "Work" page views | ? | Top 3 pages | Google Analytics 4 |
-| Case study detail views | N/A | > 40% of /work visitors | Google Analytics 4 |
-| Lighthouse score | ? | ≥ 90 | Chrome DevTools |
-
-*Baseline metrics to be captured before launch.*
+**BLOCKING** for §3.7. Flagging explicitly: unlike a placeholder case-study
+metric, a fabricated credential in a bio about a real, named person isn't a
+content gap that can be papered over with a "placeholder" label — it
+shouldn't be invented at any fidelity. Cut the section if the content isn't
+ready.
 
 ---
 
-## 10. Rollback Plan
+## Q7 — Exclusivity framing: do we actually want this?
 
-If something goes wrong:
-1. **Code:** `main` branch is untouched. `feat/redesign-wabdigital` can be abandoned.
-2. **Assets:** Old assets remain in `public/assets/`. New assets use new filenames.
-3. **Database:** No schema changes. Zero rollback risk.
-4. **Deployment:** Deploy to staging first. Production switch is a single Git pull + `bun run prod`.
-5. **Emergency:** Revert to previous commit: `git revert HEAD` + redeploy.
+**Plain language:** WAB's closing CTA explicitly says they don't accept
+every applicant — it's a deliberate scarcity/selectivity tone. Does Chada
+want to position itself that way, or does that not fit how the team wants
+to come across?
 
----
-
-## 11. Glossary for Laymen
-
-| Term | What It Means |
-|------|---------------|
-| **Blade** | Laravel's HTML templating language |
-| **Tailwind** | A CSS framework — think "pre-built styles we combine" |
-| **Partial** | A reusable chunk of HTML (like a header or footer) |
-| **Component** | A smaller reusable piece (like a button or card) |
-| **Laravel Mix** | The tool that compiles our CSS and JS |
-| **Bun** | A fast JavaScript package manager (like npm but quicker) |
-| **301 Redirect** | Tells Google "this page moved here permanently" |
-| **Case Study** | A detailed story of a project: challenge → solution → results |
-| **Workflow Diagram** | A visual chart showing steps in a process |
-| **Iframe** | A window inside a webpage showing another webpage |
-| **OG Image** | The image that appears when you share a link on social media |
-| **Honeypot** | A hidden form field that catches spam bots |
+**Not blocking** — can default to a more standard CTA if this doesn't get
+a clear yes.
 
 ---
 
-## 12. Timeline at a Glance
+## Q8 — Chat widget: what tool, and who's "on" it?
 
-```
-Week 1
-├── Day 1-2:  Foundation (colors, layout, data layer)
-├── Day 3-4:  Home page sections
-├── Day 5-6:  Case study pages (/work, /case-study/*)
-└── Day 7:    Polish, testing, content review
+**Plain language:** WAB's chat widget is personalized with their founder's
+name, like you're messaging them directly. We need to decide what tool
+runs this (a WhatsApp Business click-to-chat link is simplest; a full
+chat-widget product like Intercom/Crisp/Tawk is closer to what WAB actually
+has but adds a new vendor/cost) and whose name/persona it should use.
 
-Week 2
-├── Day 8-9:  Stakeholder review + revisions
-├── Day 10:   Content finalization
-├── Day 11:   Final QA + Lighthouse audit
-└── Day 12:   Deploy to production
-```
-
-*Content team should deliver case study copy by Day 3.*  
-*Design team should deliver logo variant by Day 1.*
+**Not blocking** other sections, but needs an answer before §3.9 is built.
 
 ---
 
-## 13. Who to Ask
+## Q9 — What happens to the existing case-study system?
 
-| Role | Responsibility | Contact |
-|------|---------------|---------|
-| **Product/Design Lead** | Visual direction, approval | [Your name] |
-| **Tech Lead** | Architecture, code review | [Developer name] |
-| **Business Dev** | Client permissions, metrics | [BD name] |
-| **Operations** | Case study data, real numbers | [Ops name] |
-| **Marketing** | Copy, SEO, social proof | [Marketing name] |
+**Plain language:** Real engineering work already went into a portfolio/case-study
+system (`/work`, individual case study pages, several components) built for
+the previous direction. WAB's actual site doesn't have anything like this on
+its homepage. Three options, laid out in `Redesign.md` §5:
 
----
+- **A. Remove it entirely** — cleanest match to a literal replicate, discards
+  the work.
+- **B. Keep it as a secondary, non-homepage page** — Chada shows real
+  portfolio work even though WAB doesn't; reachable from footer/nav, not
+  part of the main funnel.
+- **C. Freeze it, unrouted** — leave the code in place but disconnected, in
+  case direction shifts again.
 
-## 14. Reference Links
-
-- **Current site:** https://www.chadadigital.com/
-- **Reference site:** https://wabdigital.com/
-- **Technical brief:** `Redesign.md` (in this repo)
-- **Repo:** `DGCodeIdeas/chada.digital`
-- **Laravel docs:** https://laravel.com/docs/12.x
-- **Tailwind docs:** https://tailwindcss.com/docs
+**BLOCKING** for §6 (the file change map) — engineering shouldn't start
+touching `/work`/`CaseStudyService` until this is picked, in either
+direction.
 
 ---
 
-*This document is a living decision log. Update it as questions are resolved, scope changes, or new stakeholders join.*
+## Sign-off
 
-*Last updated: August 2026*
+| # | Decision | Answer | Decided by | Date |
+|---|---|---|---|---|
+| 1 | Hero headline / value prop | | | |
+| 2 | Client logos | | | |
+| 3 | Six tiered offers | | | |
+| 4 | Quiz fidelity (A/B/C) | | | |
+| 5 | Testimonials available? | | | |
+| 6 | Founder bio content | | | |
+| 7 | Exclusivity framing | | | |
+| 8 | Chat widget tool + persona | | | |
+| 9 | Case-study system fate (A/B/C) | | | |
