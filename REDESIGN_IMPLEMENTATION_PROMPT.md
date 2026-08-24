@@ -1,231 +1,239 @@
-# REDESIGN_IMPLEMENTATION_PROMPT.md — Agent-Ready Build Instructions
+# REDESIGN_IMPLEMENTATION_PROMPT.md — V2 (WAB Replicate) Agent-Ready Build Instructions
 
-> **Source of truth:** `Redesign.md` + `Open_Decision.md` (both on `main`, PR #4, team-approved)
-> **Format:** Mirrors this repo's existing `IMPLEMENTATION_PROMPT.md` convention — phase-numbered, file-by-file, constraints repeated in every block so an agent starting a fresh session never loses them.
+> **Source of truth:** `Redesign.md` + `Open_Decision.md` on `main` (V2 — WAB Digital
+> replicate, per Founder direction, Aug 20 2026)
+> **Supersedes:** the previous `REDESIGN_IMPLEMENTATION_PROMPT.md` (built for the
+> archived V1 light-theme + case-study direction — do not follow that one, I've deleted it)
+> **Content approach:** Founder has approved **lorem ipsum placeholder content**
+> for every section still blocked on real copy (Open_Decision.md Q1, Q3, Q5, Q6,
+> Q7). This unblocks the build. Placeholder content is **centralized and
+> data-driven**, not hardcoded per-file, so swapping in real content later means
+> editing one file, not hunting through Blade partials.
 > **Target:** Paste directly into Cline / Jules / Kilo / Zoo Code.
 
 ---
 
-## ⚠️ Read before running anything
+## Why a config file instead of the existing inline-array pattern
 
-**The example data in `Redesign.md` §6.6 (`healthtracka`, "$343,000 Generated") is WAB Digital's own client and claimed result, cited in `Redesign.md` §1 as an example of what WAB's site does — it is not Chada Digital's data.** Do not use it as seed content for the new `CaseStudyService`. Every prompt block below uses clearly-labeled placeholder case studies instead (`case-study-a`, `case-study-b`, etc., with "Placeholder — pending Ops" in every metric field). This matches `Redesign.md`'s own risk mitigation ("use placeholder data; content can be swapped later") and `Open_Decision.md` Q2/Q7, which are still open. **Do not let an agent "fill in" real-looking client names or numbers on its own — flag it back to David instead.**
+`services.blade.php` (already on `main`) uses `@php $services = [...] @endphp`
+inline at the top of the partial — fine for real, stable content. Placeholder
+content is different: it's *temporary by definition* and needs to be findable
+and replaceable in one place, without a dev having to remember which of six new
+partials has which fake paragraph in it. So this build introduces
+**`config/placeholders.php`** as the single source for every lorem-ipsum value,
+and every new section reads from `config('placeholders.xxx')` rather than
+defining its own array. Real, stable content (like the services checklist in
+Phase 3, Task 2) still follows the existing inline-array convention — the config
+file is specifically for content that's known to be fake and swapped out later.
 
 ---
 
 ## 🚨 Constraints — repeat in every agent session
 
-- **Never touch `public/demos/`** — 6 demo projects, read-only, unrelated to this redesign
-- Use `mix()` in Blade, never `@vite()`
-- Use `bun`, never `npm`
-- Keep existing jQuery modules (`resources/js/modules/*`) as-is; new interactivity (filters, tabs) may use Alpine.js or vanilla JS — per `Open_Decision.md` ADR-003
-- PHP 8.2 constructor promotion for new services/controllers (`public function __construct(protected X $x)`)
+- Never touch `public/demos/`
+- `mix()` not `@vite()`, `bun` not `npm`
+- Keep existing jQuery modules as-is; new interactivity may use Alpine.js or vanilla JS
+- PHP 8.2 constructor promotion for new services/controllers
 - New reusable pieces use Blade's `<x-component-name>` syntax
-- `CaseStudyService` follows the exact same pattern as the existing `app/Services/PreviewService.php` — hardcoded array, no DB migration
-- Run `bun run dev` after every asset-affecting change to confirm the build doesn't break; run `bun run prod` before considering a phase done
+- Match the visual language already established in `services.blade.php` /
+  `trust-bar.blade.php` (card style, spacing scale, `text-xs uppercase
+  tracking-[0.3em]` eyebrow labels, `font-display` headings with a
+  `text-primary` highlighted word) — this build is new sections in an existing
+  system, not a fresh visual direction
+- Run `bun run dev` after every asset-affecting change; `bun run prod` before
+  considering a phase done
 
 ---
 
-## Phase 1 — Foundation (tokens, data layer, routing)
+## Phase 1 — Foundation: placeholder config + homepage restructure
 
 ```text
-You are implementing Phase 1 of the Chada Digital redesign at DGCodeIdeas/chada.digital,
-per Redesign.md and Open_Decision.md on main (already team-approved — do not re-litigate
-the direction, only ask if something here is genuinely ambiguous).
+You are implementing Phase 1 of the Chada Digital V2 redesign (WAB Digital
+replicate) at DGCodeIdeas/chada.digital, per Redesign.md and Open_Decision.md
+on main. The Founder has approved lorem ipsum placeholder content for every
+section blocked on real copy — do not leave these sections unbuilt, and do not
+invent realistic-sounding fake content (real client names, real-sounding
+testimonials, real-sounding bio credentials) instead of actual lorem ipsum.
+Use genuine "Lorem ipsum dolor sit amet..." style filler text.
 
-CONSTRAINTS (see top of REDESIGN_IMPLEMENTATION_PROMPT.md — repeat these to yourself):
-- Never touch public/demos/
-- mix() not @vite(), bun not npm
-- Keep existing jQuery modules; new interactivity may use Alpine.js or vanilla JS
-- PHP 8.2 constructor promotion
+CONSTRAINTS: see top of REDESIGN_IMPLEMENTATION_PROMPT.md.
 
-TASK 1 — Update tailwind.config.js
-Replace the color block with (Redesign.md §5.1):
-  background: '#fafafa'      (was #0e1b2e)
-  foreground: '#171717'      (was #f8fafc)
-  card.DEFAULT: '#ffffff'    card.foreground: '#171717'
-  primary.DEFAULT: '#2563eb' (was #3b82f6)   primary.foreground: '#ffffff'
-  muted.DEFAULT: '#f5f5f5'   muted.foreground: '#525252'
-  border: '#e5e5e5'
-  accent: '#0a0a0a'
-Keep fontFamily and borderRadius blocks as-is (display: Outfit, sans: Inter,
-accent: Playfair Display — reduce Outfit/Playfair usage in markup later, don't
-remove the tokens).
+TASK 1 — Create config/placeholders.php
+A single array, one top-of-file comment block making clear this is temporary:
 
-TASK 2 — Create app/Services/CaseStudyService.php
-Same shape as app/Services/PreviewService.php (all(), exists(), get(), collection()),
-plus byCategory(string $category): array for /work filtering.
-Seed with 3 PLACEHOLDER entries only (not 6-8 yet — real content isn't ready):
-  'case-study-a' => [
-      'client' => 'Placeholder Client A',
-      'industry' => 'Placeholder Industry',
-      'metric' => 'Placeholder — pending Ops (see Open_Decision.md Q2)',
-      'metric_label' => 'Result Pending',
-      'tags' => ['Placeholder'],
-      'excerpt' => 'Placeholder excerpt — do not publish live.',
-      'thumbnail' => '/assets/images/case-study-placeholder.jpg',
-      'workflow' => [['step' => 'Placeholder Step', 'tool' => 'Placeholder Tool']],
-      'challenge' => 'Placeholder.', 'solution' => 'Placeholder.', 'results' => 'Placeholder.',
-      'tools' => ['Placeholder'],
-  ],
-(repeat pattern for case-study-b, case-study-c). DO NOT use "Healthtracka" or any
-real client name/number — see the warning at the top of this file.
+  <?php
+  // TEMPORARY PLACEHOLDER CONTENT — approved by Founder, Aug 20 2026.
+  // Every value here is lorem ipsum, not real copy. Replace section-by-section
+  // as real content becomes available (see Open_Decision.md Q1, Q3, Q5, Q6, Q7)
+  // — do not remove this file until every key below has been replaced.
+  return [
+      'hero' => [
+          'headline' => 'Lorem Ipsum Dolor Sit Amet Consectetur',
+          'subhead' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      ],
+      'offers' => [
+          // 6 entries, each: title (framed "I want Chada Digital to..."),
+          // description (1-2 sentences lorem ipsum), cta_label.
+          // Structure mirrors Redesign.md §3.3 — six tiers spanning self-serve
+          // to full-service. Use placeholder titles too, e.g. "Lorem Ipsum
+          // Dolor Sit" — do not invent real-sounding Chada service names,
+          // that's exactly the content Open_Decision.md Q3 is still open on.
+      ],
+      'testimonials' => [
+          // 3-4 entries: quote (lorem ipsum), name => 'Lorem Ipsum',
+          // role => 'Lorem Ipsum, Dolor Sit Inc.' — never a real-sounding
+          // company or person name.
+      ],
+      'founder' => [
+          'name' => 'Lorem Ipsum',
+          'title' => 'Lorem Ipsum, Dolor Sit Amet',
+          'bio_points' => [ /* 3-4 short lorem ipsum bullet fragments */ ],
+          'photo' => '/assets/images/founder-placeholder.jpg',
+      ],
+      'exclusivity' => [
+          'headline' => 'Lorem Ipsum Dolor Sit Amet',
+          'body' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      ],
+      'chat' => [
+          'persona_name' => 'Lorem',
+          'greeting' => 'Lorem ipsum dolor sit amet — how can I help?',
+      ],
+  ];
 
-TASK 3 — Create app/Http/Controllers/CaseStudyController.php
-  public function index(): View   // GET /work
-  public function show(string $slug): View  // GET /case-study/{slug}
-  Inject CaseStudyService via constructor promotion. 404 (abort(404)) if slug doesn't exist.
+TASK 2 — Case-study system: freeze, unroute (Open_Decision.md Q9 default)
+No formal Q9 answer yet — implementing the lowest-risk, fully-reversible option
+per Redesign.md §5 option C, NOT deleting anything:
+  - Remove the case-studies @include from resources/views/pages/home.blade.php
+  - Remove any "Work"/"Our Work" link from partials/header.blade.php nav and
+    the mobile menu
+  - Remove /work and /case-study/{slug} entries from the sitemap() method in
+    PageController (routes stay registered and reachable by direct URL — do
+    NOT delete routes/web.php entries, CaseStudyService, CaseStudyController,
+    or the 4 related Blade components)
+  - Leave a comment in routes/web.php above those two routes: "// Not linked
+    from nav/homepage as of Aug 20 2026 — kept live per Open_Decision.md Q9
+    pending a final decision. Do not delete without confirming with David."
 
-TASK 4 — Update routes/web.php
-Current file:
-  Route::get('/', [PageController::class, 'home'])->name('home');
-  Route::get('/showcase', [PageController::class, 'showcase'])->name('showcase');
-  Route::redirect('/showcase.html', '/showcase', 301);
-  Route::get('/preview/{slug}', [PreviewController::class, 'show'])->name('preview.show');
-  Route::get('/preview/{slug}/{subpage}', [PreviewController::class, 'subpage'])
-      ->where('subpage', '.*')->name('preview.subpage');
-  Route::post('/api/contact', [ContactController::class, 'submit'])->name('contact.submit');
-  Route::get('/sitemap.xml', [PageController::class, 'sitemap'])->name('sitemap');
+TASK 3 — Reorder resources/views/pages/home.blade.php
+New order per Redesign.md §3:
+  hero -> trust-bar -> goal-picker -> assessment-cta -> testimonials ->
+  services-checklist -> founder-bio -> exclusivity-cta -> contact
+(goal-picker, assessment-cta, testimonials, services-checklist, founder-bio,
+exclusivity-cta are all built in Phase 2/3 below — for now just @include them
+even though the files don't exist yet; you'll create them next.)
+Remove @include('partials.process') and @include('partials.about') from this
+list — Redesign.md §2.1 flags both as not matching the replicate structure.
+Do not delete process.blade.php or about.blade.php files themselves yet, just
+stop including them (same reversibility principle as Task 2).
 
-Change to:
-  Route::get('/', [PageController::class, 'home'])->name('home');
-  Route::get('/work', [CaseStudyController::class, 'index'])->name('work');
-  Route::get('/case-study/{slug}', [CaseStudyController::class, 'show'])->name('case-study.show');
-  Route::redirect('/showcase', '/work', 301);
-  Route::redirect('/showcase.html', '/work', 301);
-  Route::get('/preview/{slug}', [PreviewController::class, 'show'])->name('preview.show');
-  Route::get('/preview/{slug}/{subpage}', [PreviewController::class, 'subpage'])
-      ->where('subpage', '.*')->name('preview.subpage');
-  Route::post('/api/contact', [ContactController::class, 'submit'])->name('contact.submit');
-  Route::get('/sitemap.xml', [PageController::class, 'sitemap'])->name('sitemap');
-Add the `CaseStudyController` use import. Keep PageController::showcase() method in place
-but unused/deprecated for now rather than deleting — safer to remove in a follow-up cleanup PR.
-
-TASK 5 — Update app/Http/Controllers/PageController.php::sitemap()
-Inject CaseStudyService alongside PreviewService. Add /work and each /case-study/{slug}
-to the $urls array (changefreq monthly, priority 0.8 — mirror the existing preview loop).
-
-TASK 6 — Update resources/views/layouts/app.blade.php
-Remove any dark-theme-specific assumptions in inline styles (there are none in the current
-file beyond bg-background text-foreground on <body>, which will resolve to the new light
-tokens automatically via Tailwind — no structural change needed here, just verify).
-
-VERIFY: bun run dev completes with no Tailwind/PostCSS errors. php artisan route:list
-shows /work and /case-study/{slug}. Do not proceed to Phase 2 until this builds clean.
+VERIFY: bun run dev builds clean. config/placeholders.php returns a valid
+array (php artisan tinker -> config('placeholders.hero') as a quick check).
+Homepage will render broken @include errors until Phase 2 creates the new
+partials — that's expected, continue to Phase 2 in the same session if
+possible.
 ```
 
 ---
 
-## Phase 2 — Home page sections
+## Phase 2 — New sections (all config-driven placeholder content)
 
 ```text
-Phase 2 of the Chada Digital redesign — Redesign.md §6.1-6.5, 6.9-6.11.
-Same constraints as Phase 1 (repeat them). Phase 1 must be complete and building clean
-before starting this.
+Phase 2 — build the 6 new sections. Same constraints as Phase 1. Phase 1 must
+be complete first (config/placeholders.php must exist).
 
-TASK 1 — resources/views/partials/header.blade.php (§6.1)
-Current: dark sticky header, h-20, backdrop-blur-xl, links: Home/About Us/Services/
-Our Work/Products/Contact.
-New: light theme via updated tokens (should mostly resolve automatically from Phase 1's
-tailwind.config.js change — verify bg-background/85 backdrop-blur-xl still reads correctly
-on white). Reduce height h-20 → h-16. Update border to border-neutral-200. Update nav links
-to: Work | Services | Process | Products | Contact (point "Work" at route('work'), not
-route('home').'#portfolio'). Keep the mobile hamburger pattern and existing JS hook IDs
-(#nav-toggle, #nav-icon, #mobile-menu) — resources/js/modules/mobile-nav.js depends on them.
+TASK 1 — resources/views/partials/goal-picker.blade.php (Redesign.md §3.3)
+Read $offers = config('placeholders.offers') (6 entries). Render as a grid of
+cards, each: eyebrow-style small label, title, description, a CTA button
+(reuse <x-button-primary> or <x-button-outline> if those components already
+fit — check resources/views/components/ first). Follow the visual pattern
+already in services.blade.php (rounded-2xl border border-border bg-card,
+hover lift) for consistency — this is a new section, not a new visual style.
+Section id="goals" for nav/anchor linking later if needed.
 
-TASK 2 — resources/views/partials/hero.blade.php (§6.2) — MAJOR CHANGE
-Current: two-line headline "Digital Solutions That Scale Businesses", dual CTA pills,
-gradient glow blobs.
-New: remove the glow-blob divs entirely. Left-aligned, single primary CTA only (drop the
-second "View Our Work" CTA — redundant with new nav). Headline direction from spec:
-"We Build Funnels That Convert Visitors Into Revenue" — confirm this exact copy with
-David before committing; treat it as a strong draft, not locked, since it's a positioning
-claim, not a design token. Add a below-fold social proof strip: "Trusted by X+ brands" —
-use a generic count, no fabricated client logos yet (Open_Decision.md Q1 is still open).
-Typography: text-5xl md:text-7xl font-bold tracking-tight.
+TASK 2 — resources/views/partials/assessment-cta.blade.php (Redesign.md §3.4)
+Lowest-cost version per Redesign.md's recommendation (Open_Decision.md Q4
+still formally open — build the cheap version, not a scored interactive
+quiz): a single section, headline + short body from a NEW config key you add
+(config('placeholders.assessment') — add this to placeholders.php, it was
+missed in the Phase 1 task list above) + one CTA button linking to #contact.
+No interactivity, no scoring logic. Flag in a code comment that Q4 could
+upgrade this later.
 
-TASK 3 — Create resources/views/partials/trust-bar.blade.php (§6.3) — NEW
-Grayscale placeholder logo strip OR skip rendering entirely if no logos exist yet
-(Open_Decision.md Decision 8 status: "Decided PENDING client logo availability").
-Implement the component so it's ready to receive logos, but guard it behind a check
-(e.g. only render if a logos array is non-empty) so it doesn't ship broken image tags.
+TASK 3 — resources/views/partials/testimonials.blade.php (Redesign.md §3.5)
+Read config('placeholders.testimonials'). Simple card row/carousel — check
+if a carousel pattern already exists anywhere in resources/js/modules/ before
+writing new JS; if not, a static grid (no carousel) is an acceptable v1,
+note this as a possible enhancement rather than building a new JS carousel
+from scratch unprompted.
 
-TASK 4 — Create resources/views/partials/process.blade.php (§6.4) — NEW
-4-column desktop / vertical timeline mobile: Discover → Design → Build → Scale,
-per the copy in Redesign.md §6.4. Icons: reuse the existing lucide-style inline SVG
-pattern already used in services.blade.php/products.blade.php for visual consistency.
+TASK 4 — resources/views/partials/founder-bio.blade.php (Redesign.md §3.7)
+Read config('placeholders.founder'). Photo + name + title + bio bullet list,
+matching WAB's actual layout (Redesign.md §1.7): photo one side, first-person-
+style intro + credibility bullets the other. Use a neutral placeholder image
+path (config already specifies /assets/images/founder-placeholder.jpg) — do
+NOT use a real stock photo of an actual person; use a plain silhouette/
+initials placeholder graphic instead, since a real photo of a real (different)
+person in a "founder bio" slot is a much worse placeholder than lorem ipsum
+text is.
 
-TASK 5 — resources/views/partials/services.blade.php (§6.5)
-Current: 4 hardcoded cards (Web Development, Brand Identity, Automation, Digital Strategy),
-each a full copy-pasted block.
-New: refactor into a loop over a PHP array (this also resolves the technical debt noted
-in the original Redesign.md audit — don't reintroduce copy-pasted markup). Reframe per
-spec: Web Development / Funnel & Automation / Paid Advertising / Brand & Strategy, each
-with a "tech stack" micro-list line at the bottom (see §6.5 for exact copy). Light card
-styling: border only, no dark bg.
+TASK 5 — resources/views/partials/exclusivity-cta.blade.php (Redesign.md §3.8)
+Read config('placeholders.exclusivity'). Simple centered closing-CTA section,
+similar structural weight to the existing contact section intro.
 
-TASK 6 — resources/views/partials/products.blade.php (§6.9) — minor
-Light theme restyle only. Add a small "Product" badge per card. Do not add pricing
-copy yet — Open_Decision.md Q4 ("should products show pricing?") is unresolved.
+TASK 6 — Update resources/views/pages/home.blade.php includes
+Confirm all 6 @include lines from Phase 1 Task 3 now resolve to real files.
 
-TASK 7 — resources/views/partials/contact.blade.php + contact-form.blade.php (§6.10)
-Visual restyle only — light bg-neutral-50 form fields, rounded-xl. Do not touch the
-AJAX submission logic, honeypot field, or toast success handling.
-
-TASK 8 — resources/views/partials/footer.blade.php (§6.11)
-Simplify from 4 columns to 2 rows per spec. Drop "Products" from footer links (already
-in nav). Add social icon placeholders (link hrefs can be "#" until real profiles are
-confirmed).
-
-VERIFY: bun run dev clean build. Manually check header/hero/services/products/contact/
-footer render correctly at sm/lg breakpoints. Confirm mobile-nav.js and contact-form.js
-still fire correctly (no ID mismatches from markup changes).
+VERIFY: bun run dev clean build. Homepage renders top to bottom with no
+missing-include errors. Every new section visibly shows lorem ipsum text —
+confirm nothing invented real-sounding copy instead.
 ```
 
 ---
 
-## Phase 3 — Case study system
+## Phase 3 — Hero rewrite, services checklist, chat widget placeholder
 
 ```text
-Phase 3 of the Chada Digital redesign — Redesign.md §6.6-6.8, 6.12, §7.
-Same constraints as Phase 1/2. Phase 2 must be building clean first.
+Phase 3. Same constraints. Phase 2 must be complete and building clean first.
 
-TASK 1 — Create app/View/Components (or resources/views/components/) for:
-  x-case-study-card    (components/case-study-card.blade.php)
-  x-metric-badge       (components/metric-badge.blade.php)
-  x-workflow-diagram   (components/workflow-diagram.blade.php)
-  x-tech-stack         (components/tech-stack.blade.php)
-  x-section-header     (components/section-header.blade.php — reusable label+headline+subhead,
-                         since this pattern repeats across every section)
-workflow-diagram: pure CSS/Tailwind flexbox + SVG arrow connectors, no charting library
-(Open_Decision.md ADR-002). Horizontal scroll on mobile (overflow-x-auto).
+TASK 1 — resources/views/partials/hero.blade.php
+Replace the current headline/subhead with config('placeholders.hero').
+headline/subhead. Keep existing layout/CTA structure otherwise — this is a
+copy swap, not a new hero design (the current hero was already built during
+V1 and its layout doesn't need to change for the replicate direction).
 
-TASK 2 — Replace resources/views/partials/portfolio.blade.php with
-resources/views/partials/case-studies.blade.php (§6.6)
-Loop over CaseStudyService->collection() (the 3 placeholder entries from Phase 1).
-2-column grid desktop, 1-column mobile. Each card: thumbnail, client name, metric badge,
-tags, excerpt, "View Case Study →" linking to route('case-study.show', $slug).
-Update resources/views/pages/home.blade.php to @include this instead of partials.portfolio.
+TASK 2 — resources/views/partials/services-checklist.blade.php (Redesign.md §3.6)
+This is the ONE new section that does NOT use placeholder content — Redesign.md
+flags it as the lowest-content-risk section since real Chada service
+descriptions already exist. Pull the real items already used in the existing
+$services array in services.blade.php (Web Development, Funnel & Automation,
+Paid Advertising, Brand & Strategy) plus the tools/stack lines, and present
+them as a flat checklist (icon + label per line, per WAB's actual list-style
+layout in Redesign.md §1.6) rather than the 4-card grid services.blade.php
+already uses elsewhere. Do NOT create a second config key for this — reuse
+the real array already in services.blade.php (extract it to a shared location
+if needed to avoid duplicating it in two files, e.g. a small
+app/Services/ServiceOfferings.php following the existing PreviewService
+pattern, OR simply duplicate the 4 real entries directly — either is fine,
+your call, just don't invent NEW fake service names here).
 
-TASK 3 — Create resources/views/pages/case-study.blade.php (§6.7)
-New detail page: hero image, metrics bar (x-metric-badge x3), Challenge/Solution
-narrative, x-workflow-diagram fed from the case study's 'workflow' array, x-tech-stack
-icon grid, Results bullets, closing CTA. Wire to CaseStudyController@show.
+TASK 3 — resources/views/partials/chat-widget.blade.php (Redesign.md §3.9)
+Open_Decision.md Q8 (which tool, whose persona) is NOT resolved by the
+lorem-ipsum decision — do not integrate a real chat SaaS product (Intercom/
+Crisp/Tawk) or a real WhatsApp Business number here. Build the lowest-cost
+placeholder: a simple fixed-position circular button (bottom-right, matches
+WAB's widget position) using config('placeholders.chat').persona_name and
+.greeting in a small popover/tooltip on hover or click — but the button's
+actual click target should be a no-op or scroll-to-contact, NOT a real
+WhatsApp deep link or embedded chat script. Comment clearly: "// Placeholder
+only — Open_Decision.md Q8 (tool + persona) not yet decided. Do not wire to
+a real WhatsApp number or chat SaaS product without that decision."
+Include this via layouts/app.blade.php (site-wide), not just the homepage.
 
-TASK 4 — Rename resources/views/pages/showcase.blade.php → work.blade.php (§6.12)
-Filterable grid (All | Web Development | Funnels | Ads | Branding) using
-CaseStudyService->byCategory(). Cards use x-case-study-card, link to /case-study/{slug}.
-Confirm existing showcase.js filter logic can be adapted rather than rewritten from
-scratch — check resources/js/modules/ for a showcase/filter module before writing new JS.
-
-TASK 5 — Update sitemap output
-Confirm every /case-study/{slug} from Phase 1's sitemap() change actually appears in
-/sitemap.xml once real routes exist. Spot-check with php artisan route:list + a manual
-GET to /sitemap.xml.
-
-VERIFY: /work loads and filters correctly. Each /case-study/{slug} renders without
-missing-array-key errors. /preview/{slug} iframe viewer still works unmodified —
-case studies should LINK to it as "Live Demo," never embed or replace it
-(Open_Decision.md Decision 5).
+VERIFY: bun run dev clean build. Hero shows placeholder headline. Services
+checklist shows REAL Chada service names (this is the one section that
+should NOT say "Lorem Ipsum"). Chat widget renders but doesn't link anywhere
+real yet.
 ```
 
 ---
@@ -233,46 +241,47 @@ case studies should LINK to it as "Live Demo," never embed or replace it
 ## Phase 4 — Polish, QA, sign-off
 
 ```text
-Phase 4 — final pass before this goes to David for review. Same constraints as prior
-phases.
+Phase 4 — final pass. Same constraints.
 
-CHECKLIST (Redesign.md §11 Acceptance Criteria):
-[ ] No #0e1b2e (old dark navy) remains anywhere — grep for it across resources/views
-[ ] Text passes WCAG AA contrast on the new light background (spot-check with a
-    contrast checker on body text, muted text, and button text)
-[ ] Typography: Inter as primary body font confirmed in rendered output; Outfit
-    reserved for headings only
-[ ] workflow-diagram renders usably on mobile (horizontal scroll, not clipped)
-[ ] /showcase redirects (301) to /work — curl -I to confirm status code
-[ ] /work filtering works for all categories
-[ ] Contact form still submits successfully — styling changed, logic didn't
-[ ] Mobile nav works on every page, not just home
-[ ] All 5 /preview/{slug} demos still load unmodified
-[ ] sitemap.xml includes /work and every /case-study/{slug}
-[ ] bun run prod completes; check public/css/app.css bundle size hasn't grown >20%
-    vs. the pre-redesign build
-[ ] og-image.jpg and meta descriptions updated to match new positioning (coordinate
-    exact copy with David — don't invent final marketing copy unsupervised)
+CHECKLIST:
+[ ] grep -r "Lorem ipsum" resources/views/ — confirm it appears in exactly
+    the sections expected (hero, goal-picker, assessment-cta, testimonials,
+    founder-bio, exclusivity-cta) and NOWHERE else — especially not in
+    services-checklist.blade.php, header, footer, or contact
+[ ] grep -r "config('placeholders" resources/views/ — cross-check against
+    config/placeholders.php keys, confirm nothing references a key that
+    doesn't exist
+[ ] /work and /case-study/{slug} still load correctly by direct URL (frozen,
+    not deleted — verify Task 2 in Phase 1 didn't break them, only unlink them)
+[ ] No "Work" link anywhere in header/mobile nav/footer
+[ ] /sitemap.xml no longer lists /work or /case-study/* entries
+[ ] Chat widget button doesn't fire any real network request or external link
+[ ] Founder bio uses a placeholder graphic, not a real photo of anyone
+[ ] Mobile responsive check on all 6 new sections
+[ ] bun run prod completes clean
+[ ] Contact form (existing, untouched) still submits successfully
 
-DO NOT mark this phase complete or open a PR to main until:
-- Every placeholder case study is still clearly labeled as a placeholder (grep for
-  "Placeholder — pending Ops" to confirm none were silently replaced with invented
-  real-sounding client data)
-- David has reviewed hero copy and any other new marketing claims
-
-Open a PR from feat/redesign-wabdigital → main. Do not merge directly.
+DO NOT merge to a point where this looks launch-ready without flagging to
+David that config/placeholders.php still has unreplaced content — the whole
+point of centralizing it was to make that check fast, not to make it easy to
+forget. Open a PR, don't push a "ready to launch" framing in the PR
+description while placeholder content remains.
 ```
 
 ---
 
-## Still blocked regardless of implementation progress
+## Still open regardless of this build (unchanged from Open_Decision.md)
 
-These are Ops/Business Dev/Design deliverables, not engineering tasks — implementation can proceed with placeholders, but the site shouldn't go live with them unresolved (`Open_Decision.md` §8):
+Lorem ipsum unblocks the *build*, not the underlying decisions:
 
-1. Real case study content (3-8 actual clients, real or approved-as-representative metrics)
-2. Client logo permissions, if the trust bar ships
-3. A dark-text logo variant for the new light header
-4. Whether Products shows pricing
-5. Which case studies get featured on `/work`
-
-Flag these back to David rather than an agent inventing plausible-looking answers for any of them.
+1. Real hero headline / value prop (Q1)
+2. The actual six tiered offers (Q3) — this is the highest-value real content
+   to get first, since it's structurally the core of the WAB-replicate approach
+3. Whether real testimonials exist at all (Q5)
+4. Real founder bio + photo (Q6)
+5. Exclusivity framing — do we actually want this tone (Q7)
+6. Quiz fidelity — is the static version (built here) the final answer, or does
+   Q4 need a real interactive quiz later
+7. Chat tool + persona (Q8) — nothing here is wired to a real number/vendor
+8. Case-study system's actual fate (Q9) — Phase 1 implements the reversible
+   "freeze" default, not a final decision
