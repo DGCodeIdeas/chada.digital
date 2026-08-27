@@ -15,6 +15,54 @@ marked **BLOCKING**.
 
 ---
 
+## Q0 — Ground rule: full structural replication, zero literal content, our own visual system (RESOLVED Aug 27, 2026)
+
+**Decided by:** Tech Lead (not the Founder's call to make alone, but a standing
+engineering/legal-risk constraint that applies regardless of who answers
+Q1–Q8 below, and needs to bind every future agent session, not just one).
+
+**The decision, plainly:** Chada replicates wabdigital.com's *structure* —
+every section type, layout pattern, and feature (stats bar, tiered pricing
+cards, workflow/pipeline diagrams, case-study grid, MarTech logo wall,
+services/pricing page, revenue-systems demo tabs, everything in the V3 spec)
+— completely. It does **not** replicate WAB's *specific expression* of any
+of that: no real WAB client names, no real WAB numbers, no real WAB
+testimonial text, no real WAB workflow narratives (even genericized/reworded
+versions that clearly echo a specific real WAB case), and no WAB visual
+branding (colors, exact card styling, logo, imagery). Chada's existing
+design tokens (`tailwind.config.js` — `#f4f2ee` background, `#2563eb`
+primary, Inter/Outfit fonts) are the visual system for the replica,
+full stop — not WAB's.
+
+**Why:** structural/functional patterns (the idea of a stats bar, a tiered
+pricing layout, a workflow diagram) are standard, widely-used marketing-site
+conventions and not something any one agency owns. Copying specific creative
+expression — exact figures, exact client stories, exact visual design — is
+where real copyright exposure lives. This split lets the redesign be a
+genuine structural replicate without that risk.
+
+**What this means for implementation, concretely:**
+- `config/placeholders.php` remains the *only* home for placeholder content,
+  and its scope now covers every new V3 section, not just the original V2
+  six (hero, offers, testimonials, founder, exclusivity, chat) — stats-bar
+  numbers, workflow/pipeline step labels, MarTech category names, manifesto
+  copy, services/pricing tiers all go through it as genuine lorem ipsum too.
+- The existing `Redesign(9).md` §1 Gate 2 check (grep the shipped DOM for
+  WAB's actual real numbers/phrases, expect zero hits) is correct and should
+  stay in place — it's the automated enforcement of this decision.
+- Beyond that gate: illustrative examples **inside the planning docs
+  themselves** (e.g. the "Yam Pounder" / `Meta Video Ads → ManyChat API →
+  HubSpot CRM Assignment → WhatsApp Alert` example in the Redesign(1–9)
+  series) should be genericized before those docs are used to drive further
+  agent sessions — not because they'd ship (the gate blocks that), but so
+  nothing WAB-specific propagates as a template for an agent to imitate even
+  in spec form.
+- Visual/CSS: no new agent session should reference WAB's actual colors,
+  gradients, or layout specifics as a target — only Chada's existing tokens
+  and component patterns.
+
+---
+
 ## Q1 — Hero headline and value proposition
 
 **Plain language:** WAB's homepage opens with one confident sentence about
@@ -157,6 +205,7 @@ direction.
 
 | # | Decision | Answer | Decided by | Date |
 |---|---|---|---|---|
+| 0 | Full structural replication, zero literal content, our own visual system | Resolved | Tech Lead | Aug 27, 2026 |
 | 1 | Hero headline / value prop | | | |
 | 2 | Client logos | | | |
 | 3 | Six tiered offers | | | |
