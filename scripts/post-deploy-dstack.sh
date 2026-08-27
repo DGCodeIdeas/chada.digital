@@ -18,16 +18,16 @@ sudo -u www-data mkdir -p storage/logs \
 
 echo "→ Artisan tasks (host, as www-data)"
 
-# Was the site already in manually-set maintenance mode BEFORE this deploy?
-# (e.g. David ran `php artisan down` deliberately before pushing.) If so, this
-# deploy should leave it down afterward instead of forcing it back up — the
-# rsync step now excludes storage/framework/down, so this file reliably
-# reflects the pre-deploy state at this point in the script.
-WAS_DOWN=false
-if [ -f storage/framework/down ]; then
-  WAS_DOWN=true
-  echo "→ Site was already in maintenance mode before this deploy — will stay down after."
-fi
+# Deliberate, LONG-TERM maintenance lock — separate from Laravel's own
+# storage/framework/down file, which this script also uses internally below
+# for the brief down/migrate/up bracket on every deploy. Reusing that same
+# file for "stay down across a push" used to cause a one-way lock: once it
+# existed for ANY reason, every future deploy would see it and skip `up`
+# forever, since nothing ever cleared it. This lock file is separate and only
+# ever touched deliberately (see scripts/maintenance-lock.sh), so the normal
+# down->migrate->up bracket below always completes normally unless someone
+# has explicitly locked the site down.
+MAINTENANCE_LOCK="storage/app/maintenance-lock"
 
 sudo -u www-data php artisan down --retry=15 --refresh=15 || true
 sudo -u www-data php artisan migrate --force
@@ -37,10 +37,12 @@ sudo -u www-data php artisan route:cache
 sudo -u www-data php artisan view:cache
 sudo -u www-data php artisan event:cache
 
-if [ "$WAS_DOWN" = false ]; then
-  sudo -u www-data php artisan up
+if [ -f "$MAINTENANCE_LOCK" ]; then
+  echo "→ ${MAINTENANCE_LOCK} present — leaving site in maintenance mode deliberately."
+  echo "→ Run scripts/maintenance-lock.sh off (then this script will bring it up next deploy,"
+  echo "  or run 'php artisan up' directly for an immediate change)."
 else
-  echo "→ Leaving site in maintenance mode (was down pre-deploy). Run 'php artisan up' manually when ready."
+  sudo -u www-data php artisan up
 fi
 
 echo "→ Fixing ownership (PHP-FPM reads as www-data)"
