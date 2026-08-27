@@ -31,20 +31,11 @@ class PageController extends Controller
     {
         $urls = [
             ['loc' => route('home'), 'changefreq' => 'weekly', 'priority' => '1.0'],
-            ['loc' => route('work'), 'changefreq' => 'monthly', 'priority' => '0.8'],
         ];
 
         foreach ($this->previewService->all() as $slug => $preview) {
             $urls[] = [
                 'loc' => route('preview.show', $slug),
-                'changefreq' => 'monthly',
-                'priority' => '0.8',
-            ];
-        }
-
-        foreach ($this->caseStudyService->all() as $slug => $study) {
-            $urls[] = [
-                'loc' => route('case-study.show', $slug),
                 'changefreq' => 'monthly',
                 'priority' => '0.8',
             ];

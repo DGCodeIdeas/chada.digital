@@ -14,7 +14,9 @@
     </main>
     
     @include('partials.footer')
-    
+
+    @include('partials.chat-widget')
+
     <script src="{{ mix('js/app.js') }}"></script>
     @stack('scripts')
 </body>

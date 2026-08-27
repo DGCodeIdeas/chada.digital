@@ -4,7 +4,6 @@
             <img alt="Chada Digital — Digital Solutions That Scale Businesses" class="h-12 md:h-14 w-auto object-contain" src="<?php echo e(asset('chada-logo-horizontal-dark.png')); ?>" />
         </a>
         <nav class="hidden items-center gap-7 lg:flex">
-            <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="<?php echo e(route('work')); ?>">Work</a>
             <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="<?php echo e(url('/#services')); ?>">Services</a>
             <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="<?php echo e(url('/#process')); ?>">Process</a>
             <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="<?php echo e(url('/#products')); ?>">Products</a>
@@ -19,9 +18,8 @@
         </button>
     </div>
     <div id="mobile-menu" class="hidden lg:hidden" aria-hidden="true">
-        <nav class="flex flex-col gap-4 border-t border-border/40 bg-background/95 px-6 py-6 backdrop-blur-xl">
-            <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="<?php echo e(route('work')); ?>">Work</a>
-            <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="<?php echo e(url('/#services')); ?>">Services</a>
+            <nav class="flex flex-col gap-4 border-t border-border/40 bg-background/95 px-6 py-6 backdrop-blur-xl">
+                <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="<?php echo e(url('/#services')); ?>">Services</a>
             <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="<?php echo e(url('/#process')); ?>">Process</a>
             <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="<?php echo e(url('/#products')); ?>">Products</a>
             <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="<?php echo e(url('/#contact')); ?>">Contact</a>

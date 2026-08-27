@@ -1,11 +1,12 @@
 <?php $__env->startSection('content'); ?>
     <?php echo $__env->make('partials.hero', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-    <?php echo $__env->make('partials.trust-bar', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>   
-    <?php echo $__env->make('partials.process', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>     
-    <?php echo $__env->make('partials.about', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-    <?php echo $__env->make('partials.services', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-    <?php echo $__env->make('partials.case-studies', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-    <?php echo $__env->make('partials.products', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+    <?php echo $__env->make('partials.trust-bar', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>        
+    <?php echo $__env->make('partials.goal-picker', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>      
+    <?php echo $__env->make('partials.assessment-cta', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>   
+    <?php echo $__env->make('partials.testimonials', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>     
+    <?php echo $__env->make('partials.services-checklist', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?> 
+    <?php echo $__env->make('partials.founder-bio', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>      
+    <?php echo $__env->make('partials.exclusivity-cta', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>  
     <?php echo $__env->make('partials.contact', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 <?php $__env->stopSection(); ?>
 

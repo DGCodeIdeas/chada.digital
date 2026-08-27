@@ -1,12 +1,16 @@
+<?php
+    $hero = config('placeholders.hero');
+    $words = explode(' ', $hero['headline']);
+    $last = array_pop($words);
+?>
 <section class="relative overflow-hidden bg-muted/30 px-6 pb-20 pt-12 md:pt-20" id="hero">
-    
     <div class="relative mx-auto max-w-3xl text-center">
         <div class="flex flex-col items-center">
             <span class="mb-5 inline-block text-xs font-semibold uppercase tracking-[0.3em] text-primary">Based in Lagos &middot; Serving the World</span>
             <h1 class="font-display text-4xl font-bold leading-[1.1] tracking-tight md:text-5xl">
-                Digital Solutions That<br/><span class="text-primary">Help Businesses Grow</span>.
+                <?php echo e(implode(' ', $words)); ?><br/><span class="text-primary"><?php echo e($last); ?></span>
             </h1>
-            <p class="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">We engineer high-performance websites, command-attention brands, and intelligent automation for ambitious teams across Nigeria and beyond.</p>
+            <p class="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg"><?php echo e($hero['subhead']); ?></p>
             <div class="mt-8 flex flex-wrap justify-center gap-4">
                 <a class="group inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-xs font-semibold uppercase tracking-widest text-primary-foreground transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30" href="<?php echo e(url('/#contact')); ?>">
                     Start a Project

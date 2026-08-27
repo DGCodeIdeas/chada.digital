@@ -14,7 +14,9 @@
     </main>
     
     <?php echo $__env->make('partials.footer', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-    
+
+    <?php echo $__env->make('partials.chat-widget', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+
     <script src="<?php echo e(mix('js/app.js')); ?>"></script>
     <?php echo $__env->yieldPushContent('scripts'); ?>
 </body>
