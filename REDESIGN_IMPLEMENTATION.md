@@ -3,8 +3,9 @@
 > **Mandate (two layers, both binding):** The Founder directed that Chada Digital's site adopt the conversion architecture of a leading competitor. The Tech Lead's V4 directive governs the execution: **patterns are replicated; expression is not.** All marketing content ships as dynamic Lorem Ipsum; all styling follows Chada's own established design language; no third-party sentence, name, price, metric, image, or distinctive section title may appear in the DOM or the repo.
 > **Stack:** Laravel 12 + Blade + Tailwind CSS v3 + Laravel Mix + jQuery/vanilla JS · Bun (never npm) · PHP 8.2+
 > **Repo:** `DGCodeIdeas/chada.digital` · default branch `main` (HEAD audited: `8ed949d`, 2026-08-27)
-> **This version:** v3 — CLARIFIED. It supersedes (a) the v1 spec of the same name open on PR #6 (`feat/wab-complete-replication-spec`) and (b) the V3 doc series produced 2026-08-27. It corrects v1's deletions, resolves every ambiguity v1 left open, folds in the Tech Lead's originality directive, and binds the build to the nine agent-ready documents `Redesign(1).md` … `Redesign(9).md` (V4).
+> **This version:** v3 — CLARIFIED. It supersedes (a) the v1 spec of the same name on PR #6 (closed; branch deleted) and (b) the V3 doc series produced 2026-08-27. It corrects v1's deletions, resolves every ambiguity v1 left open, folds in the Tech Lead's originality directive, and binds the build to the nine agent-ready documents `docs/Redesign(1).md` … `docs/Redesign(9).md` (V4).
 > **Status:** Build-ready. Blocked only on real content (client names, metrics, workflow steps, pricing) — never on structure.
+> **Companion docs:** `Implementation_redesign.md` (repo root) is the condensed per-session orientation file coding agents start from — it restates the constraints, the content model, and the phase map, then hands off to the matching `docs/Redesign(n).md`. This doc remains the spec of record (decision history, acceptance criteria, sign-off tables). Content gates are tracked in `TODO-Placeholders.md`; open decisions in `Open_Decision.md`. If any companion disagrees with this doc, this doc wins.
 
 ---
 
@@ -29,7 +30,7 @@ The v1 spec (PR #6) was built from a partial audit and proposed a build that wou
 | C9 | Testimonials: "replace with real quotes or hide" | **Kept as config-driven skeleton** + optional standards band above | Pattern audit, section 14 |
 | C10 | Home sequence: hero → workflow → case studies → stats → trust → testimonials → founder → martech → manifesto → contact | **Corrected full order** (17 sections, §1 below) — stats bar directly under hero, trust bar before goal cards, checklist after the free-consult CTA, opt-in, founder before the demo lab | Pattern audit, full sequence |
 | C11 | "Build `partials/stats-bar` (5 big numbers)" | **4 numbers per bar** (homepage renders 4, twice); the 5-number band belongs to `/services` | Pattern audit |
-| C12 | Sitemap, JSON-LD, NDPA, performance budget: absent or one line | **Full gates** in Redesign(5), (8), (9) | — |
+| C12 | Sitemap, JSON-LD, NDPA, performance budget: absent or one line | **Full gates** in docs/Redesign(5).md, (8), (9) | — |
 
 ### 0.3 v2 → v3 originality directives (D-series — the Tech Lead's ruling, all binding)
 
@@ -43,7 +44,7 @@ The v1 spec (PR #6) was built from a partial audit and proposed a build that wou
 | D6 | Case card component named `x-wab-case-card`, emoji client marker, borrowed CTA line and heading | **`x-result-card`**: SVG briefcase icon, client name, "Read the case study" CTA, "Built, shipped, measured." heading |
 | D7 | PricingService pre-filled with another agency's service names | **Pure structure + gates**: titles/descriptions are lorem slots keyed per card; tier names are Chada chrome (Advisory Sessions / Full Builds / Ongoing Care) |
 | D8 | Borrowed CTA vocabulary ("Book Now", "Learn More", "Investment" label, "Request Free Audit") | **Chada chrome**: "Start a Project", "Explore Our Work", "Get Started", "Pricing" label, "Request a Free Review" |
-| D9 | Offerings/prices/metrics from the reference site quoted as "evidence" in the doc tables | **Abstracted away.** No third-party figure appears anywhere except inside Redesign(9)'s grep blocklist (detection patterns, not content) |
+| D9 | Offerings/prices/metrics from the reference site quoted as "evidence" in the doc tables | **Abstracted away.** No third-party figure appears anywhere except inside docs/Redesign(9).md's grep blocklist (detection patterns, not content) |
 | D10 | Emoji icons on tabs and cards | **SVG line icons only** (style charter rule; QA gate 10) |
 | D11 | Founder JSON-LD gated on a string comparison against lorem text | **`founder.real` boolean flag** — robust gate; same flag activates the Person node |
 | D12 | "Trusted by 50+ brands" hardcoded in the hero (unverified claim) | **Gated** `placeholders.hero.proof_line` (null → hidden) |
@@ -54,7 +55,7 @@ The v1 spec (PR #6) was built from a partial audit and proposed a build that wou
 
 ## 1. The target architecture (pattern table — the single source of truth)
 
-Eighteen patterns, in order. This table is the definitive scope. Descriptions are structural — see Redesign(1).md §1 for the full anatomy of each.
+Eighteen patterns, in order. This table is the definitive scope. Descriptions are structural — see docs/Redesign(1).md §1 for the full anatomy of each.
 
 | # | Pattern | Chada V4 build | Doc |
 |---|---|---|---|
@@ -92,7 +93,7 @@ Secondary pages: `/services` (tiered pricing page — **R6**), `/work` (filterab
 6.  Keep the contact form's honeypot + AJAX validation exactly as-is.
 7.  PHP 8.2 constructor promotion for new services/controllers.
 8.  Blade components (<x-…>) for reusable markup.
-9.  Follow the Chada style charter (Redesign(1) §5): rounded-2xl cards,
+9.  Follow the Chada style charter (docs/Redesign(1).md §5): rounded-2xl cards,
     eyebrow labels, Outfit/Inter, one text-primary highlighted word,
     SVG icons only — no emoji.
 10. Placeholder prose is GENERATED: $real ?? \App\Support\Lorem::…(key).
@@ -114,7 +115,7 @@ Secondary pages: `/services` (tiered pricing page — **R6**), `/work` (filterab
 
 ## 3. The content model (how structure ships before facts — and before copy)
 
-Every string in the build is one of exactly three kinds (full definition: Redesign(1).md §4):
+Every string in the build is one of exactly three kinds (full definition: docs/Redesign(1).md §4):
 
 | Kind | Lives where | Renders as | Replaced by |
 |---|---|---|---|
@@ -224,14 +225,14 @@ TODO-Placeholders.md                                (R2/R6 — new gate rows)
 9. Chat widget: no-op while number null; wa.me link when set
 10. Header/footer/mobile nav link Work + Services; zero dead links
 11. Sitemap: home, /work, /services, published case studies, 6 previews; `/showcase` 301s
-12. All Redesign(9).md §1 grep gates pass (1–12); Lighthouse ≥ 90 mobile (recorded with baseline)
+12. All docs/Redesign(9).md §1 grep gates pass (1–12); Lighthouse ≥ 90 mobile (recorded with baseline)
 13. `public/demos/` untouched; zero new dependencies; route names preserved; honeypot intact; all `php -l` clean
 
 **Originality (the DMCA program — agent-verifiable gates + human review):**
 14. Zero third-party strings in the rendered DOM (gate 2 blocklist) and zero third-party references in the repo outside the sanctioned blocklist/prohibition lines (gate 9)
 15. Zero emoji in views; SVG iconography only (gate 10)
 16. Zero hand-written marketing prose in the data layer (gate 12) — all placeholder prose is generated
-17. The §4.2 side-by-side originality review (Redesign(9)) executed and documented — every section title, headline, and CTA differs from the reference; visual gestalt is Chada's own
+17. The §4.2 side-by-side originality review (docs/Redesign(9).md) executed and documented — every section title, headline, and CTA differs from the reference; visual gestalt is Chada's own
 18. The V3 doc series and any third-party-copy-bearing file never enter the repo
 
 **Content (human-gated, tracked in TODO-Placeholders.md):**
@@ -283,11 +284,12 @@ TODO-Placeholders.md                                (R2/R6 — new gate rows)
 
 ---
 
-## 9. How to use this document with the Redesign(1–9) series
+## 9. How to use this document with the docs/Redesign(1–9) series
 
-- **Humans:** read this doc + `Redesign(1).md`. You never need to open R2–R9 unless reviewing a specific PR.
-- **VSCode agents:** execute `Redesign(n).md` one per session, in phase order (§4). Each doc restates the constraints, quotes current file state, contains complete code, and ends with verification commands and a definition of done. Agents should never need to read this orchestration doc mid-build — each build doc is self-contained.
+- **Humans:** read this doc + `docs/Redesign(1).md`. You never need to open R2–R9 unless reviewing a specific PR.
+- **Agent orientation:** every coding-agent session should start from `Implementation_redesign.md` (repo root) — the condensed orientation file that restates the constraints, content model, current repo state, and phase map, then points at the matching `docs/Redesign(n).md`. Keep it in sync with this spec whenever phases or gates change.
+- **VSCode agents:** execute `docs/Redesign(n).md` one per session, in phase order (§4). Each doc restates the constraints, quotes current file state, contains complete code, and ends with verification commands and a definition of done. Agents should never need to read this orchestration doc mid-build — each build doc is self-contained.
 - **PR hygiene:** one PR per doc (or per phase). PR body links the doc. Do not merge your own PRs. Do not mark a PR "ready to launch" while any TODO-Placeholders row it depends on is unchecked (this rule is inherited from the V2 process and kept verbatim).
-- **Document hygiene (new in v4):** the V3 doc series is superseded — it must not be committed to the repo. These ten files (this doc + Redesign(1)–(9), V4) are the complete, self-contained build reference. If any doc seems to require fetching an external site to execute, that is a defect in the doc — escalate instead.
+- **Document hygiene (new in v4):** the V3 doc series is superseded — it must not be committed to the repo. These files (this doc + `Implementation_redesign.md` + `docs/Redesign(1)–(9)` + `TODO-Placeholders.md`, V4) are the complete, self-contained build reference. If any doc seems to require fetching an external site to execute, that is a defect in the doc — escalate instead.
 
 *End of REDESIGN_IMPLEMENTATION.md (v3, Clarified). Prepared from a direct read of DGCodeIdeas/chada.digital @ 8ed949d (2026-08-27) and the prior spec history (V1 archived, V2 main, PR #6 v1, V3 doc series) — every file quoted in the series was read from the repository; every third-party quote that history contained has been purged and replaced by the originality model documented above.*

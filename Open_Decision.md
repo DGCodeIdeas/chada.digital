@@ -1,7 +1,7 @@
 # Open_Decision.md — Chada Digital Redesign (V2: WAB Digital Replicate)
 
 > For the whole team — technical and non-technical. Supersedes
-> `Open_Decision_V1_LIGHT_THEME_ARCHIVED.md`. Read `Redesign.md` first — this
+> `archive/Open_Decision_V1_LIGHT_THEME_ARCHIVED.md`. Read `REDESIGN_IMPLEMENTATION.md` first — this
 > doc is the list of things that need real answers before that spec can be
 > built.
 
@@ -9,7 +9,7 @@
 
 Most of what's below isn't a design or engineering question — it's content
 and business positioning that only the Founder/team can answer. Several
-sections in `Redesign.md` are fully blocked until their corresponding
+sections in `REDESIGN_IMPLEMENTATION.md` are fully blocked until their corresponding
 question here is answered, not just "better with an answer." Those are
 marked **BLOCKING**.
 
@@ -47,13 +47,13 @@ genuine structural replicate without that risk.
   six (hero, offers, testimonials, founder, exclusivity, chat) — stats-bar
   numbers, workflow/pipeline step labels, MarTech category names, manifesto
   copy, services/pricing tiers all go through it as genuine lorem ipsum too.
-- The existing `Redesign(9).md` §1 Gate 2 check (grep the shipped DOM for
+- The existing `docs/Redesign(9).md` §1 Gate 2 check (grep the shipped DOM for
   WAB's actual real numbers/phrases, expect zero hits) is correct and should
   stay in place — it's the automated enforcement of this decision.
 - Beyond that gate: illustrative examples **inside the planning docs
   themselves** (e.g. the "Yam Pounder" / `Meta Video Ads → ManyChat API →
-  HubSpot CRM Assignment → WhatsApp Alert` example in the Redesign(1–9)
-  series) should be genericized before those docs are used to drive further
+  HubSpot CRM Assignment → WhatsApp Alert` example in the docs/Redesign(1).md–
+  docs/Redesign(9).md series) should be genericized before those docs are used to drive further
   agent sessions — not because they'd ship (the gate blocks that), but so
   nothing WAB-specific propagates as a template for an agent to imitate even
   in spec form.
@@ -120,7 +120,7 @@ button. The two options are very different amounts of engineering work.
 - **Option C — Skip for v1.** Just the CTA, no quiz framing at all, revisit
   later.
 
-`Redesign.md` recommends starting with B and treating A as a later
+`REDESIGN_IMPLEMENTATION.md` recommends starting with B and treating A as a later
 enhancement, but that's a recommendation, not a decision made here.
 
 ---
@@ -185,7 +185,7 @@ has but adds a new vendor/cost) and whose name/persona it should use.
 **Plain language:** Real engineering work already went into a portfolio/case-study
 system (`/work`, individual case study pages, several components) built for
 the previous direction. WAB's actual site doesn't have anything like this on
-its homepage. Three options, laid out in `Redesign.md` §5:
+its homepage. Three options, laid out in `REDESIGN_IMPLEMENTATION.md` §5:
 
 - **A. Remove it entirely** — cleanest match to a literal replicate, discards
   the work.
