@@ -4,12 +4,21 @@
 > redesign. It carries the constraints, the content-safety model, the current
 > verified repo state, and the full phase map. For the detailed code-level
 > spec of whichever phase you're executing, pair this file with the matching
-> `Redesign(N).md` (V4 series) — this file won't repeat their full code, only
+> `docs/Redesign(N).md` (V4 series) — this file won't repeat their full code, only
 > orient you and give Phase 1 as a ready-to-run task block.
 >
+> **Spec of record:** `REDESIGN_IMPLEMENTATION.md` (repo root). This file is the
+> orientation layer; that file is the full clarified spec — decision history
+> (C1–C12 structural corrections, D1–D12 originality directives), the
+> 18-pattern table, acceptance criteria, risk register, and sign-off tables.
+> The nine build docs live in `docs/Redesign(1).md` … `docs/Redesign(9).md`;
+> content gates are tracked in `TODO-Placeholders.md` and open decisions in
+> `Open_Decision.md`. If this file and the spec of record ever disagree, the
+> spec of record wins — fix this file.
 > **Supersedes:** any earlier "V3" doc series, PR #6 (`feat/wab-complete-replication-spec`
-> v1), and the standalone `REDESIGN_IMPLEMENTATION_PROMPT.md` from the V2-only
-> build. Do not open, reference, or resurrect the old V3 doc series — it
+> v1, closed), and the standalone `REDESIGN_IMPLEMENTATION_PROMPT.md` from the V2-only
+> build (archived as `archive/IMPLEMENTATION_PROMPT_ARCHIVED.md`). Do not open,
+> reference, or resurrect the old V3 doc series — it
 > carried third-party verbatim copy from the reference site and was
 > deliberately purged. If you ever see it in the repo, delete it and flag it.
 > **Repo:** `DGCodeIdeas/chada.digital` · branch off `main` · HEAD audited `8ed949d` (2026-08-27)
@@ -191,10 +200,11 @@ R5), `/case-study/{slug}` (detail — R5), sitemap + nav relink (R5/R8).
 ## 6. Phase 1 — ready to execute now (Data layer)
 
 ```text
-You are Kilo, executing Phase 1 (Redesign(2).md — Data layer) of the Chada
+You are Kilo, executing Phase 1 (docs/Redesign(2).md — Data layer) of the Chada
 Digital V4 redesign at DGCodeIdeas/chada.digital. Read Implementation_redesign.md
 in full first — constraints (§1), content model (§2), current repo state (§4)
-all apply. This phase changes nothing visible on the site; it only builds the
+all apply. The full spec of record is REDESIGN_IMPLEMENTATION.md (repo root);
+this phase changes nothing visible on the site; it only builds the
 foundation the rest of the series depends on.
 
 Branch: git checkout -b feat/v4-r2
@@ -254,17 +264,17 @@ Open a PR. Do not merge it yourself.
 
 ---
 
-## 7. Phases 2–6 — execute with the matching Redesign(N).md
+## 7. Phases 2–6 — execute with the matching docs/Redesign(N).md
 
 This file gives you orientation and constraints; it does not repeat the full
 task-by-task code for R3–R9. For each subsequent phase:
 
 1. Confirm Phase 1's PR is merged and `main` is current.
 2. Branch: `feat/v4-r{n}`.
-3. Open **both** this file and the matching `Redesign(N).md` for that phase.
+3. Open **both** this file and the matching `docs/Redesign(N).md` for that phase.
 4. Re-read §1 (constraints) and §2 (content model) here before starting —
    they apply identically to every phase.
-5. Execute `Redesign(N).md` top to bottom; it quotes exact current file
+5. Execute `docs/Redesign(N).md` top to bottom; it quotes exact current file
    state for anything it modifies. If what it quotes doesn't match what's
    actually in the file, stop and reconcile — don't guess which is current.
 6. Run that doc's own verification block, plus a fresh `bun run dev`.
@@ -305,13 +315,13 @@ migrations, `.github/workflows/deploy.yml`, `scripts/maintenance-lock.sh`.
 
 ---
 
-## 9. Launch gates (Phase 6 / R9 — summary, full commands live in Redesign(9).md)
+## 9. Launch gates (Phase 6 / R9 — summary, full commands live in docs/Redesign(9).md)
 
 - **Gate 1:** zero `PENDING`/`Placeholder` markers in rendered HTML on any page
 - **Gate 2 (DMCA gate):** grep rendered DOM for a blocklist of reference-site-specific strings (real client names, real stats, real section titles) — expect zero hits
-- **Gate 9 (repo-wide DMCA sweep):** grep the entire repo — code, views, docs, comments — for any reference to the reference site's name or founder, expect zero hits outside this file's and Redesign(9).md's own sanctioned blocklist definitions
+- **Gate 9 (repo-wide DMCA sweep):** grep the entire repo — code, views, docs, comments — for any reference to the reference site's name or founder, expect zero hits outside this file's and docs/Redesign(9).md's own sanctioned blocklist definitions
 - **Gate 10:** zero emoji in `resources/views/` — SVG icons only
-- Full functional test matrix, Lighthouse ≥ 90 mobile, sitemap validity, 404/503 page checks — see `Redesign(9).md` for exact commands
+- Full functional test matrix, Lighthouse ≥ 90 mobile, sitemap validity, 404/503 page checks — see `docs/Redesign(9).md` for exact commands
 
 **Do not mark this ready to launch** while any `TODO-Placeholders.md` row it
 depends on is unchecked, and don't release `scripts/maintenance-lock.sh` until
@@ -325,5 +335,6 @@ Q1 (hero copy), Q2 (client logos), Q3 (six offers + real prices), Q5
 (testimonials), Q6 (founder bio + photo), Q7 (exclusivity tone), Q8 (chat
 tool/persona/number) are all still open — this series ships the structure
 those decisions will eventually populate, not the decisions themselves. See
-`TODO-Placeholders.md` for what to send David, and `Open_Decision.md` for why
-each one is still open.
+`TODO-Placeholders.md` for what to send David, `Open_Decision.md` for why
+each one is still open, and `REDESIGN_IMPLEMENTATION.md` §8 for the full
+open-decisions table with V4 statuses.

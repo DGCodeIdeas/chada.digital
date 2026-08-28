@@ -390,7 +390,9 @@ The tiered card anatomy (badge → title → description → audience line → p
 
 ## TASK 6 — Append TODO-Placeholders rows
 
-Append to `TODO-Placeholders.md`:
+Append to `TODO-Placeholders.md` (repo root):
+
+> **Reconciliation note (2026-08-28):** the upstream rewrite of `TODO-Placeholders.md` (commit `ed76bea`) already tracks the `/services` pricing rows in its §10 (`PricingService` 15 line items + add-ons). Diff this block against the current file and append only what is genuinely missing — if §10 already covers it, treat this task as a no-op and say so in the PR body.
 
 ```markdown
 ## V4 /services page (Redesign(6).md)

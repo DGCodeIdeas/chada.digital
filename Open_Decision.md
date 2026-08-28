@@ -1,7 +1,7 @@
 # Open_Decision.md — Chada Digital Redesign (V2: WAB Digital Replicate)
 
 > For the whole team — technical and non-technical. Supersedes
-> `Open_Decision.md` (V1 content archived in git history). Read `REDESIGN_IMPLEMENTATION.md` first — this
+> `archive/Open_Decision_V1_LIGHT_THEME_ARCHIVED.md`. Read `REDESIGN_IMPLEMENTATION.md` first — this
 > doc is the list of things that need real answers before that spec can be
 > built.
 
@@ -52,8 +52,8 @@ genuine structural replicate without that risk.
   stay in place — it's the automated enforcement of this decision.
 - Beyond that gate: illustrative examples **inside the planning docs
   themselves** (e.g. the "Yam Pounder" / `Meta Video Ads → ManyChat API →
-  HubSpot CRM Assignment → WhatsApp Alert` example in the Redesign(1–9)
-  series) should be genericized before those docs are used to drive further
+  HubSpot CRM Assignment → WhatsApp Alert` example in the docs/Redesign(1).md–
+  docs/Redesign(9).md series) should be genericized before those docs are used to drive further
   agent sessions — not because they'd ship (the gate blocks that), but so
   nothing WAB-specific propagates as a template for an agent to imitate even
   in spec form.

@@ -13,6 +13,13 @@
 > pricing") until the actual answer lands. **This file's job is to get
 > checked off, not filed.**
 >
+> **Related docs:** the config gates themselves are built in
+> `docs/Redesign(2).md` (data layer) and enforced at launch by
+> `docs/Redesign(9).md` (grep gates 1–12 + launch checklist); the decisions
+> behind each row live in `Open_Decision.md`; the agent-session orientation
+> is `Implementation_redesign.md`, and the full spec of record is
+> `REDESIGN_IMPLEMENTATION.md` (both at the repo root).
+>
 > Two different owners sign off on different rows: most are **Founder**
 > content calls; a few workflow-specific ones are **Tech Lead** verification
 > calls (marked below) — don't wait on the Founder for those.

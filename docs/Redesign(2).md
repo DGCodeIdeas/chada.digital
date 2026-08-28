@@ -752,7 +752,9 @@ php artisan tinker --execute="echo App\Support\Lorem::sentence('demo', 8), PHP_E
 
 ## TASK 3 — Append rows to `TODO-Placeholders.md`
 
-**Action:** Append the block below to the end of `TODO-Placeholders.md` (do not rewrite the file — append). These rows track every gate and lorem slot introduced by the V4 data layer.
+**Action:** Append the block below to the end of `TODO-Placeholders.md` (repo root — do not rewrite the file — append). These rows track every gate and lorem slot introduced by the V4 data layer.
+
+> **Reconciliation note (2026-08-28):** the repo-root `TODO-Placeholders.md` was rewritten upstream (commit `ed76bea`, 2026-08-27) to a V4 gate list that already covers most of the block below (offers, hero proof line, case-study published/workflow gates, stats bars, webinar, founder, chat, services pricing). Before appending, diff this block against the current file and append only rows that are genuinely missing. If everything is already tracked, this task is a no-op — record that in the PR body instead of duplicating rows.
 
 ```markdown
 ---

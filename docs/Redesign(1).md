@@ -14,10 +14,10 @@ Three prior specs currently disagree with each other, and an agent that follows 
 
 | Spec | Where | What it says | Status under V4 |
 |---|---|---|---|
-| `Redesign.md` (V2) | `main` | Goal-picker funnel site; no case studies/workflows on homepage | Superseded in part — its skeleton sections are kept and upgraded, but its section list was incomplete |
-| `REDESIGN_IMPLEMENTATION.md` (PR #6) | branch `feat/wab-complete-replication-spec` | Workflow system + case studies; proposes **deleting** goal-picker, assessment-cta, services-checklist, founder-bio, exclusivity-cta | Superseded — the five deletions were wrong; both halves of the architecture belong on one page |
+| `Redesign.md` (V2) | `archive/Redesign_ARCHIVED.md` | Goal-picker funnel site; no case studies/workflows on homepage | Superseded in part — its skeleton sections are kept and upgraded, but its section list was incomplete |
+| `REDESIGN_IMPLEMENTATION.md` v1 (PR #6, closed; branch deleted) | PR #6 diff / git history | Workflow system + case studies; proposes **deleting** goal-picker, assessment-cta, services-checklist, founder-bio, exclusivity-cta | Superseded — the five deletions were wrong; both halves of the architecture belong on one page. The live v3 of this file sits at the repo root |
 | `Redesign(1)–(9)` V3 doc series | produced 2026-08-27, **not committed** | Union of V2 + PR #6 + extra sections; quoted the reference site's copy verbatim inside the docs as build reference | **Superseded by this V4 series.** The V3 docs' *structure* survives; their *quoted third-party content* is purged. Never commit the V3 docs to the repo — they contain third-party copy |
-| `Redesign_V1_LIGHT_THEME_ARCHIVED.md` | `main` (archived) | Light theme + case-study system | Superseded |
+| `Redesign_V1_LIGHT_THEME_ARCHIVED.md` | `archive/Redesign_V1_LIGHT_THEME_ARCHIVED.md` | Light theme + case-study system | Superseded |
 
 **Resolution (authoritative):** the target architecture in §1 is the **union** of V2 and PR #6, plus one section neither prior spec captured (tabbed interactive system demos). Where any other document disagrees with this series, **this series wins**.
 
@@ -241,7 +241,9 @@ Each document is a self-contained work order sized for one agent session. Execut
 
 **Parallel tracks possible:** (4) ∥ (5) ∥ (6) after (2); (7) after (5); (8) after (5)+(6); (9) last.
 
-**The clarified master spec** lives in `REDESIGN_IMPLEMENTATION.md` (v3, Clarified) — it records every ambiguity and its resolution, the V3→V4 originality changelog, and orchestrates these nine docs into phases with acceptance criteria.
+**The clarified master spec** lives in `REDESIGN_IMPLEMENTATION.md` (v3, Clarified, repo root) — it records every ambiguity and its resolution, the V3→V4 originality changelog, and orchestrates these nine docs into phases with acceptance criteria. Its condensed per-session companion — `Implementation_redesign.md` (repo root) — is the orientation file an agent reads at the start of every session before opening the phase doc.
+
+**Where everything lives:** the nine series docs sit in `docs/`. At the repo root sit `REDESIGN_IMPLEMENTATION.md` (spec of record), `Implementation_redesign.md` (agent orientation), `TODO-Placeholders.md` (content-gate tracker), `Open_Decision.md` (open decisions Q0–Q9), and `README.md`. Superseded specs live in `archive/`. All code paths quoted in this series are repo-root-relative (e.g. `config/placeholders.php`, `resources/views/partials/hero.blade.php`).
 
 ---
 
@@ -254,7 +256,7 @@ Each document is a self-contained work order sized for one agent session. Execut
 - **Components on disk:** `x-case-study-card` (thumbnail cards), `x-workflow-diagram` (arrow pipelines — the gem we reuse), `x-metric-badge`, `x-section-header`, `x-section-badge`, `x-section-heading`, `x-tech-stack`, `x-button-primary`, `x-button-outline`, `x-splash-logo`.
 - **Chat widget:** deliberate NO-OP placeholder (Open_Decision Q8 unresolved — tool + persona + number not chosen).
 - **Unrouted but present:** `partials/process`, `partials/about`, `partials/services` (real 4-service array with tool stacks — reuse this data), `partials/products` (4 fictional products — keep unrouted, do not delete).
-- **Infra:** GitHub Actions deploys `main` → EC2 (`/opt/dstack-panel/projects/chada.digital`) — assets built on CI with Bun, rsync with `--delete`, then `post-deploy-dstack.sh`. `scripts/maintenance-lock.sh on|off` holds/releases a deliberate maintenance lock (site is currently locked, showing the branded 503). PR #6 open (`feat/wab-complete-replication-spec`). Branch `feat/redesign-frontend` exists (stale, no docs).
+- **Infra:** GitHub Actions deploys `main` → EC2 (`/opt/dstack-panel/projects/chada.digital`) — assets built on CI with Bun, rsync with `--delete`, then `post-deploy-dstack.sh`. `scripts/maintenance-lock.sh on|off` holds/releases a deliberate maintenance lock (site is currently locked, showing the branded 503). PR #6 closed (its five deletions reversed by this series; its branch deleted). Branch `feat/redesign-frontend` exists (stale, no docs).
 - **PreviewService:** 6 demos — `apexflow` (SaaS/AI), `elysian` (Hotel & Spa booking), `hirebase` (recruitment/job board), `noir` (e-commerce fashion), `sterling-vale` (construction corporate), `timber-mill` (artisan furniture). All interactive, all in `public/demos/`.
 
 ### 7.2 Key files an agent must read before editing (all quoted in the series)
