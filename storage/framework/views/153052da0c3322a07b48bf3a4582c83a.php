@@ -1,0 +1,1 @@
+<h2 <?php echo e($attributes->merge(['class' => 'mt-4 font-display text-3xl font-bold tracking-tight md:text-5xl'])); ?>><?php echo e($slot); ?></h2><?php /**PATH /home/dgi/www/chada.digital/resources/views/components/section-heading.blade.php ENDPATH**/ ?>

@@ -7,9 +7,8 @@ use App\Http\Controllers\PreviewController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'home'])->name('home');
-// Not linked from nav/homepage as of Aug 20 2026 — kept live per
-// Open_Decision.md Q9 pending a final decision. Do not delete without
-// confirming with David.
+// V4: case studies are a core homepage section.
+// Relinked per Redesign(5).md — Q9 resolved: KEEP + POPULATE.
 Route::get('/work', [CaseStudyController::class, 'index'])->name('work');
 Route::get('/case-study/{slug}', [CaseStudyController::class, 'show'])->name('case-study.show');
 Route::redirect('/showcase', '/work', 301);
