@@ -5,7 +5,7 @@
 > verified repo state, and the full phase map. For the detailed code-level
 > spec of whichever phase you're executing, pair this file with the matching
 > `docs/Redesign(N).md` (V4 series) — this file won't repeat their full code, only
-> orient you and give Phase 1 as a ready-to-run task block.
+> orient you and give every phase (2–9) as a ready-to-run session kickoff.
 >
 > **Spec of record:** `REDESIGN_IMPLEMENTATION.md` (repo root). This file is the
 > orientation layer; that file is the full clarified spec — decision history
@@ -24,9 +24,12 @@
 > **Repo:** `DGCodeIdeas/chada.digital` · branch off `main` · HEAD audited `8ed949d` (2026-08-27)
 > **Ratified by:** Tech Lead (Q9 — case-study fate: keep+populate+relink; the
 > originality/content model below). **Still needs Founder sign-off** on the
-> spec as a whole (row 0 of the sign-off table) before Phase 2 onward ships
-> to production — Phase 1 (data layer) is safe to start regardless, since it
+> spec as a whole (row 0 of the sign-off table) before Phase 3 onward ships
+> to production — Phase 2 (data layer) is safe to start regardless, since it
 > changes nothing visible.
+> **Phase numbering matches doc numbering:** Phase N executes `docs/Redesign(N).md`.
+> There is no Phase 1 (Redesign(1).md is the master directive/architecture
+> doc, not an execution phase — everyone should have already read it).
 
 ---
 
@@ -165,42 +168,49 @@ R5), `/case-study/{slug}` (detail — R5), sitemap + nav relink (R5/R8).
   `hirebase`, `noir`, `sterling-vale`, `timber-mill`) in `public/demos/` —
   these power the Demo Lab (R7) and are the untouchable ground truth.
 
-### 4.1 Two known live bugs — fix these explicitly, they're not called out elsewhere
+### 4.1 Two known live bugs — verified against R3–R9's actual content, not assumed
 
-1. **Dead nav anchors.** `header.blade.php` currently links to `/#services`,
-   `/#process`, `/#products` — none of these IDs exist on the page anymore
-   (sections were restructured in V2). Fix when R8 rebuilds the header —
-   point nav at real current sections (`#goals`, `#services-checklist`, etc.)
-   or drop the dead links entirely.
-2. **Broken founder image.** `founder-bio.blade.php` references
-   `/assets/images/founder-placeholder.jpg`, which was never created —
-   renders as a broken image icon. Fix when R3 touches founder-bio: either
-   create a real placeholder graphic (silhouette/initials, not a stock photo
-   of a real person) or gate the `<img>` tag itself behind `founder.real`
-   the same way the bio text is gated.
+1. **Dead nav anchors — fixed progressively, not in one doc.** `header.blade.php`
+   currently links to `/#services`, `/#process`, `/#products` — none of
+   these IDs exist anymore. **R5 Task 7** does the first fix (relinks Work,
+   drops the `#process`/`#products` links, points Services/About at
+   `#services-checklist`/`#founder`). **R8 Task 1** does the final version
+   (adds the `/services` route link once it exists). Nothing to add here —
+   both docs already handle it correctly.
+2. **Broken founder image — NOT actually fixed by R3, despite what this
+   file used to imply.** Re-read against R3 Task 9's real content: it says
+   "keep the existing silhouette placeholder photo + `founder.photo` path
+   behavior" — it assumes the placeholder file already works. It does not;
+   `/assets/images/founder-placeholder.jpg` still doesn't exist anywhere in
+   the repo. **This needs an explicit, separate task in Phase 3 — see §7
+   below, Phase 3 Task 0.** Do not assume any other doc handles it; none do.
 
 ---
 
 ## 5. Phase map
 
-| Phase | Docs | Scope | Exit criteria |
-|---|---|---|---|
-| **0. Ratify** | — | Founder + Tech Lead confirm the keep-decisions and 18-pattern target; close Q9 | Sign-off row; PR #6 closed in favor of this build |
-| **1. Data layer** | R2 | `App\Support\Lorem`, `CaseStudyService` v2, `config/placeholders.php` v4, TODO rows | Determinism + rotation smoke tests pass; homepage visually unchanged |
-| **2. Homepage A** | R3 | Hero, stats-bar, goal-picker price block, audit-cta, working-together, 12-item checklist, webinar-optin (off), founder slots + bug fix, testimonials+standards (off) | R3 verification passes |
-| **3. Signature systems** (parallel) | R4 ∥ R5 ∥ R6 | R4: System Blueprints. R5: result cards + /work + case-study detail + sitemap + relink. R6: /services page | Each doc's verification passes |
-| **4. Demos + integrations** | R7 | demo-lab (6 tabs), martech grid + JS filter | `public/demos/` untouched |
-| **5. Chrome + SEO** | R8 | Header/footer final + nav bug fix, chat wiring, JSON-LD, meta | R8 verification passes |
-| **6. Gate + launch** | R9 | All grep gates, functional matrix, Lighthouse, originality review, NDPA, deploy runbook, maintenance-lock release | Human sign-off |
+Phase numbers match doc numbers exactly — Phase N runs `docs/Redesign(N).md`.
 
-**Branch per doc:** `git checkout main && git pull && git checkout -b feat/v4-r{n}`. Never work directly on `main`. One PR per doc. Do not merge your own PRs.
+| Phase | Doc | Scope | Depends on | Status |
+|---|---|---|---|---|
+| **0. Ratify** | — | Founder + Tech Lead confirm the keep-decisions and 18-pattern target; close Q9 | — | Q9 + originality model resolved by Tech Lead; row 0 (full spec) still needs Founder |
+| **2. Data layer** | R2 | `App\Support\Lorem`, `CaseStudyService` v2, `config/placeholders.php` v4, TODO rows | Phase 0 not required (invisible change) | **Built — PR #8 open, DO NOT MERGE ALONE** (breaks 7 partials until Phase 3 lands) |
+| **3. Homepage A** | R3 | Hero, stats-bar, goal-picker price block, audit-cta, working-together, 12-item checklist, webinar-optin (off), founder slots, testimonials+standards (off) | Phase 2 merged | Not started |
+| **4. System Blueprints** | R4 | `workflow-system` pipeline pattern, `workflow-diagram` upgrade | Phase 2 | Not started — can run parallel to 3, 5, 6 |
+| **5. Case studies + /work + sitemap + nav** | R5 | `x-result-card`, homepage results grid, dynamic `/work` filters, detail-page gating, sitemap, nav relink (fixes bug 1 first pass) | Phase 2 | Not started — can run parallel to 3, 4, 6 |
+| **6. /services page** | R6 | `PricingService`, tiered pricing page, 15 gated cards | Phase 2; sitemap guard from Phase 5 (defensive `Route::has` check makes this independently mergeable) | Not started — can run parallel to 3, 4, 5 |
+| **7. Demo Lab + MarTech** | R7 | 6-tab interactive demo panels (real `public/demos/`), filterable integrations grid | Phase 5 (home include positions) | Not started |
+| **8. Global chrome + SEO** | R8 | Final header/footer, chat widget WhatsApp wiring, JSON-LD, meta — final nav fix (bug 1, second pass) | Phase 5, 6, 7 (routes + anchors must exist) | Not started |
+| **9. QA + launch gates** | R9 | All grep gates (incl. originality gates 2/9/10/11), functional matrix, Lighthouse, NDPA, deploy runbook, maintenance-lock release | ALL previous phases merged | Not started |
+
+**Branch per doc:** `git checkout main && git pull && git checkout -b feat/v4-r{n}`. Never work directly on `main`. One PR per doc. Do not merge your own PRs. **Phases 3, 4, and 5 can run in parallel** (independent branches off the same Phase 2 base) — Phase 6 too, if its defensive sitemap guard is respected. Phases 7, 8, 9 are strictly sequential.
 
 ---
 
-## 6. Phase 1 — ready to execute now (Data layer)
+## 6. Phase 2 — Data layer (BUILT — see PR #8, do not re-run)
 
 ```text
-You are Kilo, executing Phase 1 (docs/Redesign(2).md — Data layer) of the Chada
+You are Kilo, executing Phase 2 (docs/Redesign(2).md — Data layer) of the Chada
 Digital V4 redesign at DGCodeIdeas/chada.digital. Read Implementation_redesign.md
 in full first — constraints (§1), content model (§2), current repo state (§4)
 all apply. The full spec of record is REDESIGN_IMPLEMENTATION.md (repo root);
@@ -260,27 +270,378 @@ VERIFY:
 
 Commit as: feat(v4-r2): data layer — Lorem generator, CaseStudyService v2, placeholders v4
 Open a PR. Do not merge it yourself.
+
+⚠️ THIS PHASE IS ALREADY BUILT. See PR #8 (branch feat/v4-r2). Do not
+re-execute this block — it's kept here for reference/audit only. PR #8
+must not merge alone; it needs Phase 3 (R3) merged at the same time or
+immediately after, or every page 500s (7 partials read config keys this
+phase removed — see PR #8's body for the full list).
 ```
 
 ---
 
-## 7. Phases 2–6 — execute with the matching docs/Redesign(N).md
+## 7. Phases 3–9 — ready to execute
 
-This file gives you orientation and constraints; it does not repeat the full
-task-by-task code for R3–R9. For each subsequent phase:
+Each block below is a session kickoff, not a code substitute — every doc
+(`docs/Redesign(N).md`) already contains complete, working Blade/PHP; retyping
+it here would just be a second copy to go stale. What's below is what these
+docs don't say by themselves: dependency order, the gotchas an agent working
+from the doc in isolation would miss, and the parts of this specific repo's
+history (bugs, prior incidents) that the doc author knew about but a fresh
+session wouldn't.
 
-1. Confirm Phase 1's PR is merged and `main` is current.
-2. Branch: `feat/v4-r{n}`.
-3. Open **both** this file and the matching `docs/Redesign(N).md` for that phase.
-4. Re-read §1 (constraints) and §2 (content model) here before starting —
-   they apply identically to every phase.
-5. Execute `docs/Redesign(N).md` top to bottom; it quotes exact current file
-   state for anything it modifies. If what it quotes doesn't match what's
-   actually in the file, stop and reconcile — don't guess which is current.
-6. Run that doc's own verification block, plus a fresh `bun run dev`.
-7. For Phase 5 (R8) specifically: confirm both bugs in §4.1 above are fixed
-   as part of the header/founder-bio work, not just the R8 spec's own scope.
-8. Commit per task, open one PR per doc, don't merge your own.
+**Every phase:** confirm its dependency phase(s) are merged and `main` is
+current → `git checkout -b feat/v4-r{n}` → re-read §1 and §2 above → execute
+`docs/Redesign(N).md` top to bottom, exactly as written → run that doc's own
+verification block plus `bun run dev` → commit per task → open one PR, don't
+merge it yourself.
+
+---
+
+### Phase 3 — Homepage A (docs/Redesign(3).md)
+
+```text
+You are Kilo, executing Phase 3 (docs/Redesign(3).md — Homepage Sections A)
+of the Chada Digital V4 redesign. Read Implementation_redesign.md §1 and §2
+first. Confirm Phase 2 (feat/v4-r2 / PR #8) is merged before starting — this
+phase depends on App\Support\Lorem and the v4 config shape existing.
+
+Branch: git checkout -b feat/v4-r3
+
+Execute docs/Redesign(3).md TASK 1 through TASK 10 exactly as written.
+
+BEFORE TASK 1, do this first (not in the R3 doc — a real gap found by
+auditing this repo directly, see Implementation_redesign.md §4.1 bug 2):
+
+TASK 0 — Fix the broken founder image
+`founder-bio.blade.php` references `/assets/images/founder-placeholder.jpg`,
+which does not exist in this repo (404). R3's own Task 9 assumes it already
+works and does not create it. Pick one:
+  (a) Create a real placeholder graphic (silhouette/initials — NOT a stock
+      photo of a real person) at that path, or
+  (b) Gate the <img> tag itself behind `founder.real`, same as the bio text,
+      so nothing renders (not even a broken icon) until real content lands.
+Either is acceptable — (b) is less work and consistent with how every other
+founder field is already gated; note your choice in the PR body.
+
+Watch for these while executing R3's tasks:
+- TASK 1 (home.blade.php): Blade `{{-- --}}` comments marking later docs'
+  insertion points don't render — when a LATER phase's doc tells you to
+  replace one of these comments, replace it, don't leave the comment AND
+  add the include (R3's own note, worth repeating: doubled sections are an
+  easy mistake here).
+- TASK 7 (services-checklist): the "See Services" button links to `/services`,
+  which doesn't exist until Phase 6 merges. If Phase 6 isn't merged yet,
+  link to `url('/#goals')` temporarily per R3's own instruction — do not
+  ship a 404 link, and leave a one-line TODO comment to swap it back.
+- TASK 8 (webinar-optin): before writing the form, open
+  `resources/views/partials/contact-form.blade.php` and copy its EXACT
+  honeypot field name/markup. Don't invent a second honeypot convention —
+  ContactController validates one specific field name.
+- TASK 9 (founder-bio): confirms Task 0 above — the section renders
+  generated lorem until `placeholders.founder.real` flips to true.
+
+VERIFY: run docs/Redesign(3).md's full verification block (7 steps) plus:
+- Confirm the Task 0 fix — no broken image icon anywhere on the page.
+- Confirm the hardcoded "Trusted by 50+ brands" line is GONE (replaced by
+  the gated `hero.proof_line`, which renders nothing while null).
+
+Commit as: feat(v4-r3): homepage sections A — hero dual CTA, stats bar,
+pricing blocks, free-review CTA, checklist, optin, founder, testimonials,
+[+ fix: founder placeholder image]
+Open a PR. Do not merge it yourself. In the PR body, state explicitly
+whether Task 0 used option (a) or (b).
+```
+
+---
+
+### Phase 4 — System Blueprints (docs/Redesign(4).md)
+
+```text
+You are Kilo, executing Phase 4 (docs/Redesign(4).md — System Blueprints /
+pipeline diagrams) of the Chada Digital V4 redesign. Read
+Implementation_redesign.md §1 and §2 first. Depends on Phase 2 only
+(CaseStudyService::verifiedWorkflows() must exist) — can run in parallel
+with Phase 3, 5, and 6 on its own branch off the same Phase 2 base.
+
+Branch: git checkout -b feat/v4-r4
+
+Execute docs/Redesign(4).md TASK 1 through TASK 3 exactly as written.
+
+Watch for these:
+- TASK 1 upgrades the SHARED `x-workflow-diagram` component — the
+  case-study detail page (`pages/case-study.blade.php`) already calls it.
+  The doc's own Task 1 includes a backward-compatibility fix for the new
+  `workflow.steps` data shape (Phase 2 changed `$study['workflow']` from a
+  flat array to `['verified' => bool, 'steps' => [...]]`) — apply that fix
+  IN THIS PHASE, don't wait for Phase 5. If you skip it, the detail page
+  breaks the moment a study is scratch-published for testing.
+- Naming is locked in the doc (do not improvise alternatives): eyebrow
+  "Under the Hood", title "System Blueprints", badge "Connected
+  End-to-End" with a link icon, speed-claim icon is a bolt (not a warning
+  triangle).
+- The section renders NOTHING today — every workflow's `verified` gate is
+  false from Phase 2. That's correct. The doc's verification step 4 has
+  you scratch-flip one workflow to `verified => true` to prove the gate
+  works, then revert before committing — don't skip the revert.
+- Originality: this section had a real problem in an earlier internal
+  draft (verbatim third-party pipeline copy). The pattern in the doc is
+  the complete, safe replacement — do not look anywhere else for
+  "reference," including the reference site itself (constraint 11).
+
+VERIFY: run docs/Redesign(4).md's full verification block (7 steps),
+especially step 6 (originality grep) and the scratch-test-then-revert in
+step 4.
+
+Commit as: feat(v4-r4): system blueprints section — pipeline pattern with
+verified gating
+Open a PR. Do not merge it yourself.
+```
+
+---
+
+### Phase 5 — Case studies, /work, detail pages, sitemap, nav (docs/Redesign(5).md)
+
+```text
+You are Kilo, executing Phase 5 (docs/Redesign(5).md — Results Grid, /work
+Filters, Detail Pages, Sitemap & Nav Relink) of the Chada Digital V4
+redesign. Read Implementation_redesign.md §1 and §2 first. Depends on Phase
+2 only — can run in parallel with Phase 3, 4, and 6.
+
+Branch: git checkout -b feat/v4-r5
+
+Execute docs/Redesign(5).md TASK 1 through TASK 7 exactly as written.
+
+Watch for these:
+- TASK 1 creates `x-result-card` — a NEW, text-led component (client name +
+  metric + excerpt + link, no thumbnail) for the HOMEPAGE grid. This is
+  deliberately different from the EXISTING `x-case-study-card` (thumbnail
+  grid card), which stays as-is for the `/work` archive page. Don't
+  conflate the two or try to unify them — the doc explains why they
+  differ (dense homepage grid vs. richer archive page) and this is
+  intentional, not duplication to clean up.
+- The homepage case-studies section has NO lorem fallback (unlike almost
+  everything else in this build) — it renders nothing until real,
+  published, verified-metric studies exist. Don't add a lorem fallback
+  "to be consistent" with other sections; the doc is explicit that a lorem
+  *result* would be a fake result, which is exactly what constraint 14
+  exists to prevent.
+- TASK 6 (sitemap) reverses the Q9 freeze — update the routes/web.php
+  comment as instructed (the doc gives you the exact old/new text). This
+  is a real, meaningful change: case studies go from "frozen, unrouted"
+  to "core homepage section, in the sitemap."
+- TASK 7 fixes bug 1 from Implementation_redesign.md §4.1 — FIRST PASS
+  only (drops dead `#process`/`#products` anchors, relinks Work). Phase 8
+  does the final version once `/services` exists. Don't be surprised the
+  nav isn't "finished" after this phase — that's expected.
+
+VERIFY: run docs/Redesign(5).md's full verification block (8 steps),
+including the scratch-publish-test on one study (step 5) — publish, verify
+result cards/filters/detail page all light up correctly, then REVERT before
+committing. Step 6 checks that "PENDING DAVID" and "Placeholder" never leak
+into rendered HTML — this is the load-bearing check for the whole gating
+model, don't skip it.
+
+Commit as: feat(v4-r5): results grid on home + /work filters + detail
+gating + sitemap/nav relink
+Open a PR. Do not merge it yourself.
+```
+
+---
+
+### Phase 6 — /services page (docs/Redesign(6).md)
+
+```text
+You are Kilo, executing Phase 6 (docs/Redesign(6).md — Tiered Pricing Page)
+of the Chada Digital V4 redesign. Read Implementation_redesign.md §1 and §2
+first. Depends on Phase 2 only. Phase 5's sitemap change already has a
+defensive `Route::has('services')` check specifically so this phase can
+merge independently, in any order relative to Phase 5 — can run in
+parallel with Phase 3, 4, and 5.
+
+Branch: git checkout -b feat/v4-r6
+
+Execute docs/Redesign(6).md TASK 1 through TASK 6 exactly as written.
+
+Watch for these:
+- TASK 1 (PricingService): notice the `tier()` private helper generates 15
+  cards from 3 calls rather than 15 hand-written arrays. This is
+  deliberate — fewer places to hand-type prose means fewer places
+  invented or borrowed copy could sneak in. Every price/title/description
+  is null; nothing in this service is content, only structure + gates.
+  Do not "helpfully" fill in example service names or prices — that is
+  exactly what Open_Decision.md Q3 is still open on.
+- TASK 6 (TODO-Placeholders.md): READ THE RECONCILIATION NOTE in the doc
+  before appending anything. The upstream rewrite (commit `ed76bea`)
+  already added a `/services` pricing section (§10) covering these same
+  rows. Diff against the current file first — if §10 already covers it,
+  this task is a no-op; say so explicitly in the PR body rather than
+  duplicating rows.
+- Card copy: "Who it is for:" (no apostrophe) and "Get Started" are the
+  locked label choices from the doc — matches the vocabulary already
+  established in Phase 3's goal-picker cards. Don't introduce a third
+  phrasing for the same concept.
+
+VERIFY: run docs/Redesign(6).md's full verification block — confirm all 15
+cards render "Contact for pricing" (grep count = 15), confirm zero
+"PENDING DAVID" leaks into rendered HTML, confirm /services appears in the
+sitemap automatically via Phase 5's guard.
+
+Commit as: feat(v4-r6): /services page — PricingService, tiered cards,
+lorem catalog slots
+Open a PR. Do not merge it yourself.
+```
+
+---
+
+### Phase 7 — Demo Lab + MarTech grid (docs/Redesign(7).md)
+
+```text
+You are Kilo, executing Phase 7 (docs/Redesign(7).md — Demo Lab + MarTech
+Integrations Grid) of the Chada Digital V4 redesign. Read
+Implementation_redesign.md §1 and §2 first. Depends on Phase 5 (needs the
+home.blade.php include positions/insertion comments Phase 5 leaves behind)
+— run this AFTER Phase 5 merges, not in parallel with it.
+
+Branch: git checkout -b feat/v4-r7
+
+Execute docs/Redesign(7).md TASK 1 through TASK 5 exactly as written.
+
+Watch for these:
+- This is the one section shipping with REAL content immediately, not
+  gated lorem — Chada already owns 6 real interactive demos in
+  `public/demos/` (untouchable — constraint 1). The tab/panel UI is the
+  only new thing being built; the demo content itself needs zero new work.
+- Chrome honesty rule (the doc calls this out explicitly, worth repeating):
+  the "Live demo" chip is literally true, so it's fine — but never add a
+  fake API-status badge, a third-party product name, or an "Auto-Synced"
+  style claim to make a panel look more sophisticated. If a real
+  integration badge is warranted later, it lands per-demo with evidence,
+  not now.
+- MarTech badges read "READY" — not "Verified Integration" (that phrase
+  implies third-party certification Chada doesn't hold, and is also on
+  the Gate 2 blocklist in Phase 9 — using it would fail the launch gate).
+- TASK 5 has you replace TWO separate insertion comments in home.blade.php
+  (one for demo-lab, positioned before workflow-system; one for martech,
+  positioned after testimonials) — don't miss the second one.
+
+VERIFY: run docs/Redesign(7).md's full verification block (6 steps) —
+confirm 6 demo tabs, 6 panels, 9 martech cards, all 6 demo iframe targets
+return 200, and `git status public/demos/` is clean (untouched).
+
+Commit as: feat(v4-r7): demo lab tabs + martech filter grid
+Open a PR. Do not merge it yourself.
+```
+
+---
+
+### Phase 8 — Global chrome: header, footer, chat, SEO (docs/Redesign(8).md)
+
+```text
+You are Kilo, executing Phase 8 (docs/Redesign(8).md — Header, Footer, Chat
+Widget Wiring, Meta/OG, JSON-LD) of the Chada Digital V4 redesign. Read
+Implementation_redesign.md §1 and §2 first. Depends on Phase 5 (routes/
+anchors), Phase 6 (/services route), and Phase 7 (#demo-lab anchor) — all
+three must be merged first. This is sequential, not parallelizable with
+anything.
+
+Branch: git checkout -b feat/v4-r8
+
+Execute docs/Redesign(8).md TASK 1 through TASK 5 exactly as written.
+
+Watch for these:
+- TASK 1 is the FINAL fix for bug 1 (Implementation_redesign.md §4.1) — nav
+  becomes Work / Services / About / Contact, with Services now pointing at
+  the real `/services` route from Phase 6. Do not touch the logo, the
+  sticky/backdrop-blur wrapper, or the existing `nav-toggle` JS bindings —
+  the doc is explicit about this.
+- TASK 2 (footer): the doc enforces "no dead links" — Blog/Calculator/
+  Webinar are NOT in the footer because those pages don't exist yet. If
+  you're tempted to add them "for completeness," don't — a link to a 404
+  is worse than no link, and it's explicitly listed as deferred scope in
+  Phase 9 §8.
+- TASK 3 (chat widget): read this carefully — while
+  `placeholders.chat.whatsapp_number` is null, the button MUST stay a
+  documented no-op (no `wa.me` link rendered at all). The doc's
+  verification step 1 greps for `wa.me` on every page and fails if it's
+  present while the number is null — this is a real gate, not a
+  suggestion.
+- TASK 4 (JSON-LD): the founder Person node is gated by the BOOLEAN
+  `founder.real` flag, not by comparing the name string against lorem
+  output — use the flag exactly as shown, string-comparison gating is
+  fragile and the doc deliberately avoids it.
+
+VERIFY: run docs/Redesign(8).md's full verification block (6 steps) —
+including the scratch-test for chat wiring (set a real number you control,
+confirm the WhatsApp link + prefill work, then revert) and the JSON-LD
+validator check (paste the output into validator.schema.org).
+
+Commit as: feat(v4-r8): global chrome — nav, footer, chat wiring, schema,
+meta
+Open a PR. Do not merge it yourself.
+```
+
+---
+
+### Phase 9 — QA, performance, originality compliance, launch (docs/Redesign(9).md)
+
+```text
+You are Kilo (or the Tech Lead directly — this phase is largely verification,
+not new code), executing Phase 9 (docs/Redesign(9).md — QA, Performance,
+Originality Compliance, Deployment & Launch Gates) of the Chada Digital V4
+redesign. This is the LAST phase — depends on Phases 2 through 8 ALL being
+merged to main. Do not start this against a partially-merged main.
+
+This phase builds nothing except an optional cookie-consent snippet (§5),
+and only if analytics are actually being added — which this redesign does
+not do. Its job is entirely to verify everything doc 2–8 built, then walk
+the deploy.
+
+Run every command in docs/Redesign(9).md §1 (12 grep gates) against a local
+build first, then again against the deployed revision before release. Pay
+special attention to the THREE gates that exist specifically because of
+this project's history:
+- GATE 2 (DMCA gate) — greps rendered pages for a blocklist of the
+  reference site's actual real content (names, numbers, section titles).
+  This is the automated enforcement of Open_Decision.md Q0 and the whole
+  reason V3 got purged.
+- GATE 9 (repo-wide sweep) — greps the ENTIRE repo, not just rendered
+  pages, for any reference to the reference site's name — including code
+  comments and docs. The only sanctioned exceptions are the gate
+  definitions themselves in this doc and the prohibition statements in
+  Redesign(1).md §3/§8.
+- GATE 11 (Lorem integrity) — confirms the generator still emits no
+  digits and is still deterministic. If either check fails, something
+  regressed the generator itself — stop and fix before anything else.
+
+Then run §2's full functional test matrix (F1–F13) and §3's Lighthouse
+budget. §4.2's originality review is a Tech-Lead-only manual step — per the
+doc's own standing rule, if a live comparison against the reference site is
+genuinely needed for this review, the Tech Lead does it manually, in a
+browser that touches no repo tooling, and records only pass/fail — never
+quoted text. This is the one sanctioned, narrow exception to "never fetch
+the reference site" (constraint 11 / §0 above), and it's scoped
+deliberately tightly.
+
+§6 is the actual deploy runbook — follow it exactly, including the
+smoke-test-through-the-maintenance-bypass-URL step BEFORE releasing
+`scripts/maintenance-lock.sh off`. Do not release the lock until gates 1,
+2, and 9 all pass clean on the deployed revision, not just locally.
+
+§7 splits sign-off into two independent checklists — "structure-complete"
+(code-only, can happen under maintenance lock / soft launch) and
+"content-complete" (David's gates, tracked in TODO-Placeholders.md). The
+site can be structure-complete long before it's content-complete — that's
+expected, not a blocker to merging this phase.
+
+Commit (only if the optional consent snippet was built) as: chore(v4-r9):
+QA gates, perf budget, originality program, NDPA review, deploy runbook
+This is the launch PR — its body should record the full F1–F13 results,
+the Lighthouse scores, and the §4.2 originality review sign-off. Do not
+merge without a human (Tech Lead, or Tech Lead + Founder per row 0)
+explicitly signing off — this is not a "does it build" merge, it's the
+go-live decision.
+```
 
 ---
 
@@ -315,7 +676,7 @@ migrations, `.github/workflows/deploy.yml`, `scripts/maintenance-lock.sh`.
 
 ---
 
-## 9. Launch gates (Phase 6 / R9 — summary, full commands live in docs/Redesign(9).md)
+## 9. Launch gates (Phase 9 / R9 — summary, full commands live in docs/Redesign(9).md)
 
 - **Gate 1:** zero `PENDING`/`Placeholder` markers in rendered HTML on any page
 - **Gate 2 (DMCA gate):** grep rendered DOM for a blocklist of reference-site-specific strings (real client names, real stats, real section titles) — expect zero hits
