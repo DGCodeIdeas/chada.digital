@@ -31,22 +31,7 @@ class PageController extends Controller
     {
         $urls = [
             ['loc' => route('home'), 'changefreq' => 'weekly', 'priority' => '1.0'],
-            ['loc' => route('work'), 'changefreq' => 'monthly', 'priority' => '0.9'],
         ];
-
-        // /services ships in Redesign(6) — include it once the route exists.
-        // To keep this doc independently mergeable, add it defensively:
-        if (\Illuminate\Support\Facades\Route::has('services')) {
-            $urls[] = ['loc' => route('services'), 'changefreq' => 'monthly', 'priority' => '0.9'];
-        }
-
-        foreach ($this->caseStudyService->collection() as $slug => $study) {
-            $urls[] = [
-                'loc' => route('case-study.show', $slug),
-                'changefreq' => 'monthly',
-                'priority' => '0.8',
-            ];
-        }
 
         foreach ($this->previewService->all() as $slug => $preview) {
             $urls[] = [
