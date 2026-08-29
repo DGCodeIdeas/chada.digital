@@ -6,8 +6,8 @@
                 <p class="mt-4 text-sm leading-relaxed text-muted-foreground">Digital solutions that help businesses grow, automate, and scale.</p>
             </div>
             <nav class="flex flex-wrap items-center gap-x-8 gap-y-3">
-                <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="{{ route('work') }}">Work</a>
                 <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="{{ url('/#services') }}">Services</a>
+                <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="{{ url('/#process') }}">Process</a>
                 <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="{{ url('/#contact') }}">Contact</a>
             </nav>
         </div>

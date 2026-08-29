@@ -16,7 +16,7 @@
  * Date: 2026-01-18T00:20Z
  */
 
-/*! CHADA DIGITAL - PRODUCTION BUILD - 2026-08-29 */
+/*! CHADA DIGITAL - PRODUCTION BUILD - 2026-08-27 */
 
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 
