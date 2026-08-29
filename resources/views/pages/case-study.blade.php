@@ -57,7 +57,7 @@
         <div class="mx-auto max-w-5xl">
             <h3 class="font-display text-2xl font-bold tracking-tight">Workflow</h3>
             <div class="mt-6">
-                <x-workflow-diagram :steps="$study['workflow'] ?? []" />
+                <x-workflow-diagram :steps="($study['workflow']['steps'] ?? $study['workflow']) ?? []" />
             </div>
         </div>
     </section>

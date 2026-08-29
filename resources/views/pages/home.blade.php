@@ -10,7 +10,8 @@
     @include('partials.services-checklist') {{-- 7. upgraded — 12-item checklist --}}
     @include('partials.webinar-optin')      {{-- 8. NEW — renders nothing while disabled --}}
     @include('partials.founder-bio')        {{-- 9. kept --}}
-    {{-- Redesign(7) inserts: @include('partials.demo-lab') and Redesign(4) inserts: @include('partials.workflow-system') here --}}
+    @include('partials.workflow-system')      {{-- 11. NEW — System Blueprints (renders when workflows are verified) --}}
+    {{-- Redesign(7) inserts: @include('partials.demo-lab') above this line --}}
     {{-- Redesign(5) inserts: @include('partials.case-studies') and @include('partials.stats-bar', ['variant' => 'home_bottom']) here --}}
     @include('partials.testimonials')       {{-- 14. upgraded — standards band above --}}
     {{-- Redesign(7) inserts: @include('partials.martech') here --}}
