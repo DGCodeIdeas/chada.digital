@@ -102,7 +102,16 @@ chada-digital/
 │   └── post-deploy.sh               # runs on EC2 after each deploy
 │
 ├── docs/
-│   └── deployment-guide.md          # full AWS + Namecheap deployment walkthrough
+│   ├── Redesign(1-9).md             # V4 redesign build documents (agent-ready series)
+│   └── unverified/
+│       └── deployment-guide.md      # full AWS + Namecheap deployment walkthrough
+│
+├── archive/                         # superseded V1/V2-era specs (read-only history)
+│
+├── REDESIGN_IMPLEMENTATION.md       # V4 redesign master spec (see Further Reading)
+├── Implementation_redesign.md       # agent session orientation for the V4 build
+├── TODO-Placeholders.md             # content gates to fill before launch
+├── Open_Decision.md                 # open product/content decisions (Q0–Q9)
 │
 ├── webpack.mix.js                   # asset pipeline config
 └── tailwind.config.js               # design tokens + Tailwind theme
@@ -209,7 +218,7 @@ DOMAIN=chadadigital.com sudo bash scripts/server-setup.sh
 
 This installs and configures nginx, PHP 8.2-FPM (ondemand mode), OPcache, Certbot, and a 2 GB swap file — all tuned to minimise CPU credit consumption.
 
-For the complete step-by-step guide including RDS provisioning, Namecheap DNS setup, and SSL configuration, see **[docs/deployment-guide.md](docs/deployment-guide.md)**.
+For the complete step-by-step guide including RDS provisioning, Namecheap DNS setup, and SSL configuration, see **[docs/unverified/deployment-guide.md](docs/unverified/deployment-guide.md)**.
 
 ---
 
@@ -221,7 +230,7 @@ The contact form posts to `POST /api/contact`. It includes:
 - Honeypot field (`bot-field`) for spam filtering
 - JSON response (`{ message: "..." }`)
 
-> **Note:** Email delivery (`Mail::to()->send()`) is intentionally deferred. The endpoint currently returns a success response without sending an email. See `app/Mail/ContactFormSubmission.php` and `MIGRATION_PLAN.md` Phase 5 for implementation notes.
+> **Note:** Email delivery (`Mail::to()->send()`) is intentionally deferred. The endpoint currently returns a success response without sending an email. See `app/Mail/ContactFormSubmission.php` and `archive/MIGRATION_PLAN_ARCHIVED.md` Phase 5 for implementation notes.
 
 ---
 
@@ -237,8 +246,22 @@ The contact form posts to `POST /api/contact`. It includes:
 
 ## Further Reading
 
+**Active — V4 redesign (pattern replication, original expression):**
+
 | Document | Description |
 |---|---|
-| [`MIGRATION_PLAN.md`](MIGRATION_PLAN.md) | Full technical migration plan (Phases 1–5) |
-| [`IMPLEMENTATION_PROMPT.md`](IMPLEMENTATION_PROMPT.md) | Phase-by-phase AI agent implementation prompts |
-| [`docs/deployment-guide.md`](docs/deployment-guide.md) | AWS EC2 + RDS + Namecheap deployment walkthrough |
+| [`REDESIGN_IMPLEMENTATION.md`](REDESIGN_IMPLEMENTATION.md) | V4 redesign master spec (v3, Clarified) — decision history, 18-pattern architecture, acceptance criteria, sign-off tables |
+| [`Implementation_redesign.md`](Implementation_redesign.md) | Agent session orientation for the V4 build — constraints, content model, phase map, Phase 1 task block |
+| [`docs/Redesign(1).md`](docs/Redesign(1).md) … [`docs/Redesign(9).md`](docs/Redesign(9).md) | The nine agent-ready build documents (data layer → homepage sections → signature systems → QA/launch gates) |
+| [`TODO-Placeholders.md`](TODO-Placeholders.md) | Content gates that must be filled by the Founder/Tech Lead before launch |
+| [`Open_Decision.md`](Open_Decision.md) | Open product/content decisions (Q0–Q9) with their current statuses |
+| [`docs/unverified/deployment-guide.md`](docs/unverified/deployment-guide.md) | AWS EC2 + RDS + Namecheap deployment walkthrough |
+
+**Archived (V1-era, superseded):**
+
+| Document | Description |
+|---|---|
+| [`archive/MIGRATION_PLAN_ARCHIVED.md`](archive/MIGRATION_PLAN_ARCHIVED.md) | Full technical migration plan (Phases 1–5) |
+| [`archive/IMPLEMENTATION_PROMPT_ARCHIVED.md`](archive/IMPLEMENTATION_PROMPT_ARCHIVED.md) | Phase-by-phase AI agent implementation prompts |
+| [`archive/Redesign_ARCHIVED.md`](archive/Redesign_ARCHIVED.md) | V2 redesign spec (WAB Digital replicate) |
+| [`archive/Redesign_V1_LIGHT_THEME_ARCHIVED.md`](archive/Redesign_V1_LIGHT_THEME_ARCHIVED.md) | V1 redesign spec (light theme + case studies) |
