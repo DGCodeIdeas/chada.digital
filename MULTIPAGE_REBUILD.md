@@ -23,7 +23,7 @@ Go back to **commit `f4c3d2a`** ("feat: add contact form honeypot") — the last
 ### Revert Command
 ```bash
 git checkout main
-git reset --hard f4c3d2a
+git reset --hard 6d4e58543dd42d74522c25b405acb01995613834
 # Then cherry-pick or manually re-apply ONLY the docs:
 # - docs/Redesign(1).md through docs/Redesign(9).md
 # - MIGRATION.md (this doc's predecessor)
@@ -411,7 +411,7 @@ Route::redirect('/work', '/case-studies', 301);
 ## 7. Implementation Phases
 
 ### Phase 0 — Revert (0.5 day)
-- [ ] `git reset --hard f4c3d2a`
+- [ ] `git reset --hard 6d4e58543dd42d74522c25b405acb01995613834`
 - [ ] Cherry-pick docs: Redesign(1).md–(9).md, MIGRATION.md, Open_Decision.md, TODO-Placeholders.md
 - [ ] Cherry-pick Bootstrap/MD3 config from PR #14
 - [ ] Verify `bun run dev` builds cleanly
@@ -537,3 +537,19 @@ Same as `MIGRATION.md` §5 and `TODO-Placeholders.md`, reorganized by page:
 ---
 
 *End of spec. This document supersedes all single-page and Tailwind-based specifications. Build from this spec only.*
+
+
+---
+
+## Loose Ends & PR Housekeeping
+
+| PR | Status | Action Needed |
+|----|--------|--------------|
+| **#14** | Open | **CLOSE** — superseded by #16. Config migration absorbed into multipage branch. |
+| **#11** | Open | **DECIDE** — R4 System Blueprints (pipeline pattern). Built against old single-page architecture. May need rebuilding for 6-page structure or closing as obsolete. |
+| **#17** | Open → `feat/multipage-bootstrap-rebuild` | **MERGE** — Design Partner band (replaces trust bar). Clean cherry-pick from #15. |
+
+**Correct reset target verified:**
+- `6d4e58543dd42d74522c25b405acb01995613834` — "Update and Clean Up" (Aug 28)
+- `Lorem.php` does NOT exist here (pre-R2) ✅
+- `docs/Redesign(9).md` DOES exist here (planning docs intact) ✅
