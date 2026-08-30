@@ -1,3 +1,7 @@
+> **⚠️ DEPRECATED (Aug 30, 2026):** This file is the historical Kilo orientation layer for the V4 redesign. The active build spec has moved to `MIGRATION.md` (Bootstrap 5 + Material Design 3 migration). This doc is preserved for reference but should not be used for new builds.
+>
+> **Related docs:** `MIGRATION.md` (active build spec) · `Open_Decision.md` (decision log) · `TODO-Placeholders.md` (content gates) · `REDESIGN_IMPLEMENTATION.md` (deprecated — pattern spec)
+
 # Implementation_redesign.md — Master Build Reference for Kilo
 
 > **Purpose:** the one file Kilo loads at the start of every session on this
@@ -7,7 +11,7 @@
 > `docs/Redesign(N).md` (V4 series) — this file won't repeat their full code, only
 > orient you and give every phase (2–9) as a ready-to-run session kickoff.
 >
-> **Spec of record:** `REDESIGN_IMPLEMENTATION.md` (repo root). This file is the
+> **Spec of record (HISTORICAL):** `REDESIGN_IMPLEMENTATION.md` (repo root, deprecated). **Active spec:** `MIGRATION.md`. This file is the
 > orientation layer; that file is the full clarified spec — decision history
 > (C1–C12 structural corrections, D1–D12 originality directives), the
 > 18-pattern table, acceptance criteria, risk register, and sign-off tables.
