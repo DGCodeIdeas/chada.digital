@@ -4,7 +4,7 @@
             <!-- Brand -->
             <div class="col-lg-4 col-md-6">
                 <a href="{{ route('home') }}" class="d-inline-block mb-3">
-                    <img src="{{ asset('images/chada-logo-horizontal-dark.png') }}" alt="Chada Digital" height="32">
+                    <img src="{{ asset('chada-logo-horizontal-dark.png') }}" alt="Chada Digital" height="32">
                 </a>
                 <p class="mb-3" style="color: var(--md-sys-color-on-surface-variant); font-size: 0.9375rem; max-width: 320px;">
                     Digital solutions that help businesses grow. Web development, funnel automation, paid advertising, and brand strategy.
