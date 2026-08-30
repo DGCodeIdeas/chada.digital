@@ -3,7 +3,7 @@
         <div class="container">
             <!-- Logo -->
             <a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}" style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.5rem; color: var(--md-sys-color-primary); text-decoration: none;">
-                <img src="{{ asset('images/chada-logo-horizontal-dark.png') }}" alt="Chada Digital" height="32" class="d-inline-block">
+                <img src="{{ asset('chada-logo-horizontal-dark.png') }}" alt="Chada Digital" height="32" class="d-inline-block">
             </a>
 
             <!-- Mobile toggle -->
