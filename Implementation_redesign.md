@@ -8,7 +8,7 @@
 > redesign. It carries the constraints, the content-safety model, the current
 > verified repo state, and the full phase map. For the detailed code-level
 > spec of whichever phase you're executing, pair this file with the matching
-> `docs/Redesign(N).md` (V4 series) — this file won't repeat their full code, only
+> `docs/Redesign(N).md` (pattern — matches docs/Redesign(1).md through docs/Redesign(9).md) (V4 series) — this file won't repeat their full code, only
 > orient you and give every phase (2–9) as a ready-to-run session kickoff.
 >
 > **Spec of record (HISTORICAL):** `REDESIGN_IMPLEMENTATION.md` (repo root, deprecated). **Active spec:** `MIGRATION.md`. This file is the
@@ -31,7 +31,7 @@
 > spec as a whole (row 0 of the sign-off table) before Phase 3 onward ships
 > to production — Phase 2 (data layer) is safe to start regardless, since it
 > changes nothing visible.
-> **Phase numbering matches doc numbering:** Phase N executes `docs/Redesign(N).md`.
+> **Phase numbering matches doc numbering:** Phase N executes `docs/Redesign(N).md` (pattern — matches docs/Redesign(1).md through docs/Redesign(9).md).
 > There is no Phase 1 (Redesign(1).md is the master directive/architecture
 > doc, not an execution phase — everyone should have already read it).
 
@@ -193,7 +193,7 @@ R5), `/case-study/{slug}` (detail — R5), sitemap + nav relink (R5/R8).
 
 ## 5. Phase map
 
-Phase numbers match doc numbers exactly — Phase N runs `docs/Redesign(N).md`.
+Phase numbers match doc numbers exactly — Phase N runs `docs/Redesign(N).md` (pattern — matches docs/Redesign(1).md through docs/Redesign(9).md).
 
 | Phase | Doc | Scope | Depends on | Status |
 |---|---|---|---|---|
@@ -287,7 +287,7 @@ phase removed — see PR #8's body for the full list).
 ## 7. Phases 3–9 — ready to execute
 
 Each block below is a session kickoff, not a code substitute — every doc
-(`docs/Redesign(N).md`) already contains complete, working Blade/PHP; retyping
+(`docs/Redesign(N).md` (pattern — matches docs/Redesign(1).md through docs/Redesign(9).md)) already contains complete, working Blade/PHP; retyping
 it here would just be a second copy to go stale. What's below is what these
 docs don't say by themselves: dependency order, the gotchas an agent working
 from the doc in isolation would miss, and the parts of this specific repo's
@@ -296,7 +296,7 @@ session wouldn't.
 
 **Every phase:** confirm its dependency phase(s) are merged and `main` is
 current → `git checkout -b feat/v4-r{n}` → re-read §1 and §2 above → execute
-`docs/Redesign(N).md` top to bottom, exactly as written → run that doc's own
+`docs/Redesign(N).md` (pattern — matches docs/Redesign(1).md through docs/Redesign(9).md) top to bottom, exactly as written → run that doc's own
 verification block plus `bun run dev` → commit per task → open one PR, don't
 merge it yourself.
 
