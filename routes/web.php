@@ -1,22 +1,52 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\CaseStudyController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\PreviewController;
-use Illuminate\Support\Facades\Route;
 
+/*
+|--------------------------------------------------------------------------
+| Multi-Page Architecture — Bootstrap 5 + Material Design 3
+|--------------------------------------------------------------------------
+| Home        → /
+| Case Studies → /case-studies
+| Services    → /services
+| About       → /about
+| Contact     → /contact
+| Demo Lab    → /demos
+| Preview     → /preview/{slug} (preserved)
+| Sitemap     → /sitemap.xml (preserved)
+*/
+
+// Home
 Route::get('/', [PageController::class, 'home'])->name('home');
-// Not linked from nav/homepage as of Aug 20 2026 — kept live per
-// Open_Decision.md Q9 pending a final decision. Do not delete without
-// confirming with David.
-Route::get('/work', [CaseStudyController::class, 'index'])->name('work');
+
+// Case Studies
+Route::get('/case-studies', [CaseStudyController::class, 'index'])->name('case-studies.index');
 Route::get('/case-study/{slug}', [CaseStudyController::class, 'show'])->name('case-study.show');
-Route::redirect('/showcase', '/work', 301);
-Route::redirect('/showcase.html', '/work', 301);
-Route::get('/preview/{slug}', [PreviewController::class, 'show'])->name('preview.show');
-Route::get('/preview/{slug}/{subpage}', [PreviewController::class, 'subpage'])
-    ->where('subpage', '.*')
-    ->name('preview.subpage');
-Route::post('/api/contact', [ContactController::class, 'submit'])->name('contact.submit');
+
+// Services
+Route::get('/services', [PageController::class, 'services'])->name('services');
+
+// About
+Route::get('/about', [PageController::class, 'about'])->name('about');
+
+// Contact
+Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::post('/api/contact', [ContactController::class, 'store'])->name('contact.store');
+
+// Demo Lab
+Route::get('/demos', [PageController::class, 'demos'])->name('demos');
+
+// Legacy showcase redirect
+Route::get('/showcase', function () {
+    return redirect()->route('case-studies.index', [], 301);
+});
+
+// Preview system (preserved — do not modify)
+Route::get('/preview/{slug}', [PageController::class, 'preview'])->name('preview.show');
+Route::get('/preview/{slug}/{subpage}', [PageController::class, 'previewSubpage'])->name('preview.subpage');
+
+// Sitemap
 Route::get('/sitemap.xml', [PageController::class, 'sitemap'])->name('sitemap');
