@@ -1,0 +1,243 @@
+// ============================================================
+// Chada Digital — Custom Components
+// Styles that don't exist in Bootstrap or MD3.
+// These make the site visually distinct from any template.
+// ============================================================
+
+// --- Body & Base ---
+body {
+  background-color: var(--md-sys-color-background);
+  color: var(--md-sys-color-on-background);
+  font-family: var(--md-sys-typescale-body-font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--md-sys-typescale-headline-font);
+  color: var(--md-sys-color-on-background);
+}
+
+// --- Section Spacing ---
+.section-padding {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.section-padding-sm {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+// --- Eyebrow Label ---
+.eyebrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--md-sys-color-primary);
+  margin-bottom: 1rem;
+}
+
+// --- Stats Badge ---
+.stat-badge {
+  text-align: center;
+
+  .stat-value {
+    font-family: var(--md-sys-typescale-display-font);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--md-sys-color-primary);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--md-sys-color-on-surface-variant);
+    margin-top: 0.5rem;
+    display: block;
+  }
+}
+
+// --- Workflow Diagram ---
+.workflow-step {
+  background-color: var(--md-sys-color-surface);
+  border: 1px solid var(--md-sys-color-outline);
+  border-radius: var(--md-sys-shape-corner-medium);
+  padding: 1rem 1.25rem;
+  min-width: 140px;
+  text-align: center;
+
+  .step-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--md-sys-color-on-surface);
+    display: block;
+  }
+
+  .step-tool {
+    font-size: 0.75rem;
+    color: var(--md-sys-color-on-surface-variant);
+    display: block;
+    margin-top: 0.25rem;
+  }
+}
+
+.workflow-arrow {
+  display: flex;
+  align-items: center;
+  color: var(--md-sys-color-outline);
+  font-size: 1.25rem;
+  padding: 0 0.5rem;
+}
+
+// --- Chat Widget ---
+.chat-widget {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 1050;
+
+  .chat-btn {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+    border: none;
+    box-shadow: var(--md-sys-elevation-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: var(--md-sys-elevation-3);
+    }
+  }
+}
+
+// --- Founder Section ---
+.founder-portrait {
+  border-radius: var(--md-sys-shape-corner-extra-large);
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background-color: var(--md-sys-color-surface-variant);
+}
+
+// --- Testimonial Card ---
+.testimonial-card {
+  background-color: var(--md-sys-color-surface);
+  border: 1px solid var(--md-sys-color-outline);
+  border-radius: var(--md-sys-shape-corner-large);
+  padding: 2rem;
+}
+
+// --- Service Card (Pricing) ---
+.service-card {
+  background-color: var(--md-sys-color-surface);
+  border: 1px solid var(--md-sys-color-outline);
+  border-radius: var(--md-sys-shape-corner-large);
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: var(--md-sys-elevation-2);
+  }
+
+  .service-category {
+    font-size: 0.625rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--md-sys-color-on-surface-variant);
+    margin-bottom: 0.75rem;
+  }
+
+  .service-title {
+    font-family: var(--md-sys-typescale-headline-font);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--md-sys-color-on-surface);
+    margin-bottom: 0.75rem;
+  }
+
+  .service-description {
+    font-size: 0.875rem;
+    color: var(--md-sys-color-on-surface-variant);
+    flex-grow: 1;
+  }
+
+  .service-price {
+    font-family: var(--md-sys-typescale-display-font);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--md-sys-color-primary);
+    margin-top: 1rem;
+  }
+}
+
+// --- Footer ---
+.site-footer {
+  background-color: var(--md-sys-color-surface);
+  border-top: 1px solid var(--md-sys-color-outline);
+  padding: 4rem 0;
+}
+
+// --- 503 Maintenance Page ---
+.maintenance-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--md-sys-color-background);
+  text-align: center;
+  padding: 2rem;
+
+  h1 {
+    font-family: var(--md-sys-typescale-display-font);
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--md-sys-color-on-background);
+  }
+
+  p {
+    color: var(--md-sys-color-on-surface-variant);
+    max-width: 500px;
+    margin: 1rem auto 0;
+  }
+}
+
+// --- Utility: Font size below Bootstrap's scale ---
+.fs-7 { font-size: 0.75rem !important; }
+.fs-8 { font-size: 0.625rem !important; }
+
+// --- Utility: Extra spacing beyond Bootstrap's .spacer-5 ---
+.mt-6 { margin-top: 4rem !important; }
+.mb-6 { margin-bottom: 4rem !important; }
+.py-6 { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+.py-7 { padding-top: 5rem !important; padding-bottom: 5rem !important; }
+
+// --- Scrollbar styling ---
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--md-sys-color-surface-variant);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--md-sys-color-outline);
+  border-radius: var(--md-sys-shape-corner-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--md-sys-color-on-surface-variant);
+}
