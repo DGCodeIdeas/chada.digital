@@ -520,6 +520,95 @@ Same as `MIGRATION.md` §5 and `TODO-Placeholders.md`, reorganized by page:
 13. ✅ Zero Lorem Ipsum in production
 14. ✅ `public/demos/` untouched
 
+### V5 Visual Pivot Gates (added Aug 30, 2026)
+
+These gates enforce the V5 deviations (no-borders fusion + Design Partner band). They complement the 14 acceptance criteria above.
+
+```bash
+# Gate V5-1: Design Partner band exists and is included in homepage
+test -f resources/views/partials/design-partner-band.blade.php && \
+  grep -F "partials.design-partner-band" resources/views/pages/home.blade.php
+# Expected: both succeed.
+
+# Gate V5-2: trust-bar.blade.php is deleted (replaced by Design Partner band)
+test ! -f resources/views/partials/trust-bar.blade.php
+# Expected: succeeds (file does not exist).
+
+# Gate V5-3: No hardcoded "Trusted by 50+ brands" anywhere
+grep -rn "Trusted by 50" resources/views/ --include="*.blade.php" | grep -v "{{--"
+# Expected: ZERO hits (only allowed inside Blade comments).
+
+# Gate V5-4: No-borders utility classes defined in _chada-custom.scss
+grep -F ".u-no-border" resources/sass/_chada-custom.scss
+grep -F ".u-section-fused" resources/sass/_chada-custom.scss
+# Expected: both succeed (utility classes exist).
+
+# Gate V5-5: .card class has border:0 and M3 elevation shadow
+grep -A2 "^\.card {" resources/sass/_chada-custom.scss | grep -E "border: 0|box-shadow"
+# Expected: both succeed.
+
+# Gate V5-6: Form inputs are the only elements allowed visible borders
+grep -E "border:\s*1px" resources/sass/_chada-custom.scss | grep -v "form-control\|form-select\|form-check"
+# Expected: ZERO hits (only form inputs should have visible borders).
+
+# Gate V5-7: Open_Decision.md has Q10, Q11, Q12, Q13 ratified
+grep -E "^## Q1[0-3] —" Open_Decision.md
+# Expected: 4 hits (Q10, Q11, Q12, Q13).
+```
+
+---
+
+## 11. No-Borders Fusion Principle (Founder directive, Aug 30, 2026)
+
+**The rule:** The site has **no visible borders**. Sections fuse seamlessly into the page. Separation between content areas is achieved through:
+
+1. **M3 elevation shadows** — `box-shadow: var(--md-sys-elevation-1)` (not `border`)
+2. **Background tint shifts** — adjacent sections use different `--md-sys-color-surface-container-*` values
+3. **Whitespace gaps** — extra `padding` / `margin`, no visual rule
+4. **Gradient blends** — the `.u-section-fused::before` linear-gradient for the smoothest transitions
+
+**Exceptions** (the only places visible borders ARE allowed):
+
+| Exception | Why | Implementation |
+|---|---|---|
+| Form input boundaries | Usability — users need to see where to type | `.form-control`, `.form-select`, `.form-check-input` keep `border: 1px solid var(--md-sys-color-outline-variant)` |
+| Focus rings on interactive elements | Accessibility — required by WCAG | Browser default `:focus` outline OR Bootstrap's `box-shadow` focus ring |
+| M3 elevation shadows | These are shadows, not borders — allowed | `box-shadow: var(--md-sys-elevation-*)` |
+| Optional: 1px hairline at top of global header | Single design exception (optional, off by default) | Add `.u-header-hairline` class to `<header>` if desired |
+
+**Why:** Hard borders around every card and section are a strong "AI-template" tell — they read as default Tailwind/Radix output. Removing them forces the design to rely on elevation, color shifts, and whitespace for hierarchy — which is what high-end editorial and product sites do.
+
+**Implementation in `_chada-custom.scss`:**
+- `.u-no-border` — utility class to force border removal on any element
+- `.u-section-fused` — utility class for sections that should fuse with their neighbors (gradient blend)
+- `.card` — overridden to `border: 0` with M3 elevation shadow
+- `[class*="border"]` — Bootstrap's `border-*` utility classes have their `border-color` set to `transparent`
+- `.form-control`, `.form-select`, `.form-check-input` — explicit override to keep visible borders (exception #1)
+
+**Migration path for existing partials with Tailwind `border` classes:**
+The Tailwind-using partials (`process.blade.php`, `founder-bio.blade.php`, `testimonials.blade.php`, `about.blade.php`, `products.blade.php`, `contact.blade.php`, `contact-form.blade.php`, `stats-bar.blade.php`, `services.blade.php`, `hero.blade.php`) currently use `border`, `border-y`, `border-t`, `border-border/40`, etc. These will be migrated in a follow-up commit. The CSS overrides in `_chada-custom.scss` make the borders invisible immediately even before the class strings are updated — so the visual effect of the no-borders principle is achieved at the CSS layer first, with the Blade class cleanup as a follow-up.
+
+---
+
+## 12. Design Partner Band (Founder directive, Aug 30, 2026)
+
+**The deviation:** The V2 "trust strip" — a client-logo row gated to render nothing while logos are empty — is replaced entirely. The new `design-partner-band` partial **always renders**, with copy:
+
+> **No customer logos yet — we won't fake them.**
+> Become a design partner.
+
+**Why:** Instead of faking logos or hiding the section, the empty state becomes the message. This is honest about the early-stage status, frames the absence as a confident offer rather than a missing feature, and reads as authored rather than template-default.
+
+**Implementation:**
+- **NEW file:** `resources/views/partials/design-partner-band.blade.php` — Bootstrap+MD3 styled, always renders
+- **UPDATED:** `resources/views/pages/home.blade.php` — `@include('partials.design-partner-band')` after the Stats section
+- **DELETED:** `resources/views/partials/trust-bar.blade.php` — replaced by the Design Partner band
+- **REMOVED:** The hardcoded `"Trusted by 50+ brands"` line in `home.blade.php` hero (an unfounded metric — the Design Partner band replaces it with honest copy)
+
+**Future state:** When real client logos exist (with explicit per-logo Founder sign-off per the originality rules), the band can be repurposed into a logo row — but only by explicit decision, not silently.
+
+**Sign-off:** `Open_Decision.md` Q11 (ratified Aug 30, 2026 — Founder + Tech Lead).
+
 ---
 
 ## 10. Related Documents

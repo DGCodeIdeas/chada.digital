@@ -241,3 +241,110 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--md-sys-color-on-surface-variant);
 }
+
+// ============================================================
+// V5 No-Borders Fusion Principle (Founder directive, Aug 30, 2026)
+// ============================================================
+// "The site must not look obviously AI-generated. Hard borders around
+//  every card and section are a strong 'template' tell. Remove them;
+//  rely on M3 elevation, background tint shifts, and whitespace for
+//  separation."
+//
+// See: MULTIPAGE_REBUILD.md §11 (No-Borders Fusion Principle)
+//      Open_Decision.md Q10 (Visual system pivot, ratified Aug 30, 2026)
+//
+// Exceptions where borders ARE allowed:
+//   1. Form input focus rings (accessibility — required)
+//   2. Interactive element focus rings (accessibility — required)
+//   3. M3 elevation shadows (these are shadows, not borders)
+//   4. Optional 1px hairline at top of global header (single exception)
+//
+// The .u-no-border utility forces border removal on any element.
+// The .u-section-fused utility removes top/bottom borders AND adds a
+// smooth gradient transition for seamless section fusion.
+
+.u-no-border,
+.u-no-border-all {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.u-section-fused {
+  border: 0 !important;
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+  background: transparent;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      var(--md-sys-color-surface-container, #f3edf7) 30%,
+      var(--md-sys-color-surface-container, #f3edf7) 70%,
+      transparent 100%
+    );
+    z-index: -1;
+    pointer-events: none;
+  }
+}
+
+// Override Bootstrap's default .card and .border-* classes to remove
+// visible borders site-wide (per the no-borders principle).
+// Cards use M3 elevation shadows instead.
+.card,
+[class*="border"] {
+  border-color: transparent !important;
+}
+
+.card {
+  border: 0 !important;
+  box-shadow: var(--md-sys-elevation-1, 0 1px 2px 0 rgba(0, 0, 0, 0.03), 0 1px 6px 0 rgba(0, 0, 0, 0.02));
+  transition: box-shadow 250ms cubic-bezier(0.2, 0.0, 0, 1.0),
+              transform 250ms cubic-bezier(0.2, 0.0, 0, 1.0);
+
+  &:hover {
+    box-shadow: var(--md-sys-elevation-2, 0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 2px 6px 0 rgba(0, 0, 0, 0.03));
+  }
+}
+
+// Form inputs keep a subtle border for usability (exception #1).
+// Override the .card border removal above for .form-control.
+.form-control,
+.form-select,
+.form-check-input {
+  border: 1px solid var(--md-sys-color-outline-variant, #cac4d0) !important;
+
+  &:focus {
+    border-color: var(--md-sys-color-primary, #2563eb) !important;
+    box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.25) !important;
+  }
+}
+
+// Eyebrow label — small uppercase tracked text above section headings
+// (carries over the V4 .eyebrow utility class into the V5 system).
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--md-sys-color-primary, #2563eb);
+  margin-bottom: 0.5rem;
+}
+
+// Material Symbols sizing (V5 replaces inline SVG icons site-wide)
+.material-symbols-outlined {
+  font-size: 1.25rem;
+  line-height: 1;
+  vertical-align: middle;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+
+  &.icon-sm { font-size: 0.875rem; }
+  &.icon-lg { font-size: 1.5rem; }
+  &.icon-xl { font-size: 2rem; }
+}
+

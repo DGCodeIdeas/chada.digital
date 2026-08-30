@@ -24,9 +24,9 @@
                         See Services & Pricing
                     </a>
                 </div>
-                <p class="mt-4 mb-0" style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant);">
-                    <span class="fw-semibold" style="color: var(--md-sys-color-primary);">Trusted by 50+ brands</span> across Nigeria
-                </p>
+                {{-- Design Partner band replaces the V2 trust-strip + the hardcoded "Trusted by 50+ brands"
+                     line that was here. See partials/design-partner-band.blade.php and
+                     Open_Decision.md Q11 (Founder directive, ratified Aug 30, 2026). --}}
             </div>
             <div class="col-lg-5 d-none d-lg-block">
                 <div class="position-relative">
@@ -78,6 +78,9 @@
         </div>
     </div>
 </section>
+
+{{-- Design Partner band — always renders, no gate. Replaces the V2 trust-strip. --}}
+@include('partials.design-partner-band')
 
 <!-- ===== PROCESS ===== -->
 <section style="background: var(--md-sys-color-surface); padding: 5rem 0;">
