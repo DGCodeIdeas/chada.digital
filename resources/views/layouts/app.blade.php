@@ -25,7 +25,7 @@
     <meta name="twitter:image" content="{{ $meta['og_image'] ?? asset('og-image.jpg') }}">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('favicon.ico') }}">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
