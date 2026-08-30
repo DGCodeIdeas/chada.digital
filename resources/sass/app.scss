@@ -1,40 +1,17 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+// ============================================================
+// Chada Digital — Main Stylesheet
+// Stack: Bootstrap 5 + Material Design 3 + Custom SCSS
+// Load order: Bootstrap → MD3 tokens → MD3/Bootstrap bridge → Custom
+// ============================================================
 
-[x-cloak] { display: none !important; }
+// 1. Bootstrap 5 (full build — grid, reboot, utilities, components)
+@import "~bootstrap/scss/bootstrap";
 
-/* Contact form custom styles */
-.chada-honeypot {
-  position: absolute;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  width: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-}
+// 2. Material Design 3 color tokens, elevation, shape, typography
+@import "md3-tokens";
 
-.chada-field-input.is-invalid {
-  @apply border-red-500 focus:border-red-500 focus:ring-red-500;
-}
+// 3. Bridge: map Bootstrap components to MD3 design language
+@import "md3-bootstrap-bridge";
 
-.chada-error-msg:empty,
-#chada-form-error:empty {
-  display: none;
-}
-
-/* Showcase page styles */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out;
-}
-
-.filter-btn[data-active='true'] {
-  @apply border-blue-500 bg-blue-500/20 text-blue-500;
-}
+// 4. Chada Digital — brand-specific custom components and overrides
+@import "chada-custom";
