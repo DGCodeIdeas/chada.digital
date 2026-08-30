@@ -510,8 +510,8 @@ When migrating Blade files, follow this pattern:
 | Document | Purpose | Status |
 |----------|---------|--------|
 | `README.md` | Stack overview, conventions | Needs update |
-| `MIGRATION_PLAN.md` | Prior static→Laravel migration | Historical |
-| `IMPLEMENTATION_PROMPT.md` | Agent prompt formatting convention | Needs update |
+| `MIGRATION_PLAN.md` (historical — not in repo) | Prior static→Laravel migration | Historical |
+| `IMPLEMENTATION_PROMPT.md` (historical — not in repo) | Agent prompt formatting convention | Needs update |
 | `REDESIGN_IMPLEMENTATION.md` | WAB replication spec | **DEPRECATED** — replaced by this doc |
 | `Implementation_redesign.md` | V4 R1–R5 implementation spec | **DEPRECATED** — replaced by this doc |
 | `Open_Decision.md` | Decision log | Needs update (remove Tailwind references) |
