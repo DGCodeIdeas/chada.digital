@@ -1,0 +1,110 @@
+// ============================================================
+// MD3 + Bootstrap Bridge
+// Overrides Bootstrap's default styling to align with
+// Material Design 3 principles while keeping Bootstrap's
+// grid, utilities, and component structure.
+// ============================================================
+
+// --- Buttons ---
+.btn {
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 500;
+  border-radius: var(--md-sys-shape-corner-full);
+  padding: 0.625rem 1.5rem;
+  font-family: var(--md-sys-typescale-label-font);
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--md-sys-color-primary);
+  border-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+
+  &:hover, &:focus {
+    background-color: var(--md-sys-color-primary-container);
+    border-color: var(--md-sys-color-primary-container);
+    color: var(--md-sys-color-on-primary-container);
+  }
+}
+
+.btn-outline-primary {
+  border-color: var(--md-sys-color-outline);
+  color: var(--md-sys-color-primary);
+
+  &:hover, &:focus {
+    background-color: var(--md-sys-color-primary-container);
+    border-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary-container);
+  }
+}
+
+// --- Cards ---
+.card {
+  border-radius: var(--md-sys-shape-corner-large);
+  border: 1px solid var(--md-sys-color-outline);
+  background-color: var(--md-sys-color-surface);
+  box-shadow: var(--md-sys-elevation-1);
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: var(--md-sys-elevation-2);
+  }
+}
+
+// --- Forms ---
+.form-control, .form-select {
+  border-radius: var(--md-sys-shape-corner-small);
+  border: 1px solid var(--md-sys-color-outline);
+  background-color: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+  padding: 0.75rem 1rem;
+
+  &:focus {
+    border-color: var(--md-sys-color-primary);
+    box-shadow: 0 0 0 3px var(--md-sys-color-primary-container);
+  }
+}
+
+// --- Navbar ---
+.navbar {
+  background-color: rgba(244, 242, 238, 0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--md-sys-color-outline);
+}
+
+.navbar-brand img {
+  height: 2.5rem;
+  width: auto;
+}
+
+// --- Links ---
+a {
+  color: var(--md-sys-color-primary);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--md-sys-color-on-primary-container);
+    text-decoration: underline;
+  }
+}
+
+// --- Badges ---
+.badge {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border-radius: var(--md-sys-shape-corner-small);
+}
+
+// --- Alerts / Toasts ---
+.alert {
+  border-radius: var(--md-sys-shape-corner-medium);
+  border: none;
+}
+
+// --- Modals ---
+.modal-content {
+  border-radius: var(--md-sys-shape-corner-extra-large);
+  border: 1px solid var(--md-sys-color-outline);
+  box-shadow: var(--md-sys-elevation-3);
+}

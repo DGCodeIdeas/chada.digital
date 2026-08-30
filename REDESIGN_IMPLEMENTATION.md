@@ -1,3 +1,7 @@
+> **⚠️ ARCHITECTURE CHANGE (Aug 30, 2026):** The active build spec has moved to `MULTIPAGE_REBUILD.md`. The site is now being rebuilt as a **multi-page application** using **Bootstrap 5 + Material Design 3** (replacing the single-page anchor architecture and Tailwind CSS). This document remains valid as reference material but should not be used as the primary build guide.
+>
+> **Active spec:** `MULTIPAGE_REBUILD.md` · **Related:** `MIGRATION.md` (technical migration) · `Open_Decision.md` · `TODO-Placeholders.md`
+
 # REDESIGN_IMPLEMENTATION.md — Pattern Replication, Original Expression (v3, CLARIFIED)
 
 > **Mandate (two layers, both binding):** The Founder directed that Chada Digital's site adopt the conversion architecture of a leading competitor. The Tech Lead's V4 directive governs the execution: **patterns are replicated; expression is not.** All marketing content ships as dynamic Lorem Ipsum; all styling follows Chada's own established design language; no third-party sentence, name, price, metric, image, or distinctive section title may appear in the DOM or the repo.

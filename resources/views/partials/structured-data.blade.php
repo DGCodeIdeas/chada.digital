@@ -1,40 +1,28 @@
+@php
+$structuredData = [
+    '@context' => 'https://schema.org',
+    '@type' => 'Organization',
+    'name' => 'Chada Digital',
+    'url' => url('/'),
+    'logo' => asset('images/chada-logo-horizontal-dark.png'),
+    'description' => 'Digital solutions that help businesses grow. Web development, funnel automation, paid advertising, and brand strategy for startups, SMEs, and enterprises.',
+    'address' => [
+        '@type' => 'PostalAddress',
+        'addressLocality' => 'Lagos',
+        'addressCountry' => 'NG',
+    ],
+    'contactPoint' => [
+        '@type' => 'ContactPoint',
+        'contactType' => 'customer service',
+        'email' => 'hello@chadadigital.com',
+        'availableLanguage' => ['English'],
+    ],
+    'sameAs' => [
+        // Add social URLs when available
+    ],
+];
+@endphp
+
 <script type="application/ld+json">
-{
-    "@@context": "https://schema.org",
-    "@graph": [
-        {
-            "@type": ["Organization", "LocalBusiness"],
-            "name": "Chada Digital",
-            "url": "https://www.chadadigital.com",
-            "logo": "https://www.chadadigital.com/chada-logo-horizontal.png",
-            "image": "https://www.chadadigital.com/og-image.jpg",
-            "description": "We engineer high-performance websites, command-attention brands, and intelligent automation for ambitious teams across Nigeria and beyond.",
-            "slogan": "Digital Solutions That Scale Businesses",
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Lagos",
-                "addressCountry": "NG"
-            },
-            "areaServed": "Worldwide",
-            "priceRange": "$$$",
-            "openingHoursSpecification": {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-                "opens": "09:00",
-                "closes": "18:00"
-            },
-            "contactPoint": {
-                "@type": "ContactPoint",
-                "contactType": "Customer Service",
-                "availableLanguage": "English"
-            }
-        },
-        {
-            "@type": "WebSite",
-            "name": "Chada Digital",
-            "url": "https://www.chadadigital.com",
-            "publisher": { "@type": "Organization", "name": "Chada Digital" }
-        }
-    ]
-}
+{!! json_encode($structuredData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) !!}
 </script>

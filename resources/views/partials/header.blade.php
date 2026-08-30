@@ -1,29 +1,41 @@
-<header class="sticky top-0 z-50 border-b border-neutral-200 bg-background/85 backdrop-blur-xl">
-    <div class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-6">
-        <a class="inline-flex items-center" href="{{ url('/') }}">
-            <img alt="Chada Digital — Digital Solutions That Scale Businesses" class="h-12 md:h-14 w-auto object-contain" src="{{ asset('chada-logo-horizontal-dark.png') }}" />
-        </a>
-        <nav class="hidden items-center gap-7 lg:flex">
-            <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="{{ url('/#services') }}">Services</a>
-            <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="{{ url('/#process') }}">Process</a>
-            <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="{{ url('/#products') }}">Products</a>
-            <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="{{ url('/#contact') }}">Contact</a>
-        </nav>
-        <a class="hidden items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-xs font-semibold uppercase tracking-widest text-primary-foreground transition-transform hover:-translate-y-0.5 md:inline-flex" href="{{ url('/#contact') }}">
-            Start a Project
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-3.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </a>
-        <button id="nav-toggle" aria-expanded="false" aria-label="Toggle menu" class="lg:hidden inline-flex size-10 items-center justify-center rounded-md border border-border text-foreground">
-            <svg id="nav-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu size-5"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg>
-        </button>
-    </div>
-    <div id="mobile-menu" class="hidden lg:hidden" aria-hidden="true">
-            <nav class="flex flex-col gap-4 border-t border-border/40 bg-background/95 px-6 py-6 backdrop-blur-xl">
-                <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="{{ url('/#services') }}">Services</a>
-            <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="{{ url('/#process') }}">Process</a>
-            <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="{{ url('/#products') }}">Products</a>
-            <a class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground" href="{{ url('/#contact') }}">Contact</a>
-            <a class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 text-xs font-semibold uppercase tracking-widest text-primary-foreground transition-transform hover:-translate-y-0.5" href="{{ url('/#contact') }}">Start a Project</a>
-        </nav>
-    </div>
+<header class="sticky-top" style="background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--md-sys-color-outline-variant); z-index: 1030;">
+    <nav class="navbar navbar-expand-lg" style="height: 64px;">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}" style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.5rem; color: var(--md-sys-color-primary); text-decoration: none;">
+                <img src="{{ asset('chada-logo-horizontal-dark.png') }}" alt="Chada Digital" height="32" class="d-inline-block">
+            </a>
+
+            <!-- Mobile toggle -->
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Nav links -->
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('home') ? 'active fw-semibold' : '' }}" href="{{ route('home') }}" style="color: var(--md-sys-color-on-surface); font-size: 0.9375rem;">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('case-studies.*') ? 'active fw-semibold' : '' }}" href="{{ route('case-studies.index') }}" style="color: var(--md-sys-color-on-surface); font-size: 0.9375rem;">Case Studies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('services') ? 'active fw-semibold' : '' }}" href="{{ route('services') }}" style="color: var(--md-sys-color-on-surface); font-size: 0.9375rem;">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('about') ? 'active fw-semibold' : '' }}" href="{{ route('about') }}" style="color: var(--md-sys-color-on-surface); font-size: 0.9375rem;">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->routeIs('demos') ? 'active fw-semibold' : '' }}" href="{{ route('demos') }}" style="color: var(--md-sys-color-on-surface); font-size: 0.9375rem;">Demos</a>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <a class="btn btn-primary rounded-pill px-4" href="{{ route('contact') }}" style="background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); font-weight: 500; font-size: 0.875rem;">
+                            Start a Project
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 </header>
