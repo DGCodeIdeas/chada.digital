@@ -1,4 +1,4 @@
-# TODO-Placeholders.md — Content Needed Before Launch (V4)
+# TODO-Placeholders.md — Content Needed Before Launch (V4 content + V5 visual)
 
 > **Supersedes** the V2-scope version of this file (offers/hero/testimonials/
 > founder/exclusivity/chat only — 6 rows). The V4 architecture
@@ -15,10 +15,12 @@
 >
 > **Related docs:** the config gates themselves are built in
 > `docs/Redesign(2).md` (data layer) and enforced at launch by
-> `docs/Redesign(9).md` (grep gates 1–12 + launch checklist); the decisions
-> behind each row live in `Open_Decision.md`; the agent-session orientation
-> is `Implementation_redesign.md`, and the full spec of record is
-> `REDESIGN_IMPLEMENTATION.md` (both at the repo root).
+> `docs/Redesign(9).md` (V4 grep gates 1–12 + launch checklist) AND
+> `docs/Redesign(10).md` (V5 visual pivot grep gates 1–10, see §9.1);
+> the decisions behind each row live in `Open_Decision.md` (Q0–Q11);
+> the agent-session orientation is `Implementation_redesign.md`, and the
+> full spec of record is `REDESIGN_IMPLEMENTATION.md` (both at the repo
+> root).
 >
 > Two different owners sign off on different rows: most are **Founder**
 > content calls; a few workflow-specific ones are **Tech Lead** verification
@@ -128,8 +130,24 @@ These block a section too, but they're decisions/assets, not copy to hand over:
 
 | ✅ | Item | What's needed | Related |
 |---|---|---|---|
-| ☐ | Trust bar logos | Real client logos + permission to display (renders nothing until then — unchanged since V2) | Open_Decision.md Q2 |
+| ☐ | ~~Trust bar logos~~ → **Design Partner band copy (V5 ratified)** | The trust strip is replaced in Phase 10 by the `design-partner-band` partial. The copy is **already decided**: *"No customer logos yet — we won't fake them. Become a design partner."* — see `Open_Decision.md` Q11. **No action needed unless Founder wants to revisit the wording.** | Founder | Open_Decision.md Q11 |
 | ☐ | Webinar asset itself | Not just "enable the section" — an actual recorded masterclass/guide needs to exist first | §7 above |
+
+---
+
+## 11. V5 visual pivot gates (Phase 10 — `docs/Redesign(10).md`)
+
+These gates block Phase 10 from being marked complete. Most are sign-off
+gates, not content gates — the V5 migration is structural, not content-
+dependent.
+
+| ✅ | Item | What's needed | Owner | Related |
+|---|---|---|---|---|
+| ☐ | Design Partner band copy review | Final read on the wording *"No customer logos yet — we won't fake them. Become a design partner."* — Tech Lead ratified the wording; Founder needs to sign off on the framing | Founder | Open_Decision.md Q11 |
+| ☐ | M3 component selection sign-off | Confirm the list of `<md-*>` Material Web Components used (filled-button, outlined-button, icon-button, menu, tabs, switch, fab, chips per Redesign(10).md §8) — does the Founder want any added or removed? | Founder + Tech Lead | Redesign(10).md §8 |
+| ☐ | Material Symbols icon set review | The 9 icons in `Redesign(10).md` §3.3 (check, arrow_forward, play_arrow, close, menu, expand_more, chevron_right, auto_awesome, bolt, link) — confirm they match Chada's tone | Tech Lead | Redesign(10).md §3.3 |
+| ☐ | No-borders exception review | The single optional exception (1px hairline at top of global header) — keep or remove? | Founder | Redesign(10).md §5 |
+| ☐ | Outfit removal confirmation | V5 drops Outfit in favor of Inter-only. Confirm no brand-comms asset depends on Outfit before deleting `@fontsource/outfit` from `package.json` | Founder | Redesign(10).md §3.4 |
 
 ---
 
@@ -144,3 +162,36 @@ request, not a row to add here.
 `/work` filter categories and the Demo Lab's 6 tabs are structural, driven
 directly by the 6 real `PreviewService` demos — nothing to fill in beyond
 §3's case-study content, since both features read from the same data.
+
+---
+
+## V4 additions (Redesign(2).md — lorem generator + gates)
+
+| ✅ | Config key / location | What's needed | Owner | Related |
+|---|---|---|---|---|
+| ☐ | `CaseStudyService` → 6 × `metric` + `metrics` | One verified headline number per demo client (e.g. lead growth, conversion lift). **Each entry stays `published => false` until its metric lands.** | Founder + Tech Lead | Replaces the old "placeholder" entries |
+| ☐ | `CaseStudyService` → 6 × `challenge` / `solution` / `results` | One-paragraph narratives per case study | Founder | — |
+| ☐ | `CaseStudyService` → 6 × `workflow.verified` | Tech Lead confirms every workflow step/tool reflects what was actually built, then flips to `true` | Tech Lead | Feeds System Blueprints |
+| ☐ | `placeholders.offers.*.price_ngn` / `price_usd` / `price_period` | Real price per offer tier (₦ + $ + period). Views show "Contact for pricing" until set | Founder | Open_Decision.md Q3 |
+| ☐ | `placeholders.stats.home_top` (×4) + `home_bottom` (×4) | Verified numbers + labels. Section hidden until a variant is fully populated | Founder | — |
+| ☐ | `placeholders.hero.proof_line` | Verified trust line (or leave null — renders nothing). **Note: partials/hero.blade.php currently hardcodes "Trusted by 50+ brands" (D12); R3 gates and removes it.** | Founder | Was hardcoded pre-V4; now gated |
+| ☐ | `placeholders.webinar.enabled` | Stays `false` until a real replay/masterclass asset exists | Founder | Open_Decision.md Q4 family |
+| ☐ | `placeholders.testimonials` (array) | Real quotes WITH client permission — each entry replaces a lorem card | Founder | Open_Decision.md Q5 |
+| ☐ | `placeholders.manifesto.enabled` + `items` | David-approved standards/principles | Founder | Do not invent promises |
+| ☐ | `placeholders.founder.real` + bio/photo/name | Real founder content (Q6). Flipping `real` also activates the JSON-LD Person node | Founder | Open_Decision.md Q6 |
+| ☐ | `placeholders.martech.tools` + `subintro` | Confirm the tool list matches what Chada genuinely supports; approve intro line | Tech Lead | — |
+| ☐ | `placeholders.chat.whatsapp_number` | E.164 WhatsApp number + persona decision (Q8). Widget stays no-op until set | Founder | Open_Decision.md Q8 |
+| ☐ | `placeholders.workflow_speed_claim` | A MEASURED Chada system-speed claim, approved by David | Founder + Tech Lead | Never a borrowed figure |
+| ☐ | `placeholders.lorem_seed` | Rotation log: record each rotation date/reason here | Tech Lead | Dynamic lorem control |
+
+### Reconciliations — keys removed or relocated in this phase
+
+| Old V2 key | Status | R3 action |
+|---|---|---|
+| `hero.headline` / `hero.subhead` | Removed — now Lorem slots in R3's hero rewrite | R3 task: delete `$hero['headline']` / `$hero['subhead']` reads from hero.blade.php |
+| `offers.*.title` / `offers.*.description` / `offers.*.cta_label` | Removed — Lorem slots in R3's goal-picker upgrade | R3 task: goal-picker uses `?? Lorem::title/paragraph(..., $i)` |
+| `founder.name` / `founder.title` / `founder.bio_points` | Removed — Lorem slots in R3's founder-bio upgrade | R3 task: replace $founder['name'] reads with Lorem calls |
+| `assessment.headline` / `assessment.body` | Removed — section renamed `audit` in R3 | R3 task: git mv assessment-cta → audit-cta, update config reads |
+| `exclusivity.headline` / `exclusivity.body` | Removed — Lorem slots in R3's exclusivity rewrite | R3 task: replace $exclusivity reads with Lorem calls |
+| `chat.persona_name` / `chat.greeting` | Removed — replaced by whatsapp_number / whatsapp_prefill | R3 task: upgrade chat-widget.blade.php for V4 chat keys |
+| `testimonials` (×3 legacy entries) | Removed — array now empty; R3 view renders Lorem cards | R3 task: empty-array branch in testimonials.blade.php |

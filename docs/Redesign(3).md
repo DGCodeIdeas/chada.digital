@@ -1,6 +1,7 @@
 # Redesign(3).md — Homepage Sections A: Hero, Stats, Goal Cards, Free-Review CTA, Checklist, Opt-in, Founder, Testimonials
 
-> **Series:** Redesign(1)–(9) · **This doc:** #3 of 9
+> **Series:** Redesign(1)–(10) · **This doc:** #3 of 10 (V4 structural; #10 is the V5 visual pivot)
+> **V5 note:** The class strings in this doc's Blade code are written in Tailwind (V4). After Phase 10 (`docs/Redesign(10).md`) lands, they migrate to Bootstrap 5 + Material Web Components + custom utility classes per the 24-row migration map in Redesign(10).md §8. **The structural HTML, gating logic, and `data_get()` patterns stay identical under V5** — only class strings change.
 > **Builds:** `pages/home.blade.php` (new include order), `partials/hero` (dual CTA + gated proof line), `partials/stats-bar` (NEW), `partials/goal-picker` (Pricing block upgrade), `partials/audit-cta` (renamed from assessment-cta), `partials/working-together` (NEW), `partials/services-checklist` (12-item upgrade), `partials/webinar-optin` (NEW, disabled by default), `partials/founder-bio` (minor), `partials/testimonials` (standards band)
 > **Depends on:** Redesign(2).md (data layer — `App\Support\Lorem`, config keys, and CaseStudyService gates must exist first)
 > **Scope note:** This doc covers homepage sections 1–9 of the target architecture (Redesign(1).md §2.1). Sections 10–15 are built by Redesign(4), (5), and (7).

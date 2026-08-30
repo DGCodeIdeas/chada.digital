@@ -1,6 +1,7 @@
 # Redesign(9).md — QA, Performance, Originality Compliance, Deployment & Launch Gates
 
-> **Series:** Redesign(1)–(9) · **This doc:** #9 of 9 (execute LAST)
+> **Series:** Redesign(1)–(10) · **This doc:** #9 of 10 (execute LAST among V4 structural phases — Phase 10/V5 follows)
+> **V5 note:** Phase 10 (`docs/Redesign(10).md`) is the V5 visual pivot — Tailwind → Bootstrap + M3. It introduces 10 additional grep gates (see Redesign(10).md §9.1) that complement the 12 gates in this doc. **Execute this doc's gates first**, then Phase 10's gates, before launch. The originality gates (2, 9, 10) in this doc are unaffected by V5 and remain binding.
 > **Builds:** Nothing (with one optional exception: the consent banner snippet in §5). This document verifies everything docs 1–8 built, then walks the site to production.
 > **Depends on:** ALL previous docs merged.
 > **New in V4:** this doc now carries the **originality compliance program** — gates 2, 9, 10 and the §4 review protocol exist to make a copyright complaint against this site structurally impossible to substantiate.

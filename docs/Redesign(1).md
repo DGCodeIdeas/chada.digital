@@ -1,8 +1,8 @@
 # Redesign(1).md — Master Directive: Pattern Replication, Original Expression (V4)
 
-> **Series:** Redesign(1)–Redesign(9) — agent-ready build documents for the Chada Digital V4 redesign
+> **Series:** Redesign(1)–Redesign(10) — agent-ready build documents for the Chada Digital redesign (V4 + V5 visual pivot)
 > **Mandate (two layers, both binding):** The Founder directed that Chada's site adopt the **conversion architecture** of a leading competitor — every section type, every funnel mechanism, every interaction pattern. The Tech Lead's V4 directive governs **how**: replicate the patterns, never the expression. **All marketing content ships as dynamic Lorem Ipsum. All styling follows Chada's own established design language.** No third-party sentence, name, price, metric, image, or distinctive section title may appear anywhere — not in the DOM, not in the repo, not in these documents.
-> **Stack:** Laravel 12 + Blade + Tailwind CSS v3 + Laravel Mix + jQuery/vanilla JS · Bun (never npm) · PHP 8.2+
+> **Stack:** Laravel 12 + Blade + **Bootstrap 5.3 + Material Web Components (@material/web) + Material Symbols + Inter** · Laravel Mix · Bun (never npm) · PHP 8.2+ — *V5 supersedes the V4 Tailwind stack; see `docs/Redesign(10).md` for the migration spec*
 > **Repo:** `DGCodeIdeas/chada.digital` · default branch `main` (HEAD audited: `8ed949d`, 2026-08-27)
 > **This document:** The master brief. Read it first. It resolves the spec conflicts, fixes the target architecture, defines the content model and the style charter, and tells you which document to execute in which order. It contains no build tasks itself.
 
@@ -118,8 +118,10 @@ CONSTRAINTS (Chada Digital V4 — pattern build):
 1.  NEVER modify, delete, or add anything inside public/demos/ — read-only.
 2.  Asset pipeline is Laravel Mix: use mix('...') in Blade, NEVER @vite().
 3.  Package manager is Bun: bun run dev / bun run prod. NEVER npm or yarn.
-4.  ZERO new Composer or npm dependencies. Blade + Tailwind + jQuery/vanilla
-    JS only. (App\Support\Lorem is pure PHP with no dependencies — allowed.)
+4.  ZERO new Composer dependencies. (App\Support\Lorem is pure PHP — allowed.)
+    Front-end dependencies (Bootstrap 5.3, Material Web Components, Material
+    Symbols, @fontsource/inter) are added via Bun in Phase 10 — see
+    docs/Redesign(10).md §7.1. NOT npm.
 5.  Preserve every existing route name: home, work, case-study.show,
     preview.show, preview.subpage, contact.submit, sitemap.
 6.  Keep the contact form's honeypot field and AJAX validation exactly as-is.
@@ -273,7 +275,10 @@ resources/views/layouts/app.blade.php           # layout shell
 resources/views/partials/*                      # 22 partials
 resources/views/components/*                    # 11 components
 resources/js/app.js                             # jQuery init + showcase filters
-tailwind.config.js                              # light theme tokens
+resources/sass/_tokens.scss                     # M3 design tokens (Chada primary + M3 surfaces)
+resources/sass/_bootstrap-overrides.scss        # Bootstrap Sass variable overrides
+resources/sass/_utilities.scss                  # custom utilities (.eyebrow, .u-section-fused)
+resources/sass/_components.scss                 # Chada-specific component classes
 ```
 
 ---

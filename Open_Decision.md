@@ -30,9 +30,10 @@ of that: no real WAB client names, no real WAB numbers, no real WAB
 testimonial text, no real WAB workflow narratives (even genericized/reworded
 versions that clearly echo a specific real WAB case), and no WAB visual
 branding (colors, exact card styling, logo, imagery). Chada's existing
-design tokens (`tailwind.config.js` — `#f4f2ee` background, `#2563eb`
-primary, Inter/Outfit fonts) are the visual system for the replica,
-full stop — not WAB's.
+design tokens (V5: `resources/sass/_tokens.scss` — `#f4f2ee` background,
+`#2563eb` primary, mapped to M3 CSS custom properties; V4 used
+`tailwind.config.js` which was deleted in Phase 10) are the visual system
+for the replica, full stop — not WAB's.
 
 **Why:** structural/functional patterns (the idea of a stats bar, a tiered
 pricing layout, a workflow diagram) are standard, widely-used marketing-site
@@ -201,6 +202,110 @@ direction.
 
 ---
 
+## Q10 — Visual system pivot: Tailwind → Bootstrap 5 + Material Web Components (RESOLVED Aug 30, 2026)
+
+**Decided by:** Tech Lead (architectural/engineering call) + Founder (the
+underlying motivation: site must not look obviously AI-generated).
+
+**The decision, plainly:** Tailwind CSS v3 is replaced entirely by a
+layered CSS stack — **Bootstrap 5.3 (foundation) → Material Web Components
+(component overrides) → custom SCSS utilities (Chada-specific)**. Loading
+order is binding. The Chada primary palette (`#f4f2ee` background,
+`#2563eb` primary) is preserved and mapped to M3 CSS custom properties;
+M3's surface/elevation/shape/motion tokens are adopted. Typography drops
+Outfit in favor of Inter (single-font, varied weights) + Material Symbols
+for icons. **All visible borders are removed site-wide** — separation
+achieved via elevation, background tints, and whitespace. See
+`docs/Redesign(10).md` for the full spec.
+
+**Why:** Tailwind's utility-class aesthetic reads as "generic SaaS
+template" and the Founder judged that as a strong "AI-generated" tell.
+Bootstrap+M3 layered carefully produces a more editorial, handcrafted feel
+while staying on a well-tested, accessible foundation.
+
+**Status:** Resolved. Spec lives at `docs/Redesign(10).md`. Phase 10
+executes after R4 merges (so its `workflow-system.blade.php` migration
+is included).
+
+---
+
+## Q11 — Design Partner band replaces trust strip (RESOLVED Aug 30, 2026)
+
+**Decided by:** Founder (framing + copy direction) + Tech Lead (wording).
+
+**The decision, plainly:** The V4 "trust strip" — a client-logo row gated
+to render nothing while logos are empty — is replaced entirely. The new
+`design-partner-band` partial always renders, with copy:
+
+> **No customer logos yet — we won't fake them.**
+> Become a design partner.
+
+This is Chada-original copy. The band is honest about the early-stage
+status, frames the absence as a confident offer rather than a missing
+feature, and reads as authored rather than template-default.
+
+**Implementation:** `resources/views/partials/design-partner-band.blade.php`
+(replaces `trust-strip.blade.php`, which is deleted in Phase 10). See
+`docs/Redesign(10).md` §6.
+
+**Future state:** When real client logos exist (with explicit per-logo
+sign-off from the Founder, per the originality rules), the band can be
+repurposed into a logo row — but only by explicit decision, not silently.
+
+**Status:** Resolved. Copy is final as written above; Tech Lead signs off
+on the wording, Founder signs off on the framing.
+
+## Q12 — Multi-page architecture replaces single-page-with-anchors (RESOLVED Aug 30, 2026)
+
+**Decided by:** Founder (directive: "Instead of anchors, multi page.") + Tech Lead (route map + build execution).
+
+**The decision, plainly:** The V4 single-homepage-with-section-anchors model is replaced by a multi-page architecture. Each major section becomes its own route. The homepage becomes a focused 8-section front door that funnels to dedicated pages (`/services`, `/work`, `/case-studies/{slug}`, `/demos`, `/about`, `/contact`, optionally `/blueprints` and `/webinar`), rather than a 17-section scroll.
+
+**Why:** A single long page with `#section-id` anchors is another "AI-template" tell. Real editorial and product sites use a proper route hierarchy. Multi-page also improves Lighthouse (smaller per-page payloads), SEO (each page has its own meta/title/schema), and analytics (per-page conversion tracking).
+
+**Proposed route map** (see `docs/Redesign(10).md` §13.1 for full table):
+
+| Route | What lives here |
+|---|---|
+| `/` | Home: Hero, Stats, Design Partner, Goal-picker, Audit-CTA, Working-together, bottom Stats, final CTA |
+| `/services` | Services & pricing (checklist, tiers, add-ons) |
+| `/work` | Case studies grid (filterable) |
+| `/case-studies/{slug}` | Case study detail + per-study System Blueprint |
+| `/blueprints` | System Blueprints overview (optional) |
+| `/demos` | Demo Lab (6 tabs) + MarTech grid |
+| `/about` | Founder bio + testimonials + standards band |
+| `/contact` | Contact form + exclusivity CTA + chat widget |
+| `/webinar` | Webinar opt-in (only if enabled) |
+
+**Status:** Resolved (Founder directive). Route map is proposed — Founder can adjust which sections land on which page. Implementation happens as part of the build restart (see Q13).
+
+---
+
+## Q13 — Build restart: revert main to pre-Phase-2 state (RESOLVED Aug 30, 2026)
+
+**Decided by:** Tech Lead ("I'm in fifth phase, So I'll revert back to just before the first phase").
+
+**The decision, plainly:** The Tech Lead will revert `main` back to the state just before Phase 2 (R2 data layer) merged — discarding the R2/R3 code but keeping the V4 doc series and the cross-reference pass. This gives a clean slate to re-execute the build with the V5 visual system + multi-page architecture + no-borders fusion + Design Partner band.
+
+**Revert target:** commit `2f8669d` (PR #10 merge, Aug 29 07:24 UTC) — last commit before R2/R3 code landed.
+
+**What's retained:**
+- V4 doc series (`docs/Redesign(1-9).md`)
+- Cross-reference pass (PR #10)
+- All root docs (`Implementation_redesign.md`, `Open_Decision.md`, `REDESIGN_IMPLEMENTATION.md`, `TODO-Placeholders.md`, `README.md`)
+- Archive docs (frozen historical record)
+
+**What's discarded:**
+- R2 data layer code (`app/Support/Lorem.php`, `CaseStudyService` v2, `config/placeholders.php` v4)
+- R3 homepage partials (`stats-bar`, `audit-cta`, `working-together`, `webinar-optin`, modified `hero`, `goal-picker`, `founder-bio`, `testimonials`, `services-checklist`)
+- R5 case study work (already reverted via PR #13)
+
+**PR #15 (V5 docs) implication:** PR #15 is on branch `feat/v5-visual-pivot`, based on `6db7f42` (current main). After the revert, PR #15 needs to be rebased onto the reverted main. Since PR #15 is docs-only, the rebase should be clean — only `README.md` may conflict.
+
+**Status:** Resolved. Tech Lead executes the revert. PR #15 rebases after.
+
+---
+
 ## Sign-off
 
 | # | Decision | Answer | Decided by | Date |
@@ -215,3 +320,7 @@ direction.
 | 7 | Exclusivity framing | | | |
 | 8 | Chat widget tool + persona | | | |
 | 9 | Case-study system fate (A/B/C) | | | |
+| 10 | Visual system pivot: Tailwind → Bootstrap 5 + Material Web Components | Resolved | Tech Lead + Founder | Aug 30, 2026 |
+| 11 | Design Partner band replaces trust strip | Resolved | Founder + Tech Lead | Aug 30, 2026 |
+| 12 | Multi-page architecture replaces single-page-with-anchors | Resolved | Founder + Tech Lead | Aug 30, 2026 |
+| 13 | Build restart — revert main to pre-Phase-2 state (`2f8669d`) | Resolved | Tech Lead | Aug 30, 2026 |

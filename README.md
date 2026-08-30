@@ -35,7 +35,7 @@ This is the production Laravel 12 application behind the Chada Digital website. 
 |---|---|
 | Framework | Laravel 12, PHP 8.2 |
 | Templating | Blade (layouts, partials, anonymous components) |
-| CSS | Tailwind CSS v3 + custom SCSS via PostCSS |
+| CSS | **Bootstrap 5.3 + Material Web Components (@material/web) + Material Symbols + custom SCSS** — *V5 pivot, see `docs/Redesign(10).md`* |
 | JavaScript | jQuery ES6 modules + Alpine.js (available) |
 | Asset pipeline | Laravel Mix (webpack) — run via **Bun** |
 | Database (dev) | SQLite |
@@ -85,7 +85,11 @@ chada-digital/
 │   │       ├── contact-form.js      # AJAX contact form + validation
 │   │       └── projects-modal.js    # "View All Projects" modal
 │   └── sass/
-│       └── app.scss                 # Tailwind directives + custom utility classes
+│       ├── app.scss                 # layered: Bootstrap → M3 → tokens → utilities → components
+│       ├── _tokens.scss             # M3 design tokens (Chada primary + M3 surfaces)
+│       ├── _bootstrap-overrides.scss # Bootstrap Sass variable overrides
+│       ├── _utilities.scss          # custom utilities (.eyebrow, .u-section-fused)
+│       └── _components.scss         # Chada-specific component classes
 │
 ├── routes/web.php                   # all application routes
 ├── public/
@@ -114,7 +118,7 @@ chada-digital/
 ├── Open_Decision.md                 # open product/content decisions (Q0–Q9)
 │
 ├── webpack.mix.js                   # asset pipeline config
-└── tailwind.config.js               # design tokens + Tailwind theme
+└── docs/Redesign(10).md             # V5 visual migration spec (Tailwind → Bootstrap+M3)
 ```
 
 ---
@@ -252,7 +256,8 @@ The contact form posts to `POST /api/contact`. It includes:
 |---|---|
 | [`REDESIGN_IMPLEMENTATION.md`](REDESIGN_IMPLEMENTATION.md) | V4 redesign master spec (v3, Clarified) — decision history, 18-pattern architecture, acceptance criteria, sign-off tables |
 | [`Implementation_redesign.md`](Implementation_redesign.md) | Agent session orientation for the V4 build — constraints, content model, phase map, Phase 1 task block |
-| [`docs/Redesign(1).md`](docs/Redesign(1).md) … [`docs/Redesign(9).md`](docs/Redesign(9).md) | The nine agent-ready build documents (data layer → homepage sections → signature systems → QA/launch gates) |
+| [`docs/Redesign(1).md`](docs/Redesign(1).md) … [`docs/Redesign(9).md`](docs/Redesign(9).md) | The nine V4 agent-ready build documents (data layer → homepage sections → signature systems → QA/launch gates) |
+| [`docs/Redesign(10).md`](docs/Redesign(10).md) | **V5 visual pivot** — Phase 10 migration spec: Tailwind → Bootstrap 5.3 + Material Web Components + Material Symbols, no-borders fusion, Design Partner band |
 | [`TODO-Placeholders.md`](TODO-Placeholders.md) | Content gates that must be filled by the Founder/Tech Lead before launch |
 | [`Open_Decision.md`](Open_Decision.md) | Open product/content decisions (Q0–Q9) with their current statuses |
 | [`docs/unverified/deployment-guide.md`](docs/unverified/deployment-guide.md) | AWS EC2 + RDS + Namecheap deployment walkthrough |

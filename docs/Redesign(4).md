@@ -1,6 +1,7 @@
 # Redesign(4).md — The System Blueprints Section (Pipeline Diagrams)
 
-> **Series:** Redesign(1)–(9) · **This doc:** #4 of 9
+> **Series:** Redesign(1)–(10) · **This doc:** #4 of 10 (V4 structural; #10 is the V5 visual pivot)
+> **V5 note:** The class strings in this doc's Blade code are written in Tailwind (V4). After Phase 10 (`docs/Redesign(10).md`) lands, they migrate to Bootstrap 5 + Material Web Components + custom utility classes per the 24-row migration map in Redesign(10).md §8 (row 13 covers `workflow-system.blade.php`, row 24 covers `x-workflow-diagram`). **The structural HTML, gating logic, and pipeline anatomy stay identical under V5** — only class strings change.
 > **Builds:** `resources/views/partials/workflow-system.blade.php` (NEW), `resources/views/components/workflow-diagram.blade.php` (upgrade), one-line insert into `pages/home.blade.php`, one config key (already added by Redesign(2))
 > **Depends on:** Redesign(2).md (`CaseStudyService::verifiedWorkflows()` must exist)
 > **Why this matters:** the pipeline section is the most distinctive element of the architecture we are adopting — visual proof that the agency builds *systems*, not pages. Chada's version is **System Blueprints**: one horizontal pipeline per verified case study, rendered only when the Tech Lead has verified its steps.

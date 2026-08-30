@@ -1,6 +1,7 @@
 # Redesign(5).md — Case Studies: Homepage Results Grid, /work Filters, Detail Pages, Sitemap & Nav Relink
 
-> **Series:** Redesign(1)–(9) · **This doc:** #5 of 9
+> **Series:** Redesign(1)–(10) · **This doc:** #5 of 10 (V4 structural; #10 is the V5 visual pivot)
+> **V5 note:** The class strings in this doc's Blade code are written in Tailwind (V4). After Phase 10 (`docs/Redesign(10).md`) lands, they migrate to Bootstrap 5 + Material Web Components + custom utility classes per the 24-row migration map in Redesign(10).md §8 (row 14 covers `x-result-card`). **The structural HTML, gating logic, and `/work` filter behavior stay identical under V5** — only class strings change.
 > **Builds:** `components/result-card.blade.php` (NEW), `partials/case-studies.blade.php` (rewrite), `pages/work.blade.php` (dynamic filters), `pages/case-study.blade.php` (field-safe upgrade), `app/Http/Controllers/PageController.php` (sitemap), `partials/header.blade.php` + `partials/footer.blade.php` (Work link relink)
 > **Depends on:** Redesign(2).md (published/verified gates + `categories()`)
 

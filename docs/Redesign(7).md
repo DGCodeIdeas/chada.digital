@@ -1,6 +1,7 @@
 # Redesign(7).md — Demo Lab (Interactive Demo Tabs) + MarTech Integrations Grid
 
-> **Series:** Redesign(1)–(9) · **This doc:** #7 of 9
+> **Series:** Redesign(1)–(10) · **This doc:** #7 of 10 (V4 structural; #10 is the V5 visual pivot)
+> **V5 note:** The class strings in this doc's Blade code are written in Tailwind (V4). After Phase 10 (`docs/Redesign(10).md`) lands, they migrate to Bootstrap 5 + Material Web Components + custom utility classes per the 24-row migration map in Redesign(10).md §8 (row 17 covers `demo-lab` with `<md-tabs>`, row 18 covers `martech-grid`). **The structural HTML, gating logic, demo tab behavior, and MarTech filter behavior stay identical under V5** — only class strings change.
 > **Builds:** `resources/views/partials/demo-lab.blade.php` (NEW), `resources/views/partials/martech.blade.php` (NEW), `resources/js/app.js` (+ tab + filter modules), one-line insert into `pages/home.blade.php`
 > **Depends on:** Redesign(2).md (config), Redesign(5).md (home include positions)
 > **Why this matters:** this is the section no prior spec captured — a tabbed block of **fully interactive system demos**. **Chada already owns six real interactive demos** in `public/demos/` — this doc turns them into the pattern with zero new build for the demo content itself, and with honest Chada-original chrome (no borrowed microcopy, no emoji tabs, no faked API-status badges).

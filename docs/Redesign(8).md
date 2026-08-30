@@ -1,6 +1,7 @@
 # Redesign(8).md — Global Chrome: Header, Footer, Chat Widget Wiring, Meta/OG, JSON-LD
 
-> **Series:** Redesign(1)–(9) · **This doc:** #8 of 9
+> **Series:** Redesign(1)–(10) · **This doc:** #8 of 10 (V4 structural; #10 is the V5 visual pivot)
+> **V5 note:** The class strings in this doc's Blade code are written in Tailwind (V4). After Phase 10 (`docs/Redesign(10).md`) lands, they migrate to Bootstrap 5 + Material Web Components + custom utility classes per the 24-row migration map in Redesign(10).md §8 (row 2 covers `header`, row 3 covers `footer`, row 19 covers `chat-widget` with `<md-fab>`). **The structural HTML, gating logic, WhatsApp wiring, and JSON-LD schema stay identical under V5** — only class strings change.
 > **Builds:** `resources/views/partials/header.blade.php` (final nav), `resources/views/partials/footer.blade.php` (multi-column), `resources/views/partials/chat-widget.blade.php` (WhatsApp wiring, config-gated), `resources/views/partials/structured-data.blade.php` (schema extensions), `partials/meta.blade.php` (per-page OG defaults, via controllers)
 > **Depends on:** Redesign(5).md (routes + anchors exist), Redesign(6).md (`/services` route exists), Redesign(7).md (`#demo-lab` anchor exists)
 

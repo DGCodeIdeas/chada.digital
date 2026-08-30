@@ -284,7 +284,7 @@ class CaseStudyService
                         ['step' => 'Follow-up Dispatch', 'tool' => 'WhatsApp'],
                     ],
                 ],
-                'tools' => ['Laravel', 'Tailwind CSS', 'jQuery'],
+                'tools' => ['Laravel', 'Bootstrap 5', 'jQuery'],
             ],
 
             // ─────────────────────────────────────────────────────────────
@@ -319,7 +319,7 @@ class CaseStudyService
                         ['step' => 'Onboarding Email Sequence', 'tool' => 'Automation'],
                     ],
                 ],
-                'tools' => ['Laravel', 'React', 'Tailwind CSS'],
+                'tools' => ['Laravel', 'React', 'Material Web'],
             ],
 
             // ─────────────────────────────────────────────────────────────
@@ -354,7 +354,7 @@ class CaseStudyService
                         ['step' => 'Confirmation & Reminders', 'tool' => 'Automation'],
                     ],
                 ],
-                'tools' => ['Laravel', 'Tailwind CSS', 'Paystack'],
+                'tools' => ['Laravel', 'Bootstrap 5', 'Paystack'],
             ],
 
             // ─────────────────────────────────────────────────────────────
@@ -389,7 +389,7 @@ class CaseStudyService
                         ['step' => 'Alert Digests', 'tool' => 'Email'],
                     ],
                 ],
-                'tools' => ['Laravel', 'React', 'Tailwind CSS'],
+                'tools' => ['Laravel', 'React', 'Material Web'],
             ],
 
             // ─────────────────────────────────────────────────────────────
@@ -424,7 +424,7 @@ class CaseStudyService
                         ['step' => 'Post-purchase Flow', 'tool' => 'Automation'],
                     ],
                 ],
-                'tools' => ['Laravel', 'Tailwind CSS', 'Paystack'],
+                'tools' => ['Laravel', 'Bootstrap 5', 'Paystack'],
             ],
 
             // ─────────────────────────────────────────────────────────────
@@ -459,7 +459,7 @@ class CaseStudyService
                         ['step' => 'Deposit Invoice', 'tool' => 'Payments'],
                     ],
                 ],
-                'tools' => ['Laravel', 'Tailwind CSS'],
+                'tools' => ['Laravel', 'Bootstrap 5'],
             ],
 
             // ─────────────────────────────────────────────────────────────

@@ -1,7 +1,7 @@
 # REDESIGN_IMPLEMENTATION.md — Pattern Replication, Original Expression (v3, CLARIFIED)
 
 > **Mandate (two layers, both binding):** The Founder directed that Chada Digital's site adopt the conversion architecture of a leading competitor. The Tech Lead's V4 directive governs the execution: **patterns are replicated; expression is not.** All marketing content ships as dynamic Lorem Ipsum; all styling follows Chada's own established design language; no third-party sentence, name, price, metric, image, or distinctive section title may appear in the DOM or the repo.
-> **Stack:** Laravel 12 + Blade + Tailwind CSS v3 + Laravel Mix + jQuery/vanilla JS · Bun (never npm) · PHP 8.2+
+> **Stack:** Laravel 12 + Blade + **Bootstrap 5.3 + Material Web Components (@material/web) + Material Symbols + Inter** · Laravel Mix · Bun (never npm) · PHP 8.2+ — *V5 supersedes the V4 Tailwind stack; see `docs/Redesign(10).md` for the migration spec*
 > **Repo:** `DGCodeIdeas/chada.digital` · default branch `main` (HEAD audited: `8ed949d`, 2026-08-27)
 > **This version:** v3 — CLARIFIED. It supersedes (a) the v1 spec of the same name on PR #6 (closed; branch deleted) and (b) the V3 doc series produced 2026-08-27. It corrects v1's deletions, resolves every ambiguity v1 left open, folds in the Tech Lead's originality directive, and binds the build to the nine agent-ready documents `docs/Redesign(1).md` … `docs/Redesign(9).md` (V4).
 > **Status:** Build-ready. Blocked only on real content (client names, metrics, workflow steps, pricing) — never on structure.
@@ -207,7 +207,7 @@ TODO-Placeholders.md                                (R2/R6 — new gate rows)
 
 **DELETE: nothing.** (The headline correction over v1 — no V2 skeleton file is deleted. `process`, `about`, `services`, `products` partials simply remain unrouted.)
 
-**TOUCHED NEVER:** `public/demos/**`, `app/Http/Controllers/ContactController.php`, `resources/js/modules/contact-form.js`, `resources/js/modules/mobile-nav.js`, `tailwind.config.js`, `webpack.mix.js`, `composer.json`, `package.json`, migrations, the deploy workflow, `scripts/maintenance-lock.sh`.
+**TOUCHED NEVER:** `public/demos/**`, `app/Http/Controllers/ContactController.php`, `resources/js/modules/contact-form.js`, `resources/js/modules/mobile-nav.js`, `resources/sass/_tokens.scss` (V5 token source — see `docs/Redesign(10).md` §2), `webpack.mix.js`, `composer.json`, `package.json`, migrations, the deploy workflow, `scripts/maintenance-lock.sh`. *(V4's `tailwind.config.js` was deleted in Phase 10 — see `docs/Redesign(10).md` §7.3.)*
 
 ---
 

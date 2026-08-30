@@ -1,6 +1,7 @@
 # Redesign(6).md — The /services Page (Tiered Pricing Page)
 
-> **Series:** Redesign(1)–(9) · **This doc:** #6 of 9
+> **Series:** Redesign(1)–(10) · **This doc:** #6 of 10 (V4 structural; #10 is the V5 visual pivot)
+> **V5 note:** The class strings in this doc's Blade code are written in Tailwind (V4). After Phase 10 (`docs/Redesign(10).md`) lands, they migrate to Bootstrap 5 + Material Web Components + custom utility classes per the 24-row migration map in Redesign(10).md §8 (row 16 covers `/services` page pricing tiers). **The structural HTML, gating logic, and tier definitions stay identical under V5** — only class strings change.
 > **Builds:** `app/Services/PricingService.php` (NEW), `app/Http/Controllers/PageController.php` (+`services()` method), `routes/web.php` (+`/services` route), `resources/views/pages/services.blade.php` (NEW), `resources/views/components/service-card.blade.php` (NEW), `resources/views/components/stats-badge.blade.php` (NEW)
 > **Depends on:** Redesign(2).md (config gates + Lorem); Redesign(5).md (sitemap already handles `services` route defensively)
 

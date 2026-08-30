@@ -11,7 +11,7 @@
 > orientation layer; that file is the full clarified spec — decision history
 > (C1–C12 structural corrections, D1–D12 originality directives), the
 > 18-pattern table, acceptance criteria, risk register, and sign-off tables.
-> The nine build docs live in `docs/Redesign(1).md` … `docs/Redesign(9).md`;
+> The ten build docs live in `docs/Redesign(1).md` … `docs/Redesign(10).md` (V4 structural + V5 visual pivot);
 > content gates are tracked in `TODO-Placeholders.md` and open decisions in
 > `Open_Decision.md`. If this file and the spec of record ever disagree, the
 > spec of record wins — fix this file.
@@ -21,7 +21,7 @@
 > reference, or resurrect the old V3 doc series — it
 > carried third-party verbatim copy from the reference site and was
 > deliberately purged. If you ever see it in the repo, delete it and flag it.
-> **Repo:** `DGCodeIdeas/chada.digital` · branch off `main` · HEAD audited `8ed949d` (2026-08-27)
+> **Repo:** `DGCodeIdeas/chada.digital` · branch off `main` · **HEAD audited `2f8669d`** (post-revert starting state, Aug 30, 2026 — main was force-reverted from `6db7f42` to discard R2/R3 code; V4 docs retained, V5 modifications applied per `docs/Redesign(10).md` and `Open_Decision.md` Q10–Q13)
 > **Ratified by:** Tech Lead (Q9 — case-study fate: keep+populate+relink; the
 > originality/content model below). **Still needs Founder sign-off** on the
 > spec as a whole (row 0 of the sign-off table) before Phase 3 onward ships
@@ -30,6 +30,17 @@
 > **Phase numbering matches doc numbering:** Phase N executes `docs/Redesign(N).md`.
 > There is no Phase 1 (Redesign(1).md is the master directive/architecture
 > doc, not an execution phase — everyone should have already read it).
+> **Phase 10 (V5)** is the visual system pivot — Tailwind to Bootstrap+M3+custom.
+> Execute after Phases 2–9 are on main, OR as a parallel visual-only branch
+> that other phases can rebase onto. See `docs/Redesign(10).md`.
+> **Multi-page architecture (Aug 30, 2026):** The V4 single-homepage-with-anchors
+> model is replaced by multi-page routes. See `docs/Redesign(10).md` §13 and
+> `Open_Decision.md` Q12. The homepage becomes a focused 8-section front door;
+> other sections move to `/services`, `/work`, `/case-studies/{slug}`, `/demos`,
+> `/about`, `/contact`, optionally `/blueprints` and `/webinar`.
+> **Build restart (Aug 30, 2026):** Main is being reverted to `2f8669d` (pre-Phase-2)
+> — R2/R3 code discarded, V4 docs retained. See `Open_Decision.md` Q13. Re-execute
+> Phases 2–9 with the V5 visual system + multi-page wiring.
 
 ---
 
@@ -53,17 +64,19 @@ the live competitor site.
 
 ```
 1.  NEVER touch public/demos/.
-2.  mix() not @vite(). 3. bun not npm. 4. ZERO new dependencies
-    (App\Support\Lorem is pure PHP — allowed).
+2.  mix() not @vite(). 3. bun not npm. 4. ZERO new Composer dependencies.
+    Bootstrap 5.3 + Material Web + Material Symbols are allowed (Phase 10).
+    App\Support\Lorem is pure PHP — always allowed.
 5.  Preserve route names: home, work, case-study.show, preview.show,
     preview.subpage, contact.submit, sitemap — plus new: services.
 6.  Keep the contact form's honeypot + AJAX validation exactly as-is.
 7.  PHP 8.2 constructor promotion for new services/controllers.
 8.  Blade components (<x-…>) for reusable markup.
-9.  Chada style charter: rounded-2xl cards, eyebrow labels
-    (text-xs uppercase tracking-[0.3em]), Outfit (display) / Inter (body),
-    one text-primary highlighted word per heading, SVG line icons only —
-    NEVER emoji.
+9.  Chada style charter (V5): cards use M3 elevation (no borders — see
+    Redesign(10).md §5), eyebrow labels via the `.eyebrow` custom utility
+    class, Inter for body + display (Outfit dropped in V5), one text-primary
+    highlighted word per heading, Material Symbols variable font for icons
+    (inline SVGs replaced in Phase 10) — NEVER emoji.
 10. Placeholder prose is GENERATED, never hand-typed: $real ?? \App\Support\Lorem::…(key).
     config/placeholders.php holds seeds, gates, and short chrome labels only.
 11. ORIGINALITY (DMCA rule): never copy third-party text, names, prices,
@@ -194,20 +207,21 @@ Phase numbers match doc numbers exactly — Phase N runs `docs/Redesign(N).md`.
 | Phase | Doc | Scope | Depends on | Status |
 |---|---|---|---|---|
 | **0. Ratify** | — | Founder + Tech Lead confirm the keep-decisions and 18-pattern target; close Q9 | — | Q9 + originality model resolved by Tech Lead; row 0 (full spec) still needs Founder |
-| **2. Data layer** | R2 | `App\Support\Lorem`, `CaseStudyService` v2, `config/placeholders.php` v4, TODO rows | Phase 0 not required (invisible change) | **Built — PR #8 open, DO NOT MERGE ALONE** (breaks 7 partials until Phase 3 lands) |
-| **3. Homepage A** | R3 | Hero, stats-bar, goal-picker price block, audit-cta, working-together, 12-item checklist, webinar-optin (off), founder slots, testimonials+standards (off) | Phase 2 merged | Not started |
+| **2. Data layer** | R2 | `App\Support\Lorem`, `CaseStudyService` v2, `config/placeholders.php` v4, TODO rows | Phase 0 not required (invisible change) | **REVERTED Aug 30** — re-execute from scratch with V5. PR #8/#9 code can be cherry-picked as reference, but views must use Bootstrap+M3 (not Tailwind). |
+| **3. Homepage A** | R3 | Hero, stats-bar, goal-picker price block, audit-cta, working-together, 12-item checklist, webinar-optin (off), founder slots, testimonials+standards (off) | Phase 2 re-merged | **REVERTED Aug 30** — re-execute with V5 + multi-page wiring (founder-bio → /about, webinar-optin → /webinar per `Redesign(10).md` §13.1) |
 | **4. System Blueprints** | R4 | `workflow-system` pipeline pattern, `workflow-diagram` upgrade | Phase 2 | Not started — can run parallel to 3, 5, 6 |
-| **5. Case studies + /work + sitemap + nav** | R5 | `x-result-card`, homepage results grid, dynamic `/work` filters, detail-page gating, sitemap, nav relink (fixes bug 1 first pass) | Phase 2 | Not started — can run parallel to 3, 4, 6 |
+| **5. Case studies + /work + sitemap + nav** | R5 | `x-result-card`, homepage results grid, dynamic `/work` filters, detail-page gating, sitemap, nav relink (fixes bug 1 first pass) | Phase 2 | **REVERTED Aug 30** — re-execute from scratch with V5. (Was reverted once via PR #13 due to R4 not being merged first; main is now at `2f8669d` so R4 PR #11 also needs to re-merge before R5 retries.) |
 | **6. /services page** | R6 | `PricingService`, tiered pricing page, 15 gated cards | Phase 2; sitemap guard from Phase 5 (defensive `Route::has` check makes this independently mergeable) | Not started — can run parallel to 3, 4, 5 |
 | **7. Demo Lab + MarTech** | R7 | 6-tab interactive demo panels (real `public/demos/`), filterable integrations grid | Phase 5 (home include positions) | Not started |
 | **8. Global chrome + SEO** | R8 | Final header/footer, chat widget WhatsApp wiring, JSON-LD, meta — final nav fix (bug 1, second pass) | Phase 5, 6, 7 (routes + anchors must exist) | Not started |
 | **9. QA + launch gates** | R9 | All grep gates (incl. originality gates 2/9/10/11), functional matrix, Lighthouse, NDPA, deploy runbook, maintenance-lock release | ALL previous phases merged | Not started |
+| **10. Visual pivot (V5)** | R10 | Tailwind → Bootstrap 5.3 + Material Web Components + Material Symbols + Inter. No-borders fusion. Design Partner band replaces trust strip. See `docs/Redesign(10).md` | Phases 2–9 merged OR parallel visual-only branch | Not started — recommended AFTER R4 merges and R5 retries |
 
-**Branch per doc:** `git checkout main && git pull && git checkout -b feat/v4-r{n}`. Never work directly on `main`. One PR per doc. Do not merge your own PRs. **Phases 3, 4, and 5 can run in parallel** (independent branches off the same Phase 2 base) — Phase 6 too, if its defensive sitemap guard is respected. Phases 7, 8, 9 are strictly sequential.
+**Branch per doc:** `git checkout main && git pull && git checkout -b feat/v4-r{n}` (or `feat/v5-visual-pivot` for Phase 10). Never work directly on `main`. One PR per doc. Do not merge your own PRs. **Phases 3, 4, and 5 can run in parallel** (independent branches off the same Phase 2 base) — Phase 6 too, if its defensive sitemap guard is respected. Phases 7, 8, 9 are strictly sequential. **Phase 10** is best run after R4 merges (so its `workflow-system.blade.php` migration is included) — see `docs/Redesign(10).md` §11.
 
 ---
 
-## 6. Phase 2 — Data layer (BUILT — see PR #8, do not re-run)
+## 6. Phase 2 — Data layer (REVERTED Aug 30 — re-execute with V5)
 
 ```text
 You are Kilo, executing Phase 2 (docs/Redesign(2).md — Data layer) of the Chada
@@ -271,16 +285,30 @@ VERIFY:
 Commit as: feat(v4-r2): data layer — Lorem generator, CaseStudyService v2, placeholders v4
 Open a PR. Do not merge it yourself.
 
-⚠️ THIS PHASE IS ALREADY BUILT. See PR #8 (branch feat/v4-r2). Do not
-re-execute this block — it's kept here for reference/audit only. PR #8
-must not merge alone; it needs Phase 3 (R3) merged at the same time or
-immediately after, or every page 500s (7 partials read config keys this
-phase removed — see PR #8's body for the full list).
+⚠️ THIS PHASE WAS BUILT IN PR #8/#9 AND THEN REVERTED Aug 30, 2026.
+Main is now at `2f8669d` (post-revert starting state) — the R2 code is gone.
+
+Re-execute this block from scratch. The data-layer code from PR #8/#9 history
+is still a valid reference (cherry-pick or copy the PHP shapes), BUT the
+Blade views that consumed those config keys were also reverted, so the
+re-execution is a clean rebuild — not a re-merge of an old PR.
+
+V5 modifications that apply during this re-execution:
+- Constraint 4 expanded (Bootstrap 5.3, Material Web Components, Material
+  Symbols via Bun — NOT npm).
+- Constraint 9 updated (no borders, Inter+Material Symbols, .eyebrow utility).
+- The `'tools'` arrays in CaseStudyService should use 'Bootstrap 5' and
+  'Material Web' (not 'Tailwind CSS') — see docs/Redesign(2).md.
+- The Phase 2 agent task block above is still valid for the data-layer-only
+  work (Lorem.php, CaseStudyService, config/placeholders.php, TODO rows).
+  No V5 visual changes here — this phase is data-layer only.
+
+Phase 2 must merge before Phase 3 (R3) starts — same dependency as V4.
 ```
 
 ---
 
-## 7. Phases 3–9 — ready to execute
+## 7. Phases 3–10 — ready to execute
 
 Each block below is a session kickoff, not a code substitute — every doc
 (`docs/Redesign(N).md`) already contains complete, working Blade/PHP; retyping
@@ -289,6 +317,8 @@ docs don't say by themselves: dependency order, the gotchas an agent working
 from the doc in isolation would miss, and the parts of this specific repo's
 history (bugs, prior incidents) that the doc author knew about but a fresh
 session wouldn't.
+
+**Phase 10** (V5 visual pivot) is at the end of this section — read it last.
 
 **Every phase:** confirm its dependency phase(s) are merged and `main` is
 current → `git checkout -b feat/v4-r{n}` → re-read §1 and §2 above → execute
@@ -671,8 +701,10 @@ already; zero deletions means rollback is always just `git revert`.
 
 **NEVER TOUCH:** `public/demos/**`, `ContactController.php`,
 `resources/js/modules/contact-form.js`, `resources/js/modules/mobile-nav.js`,
-`tailwind.config.js`, `webpack.mix.js`, `composer.json`, `package.json`,
+`resources/sass/_tokens.scss` (V5 — see `docs/Redesign(10).md` §2),
+`webpack.mix.js`, `composer.json`, `package.json`,
 migrations, `.github/workflows/deploy.yml`, `scripts/maintenance-lock.sh`.
+*(V4's `tailwind.config.js` was deleted in Phase 10 — see `docs/Redesign(10).md` §7.3.)*
 
 ---
 
@@ -687,6 +719,58 @@ migrations, `.github/workflows/deploy.yml`, `scripts/maintenance-lock.sh`.
 **Do not mark this ready to launch** while any `TODO-Placeholders.md` row it
 depends on is unchecked, and don't release `scripts/maintenance-lock.sh` until
 gates 1, 2, and 9 all pass clean.
+
+---
+
+## 9.5 Phase 10 — Visual pivot (V5) — `docs/Redesign(10).md`
+
+```text
+You are Kilo, executing Phase 10 (docs/Redesign(10).md — Visual System Migration:
+Tailwind → Bootstrap 5.3 + Material Web Components + Material Symbols + Inter)
+of the Chada Digital V5 redesign at DGCodeIdeas/chada.digital. Read
+Implementation_redesign.md §1 and §2 first — all V4 constraints apply with the
+updates in §1 (constraint 4 expanded to allow Bootstrap/M3/Material Symbols;
+constraint 9 updated for the no-borders rule).
+
+Branch: git checkout -b feat/v5-visual-pivot
+
+Execute docs/Redesign(10).md TASK 1 through TASK 8 exactly as written.
+
+DEPENDENCY CHECK BEFORE STARTING:
+- Phase 2 (R2 data layer) merged? YES (PR #8 / merged via PR #9)
+- Phase 3 (R3 homepage A) merged? YES (PR #9, d0b4cd5)
+- Phase 4 (R4 System Blueprints) merged? NO — PR #11 still open as of this audit.
+  RECOMMENDED: merge PR #11 BEFORE starting Phase 10, so the workflow-system
+  partial is migrated as part of this phase (§8 row 13). Otherwise Phase 10
+  lands and R4's Tailwind classes need a separate follow-up commit.
+- Phase 5 (R5) was reverted (PR #13). Should be re-attempted AFTER R4 merges.
+  Does not block Phase 10 if R5 is still pending — Phase 10's migration covers
+  the x-result-card partial (§8 row 14) regardless of whether R5 has shipped.
+
+WHAT THIS PHASE CHANGES (high-level — see docs/Redesign(10).md for full spec):
+- Tailwind CSS v3 → Bootstrap 5.3 + Material Web Components + Material Symbols + Inter
+- Loading order: Bootstrap → M3 → custom SCSS (binding)
+- All visible borders removed (form focus rings, M3 elevation shadows only)
+- Trust strip partial → Design Partner band ("No customer logos yet — we won't fake them. Become a design partner.")
+- Typography: Inter (single font, varied weights) + Material Symbols; Outfit dropped
+- Design tokens move from tailwind.config.js (JS) → resources/sass/_tokens.scss (SCSS mapped to M3 CSS custom properties)
+
+WHAT THIS PHASE DOES NOT CHANGE:
+- All Blade partials' structural HTML, gating, content calls
+- All routes, controller signatures, mix() asset loading
+- The 18-pattern homepage architecture from V4 §1
+- All originality/DMCA rules
+
+VERIFY: run all 10 grep gates from docs/Redesign(10).md §9.1, plus the 7 visual
+gates from §9.2. Both the Tech Lead and Founder must sign off — this is a
+system-wide visual pivot, not a routine merge.
+
+Commit as: feat(v5): visual system migration — Tailwind → Bootstrap 5.3 +
+Material Web Components + Material Symbols + Inter. No-borders fusion.
+Design Partner band replaces trust strip.
+
+Open a PR. Do not merge yourself.
+```
 
 ---
 
