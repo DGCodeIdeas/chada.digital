@@ -3,41 +3,51 @@
 namespace App\Http\Controllers;
 
 use App\Services\CaseStudyService;
-use Illuminate\View\View;
+use Illuminate\Http\Request;
 
 class CaseStudyController extends Controller
 {
-    public function __construct(
-        protected CaseStudyService $caseStudyService
-    ) {}
+    protected $caseStudyService;
 
-    public function index(): View
+    public function __construct(CaseStudyService $caseStudyService)
     {
-        return view('pages.work', [
-            'studies' => $this->caseStudyService->collection(),
-            'meta' => [
-                'title' => 'Work — Chada Digital',
-                'canonical' => route('work'),
-                'ogImage' => asset('og-image.jpg'),
-            ],
-        ]);
+        $this->caseStudyService = $caseStudyService;
     }
 
-    public function show(string $slug): View
+    /**
+     * Case Studies index — filterable grid
+     */
+    public function index(Request $request)
     {
-        $study = $this->caseStudyService->get($slug);
-        if (! $study) {
+        $category = $request->get('category', 'all');
+        $studies = $category === 'all'
+            ? $this->caseStudyService->all()
+            : $this->caseStudyService->byCategory($category);
+
+        $categories = $this->caseStudyService->categories();
+        $meta = [
+            'title' => 'Case Studies — Chada Digital',
+            'description' => 'Real results for real businesses. Explore our portfolio of web development, automation, and advertising projects.',
+            'og_image' => asset('og-image.jpg'),
+        ];
+        return view('pages.case-studies', compact('studies', 'categories', 'category', 'meta'));
+    }
+
+    /**
+     * Individual case study detail page
+     */
+    public function show($slug)
+    {
+        $study = $this->caseStudyService->find($slug);
+        if (!$study) {
             abort(404);
         }
-
-        return view('pages.case-study', [
-            'slug' => $slug,
-            'study' => $study,
-            'meta' => [
-                'title' => $study['client'].' — Chada Digital',
-                'canonical' => route('case-study.show', $slug),
-                'ogImage' => asset($study['thumbnail']),
-            ],
-        ]);
+        $related = $this->caseStudyService->related($slug, 3);
+        $meta = [
+            'title' => $study['client'] . ' — Case Study | Chada Digital',
+            'description' => $study['excerpt'],
+            'og_image' => $study['og_image'] ?? asset('og-image.jpg'),
+        ];
+        return view('pages.case-study', compact('study', 'related', 'meta'));
     }
 }
