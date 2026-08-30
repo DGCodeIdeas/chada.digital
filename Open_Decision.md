@@ -1,3 +1,7 @@
+> **⚠️ ARCHITECTURE CHANGE (Aug 30, 2026):** The active build spec has moved to `MULTIPAGE_REBUILD.md`. The site is now being rebuilt as a **multi-page application** using **Bootstrap 5 + Material Design 3** (replacing the single-page anchor architecture and Tailwind CSS). This document remains valid as reference material but should not be used as the primary build guide.
+>
+> **Active spec:** `MULTIPAGE_REBUILD.md` · **Related:** `MIGRATION.md` (technical migration) · `Open_Decision.md` · `TODO-Placeholders.md`
+
 # Open_Decision.md — Chada Digital Redesign (V2: WAB Digital Replicate)
 
 > For the whole team — technical and non-technical. Supersedes
