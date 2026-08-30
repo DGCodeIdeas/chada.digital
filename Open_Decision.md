@@ -5,7 +5,7 @@
 # Open_Decision.md — Chada Digital Redesign (V2: WAB Digital Replicate)
 
 > For the whole team — technical and non-technical. Supersedes
-> `archive/Open_Decision_V1_LIGHT_THEME_ARCHIVED.md`. Read `MIGRATION.md` first — this doc's decisions still apply, but the build spec has moved to Bootstrap + MD3 — this
+> `archive/Open_Decision_V1_LIGHT_THEME_ARCHIVED.md` (historical — not in repo). Read `MIGRATION.md` first — this doc's decisions still apply, but the build spec has moved to Bootstrap + MD3 — this
 > doc is the list of things that need real answers before that spec can be
 > built.
 
