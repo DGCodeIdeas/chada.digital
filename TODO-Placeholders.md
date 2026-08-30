@@ -1,3 +1,7 @@
+> **⚠️ STACK CHANGE (Aug 30, 2026):** This content checklist remains the source of truth for what real content David must supply before launch. The technical implementation has moved to `MIGRATION.md` (Bootstrap 5 + Material Design 3). All Tailwind class references below are historical — the content requirements (names, metrics, pricing, workflows) are unchanged.
+>
+> **Related docs:** `MIGRATION.md` (active build spec) · `Open_Decision.md` (decision log) · `Implementation_redesign.md` (deprecated) · `REDESIGN_IMPLEMENTATION.md` (deprecated)
+
 # TODO-Placeholders.md — Content Needed Before Launch (V4)
 
 > **Supersedes** the V2-scope version of this file (offers/hero/testimonials/
@@ -7,15 +11,15 @@
 > page, and a webinar opt-in are all new. Old rows are preserved below,
 > not lost — this is a fuller list, not a different one.
 >
-> Every row corresponds to a named gate in `Implementation_redesign.md` §2.
+> Every row corresponds to a named gate in `MIGRATION.md` §5 (content requirements) — formerly `Implementation_redesign.md` §2.
 > Nothing here is filled by inventing a plausible-sounding answer — every
 > gate stays closed (rendering nothing, or a fallback like "Contact for
 > pricing") until the actual answer lands. **This file's job is to get
 > checked off, not filed.**
 >
 > **Related docs:** the config gates themselves are built in
-> `docs/Redesign(2).md` (data layer) and enforced at launch by
-> `docs/Redesign(9).md` (grep gates 1–12 + launch checklist); the decisions
+> `MIGRATION.md` §5 (data layer) — formerly `docs/Redesign(2).md` and enforced at launch by
+> `MIGRATION.md` §8 (launch checklist) — formerly `docs/Redesign(9).md`; the decisions
 > behind each row live in `Open_Decision.md`; the agent-session orientation
 > is `Implementation_redesign.md`, and the full spec of record is
 > `REDESIGN_IMPLEMENTATION.md` (both at the repo root).
