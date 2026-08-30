@@ -20,8 +20,8 @@
 > `Open_Decision.md`. If this file and the spec of record ever disagree, the
 > spec of record wins — fix this file.
 > **Supersedes:** any earlier "V3" doc series, PR #6 (`feat/wab-complete-replication-spec`
-> v1, closed), and the standalone `REDESIGN_IMPLEMENTATION_PROMPT.md` from the V2-only
-> build (archived as `archive/IMPLEMENTATION_PROMPT_ARCHIVED.md`). Do not open,
+> v1, closed), and the standalone `REDESIGN_IMPLEMENTATION_PROMPT.md` (historical — not in repo) from the V2-only
+> build (archived as `archive/IMPLEMENTATION_PROMPT_ARCHIVED.md` (historical — not in repo)). Do not open,
 > reference, or resurrect the old V3 doc series — it
 > carried third-party verbatim copy from the reference site and was
 > deliberately purged. If you ever see it in the repo, delete it and flag it.
