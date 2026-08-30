@@ -1,40 +1,64 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noindex">
-    <title>We'll be right back — Chada Digital</title>
-    {{-- Deliberately NOT mix('css/app.css') — that depends on a successful CI build
-         and mix-manifest.json, either of which could be exactly why this page is
-         being shown. This file is committed directly and has no build dependency. --}}
-    <link rel="stylesheet" href="{{ asset('css/maintenance.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance — Chada Digital</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --md-primary: #2563eb;
+            --md-on-primary: #ffffff;
+            --md-surface: #fafafa;
+            --md-on-surface: #171717;
+            --md-surface-variant: #f0ede8;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--md-surface);
+            color: var(--md-on-surface);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .maintenance-card {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            border: 1px solid #e5e5e5;
+            max-width: 480px;
+            width: 100%;
+            padding: 3rem;
+            text-align: center;
+        }
+        .maintenance-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--md-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+        h1 { font-family: 'Outfit', sans-serif; font-weight: 700; }
+    </style>
 </head>
 <body>
-    <main class="maintenance-page">
-        <img
-            src="{{ asset('chada-logo-horizontal-dark.png') }}"
-            alt="Chada Digital"
-            class="maintenance-logo"
-        />
-
+    <div class="maintenance-card">
         <div class="maintenance-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2" />
-                <circle cx="12" cy="12" r="9" stroke-linecap="round" stroke-linejoin="round" />
+            <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
             </svg>
         </div>
-
-        <h1 class="maintenance-title">We're making a few updates</h1>
-        <p class="maintenance-text">
-            Chada Digital is offline briefly for scheduled maintenance. We'll be back
-            shortly — thanks for bearing with us.
-        </p>
-
-        <p class="maintenance-contact">
-            Need us urgently?
-            <a href="mailto:info@chadadigital.com">info@chadadigital.com</a>
-        </p>
-    </main>
+        <h1 class="mb-3">We Will Be Right Back</h1>
+        <p class="text-muted mb-4">Chada Digital is currently undergoing scheduled maintenance. We are making improvements to serve you better.</p>
+        <p class="text-muted mb-0" style="font-size: 0.875rem;">Expected to return shortly. Thank you for your patience.</p>
+    </div>
 </body>
 </html>
