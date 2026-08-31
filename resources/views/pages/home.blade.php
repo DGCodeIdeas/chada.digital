@@ -28,56 +28,37 @@
                      line that was here. See partials/design-partner-band.blade.php and
                      Open_Decision.md Q11 (Founder directive, ratified Aug 30, 2026). --}}
             </div>
-            <div class="col-lg-5 d-none d-lg-block">
-                <div class="position-relative">
-                    <div class="rounded-4 shadow-lg" style="background: var(--md-sys-color-surface); border: 1px solid var(--md-sys-color-outline-variant); padding: 2rem;">
-                        <div class="d-flex align-items-center gap-3 mb-4">
-                            <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container);">
-                                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
-                            </div>
-                            <div>
-                                <p class="fw-semibold mb-0" style="font-size: 0.9375rem;">Revenue Growth</p>
-                                <p class="mb-0" style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant);">+1,200% for NOIR</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center gap-3 mb-4">
-                            <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container);">
-                                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                            </div>
-                            <div>
-                                <p class="fw-semibold mb-0" style="font-size: 0.9375rem;">Lead Quality</p>
-                                <p class="mb-0" style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant);">3× increase for Sterling & Vale</p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; background: var(--md-sys-color-tertiary-container); color: var(--md-sys-color-on-tertiary-container);">
-                                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-                            </div>
-                            <div>
-                                <p class="fw-semibold mb-0" style="font-size: 0.9375rem;">Conversion Rate</p>
-                                <p class="mb-0" style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant);">68% trial-to-paid for ApexFlow</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {{-- V5 GATE MODEL (restored Aug 31, 2026): the hero metric card that was here
+                 hardcoded three fabricated metrics directly into the hero markup:
+                   - "+1,200% for NOIR" (matches WAB Digital's own real stat — fabrication risk)
+                   - "3× increase for Sterling & Vale"
+                   - "68% trial-to-paid for ApexFlow"
+                 All three were attached to real Chada demo project names but were never
+                 verified. Removed per FOUNDER_CHECKLIST.md row 1 + audit by Claude.
+                 The hero card stays empty until the Founder supplies verified metrics
+                 via CaseStudyService (each entry's 'published' => false gate flips
+                 to true when verified). --}}
         </div>
     </div>
 </section>
 
 <!-- ===== STATS ===== -->
+@if(!empty(array_filter(array_column($stats, 'number'))))
 <section style="background: var(--md-sys-color-surface); border-bottom: 1px solid var(--md-sys-color-outline-variant); padding: 3rem 0;">
     <div class="container">
         <div class="row g-4 text-center">
             @foreach($stats as $stat)
+            @if($stat['number'] !== null)
             <div class="col-6 col-md-3">
                 <p class="display-5 fw-bold mb-1" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-primary);">{{ $stat['number'] }}</p>
                 <p class="mb-0" style="font-size: 0.9375rem; color: var(--md-sys-color-on-surface-variant);">{{ $stat['label'] }}</p>
             </div>
+            @endif
             @endforeach
         </div>
     </div>
 </section>
+@endif
 
 {{-- Design Partner band — always renders, no gate. Replaces the V2 trust-strip. --}}
 @include('partials.design-partner-band')
@@ -114,6 +95,7 @@
 </section>
 
 <!-- ===== FEATURED CASE STUDIES ===== -->
+@if($featuredStudies->isNotEmpty())
 <section style="background: var(--md-sys-color-surface-container-low); padding: 5rem 0;">
     <div class="container">
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-5 gap-3">
@@ -147,6 +129,11 @@
         </div>
     </div>
 </section>
+@endif
+{{-- V5 GATE MODEL (restored Aug 31, 2026): the featured case studies section is hidden
+     entirely when no case study has 'published' => true. All 6 entries currently have
+     'published' => false, so this section renders nothing until the Founder verifies
+     at least one. See FOUNDER_CHECKLIST.md row 1 + CaseStudyService::featured(). --}}
 
 <!-- ===== SERVICES TEASER ===== -->
 <section style="background: var(--md-sys-color-surface); padding: 5rem 0;">

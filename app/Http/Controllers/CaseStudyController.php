@@ -16,13 +16,19 @@ class CaseStudyController extends Controller
 
     /**
      * Case Studies index — filterable grid
+     *
+     * V5 GATE MODEL (restored Aug 31, 2026): the index page filters by
+     * 'published' => true. All 6 entries currently have 'published' => false,
+     * so this page shows the empty state ("No case studies found in that
+     * category") until the Founder verifies at least one. See
+     * FOUNDER_CHECKLIST.md row 1 + CaseStudyService::featured().
      */
     public function index(Request $request)
     {
         $category = $request->get('category', 'all');
         $studies = $category === 'all'
-            ? $this->caseStudyService->all()
-            : $this->caseStudyService->byCategory($category);
+            ? $this->caseStudyService->all()->where('published', true)
+            : $this->caseStudyService->byCategory($category)->where('published', true);
 
         $categories = $this->caseStudyService->categories();
         $meta = [

@@ -42,6 +42,7 @@
 </section>
 
 <!-- Testimonials -->
+@if(!empty($testimonials))
 <section style="background: var(--md-sys-color-surface-container-low); padding: 5rem 0;">
     <div class="container">
         <div class="text-center mb-5">
@@ -75,6 +76,12 @@
         </div>
     </div>
 </section>
+@endif
+{{-- V5 GATE MODEL (restored Aug 31, 2026): the testimonials section is hidden entirely
+     when TestimonialService::all() returns an empty array. All 6 fabricated testimonials
+     (David Okafor, Amara Nwosu, etc.) were removed — see TestimonialService.php header.
+     Section renders nothing until the Founder supplies real client quotes with permission.
+     See FOUNDER_CHECKLIST.md row 2. --}}
 
 <!-- MarTech Grid -->
 <section style="background: var(--md-sys-color-surface); padding: 5rem 0;">

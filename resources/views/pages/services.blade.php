@@ -68,8 +68,12 @@
                     <div class="card-body p-4 pt-5">
                         <h5 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface);">{{ $tier['name'] }}</h5>
                         <div class="d-flex align-items-baseline gap-2 mb-3">
-                            <span class="fw-bold" style="font-family: 'Outfit', sans-serif; font-size: 2.25rem; color: var(--md-sys-color-primary);">{{ $tier['price'] }}</span>
-                            <span style="color: var(--md-sys-color-on-surface-variant); font-size: 0.875rem;">{{ $tier['price_note'] }}</span>
+                            @if($tier['price'] !== null)
+                                <span class="fw-bold" style="font-family: 'Outfit', sans-serif; font-size: 2.25rem; color: var(--md-sys-color-primary);">{{ $tier['price'] }}</span>
+                                <span style="color: var(--md-sys-color-on-surface-variant); font-size: 0.875rem;">{{ $tier['price_note'] }}</span>
+                            @else
+                                <span class="fw-bold" style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; color: var(--md-sys-color-on-surface-variant);">Contact for pricing</span>
+                            @endif
                         </div>
                         <p class="mb-4" style="font-size: 0.9375rem; color: var(--md-sys-color-on-surface-variant); line-height: 1.6;">{{ $tier['description'] }}</p>
                         <ul class="list-unstyled mb-4">

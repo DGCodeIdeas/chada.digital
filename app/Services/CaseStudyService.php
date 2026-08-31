@@ -5,8 +5,27 @@ namespace App\Services;
 use Illuminate\Support\Collection;
 
 /**
- * Case Study data — real client projects mapped to demo previews
- * All content is original. No third-party text copied.
+ * Case Study data — gated.
+ *
+ * V4 GATE MODEL (restored Aug 31, 2026): every entry has a 'published' boolean.
+ * Default is false — entries are invisible everywhere (homepage cards,
+ * /case-studies grid, /case-studies/{slug} detail page) until the Founder
+ * verifies the metric + narrative and flips it to true.
+ *
+ * The 6 entries below contain fabricated metrics (300%, 68%, 40%, 2,100, 1,200%,
+ * 500%) attached to real Chada demo projects. The 'published' => false gate
+ * keeps them invisible until each is either replaced with real verified
+ * content OR removed entirely. See FOUNDER_CHECKLIST.md row 1.
+ *
+ * Specific concern flagged in audit (Aug 31, 2026): NOIR's "1,200% Sales
+ * Increase" metric matches WAB Digital's own published real stat. This is
+ * exactly the kind of fabrication Open_Decision.md Q0 (originality ground
+ * rule) and Redesign(9).md Gate 2 exist to prevent. Stays gated until the
+ * Founder reviews — see PR body for details.
+ *
+ * See: FOUNDER_CHECKLIST.md row 1 (case studies)
+ *      Open_Decision.md Q9 (case-study system fate)
+ *      TODO-Placeholders.md §3 (case study gate)
  */
 class CaseStudyService
 {
@@ -15,6 +34,7 @@ class CaseStudyService
         return collect([
             [
                 'slug' => 'sterling-vale',
+                'published' => false,
                 'client' => 'Sterling & Vale',
                 'industry' => 'Construction & Engineering',
                 'category' => 'web-development',
@@ -38,6 +58,7 @@ class CaseStudyService
             ],
             [
                 'slug' => 'apexflow',
+                'published' => false,
                 'client' => 'ApexFlow',
                 'industry' => 'SaaS / AI Automation',
                 'category' => 'funnel-automation',
@@ -62,6 +83,7 @@ class CaseStudyService
             ],
             [
                 'slug' => 'elysian',
+                'published' => false,
                 'client' => 'ELYSIAN',
                 'industry' => 'Hospitality / Hotel & Spa',
                 'category' => 'web-development',
@@ -85,6 +107,7 @@ class CaseStudyService
             ],
             [
                 'slug' => 'hirebase',
+                'published' => false,
                 'client' => 'HIREBASE',
                 'industry' => 'Recruitment / HR Tech',
                 'category' => 'web-development',
@@ -109,6 +132,7 @@ class CaseStudyService
             ],
             [
                 'slug' => 'noir',
+                'published' => false,
                 'client' => 'NOIR',
                 'industry' => 'Fashion / E-Commerce',
                 'category' => 'funnel-automation',
@@ -132,6 +156,7 @@ class CaseStudyService
             ],
             [
                 'slug' => 'timber-mill',
+                'published' => false,
                 'client' => 'TimberMill',
                 'industry' => 'Artisan / Furniture',
                 'category' => 'web-development',
@@ -158,7 +183,11 @@ class CaseStudyService
 
     public function featured(int $count = 3): Collection
     {
-        return $this->all()->take($count);
+        // V4 GATE MODEL (restored Aug 31, 2026): only published case studies
+        // appear on the homepage. All 6 entries have 'published' => false
+        // by default — each flips to true only when the Founder verifies
+        // the metric + narrative. See FOUNDER_CHECKLIST.md row 1.
+        return $this->all()->where('published', true)->take($count);
     }
 
     public function byCategory(string $category): Collection
@@ -179,7 +208,13 @@ class CaseStudyService
 
     public function find(string $slug): ?array
     {
-        return $this->all()->firstWhere('slug', $slug);
+        // V4 GATE MODEL (restored Aug 31, 2026): unpublished case studies
+        // are not findable by slug — direct URL access to /case-studies/{slug}
+        // returns null (controller will 404 or render 'coming soon'). This
+        // prevents an unpublished case study from being readable via direct URL.
+        return $this->all()
+            ->where('published', true)
+            ->firstWhere('slug', $slug);
     }
 
     public function related(string $currentSlug, int $count = 3): Collection
@@ -189,6 +224,7 @@ class CaseStudyService
             return collect();
         }
         return $this->all()
+            ->where('published', true)
             ->where('slug', '!=', $currentSlug)
             ->where('category', $current['category'])
             ->take($count);
@@ -196,11 +232,20 @@ class CaseStudyService
 
     public function stats(): array
     {
+        // V4 GATE MODEL (restored Aug 31, 2026): all stats null until the
+        // Founder supplies verified numbers. The homepage stats band hides
+        // itself when every value is null (see home.blade.php).
+        //
+        // Previously hardcoded: '50+ Projects Delivered', '6+ Industries
+        // Served', '3+ Years Active', '95% Client Retention' — all
+        // fabricated, all ungated. Replaced with null per FOUNDER_CHECKLIST.md
+        // row 2 (stats). Each value flips to a real verified number when
+        // the Founder supplies one.
         return [
-            ['number' => '50+', 'label' => 'Projects Delivered'],
-            ['number' => '6+', 'label' => 'Industries Served'],
-            ['number' => '3+', 'label' => 'Years Active'],
-            ['number' => '95%', 'label' => 'Client Retention'],
+            ['number' => null, 'label' => 'Projects Delivered'],
+            ['number' => null, 'label' => 'Industries Served'],
+            ['number' => null, 'label' => 'Years Active'],
+            ['number' => null, 'label' => 'Client Retention'],
         ];
     }
 
