@@ -2,14 +2,14 @@
 
 @section('content')
 
-<section style="background: linear-gradient(135deg, #f8f6f3 0%, #f0ede8 100%); padding: 5rem 0 3rem;">
+<section style="background: linear-gradient(135deg, #f8f6f3 0%, #f0ede8 100%); padding: 4rem 0 2rem;">
     <div class="container">
-        <div class="row g-5">
+        <div class="row g-4">
             <div class="col-lg-5">
-                <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.08em;">Contact</p>
-                <h1 class="display-5 fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface);">Let Us Build Your Next Revenue System</h1>
-                <p class="mb-4" style="color: var(--md-sys-color-on-surface-variant); font-size: 1.0625rem; line-height: 1.7;">
-                    Tell us what you are trying to achieve. We will reply within 24 hours with a clear assessment of what is possible, how long it will take, and what it will cost.
+                <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;">{{ config('placeholders.contact_page.eyebrow') }}</p>
+                <h1 class="display-6 fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface); font-size: 2.25rem;">{{ config('placeholders.contact_page.headline') }}</h1>
+                <p class="mb-4" style="color: var(--md-sys-color-on-surface-variant); font-size: 0.9375rem; line-height: 1.65;">
+                    {{ config('placeholders.contact_page.subhead') }}
                 </p>
 
                 <div class="card border-0 mb-4" style="background: var(--md-sys-color-surface); border-radius: 16px;">
@@ -20,19 +20,19 @@
                                 <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container);">
                                     <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                                 </div>
-                                <span>hello@chadadigital.com</span>
+                                <a href="mailto:{{ config('placeholders.contact.email') }}" style="color: var(--md-sys-color-on-surface-variant); text-decoration: none;">{{ config('placeholders.contact.email') }}</a>
                             </li>
                             <li class="d-flex align-items-center gap-3 mb-3">
                                 <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container);">
                                     <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
                                 </div>
-                                <span>+234 000 000 0000</span>
+                                <a href="tel:{{ config('placeholders.contact.phone') }}" style="color: var(--md-sys-color-on-surface-variant); text-decoration: none;">{{ config('placeholders.contact.phone_display') }}</a>
                             </li>
                             <li class="d-flex align-items-center gap-3">
                                 <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container);">
                                     <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
                                 </div>
-                                <span>Lagos, Nigeria</span>
+                                <span>{{ config('placeholders.contact.location') }}</span>
                             </li>
                         </ul>
                     </div>
@@ -41,8 +41,8 @@
                 <div class="card border-0" style="background: var(--md-sys-color-surface); border-radius: 16px;">
                     <div class="card-body p-4">
                         <h6 class="fw-semibold mb-3" style="font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--md-sys-color-on-surface);">Response Guarantee</h6>
-                        <p class="mb-0" style="font-size: 0.9375rem; color: var(--md-sys-color-on-surface-variant); line-height: 1.6;">
-                            We reply to all inquiries within 24 hours during business days. For urgent requests, WhatsApp us directly and we will respond within 2 hours.
+                        <p class="mb-0" style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant); line-height: 1.6;">
+                            {{ config('placeholders.contact.response_time') }}
                         </p>
                     </div>
                 </div>
@@ -50,8 +50,8 @@
 
             <div class="col-lg-7">
                 <div class="card border-0" style="background: var(--md-sys-color-surface); border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.06);">
-                    <div class="card-body p-4 p-lg-5">
-                        <h4 class="fw-semibold mb-4" style="color: var(--md-sys-color-on-surface);">Send a Message</h4>
+                    <div class="card-body p-3 p-lg-4">
+                        <h4 class="fw-semibold mb-3" style="color: var(--md-sys-color-on-surface); font-size: 1.125rem;">Send a Message</h4>
                         <form id="contactForm" action="{{ route('contact.store') }}" method="POST">
                             @csrf
                             <div class="row g-3">
@@ -83,7 +83,7 @@
                                     <input type="text" name="website" tabindex="-1" autocomplete="off">
                                 </div>
                                 <div class="col-12">
-                                    <button type="submit" class="btn btn-primary w-100 rounded-pill py-3" style="background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); font-weight: 500; font-size: 1rem;">
+                                    <button type="submit" class="btn btn-primary w-100 rounded-pill" style="background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); font-weight: 500; font-size: 0.875rem; padding: 0.625rem 1rem;">
                                         Send Message
                                     </button>
                                 </div>
@@ -131,7 +131,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
     } catch (err) {
         responseDiv.style.display = 'block';
         responseDiv.className = 'alert alert-danger rounded-3';
-        responseDiv.textContent = 'Network error. Please email us directly at hello@chadadigital.com';
+        responseDiv.textContent = 'Network error. Please email us directly at ' + '{{ config('placeholders.contact.email') }}';
     } finally {
         btn.disabled = false;
         btn.textContent = originalText;

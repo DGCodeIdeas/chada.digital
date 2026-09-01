@@ -3,18 +3,18 @@
 @section('content')
 
 <!-- ===== HERO ===== -->
-<section class="position-relative overflow-hidden" style="background: linear-gradient(135deg, #f8f6f3 0%, #f0ede8 100%); padding: 6rem 0 5rem;">
+<section class="position-relative overflow-hidden" style="background: linear-gradient(135deg, #f8f6f3 0%, #f0ede8 100%); padding: 4rem 0 3rem;">
     <div class="container">
-        <div class="row align-items-center g-5">
+        <div class="row align-items-center g-4">
             <div class="col-lg-7">
-                <p class="fw-semibold mb-3" style="color: var(--md-sys-color-primary); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.08em;">
-                    Digital Solutions That Help Businesses Grow
+                <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;">
+                    {{ config('placeholders.hero.eyebrow') }}
                 </p>
-                <h1 class="display-4 fw-bold mb-4" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface); line-height: 1.15;">
-                    We Build Systems That<br>Generate <span style="color: var(--md-sys-color-primary);">Revenue</span>
+                <h1 class="display-5 fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface); line-height: 1.15; font-size: 2.5rem;">
+                    {{ config('placeholders.hero.headline_before_highlight', 'We Build Systems That Generate ') }}<span style="color: var(--md-sys-color-primary);">{{ config('placeholders.hero.headline_highlight', 'Revenue') }}</span>
                 </h1>
-                <p class="lead mb-4" style="color: var(--md-sys-color-on-surface-variant); max-width: 540px;">
-                    Not just websites. Not just ads. We design, build, and automate digital systems that turn visitors into customers | and customers into repeat buyers.
+                <p class="mb-4" style="color: var(--md-sys-color-on-surface-variant); max-width: 540px; font-size: 0.9375rem; line-height: 1.65;">
+                    {{ config('placeholders.hero.subhead') }}
                 </p>
                 <div class="d-flex flex-wrap gap-3">
                     <a href="{{ route('case-studies.index') }}" class="btn btn-primary btn-lg rounded-pill px-4" style="background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); font-weight: 500;">
@@ -93,7 +93,7 @@
             @php
             $steps = [
                 ['number' => '01', 'title' => 'Discover', 'desc' => 'We audit your current digital presence, analyse your competitors, and identify the highest-leverage opportunities.'],
-                ['number' => '02', 'title' => 'Design', 'desc' => 'We design the user experience, information architecture, and visual system | all approved by you before we write a line of code.'],
+                ['number' => '02', 'title' => 'Design', 'desc' => 'We design the user experience, information architecture, and visual system, all approved by you before we write a line of code.'],
                 ['number' => '03', 'title' => 'Build', 'desc' => 'We build your system with clean, documented code. You get weekly progress updates and a staging URL for real-time feedback.'],
                 ['number' => '04', 'title' => 'Scale', 'desc' => 'We launch, monitor, and optimise. A/B testing, conversion tracking, and continuous improvement are built into every engagement.'],
             ];
@@ -154,7 +154,7 @@
         <div class="text-center mb-5">
             <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.08em;">What We Do</p>
             <h2 class="fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface);">Four Services. One Goal: Revenue.</h2>
-            <p class="mx-auto" style="max-width: 600px; color: var(--md-sys-color-on-surface-variant);">Every service we offer is measured against one metric | does it make you more money than it costs?</p>
+            <p class="mx-auto" style="max-width: 600px; color: var(--md-sys-color-on-surface-variant); font-size: 0.9375rem;">Every service we offer is measured against one metric: does it make you more money than it costs?</p>
         </div>
         <div class="row g-4">
             @php
@@ -162,7 +162,7 @@
                 ['icon' => 'code', 'title' => 'Web Development', 'desc' => 'Laravel, React, WordPress, Shopify. We build fast, secure, conversion-optimised websites and web applications.', 'tools' => ['Laravel', 'React', 'WordPress', 'Shopify']],
                 ['icon' => 'zap', 'title' => 'Funnel & Automation', 'desc' => 'ManyChat, HubSpot, Zapier, Make. We design and build automated customer journeys that convert 24/7.', 'tools' => ['ManyChat', 'HubSpot', 'Zapier', 'Make']],
                 ['icon' => 'target', 'title' => 'Paid Advertising', 'desc' => 'Meta Ads, Google Ads, LinkedIn Ads, TikTok Ads. We manage campaigns with relentless focus on ROAS.', 'tools' => ['Meta Ads', 'Google Ads', 'LinkedIn Ads', 'TikTok Ads']],
-                ['icon' => 'pen-tool', 'title' => 'Brand & Strategy', 'desc' => 'Figma, brand strategy, CRO. We define how you look, sound, and convert | then we optimise all three.', 'tools' => ['Figma', 'Brand Strategy', 'CRO', 'A/B Testing']],
+                ['icon' => 'pen-tool', 'title' => 'Brand & Strategy', 'desc' => 'Figma, brand strategy, CRO. We define how you look, sound, and convert, then we optimise all three.', 'tools' => ['Figma', 'Brand Strategy', 'CRO', 'A/B Testing']],
             ];
             @endphp
             @foreach($services as $service)
@@ -205,7 +205,7 @@
     <div class="container text-center">
         <h2 class="fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: white;">Ready to Build Something That Sells?</h2>
         <p class="mx-auto mb-4" style="max-width: 560px; color: rgba(255,255,255,0.85); font-size: 1.125rem;">
-            Book a free 30-minute consultation. We will audit your current setup and identify the highest-leverage opportunities | no pitch, no pressure.
+            Book a free 30-minute consultation. We will audit your current setup and identify the highest-leverage opportunities, no pitch, no pressure.
         </p>
         <a href="{{ route('contact') }}" class="btn btn-light btn-lg rounded-pill px-5" style="font-weight: 500; color: var(--md-sys-color-primary);">
             Book Free Consultation

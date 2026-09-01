@@ -25,18 +25,12 @@ return [
     'lorem_seed' => 'v4-initial',
 
     // ── 2. Chrome (Chada-original UI labels) ────────────────────────────
-    'hero' => [
-        // Eyebrow + headline + subhead are lorem slots (view-generated).
-        // The eyebrow "Based in Lagos · Serving the World" is pre-existing
-        // approved Chada copy and stays inline in the view.
+    // Hero copy now lives in the centralized 'hero' block below (§4).
+    // Kept here for backward compatibility with any view still reading the
+    // old shape. Will be removed once all views migrate.
+    'hero_legacy' => [
         'primary_cta' => 'Start a Project',
         'secondary_cta' => 'Explore Our Work',
-        // GATED proof line: renders nothing while null (needs verification
-        // before a "trusted by N" claim ships — constraint 14).
-        // NOTE: partials/hero.blade.php line 20 currently hardcodes a
-        // "Trusted by 50+ brands" claim. That line is the live constraint-14
-        // violation (D12); it ships because R3 removes it. Do NOT release
-        // to production before R3 lands. Flagged in the PR body.
         'proof_line' => null, // e.g. 'Trusted by 50+ brands' — only with proof
     ],
 
@@ -183,4 +177,91 @@ return [
     // System Blueprints closing speed line: null until David approves a
     // MEASURED claim for a Chada system. Never a borrowed figure.
     'workflow_speed_claim' => null,
+
+    // ── 4. Site-wide content (centralized Sep 1, 2026) ────────────────
+    // All dynamic placeholder content lives in this file. Views read via
+    // config('placeholders.contact.email') etc. — never hardcode contact
+    // info, hero copy, or any other text in Blade.
+    //
+    // To update any text on the site: edit this file, save, refresh.
+    // No code changes, no view edits, no rebuild needed.
+
+    'contact' => [
+        'email' => 'info@chadadigital.com',
+        'phone' => '+2348101892632',
+        'phone_display' => '+234 810 189 2632',
+        'whatsapp' => '2348101892632',
+        'location' => 'Lagos, Nigeria',
+        'response_time' => '24 hours during business days. For urgent requests, WhatsApp us directly and we will respond within 2 hours.',
+    ],
+
+    'social' => [
+        'linkedin' => '#',
+        'instagram' => '#',
+        'twitter' => '#',
+    ],
+
+    'brand' => [
+        'name' => 'Chada Digital',
+        'tagline' => 'Digital solutions that help businesses grow. Web development, funnel automation, paid advertising, and brand strategy.',
+        'footer_tagline' => 'Digital solutions that help businesses grow. Web development, funnel automation, paid advertising, and brand strategy.',
+        'founded_year' => 2023,
+    ],
+
+    'hero' => [
+        'eyebrow' => 'Digital Solutions That Help Businesses Grow',
+        'headline' => 'We Build Systems That Generate Revenue',
+        'headline_highlight' => 'Revenue',
+        'subhead' => 'Not just websites. Not just ads. We design, build, and automate digital systems that turn visitors into customers, and customers into repeat buyers.',
+        'primary_cta' => 'Start a Project',
+        'primary_cta_route' => 'contact',
+        'secondary_cta' => 'Explore Our Work',
+        'secondary_cta_route' => 'case-studies.index',
+        // GATED proof line: renders nothing while null.
+        'proof_line' => null,
+    ],
+
+    'services_page' => [
+        'eyebrow' => 'Services & Pricing',
+        'headline' => 'Transparent Pricing. No Surprises.',
+        'subhead' => 'Every service has a fixed price or a clear monthly retainer. You know exactly what you are paying for before we start.',
+        // Stats are GATED — null means the stat is hidden. Replace null with
+        // a verified number when the Founder supplies one. NEVER invent.
+        'stats' => [
+            ['value' => null, 'label' => 'Projects Delivered'],
+            ['value' => null, 'label' => 'Industries Served'],
+            ['value' => null, 'label' => 'Client Retention'],
+            ['value' => null, 'label' => 'Response Time'],
+        ],
+    ]),
+
+    'about_page' => [
+        'eyebrow' => 'About',
+        'headline' => 'We Build Systems, Not Just Websites',
+        'body' => 'Chada Digital is a Lagos-based digital agency specialising in web development, funnel automation, paid advertising, and brand strategy. We do not just build websites, we build systems that turn visitors into customers, and customers into repeat buyers.',
+    ],
+
+    'contact_page' => [
+        'eyebrow' => 'Contact',
+        'headline' => 'Let Us Build Your Next Revenue System',
+        'subhead' => 'Tell us what you are trying to achieve. We will reply within 24 hours with a clear assessment of what is possible, how long it will take, and what it will cost.',
+    ],
+
+    'design_partner' => [
+        'eyebrow' => 'Early Access',
+        'headline' => 'No customer logos yet, we won\'t fake them.',
+        'subhead' => 'Become a',
+        'cta_text' => 'design partner',
+        'cta_route' => 'contact',
+    ],
+
+    // Closing CTA on home + services
+    'cta' => [
+        'home_headline' => 'Still Have Questions?',
+        'home_body' => 'Every project starts with a conversation. Tell us what you are trying to achieve and we will tell you exactly how we can help.',
+        'home_button' => 'Start a Conversation',
+        'services_headline' => 'Still Have Questions?',
+        'services_body' => 'Every project starts with a conversation. Tell us what you are trying to achieve and we will tell you exactly how we can help.',
+        'services_button' => 'Start a Conversation',
+    ],
 ];
