@@ -233,7 +233,7 @@ return [
             ['value' => null, 'label' => 'Client Retention'],
             ['value' => null, 'label' => 'Response Time'],
         ],
-    ]),
+    ],
 
     'about_page' => [
         'eyebrow' => 'About',
