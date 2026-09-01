@@ -59,7 +59,14 @@
         <div class="row g-4 justify-content-center">
             @foreach($section['tiers'] as $tier)
             <div class="col-md-6 col-xl-4">
-                <div class="card h-100 border-0 position-relative" style="background: var(--md-sys-color-surface); border-radius: 16px; box-shadow: {{ $tier['highlight'] ? '0 8px 24px rgba(37,99,235,0.12)' : '0 2px 8px rgba(0,0,0,0.04)' }}; border: {{ $tier['highlight'] ? '2px solid var(--md-sys-color-primary)' : '1px solid var(--md-sys-color-outline-variant)' }};">
+                {{-- Highlighted tier uses a stronger elevation shadow + a slight
+                     scale, not a border — the site's .card rule (see
+                     _chada-custom.scss, No-Borders Fusion Principle) forces
+                     border: 0 !important on every card regardless of inline
+                     style, so a border here would never actually render.
+                     This was a real bug: the "Most Popular" card looked
+                     identical to the others except for the badge. --}}
+                <div class="card h-100 border-0 position-relative" style="background: var(--md-sys-color-surface); border-radius: 16px; box-shadow: {{ $tier['highlight'] ? '0 12px 32px rgba(37,99,235,0.18)' : '0 2px 8px rgba(0,0,0,0.04)' }}; {{ $tier['highlight'] ? 'transform: scale(1.03);' : '' }}">
                     @if($tier['highlight'])
                     <div class="position-absolute top-0 start-50 translate-middle-x">
                         <span class="badge rounded-pill px-3 py-1" style="background: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); font-size: 0.75rem; font-weight: 600;">Most Popular</span>
