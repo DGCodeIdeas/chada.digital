@@ -13,6 +13,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+// Links: no underline by default, site-wide. Previously this depended on
+// every individual <a> tag remembering to add .text-decoration-none —
+// already missed on at least one live link (case-studies.blade.php category
+// filter) and on the unused legacy hero.blade.php. One global rule instead
+// of N manual ones. Bootstrap's default underlined-blue-link look is one of
+// the strongest "unstyled template" tells, so this also serves the
+// no-generic-styling goal directly.
+a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--md-sys-typescale-headline-font);
   color: var(--md-sys-color-on-background);
@@ -27,17 +42,6 @@ h1, h2, h3, h4, h5, h6 {
 .section-padding-sm {
   padding-top: 3rem;
   padding-bottom: 3rem;
-}
-
-// --- Eyebrow Label ---
-.eyebrow {
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.3em;
-  color: var(--md-sys-color-primary);
-  margin-bottom: 1rem;
 }
 
 // --- Stats Badge ---
@@ -325,9 +329,10 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-// Eyebrow label — small uppercase tracked text above section headings
-// (carries over the V4 .eyebrow utility class into the V5 system).
+// Eyebrow label — small uppercase tracked text above section headings.
+// (Single definition — a duplicate earlier in this file was removed.)
 .eyebrow {
+  display: inline-block;
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
