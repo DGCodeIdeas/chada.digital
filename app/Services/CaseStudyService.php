@@ -116,7 +116,7 @@ class CaseStudyService
                 'metric_value' => '1,200%',
                 'excerpt' => 'Redesigned the Shopify storefront with a style quiz, streamlined checkout, and organic growth strategy.',
                 'challenge' => 'NOIR had a beautiful product line but a static Shopify site that treated every visitor the same. There was no personalisation, no style guidance, and checkout abandonment was over 70%.',
-                'solution' => 'We redesigned the storefront with an interactive style quiz that auto-recommended outfits, a streamlined Paystack checkout, and post-purchase retention flows via email and SMS. All growth was organic — zero ad spend.',
+                'solution' => 'We redesigned the storefront with an interactive style quiz that auto-recommended outfits, a streamlined Paystack checkout, and post-purchase retention flows via email and SMS. All growth was organic | zero ad spend.',
                 'results' => 'Sales increased 1,200% in 90 days without any paid advertising. The style quiz became the primary entry point, with 68% of quiz-takers adding a recommended item to cart. Checkout abandonment dropped to 34%.',
                 'workflow' => [
                     ['step' => 'Organic / Social', 'tool' => 'Instagram + TikTok'],
