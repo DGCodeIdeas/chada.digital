@@ -11,37 +11,37 @@ class PreviewService
         return [
             'apexflow' => [
                 'title' => 'ApexFlow',
-                'description' => 'SaaS Platform — AI Automation',
+                'description' => 'SaaS Platform | AI Automation',
                 'thumbnail' => '/assets/images/project-apexflow.jpg',
                 'category' => 'SaaS',
             ],
             'elysian' => [
                 'title' => 'ELYSIAN',
-                'description' => 'Booking — Hotel & Spa',
+                'description' => 'Booking | Hotel & Spa',
                 'thumbnail' => '/assets/images/project-elysian.jpg',
                 'category' => 'Booking',
             ],
             'hirebase' => [
                 'title' => 'HIREBASE',
-                'description' => 'Recruitment — Job Board Platform',
+                'description' => 'Recruitment | Job Board Platform',
                 'thumbnail' => '/assets/images/project-hirebase.jpg',
                 'category' => 'Recruitment',
             ],
             'noir' => [
                 'title' => 'NOIR',
-                'description' => 'E-Commerce — Fashion Store',
+                'description' => 'E-Commerce | Fashion Store',
                 'thumbnail' => '/assets/images/project-noir.jpg',
                 'category' => 'E-commerce',
             ],
             'sterling-vale' => [
                 'title' => 'Sterling & Vale',
-                'description' => 'Construction Firm — Corporate Website',
+                'description' => 'Construction Firm | Corporate Website',
                 'thumbnail' => '/assets/images/project-sterling.jpg',
                 'category' => 'Construction',
             ],
             'timber-mill' => [
                 'title' => 'TimberMill',
-                'description' => 'Bespoke Furniture — Artisan Woodworking Studio',
+                'description' => 'Bespoke Furniture | Artisan Woodworking Studio',
                 'thumbnail' => '/assets/images/project-timbermill.jpg',
                 'category' => 'Artisan',
             ],
