@@ -36,7 +36,7 @@ class TestimonialService
                 'name' => 'Fatima Bello',
                 'title' => 'HR Director',
                 'company' => 'HIREBASE',
-                'quote' => 'The AI-powered CV parsing alone saved our recruiters 4 hours per day. We placed 2,100 candidates last year — up from 400 the year before. Chada built us a machine.',
+                'quote' => 'The AI-powered CV parsing alone saved our recruiters 4 hours per day. We placed 2,100 candidates last year | up from 400 the year before. Chada built us a machine.',
                 'rating' => 5,
             ],
             [
@@ -50,7 +50,7 @@ class TestimonialService
                 'name' => 'Emeka Obi',
                 'title' => 'Founder & Master Craftsman',
                 'company' => 'TimberMill',
-                'quote' => 'Before Chada, I spent half my day on DMs and quotes. Now the website handles all of that automatically. I am back to doing what I love — building furniture — and inquiries have increased 5×.',
+                'quote' => 'Before Chada, I spent half my day on DMs and quotes. Now the website handles all of that automatically. I am back to doing what I love | building furniture | and inquiries have increased 5×.',
                 'rating' => 5,
             ],
         ];
