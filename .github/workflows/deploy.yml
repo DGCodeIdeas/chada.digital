@@ -2,7 +2,7 @@ name: Deploy chada.digital to EC2
 
 on:
   push:
-    branches: [main]
+    branches: main
   workflow_dispatch:
 
 jobs:
@@ -37,6 +37,9 @@ jobs:
           path: vendor
           key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
           restore-keys: ${{ runner.os }}-composer-
+
+      - name: Configure git safe directory
+        run: git config --global --add safe.directory /app
 
       - name: Install Composer dependencies
         uses: php-actions/composer@v6
