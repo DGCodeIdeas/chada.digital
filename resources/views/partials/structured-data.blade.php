@@ -2,24 +2,27 @@
 $structuredData = [
     '@context' => 'https://schema.org',
     '@type' => 'Organization',
-    'name' => 'Chada Digital',
+    'name' => config('placeholders.brand.name'),
     'url' => url('/'),
     'logo' => asset('images/chada-logo-horizontal-dark.png'),
-    'description' => 'Digital solutions that help businesses grow. Web development, funnel automation, paid advertising, and brand strategy for startups, SMEs, and enterprises.',
+    'description' => config('placeholders.brand.tagline'),
     'address' => [
         '@type' => 'PostalAddress',
-        'addressLocality' => 'Lagos',
+        'addressLocality' => config('placeholders.contact.location'),
         'addressCountry' => 'NG',
     ],
     'contactPoint' => [
         '@type' => 'ContactPoint',
         'contactType' => 'customer service',
-        'email' => 'hello@chadadigital.com',
+        'email' => config('placeholders.contact.email'),
+        'telephone' => config('placeholders.contact.phone'),
         'availableLanguage' => ['English'],
     ],
-    'sameAs' => [
-        // Add social URLs when available
-    ],
+    'sameAs' => array_filter([
+        config('placeholders.social.linkedin'),
+        config('placeholders.social.instagram'),
+        config('placeholders.social.twitter'),
+    ]),
 ];
 @endphp
 

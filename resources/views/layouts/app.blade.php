@@ -33,6 +33,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Styles -->
+    <!-- Preload CSS to prevent FOUC (flash of unstyled content) -->
+    <link rel="preload" href="{{ mix('css/app.css') }}" as="style">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
     @include('partials.structured-data')
@@ -51,7 +53,10 @@
     @include('partials.chat-widget')
 
     <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}" defer></script>
+    <!-- Scripts: loaded WITHOUT defer so jQuery/Bootstrap are available before
+         any inline scripts run. The 'defer' was causing '$ is not defined' errors
+         because app.js wasn't executed before page-level scripts tried to use $. -->
+    <script src="{{ mix('js/app.js') }}"></script>
     @stack('scripts')
 </body>
 </html>
