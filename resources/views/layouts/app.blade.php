@@ -4,24 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ $meta['title'] ?? 'Chada Digital' }}</title>
-    <meta name="description" content="{{ $meta['description'] ?? 'Digital solutions that help businesses grow.' }}">
-    <meta name="keywords" content="web development, digital marketing, automation, Lagos, Nigeria">
-    <meta name="author" content="Chada Digital">
+    <title>{{ $meta['title'] ?? config('brand.name') }}</title>
+    <meta name="description" content="{{ $meta['description'] ?? config('brand.tagline') }}">
+    <meta name="keywords" content="web development, digital marketing, automation, {{ config('contact.location') }}">
+    <meta name="author" content="{{ config('brand.name') }}">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="{{ $meta['title'] ?? 'Chada Digital' }}">
-    <meta property="og:description" content="{{ $meta['description'] ?? 'Digital solutions that help businesses grow.' }}">
+    <meta property="og:title" content="{{ $meta['title'] ?? config('brand.name') }}">
+    <meta property="og:description" content="{{ $meta['description'] ?? config('brand.tagline') }}">
     <meta property="og:image" content="{{ $meta['og_image'] ?? asset('og-image.jpg') }}">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Chada Digital">
+    <meta property="og:site_name" content="{{ config('brand.name') }}">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ $meta['title'] ?? 'Chada Digital' }}">
-    <meta name="twitter:description" content="{{ $meta['description'] ?? 'Digital solutions that help businesses grow.' }}">
+    <meta name="twitter:title" content="{{ $meta['title'] ?? config('brand.name') }}">
+    <meta name="twitter:description" content="{{ $meta['description'] ?? config('brand.tagline') }}">
     <meta name="twitter:image" content="{{ $meta['og_image'] ?? asset('og-image.jpg') }}">
 
     <!-- Favicon -->

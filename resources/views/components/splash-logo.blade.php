@@ -58,7 +58,7 @@
      height="{{ $size * 0.3 }}"
      class="splash-logo"
      role="img"
-     aria-label="Chada Digital">
+     aria-label="{{ config('brand.name', 'Chada Digital') }}">
     {{-- Geometric Mark: stylized overlapping shapes forming a "C" --}}
     <g class="splash-logo-mark">
         <circle cx="60" cy="60" r="48"

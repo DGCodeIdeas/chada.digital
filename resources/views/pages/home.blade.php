@@ -86,19 +86,11 @@
 <section style="background: var(--md-sys-color-surface); padding: 5rem 0;">
     <div class="container">
         <div class="text-center mb-5">
-            <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.08em;">How We Work</p>
-            <h2 class="fw-bold" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface);">From First Call to First Sale</h2>
+            <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.08em;">{{ config('home.process_eyebrow') }}</p>
+            <h2 class="fw-bold" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface);">{{ config('home.process_heading') }}</h2>
         </div>
         <div class="row g-4">
-            @php
-            $steps = [
-                ['number' => '01', 'title' => 'Discover', 'desc' => 'We audit your current digital presence, analyse your competitors, and identify the highest-leverage opportunities.'],
-                ['number' => '02', 'title' => 'Design', 'desc' => 'We design the user experience, information architecture, and visual system, all approved by you before we write a line of code.'],
-                ['number' => '03', 'title' => 'Build', 'desc' => 'We build your system with clean, documented code. You get weekly progress updates and a staging URL for real-time feedback.'],
-                ['number' => '04', 'title' => 'Scale', 'desc' => 'We launch, monitor, and optimise. A/B testing, conversion tracking, and continuous improvement are built into every engagement.'],
-            ];
-            @endphp
-            @foreach($steps as $step)
+            @foreach(config('home.steps') as $step)
             <div class="col-md-6 col-lg-3">
                 <div class="card h-100 border-0" style="background: var(--md-sys-color-surface-container-low); border-radius: 16px;">
                     <div class="card-body p-4">
@@ -158,20 +150,12 @@
 <section style="background: var(--md-sys-color-surface); padding: 5rem 0;">
     <div class="container">
         <div class="text-center mb-5">
-            <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.08em;">What We Do</p>
-            <h2 class="fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface);">Four Services. One Goal: Revenue.</h2>
-            <p class="mx-auto" style="max-width: 600px; color: var(--md-sys-color-on-surface-variant); font-size: 0.9375rem;">Every service we offer is measured against one metric: does it make you more money than it costs?</p>
+            <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.08em;">{{ config('home.services_eyebrow') }}</p>
+            <h2 class="fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface);">{{ config('home.services_heading') }}</h2>
+            <p class="mx-auto" style="max-width: 600px; color: var(--md-sys-color-on-surface-variant); font-size: 0.9375rem;">{{ config('home.services_subhead') }}</p>
         </div>
         <div class="row g-4">
-            @php
-            $services = [
-                ['icon' => 'code', 'title' => 'Web Development', 'desc' => 'Laravel, React, WordPress, Shopify. We build fast, secure, conversion-optimised websites and web applications.', 'tools' => ['Laravel', 'React', 'WordPress', 'Shopify']],
-                ['icon' => 'zap', 'title' => 'Funnel & Automation', 'desc' => 'ManyChat, HubSpot, Zapier, Make. We design and build automated customer journeys that convert 24/7.', 'tools' => ['ManyChat', 'HubSpot', 'Zapier', 'Make']],
-                ['icon' => 'target', 'title' => 'Paid Advertising', 'desc' => 'Meta Ads, Google Ads, LinkedIn Ads, TikTok Ads. We manage campaigns with relentless focus on ROAS.', 'tools' => ['Meta Ads', 'Google Ads', 'LinkedIn Ads', 'TikTok Ads']],
-                ['icon' => 'pen-tool', 'title' => 'Brand & Strategy', 'desc' => 'Figma, brand strategy, CRO. We define how you look, sound, and convert, then we optimise all three.', 'tools' => ['Figma', 'Brand Strategy', 'CRO', 'A/B Testing']],
-            ];
-            @endphp
-            @foreach($services as $service)
+            @foreach(config('home.services') as $service)
             <div class="col-md-6 col-lg-3">
                 <div class="card h-100 border-0" style="background: var(--md-sys-color-surface-container-low); border-radius: 16px;">
                     <div class="card-body p-4">
@@ -209,12 +193,12 @@
 <!-- ===== CTA ===== -->
 <section style="background: linear-gradient(135deg, var(--md-sys-color-primary) 0%, #1a5fd6 100%); padding: 5rem 0;">
     <div class="container text-center">
-        <h2 class="fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: white;">Ready to Build Something That Sells?</h2>
+        <h2 class="fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: white;">{{ config('home.final_cta_heading') }}</h2>
         <p class="mx-auto mb-4" style="max-width: 560px; color: rgba(255,255,255,0.85); font-size: 1.125rem;">
-            Book a free 30-minute consultation. We will audit your current setup and identify the highest-leverage opportunities, no pitch, no pressure.
+            {{ config('home.final_cta_body') }}
         </p>
         <a href="{{ route('contact') }}" class="btn btn-light btn-lg rounded-pill px-5" style="font-weight: 500; color: var(--md-sys-color-primary);">
-            Book Free Consultation
+            {{ config('home.final_cta_button') }}
         </a>
     </div>
 </section>
