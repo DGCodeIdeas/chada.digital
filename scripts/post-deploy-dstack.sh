@@ -18,6 +18,15 @@ sudo -u www-data mkdir -p storage/logs \
 
 echo "→ Artisan tasks (host, as www-data)"
 
+# Maintenance bypass secret — allows the team to preview the site while
+# visitors see the maintenance page. The bypass URL is the SHA-256 hash
+# of this phrase, served at /{hash}. Visiting that URL sets a cookie that
+# bypasses the 503 maintenance page for 12 hours.
+#
+# Current bypass URL: https://chadadigital.com/pass-entropy-white-done-carp
+# (Laravel computes the hash automatically from the --secret value.)
+MAINTENANCE_SECRET="pass-entropy-white-done-carp"
+
 # Deliberate, LONG-TERM maintenance lock — separate from Laravel's own
 # storage/framework/down file, which this script also uses internally below
 # for the brief down/migrate/up bracket on every deploy. Reusing that same
@@ -29,7 +38,12 @@ echo "→ Artisan tasks (host, as www-data)"
 # has explicitly locked the site down.
 MAINTENANCE_LOCK="storage/app/maintenance-lock"
 
-sudo -u www-data php artisan down --retry=15 --refresh=15 || true
+# Run artisan down with the bypass secret. The --secret flag creates a
+# bypass route at /{sha256(secret)} that sets a cookie exempting the
+# visitor from maintenance mode. This persists across deploys because
+# the secret is hardcoded here — every deploy re-runs `artisan down`
+# with the same secret, so the bypass URL stays stable.
+sudo -u www-data php artisan down --retry=15 --refresh=15 --secret="${MAINTENANCE_SECRET}" || true
 sudo -u www-data php artisan migrate --force
 sudo -u www-data php artisan storage:link --force || true
 sudo -u www-data php artisan config:cache
@@ -39,6 +53,8 @@ sudo -u www-data php artisan event:cache
 
 if [ -f "$MAINTENANCE_LOCK" ]; then
   echo "→ ${MAINTENANCE_LOCK} present — leaving site in maintenance mode deliberately."
+  echo "→ Bypass URL: https://chadadigital.com/${MAINTENANCE_SECRET}"
+  echo "→ (Laravel serves this at /{sha256(secret)} and sets a 12-hour bypass cookie.)"
   echo "→ Run scripts/maintenance-lock.sh off (then this script will bring it up next deploy,"
   echo "  or run 'php artisan up' directly for an immediate change)."
 else
