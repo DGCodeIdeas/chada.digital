@@ -4,10 +4,10 @@
 
 <section style="background: linear-gradient(135deg, #f8f6f3 0%, #f0ede8 100%); padding: 3.5rem 0 2rem;">
     <div class="container text-center">
-        <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;">{{ config('placeholders.services_page.eyebrow') }}</p>
-        <h1 class="display-6 fw-bold mb-2" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface); font-size: 2.25rem;">{{ config('placeholders.services_page.headline') }}</h1>
+        <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;">{{ config('services_page.eyebrow') }}</p>
+        <h1 class="display-6 fw-bold mb-2" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface); font-size: 2.25rem;">{{ config('services_page.headline') }}</h1>
         <p class="mx-auto" style="max-width: 600px; color: var(--md-sys-color-on-surface-variant); font-size: 0.9375rem;">
-            {{ config('placeholders.services_page.subhead') }}
+            {{ config('services_page.subhead') }}
         </p>
     </div>
 </section>
@@ -16,7 +16,7 @@
      Each stat is GATED: null value hides that stat. If all 4 are null,
      the whole section hides. NEVER hardcode stats here — they must come
      from config so the Founder can update them in one place. -->
-@php $servicesStats = config('placeholders.services_page.stats', []); @endphp
+@php $servicesStats = config('services_page.stats', []); @endphp
 @if(!empty(array_filter(array_column($servicesStats, 'value'))))
 <section style="background: var(--md-sys-color-surface); padding: 2rem 0;">
     <div class="container">

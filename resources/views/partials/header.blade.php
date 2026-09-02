@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg" style="height: 56px;">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}" style="text-decoration: none;">
-                <img src="{{ asset('chada-logo-horizontal-dark.png') }}" alt="{{ config('placeholders.brand.name') }}" height="28" class="d-inline-block">
+                <img src="{{ asset('chada-logo-horizontal-dark.png') }}" alt="{{ config('brand.name') }}" height="28" class="d-inline-block">
             </a>
 
             {{-- Desktop nav (lg and up) --}}
@@ -41,7 +41,7 @@
 <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileNav" aria-labelledby="mobileNavLabel" style="background: var(--md-sys-color-surface); width: 280px;">
     <div class="offcanvas-header" style="padding: 1rem 1.25rem;">
         <h5 class="offcanvas-title" id="mobileNavLabel" style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.125rem; color: var(--md-sys-color-primary);">
-            <img src="{{ asset('chada-logo-horizontal-dark.png') }}" alt="{{ config('placeholders.brand.name') }}" height="24" class="d-inline-block">
+            <img src="{{ asset('chada-logo-horizontal-dark.png') }}" alt="{{ config('brand.name') }}" height="24" class="d-inline-block">
         </h5>
         <button type="button" class="btn-close btn-close-dark" data-bs-dismiss="offcanvas" aria-label="Close" style="opacity: 0.6;"></button>
     </div>
@@ -81,11 +81,11 @@
 
         <div class="px-4 py-3 mt-3" style="background: var(--md-sys-color-surface-container-low, #f3edf7);">
             <p class="mb-2" style="font-size: 0.6875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--md-sys-color-on-surface-variant);">Get in touch</p>
-            <a href="mailto:{{ config('placeholders.contact.email') }}" class="d-block mb-1" style="font-size: 0.8125rem; color: var(--md-sys-color-primary); text-decoration: none;">
-                {{ config('placeholders.contact.email') }}
+            <a href="mailto:{{ config('contact.email') }}" class="d-block mb-1" style="font-size: 0.8125rem; color: var(--md-sys-color-primary); text-decoration: none;">
+                {{ config('contact.email') }}
             </a>
-            <a href="tel:{{ config('placeholders.contact.phone') }}" class="d-block" style="font-size: 0.8125rem; color: var(--md-sys-color-primary); text-decoration: none;">
-                {{ config('placeholders.contact.phone_display') }}
+            <a href="tel:{{ config('contact.phone') }}" class="d-block" style="font-size: 0.8125rem; color: var(--md-sys-color-primary); text-decoration: none;">
+                {{ config('contact.phone_display') }}
             </a>
         </div>
 

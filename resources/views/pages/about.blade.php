@@ -7,7 +7,7 @@
         <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.08em;">About Us</p>
         <h1 class="display-5 fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface);">We Build Digital Systems That Generate Revenue</h1>
         <p class="mx-auto" style="max-width: 700px; color: var(--md-sys-color-on-surface-variant); font-size: 1.125rem;">
-            {{ config('placeholders.about_page.body') }}
+            {{ config('about_page.body') }}
         </p>
     </div>
 </section>
