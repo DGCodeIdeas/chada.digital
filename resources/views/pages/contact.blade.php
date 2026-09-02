@@ -52,7 +52,7 @@
                 <div class="card border-0" style="background: var(--md-sys-color-surface); border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.06);">
                     <div class="card-body p-3 p-lg-4">
                         <h4 class="fw-semibold mb-3" style="color: var(--md-sys-color-on-surface); font-size: 1.125rem;">Send a Message</h4>
-                        <form id="contactForm" action="{{ route('contact.store') }}" method="POST">
+                        <form id="contactForm" action="{{ route('contact.store') }}" method="POST" data-contact-email="{{ config('placeholders.contact.email') }}">
                             @csrf
                             <div class="row g-3">
                                 <div class="col-md-6">

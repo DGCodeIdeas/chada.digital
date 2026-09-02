@@ -3,18 +3,18 @@
  * Multi-page application JavaScript
  */
 
-// Bootstrap 5 JS
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+// jQuery — must be imported BEFORE any code that uses $.
+// Previously this was missing, causing "Uncaught ReferenceError: $ is not defined".
+import $ from 'jquery';
+window.$ = window.jQuery = $;
 
-// Material Web Components (optional — load only if needed)
-// import '@material/web/all.js';
+// Bootstrap 5 JS (depends on jQuery being available for some components)
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 // jQuery modules (preserved from original site)
 $(document).ready(function() {
-    // Mobile nav toggle (Bootstrap handles this, but keep for compatibility)
-    // Bootstrap's data-bs-toggle handles this natively
-
-    // Smooth scroll for anchor links (if any remain)
+    // Smooth scroll for anchor links
+    // Fix: was $('aref^="#"]') — missing [href — now corrected
     $('a[href^="#"]').on('click', function(e) {
         const target = $(this.getAttribute('href'));
         if (target.length) {
@@ -80,7 +80,10 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (err) {
             responseDiv.style.display = 'block';
             responseDiv.className = 'alert alert-danger rounded-3 mt-3';
-            responseDiv.textContent = 'Network error. Please email us directly at hello@chadadigital.com';
+            // Use the email from the data attribute (set by the Blade view from config)
+            const fallbackEmail = document.querySelector('[data-contact-email]')?.dataset.contactEmail
+                || 'info@chadadigital.com';
+            responseDiv.textContent = 'Network error. Please email us directly at ' + fallbackEmail;
         } finally {
             btn.disabled = false;
             btn.textContent = originalText;

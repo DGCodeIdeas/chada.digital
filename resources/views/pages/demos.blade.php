@@ -41,12 +41,13 @@
                         </a>
                     </div>
                     {{-- Load demo content through Laravel's demo.content route.
-                         Direct file access (asset('demos/...')) returns 403 on
-                         the production server because nginx routes everything
-                         through the front controller. This route serves the
-                         demo HTML/CSS/JS/images dynamically. --}}
+                         The trailing slash is CRITICAL — without it, the browser treats
+                         /demo-content/apexflow as a FILE, not a directory, and resolves
+                         relative paths (./assets/css/styles.css) against /demo-content/
+                         instead of /demo-content/apexflow/ — causing 404s and MIME mismatch
+                         errors. With the trailing slash, relative paths resolve correctly. --}}
                     <div class="ratio ratio-16x9" style="min-height: 600px;">
-                        <iframe src="{{ route('demo.content', ['slug' => $demo['slug']]) }}" title="{{ $demo['title'] }} Preview" style="border: none; width: 100%; height: 100%;" loading="lazy"></iframe>
+                        <iframe src="{{ route('demo.content', ['slug' => $demo['slug']]) }}/" title="{{ $demo['title'] }} Preview" style="border: none; width: 100%; height: 100%;" loading="lazy"></iframe>
                     </div>
                 </div>
                 @endforeach
