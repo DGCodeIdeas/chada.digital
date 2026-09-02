@@ -57,7 +57,7 @@
             No testimonials yet, we won&rsquo;t fake them.
         </h2>
         <p class="lead mb-0" style="color: var(--md-sys-color-on-surface-variant);">
-            Real client quotes will appear here once we have permission to share them. In the meantime, <a href="{{ route('demo-lab') }}" style="color: var(--md-sys-color-primary); text-decoration: none; font-weight: 500;">see the work</a> or <a href="{{ route('contact') }}" style="color: var(--md-sys-color-primary); text-decoration: none; font-weight: 500;">become our next case study</a>.
+            Real client quotes will appear here once we have permission to share them. In the meantime, <a href="{{ route('demos') }}" style="color: var(--md-sys-color-primary); text-decoration: none; font-weight: 500;">see the work</a> or <a href="{{ route('contact') }}" style="color: var(--md-sys-color-primary); text-decoration: none; font-weight: 500;">become our next case study</a>.
         </p>
     </div>
 </section>
