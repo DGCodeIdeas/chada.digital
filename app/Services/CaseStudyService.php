@@ -196,11 +196,17 @@ class CaseStudyService
 
     public function stats(): array
     {
+        // DISABLED (Sep 2, 2026): All stats return null — the homepage
+        // stats band hides entirely when all values are null (the
+        // @if guard in home.blade.php checks array_filter on 'number').
+        // Previously returned fabricated numbers: '50+', '6+', '3+', '95%'
+        // — all invented, none verified by the Founder. To re-enable:
+        // replace null with a REAL verified number.
         return [
-            ['number' => '50+', 'label' => 'Projects Delivered'],
-            ['number' => '6+', 'label' => 'Industries Served'],
-            ['number' => '3+', 'label' => 'Years Active'],
-            ['number' => '95%', 'label' => 'Client Retention'],
+            ['number' => null, 'label' => 'Projects Delivered'],
+            ['number' => null, 'label' => 'Industries Served'],
+            ['number' => null, 'label' => 'Years Active'],
+            ['number' => null, 'label' => 'Client Retention'],
         ];
     }
 
