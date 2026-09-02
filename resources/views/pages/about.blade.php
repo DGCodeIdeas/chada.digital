@@ -41,38 +41,24 @@
     </div>
 </section>
 
-<!-- Testimonials -->
-<section style="background: var(--md-sys-color-surface-container-low); padding: 5rem 0;">
-    <div class="container">
-        <div class="text-center mb-5">
-            <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.08em;">Testimonials</p>
-            <h2 class="fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface);">What Our Clients Say</h2>
-        </div>
-        <div class="row g-4">
-            @foreach($testimonials as $t)
-            <div class="col-md-6 col-lg-4">
-                <div class="card h-100 border-0" style="background: var(--md-sys-color-surface); border-radius: 16px;">
-                    <div class="card-body p-4">
-                        <div class="d-flex gap-1 mb-3">
-                            @for($i = 0; $i < 5; $i++)
-                            <svg width="18" height="18" fill="{{ $i < $t['rating'] ? '#f59e0b' : '#e5e7eb' }}" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                            @endfor
-                        </div>
-                        <p class="mb-4" style="font-size: 0.9375rem; color: var(--md-sys-color-on-surface-variant); line-height: 1.7; font-style: italic;">"{{ $t['quote'] }}"</p>
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 44px; height: 44px; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); font-weight: 600; font-size: 0.875rem;">
-                                {{ substr($t['name'], 0, 1) }}
-                            </div>
-                            <div>
-                                <p class="fw-semibold mb-0" style="font-size: 0.9375rem; color: var(--md-sys-color-on-surface);">{{ $t['name'] }}</p>
-                                <p class="mb-0" style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant);">{{ $t['title'] }}, {{ $t['company'] }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
+<!-- Testimonials → Honesty Band -->
+{{-- Replaced the V2 testimonials section with an honesty band (Sep 2, 2026).
+     The testimonials section was gated — it only rendered when TestimonialService
+     returned real quotes, which it doesn't yet (all 6 fabricated testimonials
+     were removed per the V4 gate model). Instead of showing nothing OR faking
+     quotes, this band is honest about the early-stage status and frames the
+     absence as a confident offer. Same pattern as the Design Partner band. --}}
+<section class="py-5" style="background: linear-gradient(to right, var(--md-sys-color-surface-container), var(--md-sys-color-surface-container-high), var(--md-sys-color-surface-container));">
+    <div class="container text-center py-4">
+        <p class="fw-semibold mb-3" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.3em; color: var(--md-sys-color-primary);">
+            Client Stories
+        </p>
+        <h2 class="display-6 fw-bold mb-3" style="font-family: 'Inter', sans-serif; color: var(--md-sys-color-on-surface);">
+            No testimonials yet, we won&rsquo;t fake them.
+        </h2>
+        <p class="lead mb-0" style="color: var(--md-sys-color-on-surface-variant);">
+            Real client quotes will appear here once we have permission to share them. In the meantime, <a href="{{ route('demo-lab') }}" style="color: var(--md-sys-color-primary); text-decoration: none; font-weight: 500;">see the work</a> or <a href="{{ route('contact') }}" style="color: var(--md-sys-color-primary); text-decoration: none; font-weight: 500;">become our next case study</a>.
+        </p>
     </div>
 </section>
 
