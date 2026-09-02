@@ -8,13 +8,13 @@
         <div class="row align-items-center g-4">
             <div class="col-lg-7">
                 <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;">
-                    {{ config('placeholders.hero.eyebrow') }}
+                    {{ config('hero.eyebrow') }}
                 </p>
                 <h1 class="display-5 fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface); line-height: 1.15; font-size: 2.5rem;">
-                    {{ config('placeholders.hero.headline_before_highlight', 'We Build Systems That Generate ') }}<span style="color: var(--md-sys-color-primary);">{{ config('placeholders.hero.headline_highlight', 'Revenue') }}</span>
+                    {{ config('hero.headline_before_highlight', 'We Build Systems That Generate ') }}<span style="color: var(--md-sys-color-primary);">{{ config('hero.headline_highlight', 'Revenue') }}</span>
                 </h1>
                 <p class="mb-4" style="color: var(--md-sys-color-on-surface-variant); max-width: 540px; font-size: 0.9375rem; line-height: 1.65;">
-                    {{ config('placeholders.hero.subhead') }}
+                    {{ config('hero.subhead') }}
                 </p>
                 <div class="d-flex flex-wrap gap-3">
                     <a href="{{ route('services') }}" class="btn btn-primary btn-lg rounded-pill px-4" style="background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); font-weight: 500;">
