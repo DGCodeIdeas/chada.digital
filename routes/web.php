@@ -15,7 +15,7 @@ use App\Http\Controllers\DemoController;
 | Services    → /services
 | About       → /about
 | Contact     → /contact
-| Demo Lab    → /demos
+| Demo Lab    → /demo-lab
 | Preview     → /preview/{slug} (preserved)
 | Sitemap     → /sitemap.xml (preserved)
 */
@@ -38,7 +38,7 @@ Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/api/contact', [ContactController::class, 'store'])->name('contact.store');
 
 // Demo Lab
-Route::get('/demos', [PageController::class, 'demos'])->name('demos');
+Route::get('/demo-lab', [PageController::class, 'demos'])->name('demos');
 
 // Demo content — serves demo HTML/CSS/JS/images dynamically through Laravel.
 // Why: the production server (nginx) routes all requests through Laravel's
@@ -50,10 +50,18 @@ Route::get('/demo-content/{slug}/{path?}', [DemoController::class, 'serve'])
     ->where('path', '.*')
     ->name('demo.content');
 
-// Legacy showcase redirect
+// Legacy redirects
 Route::get('/showcase', function () {
     return redirect()->route('case-studies.index', [], 301);
 });
+
+// Legacy /demos → /demo-lab
+// The old /demos URL conflicted with the physical public/demos/ directory.
+// nginx returned 403 on /demos/ because it tried to serve the directory
+// listing instead of routing to Laravel. The route is now /demo-lab.
+Route::get('/demos', function () {
+    return redirect()->route('demos', [], 301);
+})->name('demos.legacy');
 
 // Preview system (preserved — do not modify)
 Route::get('/preview/{slug}', [PageController::class, 'preview'])->name('preview.show');
