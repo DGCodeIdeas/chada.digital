@@ -1,17 +1,20 @@
 // ============================================================
 // Chada Digital — Main Stylesheet
-// Stack: Bootstrap 5 + Material Design 3 + Custom SCSS
-// Load order: Bootstrap → MD3 tokens → MD3/Bootstrap bridge → Custom
+// Stack: Bootstrap 5 + Bootstrap Icons + Material Design 3 + Custom SCSS
+// Load order: Bootstrap → Bootstrap Icons → MD3 tokens → Bridge → Custom
 // ============================================================
 
 // 1. Bootstrap 5 (full build — grid, reboot, utilities, components)
 @import "~bootstrap/scss/bootstrap";
 
-// 2. Material Design 3 color tokens, elevation, shape, typography
+// 2. Bootstrap Icons (font-based icon system)
+@import "~bootstrap-icons/font/bootstrap-icons";
+
+// 3. Material Design 3 color tokens, elevation, shape, typography
 @import "md3-tokens";
 
-// 3. Bridge: map Bootstrap components to MD3 design language
+// 4. Bridge: map Bootstrap components to MD3 design language
 @import "md3-bootstrap-bridge";
 
-// 4. Chada Digital — brand-specific custom components and overrides
+// 5. Chada Digital — brand-specific custom components and overrides
 @import "chada-custom";
