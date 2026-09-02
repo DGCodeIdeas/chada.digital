@@ -31,17 +31,22 @@
             <div class="card-body p-0">
                 @foreach($demos as $index => $demo)
                 <div class="demo-frame {{ $index === 0 ? '' : 'd-none' }}" data-frame="{{ $demo['slug'] }}">
-                    <div class="d-flex align-items-center justify-content-between px-4 py-3" style="background: var(--md-sys-color-surface-container-highest); border-bottom: 1px solid var(--md-sys-color-outline-variant);">
+                    <div class="d-flex align-items-center justify-content-between px-4 py-3" style="background: var(--md-sys-color-surface-container-highest);">
                         <div>
                             <p class="fw-semibold mb-0" style="color: var(--md-sys-color-on-surface); font-size: 0.9375rem;">{{ $demo['title'] }}</p>
-                            <p class="mb-0" style="color: var(--md-sys-color-on-surface-variant); font-size: 0.875rem;">{{ $demo['category'] }}</p>
+                            <p class="mb-0" style="color: var(--md-sys-color-on-surface-variant); font-size: 0.8125rem;">{{ $demo['category'] }}</p>
                         </div>
-                        <a href="{{ route('preview.show', $demo['slug']) }}" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill" style="border-color: var(--md-sys-color-primary); color: var(--md-sys-color-primary); font-weight: 500;">
+                        <a href="{{ route('preview.show', $demo['slug']) }}" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill" style="border-color: var(--md-sys-color-primary); color: var(--md-sys-color-primary); font-weight: 500; font-size: 0.75rem;">
                             Open Fullscreen
                         </a>
                     </div>
+                    {{-- Load demo HTML directly — NOT through the preview.show route.
+                         The preview route renders a full page with header/footer/nav,
+                         which creates a double-nested iframe (Chada layout wrapping
+                         another Chada layout wrapping the demo). Loading the demo
+                         HTML file directly gives a clean single-iframe embed. --}}
                     <div class="ratio ratio-16x9" style="min-height: 600px;">
-                        <iframe src="{{ route('preview.show', $demo['slug']) }}" title="{{ $demo['title'] }} Preview" style="border: none; width: 100%; height: 100%;" loading="lazy"></iframe>
+                        <iframe src="{{ asset('demos/' . $demo['slug'] . '/index.html') }}" title="{{ $demo['title'] }} Preview" style="border: none; width: 100%; height: 100%;" loading="lazy"></iframe>
                     </div>
                 </div>
                 @endforeach
