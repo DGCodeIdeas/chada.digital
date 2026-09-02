@@ -13,7 +13,7 @@
                 <a href="{{ route('demos') }}" class="btn btn-outline-secondary btn-sm rounded-pill" style="border-color: var(--md-sys-color-outline); color: var(--md-sys-color-on-surface-variant);">
                     ← All Demos
                 </a>
-                <a href="{{ asset('demos/' . $project['slug'] . '/index.html') }}" target="_blank" class="btn btn-primary btn-sm rounded-pill" style="background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary);">
+                <a href="{{ route('demo.content', ['slug' => $project['slug']]) }}" target="_blank" class="btn btn-primary btn-sm rounded-pill" style="background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary);">
                     Open in New Tab
                 </a>
             </div>
@@ -24,7 +24,7 @@
 <section style="background: var(--md-sys-color-surface); padding: 0;">
     <div class="container-fluid p-0">
         <div class="ratio ratio-16x9" style="min-height: 80vh;">
-            <iframe src="{{ asset('demos/' . $project['slug'] . '/index.html') }}" title="{{ $project['title'] }}" style="border: none; width: 100%; height: 100%;" loading="eager"></iframe>
+            <iframe src="{{ route('demo.content', ['slug' => $project['slug']]) }}" title="{{ $project['title'] }}" style="border: none; width: 100%; height: 100%;" loading="eager"></iframe>
         </div>
     </div>
 </section>

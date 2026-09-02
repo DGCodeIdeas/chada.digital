@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\CaseStudyController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DemoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,16 @@ Route::post('/api/contact', [ContactController::class, 'store'])->name('contact.
 
 // Demo Lab
 Route::get('/demos', [PageController::class, 'demos'])->name('demos');
+
+// Demo content — serves demo HTML/CSS/JS/images dynamically through Laravel.
+// Why: the production server (nginx) routes all requests through Laravel's
+// front controller, so direct file access to public/demos/*.html returns
+// 403 Forbidden. This route reads files from the filesystem and streams them
+// through Laravel's response system, bypassing the web server's static-file
+// restrictions. See DemoController for security details.
+Route::get('/demo-content/{slug}/{path?}', [DemoController::class, 'serve'])
+    ->where('path', '.*')
+    ->name('demo.content');
 
 // Legacy showcase redirect
 Route::get('/showcase', function () {
