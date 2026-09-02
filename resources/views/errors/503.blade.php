@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maintenance | Chada Digital</title>
+    <title>Maintenance | {{ config('brand.name', 'Chada Digital') }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -57,7 +57,7 @@
             </svg>
         </div>
         <h1 class="mb-3">We Will Be Right Back</h1>
-        <p class="text-muted mb-4">Chada Digital is currently undergoing scheduled maintenance. We are making improvements to serve you better.</p>
+        <p class="text-muted mb-4">{{ config('brand.name', 'Chada Digital') }} is currently undergoing scheduled maintenance. We are making improvements to serve you better.</p>
         <p class="text-muted mb-0" style="font-size: 0.875rem;">Expected to return shortly. Thank you for your patience.</p>
     </div>
 </body>

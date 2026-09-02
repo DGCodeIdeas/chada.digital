@@ -104,19 +104,15 @@
                 </div>
             </div>
             <div class="col-lg-7">
-                <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.08em;">Founder</p>
-                <h2 class="fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface);">Chada Digital Team</h2>
+                <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.08em;">{{ config('founder.eyebrow') }}</p>
+                <h2 class="fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface);">{{ config('brand.name') }} {{ config('founder.heading') }}</h2>
+                @foreach(config('founder.paragraphs') as $paragraph)
                 <p class="mb-3" style="color: var(--md-sys-color-on-surface-variant); line-height: 1.7; font-size: 1.0625rem;">
-                    We started Chada Digital because we were tired of seeing Nigerian businesses pay premium prices for websites that did not sell. Too many agencies build beautiful portfolios that generate zero revenue for their clients.
+                    {{ $paragraph }}
                 </p>
-                <p class="mb-3" style="color: var(--md-sys-color-on-surface-variant); line-height: 1.7; font-size: 1.0625rem;">
-                    Our approach is different. Every project starts with a revenue model. We ask: how will this system make you money? Then we design, build, and optimise around that answer.
-                </p>
-                <p class="mb-4" style="color: var(--md-sys-color-on-surface-variant); line-height: 1.7; font-size: 1.0625rem;">
-                    We have helped 50+ businesses across 6 industries build digital systems that generate leads, close sales, and retain customers. Our average client sees a 300% increase in qualified leads within 90 days of launch.
-                </p>
-                <a href="{{ route('contact') }}" class="btn btn-primary rounded-pill px-4" style="background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); font-weight: 500;">
-                    Work With Us
+                @endforeach
+                <a href="{{ route(config('founder.cta_route')) }}" class="btn btn-primary rounded-pill px-4" style="background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); font-weight: 500;">
+                    {{ config('founder.cta_label') }}
                 </a>
             </div>
         </div>
