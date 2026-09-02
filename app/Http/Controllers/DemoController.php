@@ -98,7 +98,11 @@ class DemoController extends Controller
         }
 
         // 7. Determine the MIME type
-        $mimeType = mime_content_type($realFilePath);
+        //    Use an explicit extension map first — mime_content_type() relies
+        //    on the system's magic file database which can return wrong types
+        //    (e.g. text/plain for .css, text/x-asm for .js on some systems).
+        //    The extension map is authoritative for web content.
+        $mimeType = self::getMimeType($realFilePath);
 
         // 8. Stream the file with appropriate headers
         return Response::file($realFilePath, [
@@ -106,5 +110,81 @@ class DemoController extends Controller
             'Cache-Control' => 'public, max-age=3600',
             'X-Content-Type-Options' => 'nosniff',
         ]);
+    }
+
+    /**
+     * Get the MIME type for a file, using an explicit extension map first.
+     * Falls back to mime_content_type() for unknown extensions.
+     *
+     * This is necessary because PHP's mime_content_type() uses the system's
+     * libmagic database, which can return incorrect types:
+     *   - .css files → text/plain (should be text/css)
+     *   - .js files  → text/x-asm or text/plain (should be application/javascript)
+     *   - .svg files → image/svg+xml (usually correct, but included for safety)
+     *
+     * The X-Content-Type-Options: nosniff header (set above) causes browsers
+     * to reject responses where the MIME type doesn't match the expected type
+     * for the resource — so a .css file served as text/plain gets blocked
+     * with "MIME type mismatch" errors. This map ensures correct MIME types.
+     */
+    private static function getMimeType(string $filePath): string
+    {
+        $extension = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
+
+        $mimeMap = [
+            // HTML
+            'html' => 'text/html',
+            'htm'  => 'text/html',
+
+            // Styles
+            'css'  => 'text/css',
+
+            // Scripts
+            'js'   => 'application/javascript',
+            'mjs'  => 'application/javascript',
+            'json' => 'application/json',
+
+            // Images
+            'svg'  => 'image/svg+xml',
+            'png'  => 'image/png',
+            'jpg'  => 'image/jpeg',
+            'jpeg' => 'image/jpeg',
+            'gif'  => 'image/gif',
+            'webp' => 'image/webp',
+            'ico'  => 'image/x-icon',
+            'avif' => 'image/avif',
+
+            // Fonts
+            'woff' => 'font/woff',
+            'woff2' => 'font/woff2',
+            'ttf'  => 'font/ttf',
+            'otf'  => 'font/otf',
+            'eot'  => 'application/vnd.ms-fontobject',
+
+            // Documents
+            'xml'  => 'application/xml',
+            'txt'  => 'text/plain',
+            'pdf'  => 'application/pdf',
+
+            // Video
+            'mp4'  => 'video/mp4',
+            'webm' => 'video/webm',
+
+            // Audio
+            'mp3'  => 'audio/mpeg',
+            'ogg'  => 'audio/ogg',
+            'wav'  => 'audio/wav',
+        ];
+
+        // Use the explicit map if the extension is known
+        if (isset($mimeMap[$extension])) {
+            return $mimeMap[$extension];
+        }
+
+        // Fall back to the system's mime_content_type() for unknown extensions
+        $fallback = mime_content_type($filePath);
+
+        // If even the fallback fails, default to octet-stream (download)
+        return $fallback !== false ? $fallback : 'application/octet-stream';
     }
 }
