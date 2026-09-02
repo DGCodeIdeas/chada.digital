@@ -2,60 +2,52 @@
 
 @section('content')
 
-<section style="background: linear-gradient(135deg, #f8f6f3 0%, #f0ede8 100%); padding: 5rem 0 3rem;">
+<section style="background: linear-gradient(135deg, #f8f6f3 0%, #f0ede8 100%); padding: 4rem 0 3rem;">
     <div class="container">
-        <div class="text-center mb-5">
-            <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.08em;">Portfolio</p>
-            <h1 class="display-5 fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface);">Case Studies</h1>
-            <p class="mx-auto" style="max-width: 600px; color: var(--md-sys-color-on-surface-variant); font-size: 1.125rem;">
-                Real projects. Real metrics. Real businesses. Every case study includes the full workflow, tech stack, and business outcome.
-            </p>
-        </div>
-
-        <!-- Category Filters -->
-        <div class="d-flex flex-wrap justify-content-center gap-2 mb-5">
-            @foreach($categories as $slug => $label)
-            <a href="{{ route('case-studies.index', ['category' => $slug]) }}"
-               class="btn {{ $category === $slug ? 'btn-primary' : 'btn-outline-secondary' }} rounded-pill px-4"
-               style="{{ $category === $slug ? 'background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary);' : 'border-color: var(--md-sys-color-outline); color: var(--md-sys-color-on-surface-variant);' }} font-weight: 500; font-size: 0.875rem;">
-                {{ $label }}
-            </a>
-            @endforeach
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8">
+                <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;">Portfolio</p>
+                <h1 class="display-6 fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface); font-size: 2.25rem;">Case Studies Coming Soon</h1>
+                <p class="mb-4" style="color: var(--md-sys-color-on-surface-variant); font-size: 0.9375rem; line-height: 1.65; max-width: 540px; margin-left: auto; margin-right: auto;">
+                    We are working on detailed case studies for each of our demo projects. Each one will include the full workflow, tech stack, and verified business outcomes.
+                </p>
+                <div class="d-flex flex-wrap gap-2 justify-content-center">
+                    <a href="{{ route('services') }}" class="btn btn-outline-primary rounded-pill" style="border-color: var(--md-sys-color-primary); color: var(--md-sys-color-primary); font-weight: 500; font-size: 0.8125rem; padding: 0.5rem 1rem;">
+                        View Services & Pricing
+                    </a>
+                    <a href="{{ route('contact') }}" class="btn btn-primary rounded-pill" style="background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); font-weight: 500; font-size: 0.8125rem; padding: 0.5rem 1rem;">
+                        Start a Project
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<section style="background: var(--md-sys-color-surface); padding: 3rem 0 5rem;">
+<section style="background: var(--md-sys-color-surface); padding: 3rem 0;">
     <div class="container">
-        <div class="row g-4">
-            @forelse($studies as $study)
+        <div class="row g-3 justify-content-center">
+            @php
+            $demos = [
+                ['name' => 'Sterling & Vale', 'category' => 'Corporate Website'],
+                ['name' => 'ApexFlow', 'category' => 'SaaS Onboarding'],
+                ['name' => 'ELYSIAN', 'category' => 'Hotel Booking Engine'],
+                ['name' => 'HIREBASE', 'category' => 'Job Matching Platform'],
+                ['name' => 'NOIR', 'category' => 'Fashion E-Commerce'],
+                ['name' => 'TimberMill', 'category' => 'Artisan Catalogue'],
+            ];
+            @endphp
+            @foreach($demos as $demo)
             <div class="col-md-6 col-lg-4">
-                <div class="card h-100 border-0" style="background: var(--md-sys-color-surface-container-low); border-radius: 16px; transition: transform 0.2s ease, box-shadow 0.2s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 24px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-                    <div class="card-body p-4">
-                        <div class="d-flex align-items-center gap-2 mb-3">
-                            <span class="badge rounded-pill" style="background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); font-weight: 500; font-size: 0.75rem;">{{ $study['industry'] }}</span>
-                            <span class="badge rounded-pill" style="background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); font-weight: 500; font-size: 0.75rem;">{{ $categories[$study['category']] ?? $study['category'] }}</span>
-                        </div>
-                        <p class="fw-bold mb-2" style="font-family: 'Outfit', sans-serif; font-size: 2rem; color: var(--md-sys-color-primary);">{{ $study['metric'] }}</p>
-                        <h5 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface);">{{ $study['client'] }}</h5>
-                        <p class="mb-3" style="font-size: 0.9375rem; color: var(--md-sys-color-on-surface-variant); line-height: 1.6;">{{ $study['excerpt'] }}</p>
-                        <div class="d-flex flex-wrap gap-1 mb-3">
-                            @foreach(array_slice($study['tech_stack'], 0, 4) as $tool)
-                            <span class="badge" style="background: var(--md-sys-color-surface-container-highest); color: var(--md-sys-color-on-surface-variant); font-weight: 400; font-size: 0.75rem;">{{ $tool }}</span>
-                            @endforeach
-                        </div>
-                        <a href="{{ route('case-study.show', $study['slug']) }}" class="text-decoration-none fw-medium" style="color: var(--md-sys-color-primary); font-size: 0.9375rem;">
-                            Read Story →
-                        </a>
+                <div class="card h-100" style="background: var(--md-sys-color-surface-container-low); border-radius: 12px; opacity: 0.6;">
+                    <div class="card-body p-3">
+                        <span class="badge rounded-pill mb-2" style="background: var(--md-sys-color-surface-container-highest); color: var(--md-sys-color-on-surface-variant); font-weight: 500; font-size: 0.6875rem;">{{ $demo['category'] }}</span>
+                        <h6 class="fw-semibold mb-0" style="color: var(--md-sys-color-on-surface); font-size: 0.9375rem;">{{ $demo['name'] }}</h6>
+                        <p class="mt-2 mb-0" style="font-size: 0.75rem; color: var(--md-sys-color-on-surface-variant); font-style: italic;">Case study in progress</p>
                     </div>
                 </div>
             </div>
-            @empty
-            <div class="col-12 text-center py-5">
-                <p class="text-muted">No case studies found in this category.</p>
-                <a href="{{ route('case-studies.index') }}" class="btn btn-outline-primary rounded-pill">View All</a>
-            </div>
-            @endforelse
+            @endforeach
         </div>
     </div>
 </section>

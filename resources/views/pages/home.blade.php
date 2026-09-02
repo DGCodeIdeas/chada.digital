@@ -17,11 +17,11 @@
                     {{ config('placeholders.hero.subhead') }}
                 </p>
                 <div class="d-flex flex-wrap gap-3">
-                    <a href="{{ route('case-studies.index') }}" class="btn btn-primary btn-lg rounded-pill px-4" style="background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); font-weight: 500;">
-                        View Our Work
-                    </a>
-                    <a href="{{ route('services') }}" class="btn btn-outline-primary btn-lg rounded-pill px-4" style="border-color: var(--md-sys-color-primary); color: var(--md-sys-color-primary); font-weight: 500;">
+                    <a href="{{ route('services') }}" class="btn btn-primary btn-lg rounded-pill px-4" style="background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); font-weight: 500;">
                         See Services & Pricing
+                    </a>
+                    <a href="{{ route('case-studies.index') }}" class="btn btn-outline-primary btn-lg rounded-pill px-4" style="border-color: var(--md-sys-color-primary); color: var(--md-sys-color-primary); font-weight: 500;">
+                        View Our Work
                     </a>
                 </div>
                 {{-- Design Partner band replaces the V2 trust-strip + the hardcoded "Trusted by 50+ brands"
@@ -114,6 +114,7 @@
 </section>
 
 <!-- ===== FEATURED CASE STUDIES ===== -->
+@if($featuredStudies->isNotEmpty())
 <section style="background: var(--md-sys-color-surface-container-low); padding: 5rem 0;">
     <div class="container">
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-5 gap-3">
@@ -147,6 +148,11 @@
         </div>
     </div>
 </section>
+@endif
+{{-- Case studies locked behind "Coming Soon" (Sep 1, 2026). The entire
+     featured section is hidden because $featuredStudies is an empty
+     collection (see PageController::home()). To unlock: restore the
+     featured(3) call in PageController and remove this @if guard. --}}
 
 <!-- ===== SERVICES TEASER ===== -->
 <section style="background: var(--md-sys-color-surface); padding: 5rem 0;">
