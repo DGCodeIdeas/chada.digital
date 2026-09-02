@@ -40,13 +40,13 @@
                             Open Fullscreen
                         </a>
                     </div>
-                    {{-- Load demo HTML directly — NOT through the preview.show route.
-                         The preview route renders a full page with header/footer/nav,
-                         which creates a double-nested iframe (Chada layout wrapping
-                         another Chada layout wrapping the demo). Loading the demo
-                         HTML file directly gives a clean single-iframe embed. --}}
+                    {{-- Load demo content through Laravel's demo.content route.
+                         Direct file access (asset('demos/...')) returns 403 on
+                         the production server because nginx routes everything
+                         through the front controller. This route serves the
+                         demo HTML/CSS/JS/images dynamically. --}}
                     <div class="ratio ratio-16x9" style="min-height: 600px;">
-                        <iframe src="{{ asset('demos/' . $demo['slug'] . '/index.html') }}" title="{{ $demo['title'] }} Preview" style="border: none; width: 100%; height: 100%;" loading="lazy"></iframe>
+                        <iframe src="{{ route('demo.content', ['slug' => $demo['slug']]) }}" title="{{ $demo['title'] }} Preview" style="border: none; width: 100%; height: 100%;" loading="lazy"></iframe>
                     </div>
                 </div>
                 @endforeach
