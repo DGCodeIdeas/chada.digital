@@ -34,7 +34,12 @@ class PageController extends Controller
      */
     public function home()
     {
-        $featuredStudies = $this->caseStudyService->featured(3);
+        // LOCKED (Sep 1, 2026): Case studies are behind "Coming Soon".
+        // Pass an empty collection so the homepage featured section hides
+        // entirely (the @if($featuredStudies->isNotEmpty()) guard in
+        // home.blade.php handles the hide). No fabricated metrics ship.
+        // To unlock: restore $this->caseStudyService->featured(3)
+        $featuredStudies = collect([]);
         $stats = $this->caseStudyService->stats();
         $meta = [
             'title' => 'Chada Digital — Digital Solutions That Help Businesses Grow',

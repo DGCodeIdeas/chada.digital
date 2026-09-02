@@ -15,39 +15,39 @@ class CaseStudyController extends Controller
     }
 
     /**
-     * Case Studies index — filterable grid
+     * Case Studies index — LOCKED behind "Coming Soon" (Sep 1, 2026).
+     *
+     * All case study content is gated until the Founder verifies each entry's
+     * metric + narrative. The page shows a "Coming Soon" message with the 6
+     * demo project names listed as "in progress" — no fabricated metrics,
+     * no fake narratives, no unverifiable claims.
+     *
+     * To unlock: remove this method's early return and restore the original
+     * index logic (filter by published=true when CaseStudyService gates are
+     * intact). See FOUNDER_CHECKLIST.md row 1.
      */
     public function index(Request $request)
     {
-        $category = $request->get('category', 'all');
-        $studies = $category === 'all'
-            ? $this->caseStudyService->all()
-            : $this->caseStudyService->byCategory($category);
-
-        $categories = $this->caseStudyService->categories();
         $meta = [
-            'title' => 'Case Studies — Chada Digital',
-            'description' => 'Real results for real businesses. Explore our portfolio of web development, automation, and advertising projects.',
+            'title' => 'Case Studies Coming Soon | Chada Digital',
+            'description' => 'Detailed case studies for each of our demo projects are being prepared. Each will include the full workflow, tech stack, and verified business outcomes.',
             'og_image' => asset('og-image.jpg'),
         ];
-        return view('pages.case-studies', compact('studies', 'categories', 'category', 'meta'));
+        return view('pages.case-studies', compact('meta'));
     }
 
     /**
-     * Individual case study detail page
+     * Individual case study detail page — LOCKED (Sep 1, 2026).
+     *
+     * Redirects to the Coming Soon index page instead of showing fabricated
+     * content or returning a 404. The user sees the "Coming Soon" message
+     * regardless of which slug they try to access.
+     *
+     * To unlock: restore the original show() logic that calls
+     * CaseStudyService::find($slug) and renders pages.case-study.
      */
     public function show($slug)
     {
-        $study = $this->caseStudyService->find($slug);
-        if (!$study) {
-            abort(404);
-        }
-        $related = $this->caseStudyService->related($slug, 3);
-        $meta = [
-            'title' => $study['client'] . ' — Case Study | Chada Digital',
-            'description' => $study['excerpt'],
-            'og_image' => $study['og_image'] ?? asset('og-image.jpg'),
-        ];
-        return view('pages.case-study', compact('study', 'related', 'meta'));
+        return redirect()->route('case-studies.index');
     }
 }
