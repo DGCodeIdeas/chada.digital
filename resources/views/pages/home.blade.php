@@ -65,20 +65,6 @@
     </div>
 </section>
 
-<!-- ===== STATS ===== -->
-<section style="background: var(--md-sys-color-surface); border-bottom: 1px solid var(--md-sys-color-outline-variant); padding: 3rem 0;">
-    <div class="container">
-        <div class="row g-4 text-center">
-            @foreach($stats as $stat)
-            <div class="col-6 col-md-3">
-                <p class="display-5 fw-bold mb-1" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-primary);">{{ $stat['number'] }}</p>
-                <p class="mb-0" style="font-size: 0.9375rem; color: var(--md-sys-color-on-surface-variant);">{{ $stat['label'] }}</p>
-            </div>
-            @endforeach
-        </div>
-    </div>
-</section>
-
 {{-- Design Partner band — always renders, no gate. Replaces the V2 trust-strip. --}}
 @include('partials.design-partner-band')
 
