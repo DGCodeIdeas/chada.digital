@@ -67,10 +67,9 @@
                                     <label for="subject" class="form-label" style="font-weight: 500; font-size: 0.875rem; color: var(--md-sys-color-on-surface);">Subject</label>
                                     <select class="form-select" id="subject" name="subject" required style="border-radius: 12px; border-color: var(--md-sys-color-outline-variant); padding: 0.75rem 1rem;">
                                         <option value="">Select a topic...</option>
-                                        <option value="Web Development Project">Web Development Project</option>
-                                        <option value="Funnel & Automation">Funnel & Automation</option>
-                                        <option value="Paid Advertising">Paid Advertising</option>
-                                        <option value="Brand Strategy">Brand Strategy</option>
+                                        <option value="Website Design Project">Website Design Project</option>
+                                        <option value="Automation Project">Automation Project</option>
+                                        <option value="Branding Project">Branding Project</option>
                                         <option value="General Inquiry">General Inquiry</option>
                                     </select>
                                 </div>
