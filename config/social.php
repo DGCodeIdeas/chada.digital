@@ -2,10 +2,9 @@
 
 // Social media URLs.
 // Used by: footer, structured data (sameAs).
-// Replace '#' with real URLs when available.
 
 return [
-    'linkedin' => '#',
-    'instagram' => '#',
-    'twitter' => '#',
+    'twitter' => 'https://x.com/chadadigital',
+    'linkedin' => 'https://www.linkedin.com/company/chada-digital/',
+    'instagram' => 'https://instagram.com/chadadigital',
 ];
