@@ -15,6 +15,7 @@ class CaseStudyService
         return collect([
             [
                 'slug' => 'sterling-vale',
+                'published' => false,
                 'client' => 'Sterling & Vale',
                 'industry' => 'Construction & Engineering',
                 'category' => 'web-development',
@@ -38,6 +39,7 @@ class CaseStudyService
             ],
             [
                 'slug' => 'apexflow',
+                'published' => false,
                 'client' => 'ApexFlow',
                 'industry' => 'SaaS / AI Automation',
                 'category' => 'funnel-automation',
@@ -62,6 +64,7 @@ class CaseStudyService
             ],
             [
                 'slug' => 'elysian',
+                'published' => false,
                 'client' => 'ELYSIAN',
                 'industry' => 'Hospitality / Hotel & Spa',
                 'category' => 'web-development',
@@ -85,6 +88,7 @@ class CaseStudyService
             ],
             [
                 'slug' => 'hirebase',
+                'published' => false,
                 'client' => 'HIREBASE',
                 'industry' => 'Recruitment / HR Tech',
                 'category' => 'web-development',
@@ -109,6 +113,7 @@ class CaseStudyService
             ],
             [
                 'slug' => 'noir',
+                'published' => false,
                 'client' => 'NOIR',
                 'industry' => 'Fashion / E-Commerce',
                 'category' => 'funnel-automation',
@@ -132,6 +137,7 @@ class CaseStudyService
             ],
             [
                 'slug' => 'timber-mill',
+                'published' => false,
                 'client' => 'TimberMill',
                 'industry' => 'Artisan / Furniture',
                 'category' => 'web-development',
@@ -158,7 +164,10 @@ class CaseStudyService
 
     public function featured(int $count = 3): Collection
     {
-        return $this->all()->take($count);
+        // V4 GATE: only published case studies appear on the homepage.
+        // All 6 entries have 'published' => false — each flips to true
+        // only when the Founder verifies the metric + narrative.
+        return $this->all()->where('published', true)->take($count);
     }
 
     public function byCategory(string $category): Collection
@@ -179,7 +188,10 @@ class CaseStudyService
 
     public function find(string $slug): ?array
     {
-        return $this->all()->firstWhere('slug', $slug);
+        // V4 GATE: unpublished case studies are not findable by slug.
+        return $this->all()
+            ->where('published', true)
+            ->firstWhere('slug', $slug);
     }
 
     public function related(string $currentSlug, int $count = 3): Collection
