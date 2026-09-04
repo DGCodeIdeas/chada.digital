@@ -38,10 +38,9 @@
             <div class="col-lg-2 col-md-6">
                 <h6 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;">Services</h6>
                 <ul class="list-unstyled mb-0" style="font-size: 0.8125rem;">
-                    <li class="mb-1"><a href="{{ route('services') }}" style="color: var(--md-sys-color-on-surface-variant);">Web Development</a></li>
-                    <li class="mb-1"><a href="{{ route('services') }}" style="color: var(--md-sys-color-on-surface-variant);">Funnel Automation</a></li>
-                    <li class="mb-1"><a href="{{ route('services') }}" style="color: var(--md-sys-color-on-surface-variant);">Paid Advertising</a></li>
-                    <li class="mb-1"><a href="{{ route('services') }}" style="color: var(--md-sys-color-on-surface-variant);">Brand Strategy</a></li>
+                    <li class="mb-1"><a href="{{ route('services') }}" style="color: var(--md-sys-color-on-surface-variant);">Website Design</a></li>
+                    <li class="mb-1"><a href="{{ route('services') }}" style="color: var(--md-sys-color-on-surface-variant);">Automation</a></li>
+                    <li class="mb-1"><a href="{{ route('services') }}" style="color: var(--md-sys-color-on-surface-variant);">Branding</a></li>
                 </ul>
             </div>
 

@@ -1,13 +1,12 @@
 <?php
 
 // Closing CTA sections on home + services pages.
-// Used by: pages/home.blade.php, pages/services.blade.php.
 
 return [
-    'home_headline' => 'Still Have Questions?',
-    'home_body' => 'Every project starts with a conversation. Tell us what you are trying to achieve and we will tell you exactly how we can help.',
-    'home_button' => 'Start a Conversation',
-    'services_headline' => 'Still Have Questions?',
-    'services_body' => 'Every project starts with a conversation. Tell us what you are trying to achieve and we will tell you exactly how we can help.',
+    'home_headline' => 'Ready to Start?',
+    'home_body' => 'Pick a service tier, send us a message, and we will get back to you within 24 hours with next steps.',
+    'home_button' => 'View Services & Pricing',
+    'services_headline' => 'Ready to Start?',
+    'services_body' => 'Pick a tier that fits your budget, send us a message, and we will get back to you within 24 hours with next steps.',
     'services_button' => 'Start a Conversation',
 ];
