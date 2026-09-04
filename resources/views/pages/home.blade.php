@@ -30,34 +30,41 @@
             </div>
             <div class="col-lg-5 d-none d-lg-block">
                 <div class="position-relative">
-                    <div class="rounded-4 shadow-lg" style="background: var(--md-sys-color-surface); border: 1px solid var(--md-sys-color-outline-variant); padding: 2rem;">
-                        <div class="d-flex align-items-center gap-3 mb-4">
-                            <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container);">
-                                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+                    <div class="rounded-4 shadow-lg" style="background: var(--md-sys-color-surface); padding: 1.75rem;">
+                        <p class="fw-semibold mb-3" style="font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--md-sys-color-on-surface-variant);">What We Build</p>
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 40px; height: 40px; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container);">
+                                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M3 3h18v2H3V3zm0 4h18v2H3V7zm0 4h18v2H3v-2zm0 4h12v2H3v-2z"/></svg>
                             </div>
-                            <div>
-                                <p class="fw-semibold mb-0" style="font-size: 0.9375rem;">Revenue Growth</p>
-                                <p class="mb-0" style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant);">+1,200% for NOIR</p>
+                            <div class="flex-grow-1">
+                                <p class="fw-semibold mb-0" style="font-size: 0.875rem;">Website Design</p>
+                                <p class="mb-0" style="font-size: 0.75rem; color: var(--md-sys-color-on-surface-variant);">From ₦200,000</p>
                             </div>
+                            <a href="{{ route('services') }}" class="btn btn-sm btn-outline-primary rounded-pill flex-shrink-0" style="border-color: var(--md-sys-color-primary); color: var(--md-sys-color-primary); font-size: 0.6875rem; padding: 0.25rem 0.625rem;">View</a>
                         </div>
-                        <div class="d-flex align-items-center gap-3 mb-4">
-                            <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container);">
-                                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 40px; height: 40px; background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container);">
+                                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
                             </div>
-                            <div>
-                                <p class="fw-semibold mb-0" style="font-size: 0.9375rem;">Lead Quality</p>
-                                <p class="mb-0" style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant);">3× increase for Sterling & Vale</p>
+                            <div class="flex-grow-1">
+                                <p class="fw-semibold mb-0" style="font-size: 0.875rem;">Automation</p>
+                                <p class="mb-0" style="font-size: 0.75rem; color: var(--md-sys-color-on-surface-variant);">From ₦150,000</p>
                             </div>
+                            <a href="{{ route('services') }}" class="btn btn-sm btn-outline-primary rounded-pill flex-shrink-0" style="border-color: var(--md-sys-color-primary); color: var(--md-sys-color-primary); font-size: 0.6875rem; padding: 0.25rem 0.625rem;">View</a>
                         </div>
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; background: var(--md-sys-color-tertiary-container); color: var(--md-sys-color-on-tertiary-container);">
-                                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 40px; height: 40px; background: var(--md-sys-color-tertiary-container); color: var(--md-sys-color-on-tertiary-container);">
+                                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                             </div>
-                            <div>
-                                <p class="fw-semibold mb-0" style="font-size: 0.9375rem;">Conversion Rate</p>
-                                <p class="mb-0" style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant);">68% trial-to-paid for ApexFlow</p>
+                            <div class="flex-grow-1">
+                                <p class="fw-semibold mb-0" style="font-size: 0.875rem;">Branding</p>
+                                <p class="mb-0" style="font-size: 0.75rem; color: var(--md-sys-color-on-surface-variant);">From ₦100,000</p>
                             </div>
+                            <a href="{{ route('services') }}" class="btn btn-sm btn-outline-primary rounded-pill flex-shrink-0" style="border-color: var(--md-sys-color-primary); color: var(--md-sys-color-primary); font-size: 0.6875rem; padding: 0.25rem 0.625rem;">View</a>
                         </div>
+                        <a href="{{ route('services') }}" class="btn btn-primary w-100 rounded-pill mt-2" style="background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); font-weight: 500; font-size: 0.8125rem;">
+                            See All Pricing
+                        </a>
                     </div>
                 </div>
             </div>
