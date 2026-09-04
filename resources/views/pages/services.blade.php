@@ -74,8 +74,8 @@
                         <h5 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface); font-size: 1rem;">{{ $tier['name'] }}</h5>
                         <div class="d-flex align-items-baseline gap-2 mb-2">
                             @if($tier['price'] !== null)
-                                <span class="fw-bold" style="font-family: 'Outfit', sans-serif; font-size: 1.75rem; color: var(--md-sys-color-primary); line-height: 1.1;">{{ $tier['price'] }}</span>
-                                <span style="color: var(--md-sys-color-on-surface-variant); font-size: 0.75rem;">{{ $tier['price_note'] }}</span>
+                                <span class="fw-bold" style="font-family: 'Outfit', sans-serif; font-size: 1.25rem; color: var(--md-sys-color-primary); line-height: 1.2;">{{ $tier['price_range'] ?? $tier['price'] }}</span>
+                                <span style="color: var(--md-sys-color-on-surface-variant); font-size: 0.6875rem;">{{ $tier['price_note'] }}</span>
                             @else
                                 <span class="fw-bold" style="font-family: 'Outfit', sans-serif; font-size: 1.125rem; color: var(--md-sys-color-on-surface-variant);">Contact for pricing</span>
                             @endif
