@@ -297,6 +297,75 @@ See `MULTIPAGE_REBUILD.md` §12 for full spec.
 
 ---
 
+## Q14 — Cart system: what does it actually let someone buy?
+
+**Plain language:** "Add a cart" means genuinely different things for a
+services business like this, and they lead to different builds. Right now
+every pricing tier's button says "Get Started" and just goes to the contact
+form — there's no checkout anywhere. Four options, not yet decided:
+
+- **(A) Fixed-price self-serve products only.** A new, separate catalog —
+  think templates, funnel packs, a paid guide — sold at a real fixed price,
+  completely separate from the custom-quote service tiers on `/services`.
+  Cleanest e-commerce pattern, lowest business risk, but doesn't touch how
+  the existing tiers are sold.
+- **(B) Deposit checkout for the existing service tiers.** Someone picks a
+  tier (e.g. "Business Website"), pays a percentage upfront online, the rest
+  is invoiced after scoping. Not really a multi-item "cart" — more a
+  single-tier "start and pay deposit" flow.
+- **(C) Both A and B together.**
+  A separate product catalog, plus deposit checkout on the service tiers.
+- **(D) Full multi-item cart across everything**, including the range-priced
+  tiers, charged at their listed starting price.
+
+**Technical detail:** (A) needs a `Product` catalog model + `Cart`/`Order`
+— a standard, well-understood pattern. (B) needs a deposit-percentage rule
+per tier and an invoicing step for the remainder — a different, less
+standard pattern, and doesn't cleanly apply to tiers priced as a *range*
+rather than a fixed number (see the flag below). (C) is both, running in
+parallel. (D) is the largest scope and carries a real pricing-integrity
+risk explained next.
+
+**Flagging one thing plainly, not just as a technical footnote:** most
+tiers are priced as a *range* (e.g. "Business Website: ₦300,000 –
+₦450,000") specifically because final price depends on a scoping call.
+Option (D) — instant checkout at "the listed starting price" — means
+someone could self-checkout a ₦300,000-tier project that, after a real
+scoping conversation, should have been priced at ₦450,000. That's not a
+bug to catch later; it's a pricing decision with real margin consequences,
+worth the Founder's explicit sign-off before it's built, not just the
+Tech Lead's.
+
+**Status:** Open. `Cart_Implementation.md` builds the foundation that works
+under any of the four answers, with each option as a separately gated
+follow-on phase — so nothing built while this is undecided goes to waste
+regardless of which way it resolves.
+
+---
+
+## Q15 — Payment gateway
+
+**Plain language:** Which payment processor actually takes the money.
+
+- **Paystack** — matches the site's Naira pricing, the standard default for
+  Nigerian businesses, was already the assumed choice in earlier (fabricated,
+  now-removed) case-study content.
+- **Flutterwave** — comparable Nigerian gateway, broader multi-currency/
+  cross-border support if that ever becomes relevant.
+- **Not decided yet.**
+
+**Technical detail:** `Cart_Implementation.md` builds a `PaymentGateway`
+interface so this choice isn't load-bearing on the rest of the system —
+Paystack is implemented first as the reference driver (matches Q14's
+₦-pricing context and is the more commonly expected default), but nothing
+elsewhere hard-depends on it. Adding Flutterwave later is a second driver
+class, not a rearchitecture.
+
+**Status:** Open. Building against Paystack as the reference implementation
+in the meantime; swappable, not locked in.
+
+---
+
 ## Sign-off
 
 | # | Decision | Answer | Decided by | Date |
@@ -315,3 +384,5 @@ See `MULTIPAGE_REBUILD.md` §12 for full spec.
 | 11 | Design Partner band replaces trust strip | Resolved | Founder + Tech Lead | Aug 30, 2026 |
 | 12 | Multi-page architecture replaces single-page-with-anchors | Resolved | Founder + Tech Lead | Aug 30, 2026 |
 | 13 | Build restart — revert main to pre-Phase-2 state (`2f8669d`) | Resolved | Tech Lead | Aug 30, 2026 |
+| 14 | Cart system scope (A/B/C/D) | | | |
+| 15 | Payment gateway (Paystack/Flutterwave/other) | | | |
