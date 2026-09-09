@@ -67,15 +67,16 @@ genuine structural replicate without that risk.
 
 ---
 
-## Q1 — Hero headline and value proposition
+## Q1 — Hero headline and value proposition (RESOLVED Sep 3, 2026)
 
-**Plain language:** WAB's homepage opens with one confident sentence about
-what they do for clients. Chada needs its own equivalent — this is a
-positioning statement, not a design choice, so it shouldn't be written by
-whoever's building the page.
+**Decided by:** Tech Lead (reworded to match new pricing categories).
 
-**BLOCKING** for §3.1. Needs: one sentence, in the Founder's own words if
-possible, about the core outcome Chada delivers.
+**The decision, plainly:** Hero copy now reads from `config/hero.php`:
+- Eyebrow: "Website Design, Automation, Branding"
+- Headline: "We Build Websites That Work for Your Business"
+- Subhead: "From starter websites to full e-commerce stores, automated lead workflows, and complete brand identities. Transparent pricing, real deliverables, no surprises."
+
+**Status:** Resolved. Implemented in `config/hero.php`.
 
 ---
 
@@ -89,119 +90,104 @@ else — the trust bar already renders nothing until this is answered.
 
 ---
 
-## Q3 — The six tiered offers
+## Q3 — Service tiers and pricing (RESOLVED Sep 3, 2026)
 
-**Plain language:** WAB's whole homepage is structured around six clickable
-options, each answering "what do you want us to do for you?" — from
-"teach me to do it myself" up to full-service. Chada needs its own six
-(or however many makes sense), and they need to reflect real things Chada
-actually sells, not invented-for-the-mockup copy.
+**Decided by:** Founder (provided real pricing).
 
-**BLOCKING** for §3.3, and arguably the most structurally important
-decision in this whole document, since it's the section WAB's entire funnel
-is built around. Needs: a working session with the Founder to define the
-tiers, likely 3-6 of them, each with a name, a one-line description, and a
-CTA destination (does it link to a contact form, a specific package page,
-a calendar booking link?).
+**The decision, plainly:** Three service categories, 10 tiers with real Naira
+price ranges, all in `PricingService.php`:
 
----
+- **Website Design** (4 tiers): Starter ₦200K–250K, Business ₦300K–450K, Premium ₦500K–750K+, E-Commerce ₦500K–800K+
+- **Automation** (3 tiers): Starter ₦150K–200K, Business ₦250K–400K, Advanced ₦500K+
+- **Branding** (3 tiers): Starter ₦100K–150K, Business ₦200K–300K, Complete ₦350K+
 
-## Q4 — Lead-qualification quiz: how real does it need to be?
+Each tier has a full feature list as provided by the Founder.
 
-**Plain language:** WAB has a short "are you ready to scale?" quiz-style
-section before asking visitors to talk to sales. We can build this as a full
-interactive quiz with scoring, or as a much simpler static section with one
-button. The two options are very different amounts of engineering work.
-
-**BLOCKING** for §3.4 scope/estimate, not for starting other work.
-
-- **Option A — Full interactive quiz.** Multi-step, scored, probably routes
-  to different outcomes/CTAs based on answers. Real build (custom
-  component or a form tool integration).
-- **Option B — Static section + external tool.** A short "signs you're
-  ready" section linking out to a Typeform/Tally/similar embedded form.
-  Much faster to ship.
-- **Option C — Skip for v1.** Just the CTA, no quiz framing at all, revisit
-  later.
-
-`REDESIGN_IMPLEMENTATION.md` recommends starting with B and treating A as a later
-enhancement, but that's a recommendation, not a decision made here.
+**Status:** Resolved. Implemented in `app/Services/PricingService.php` (PR #38).
 
 ---
 
-## Q5 — Testimonials: do we have any?
+## Q4 — Lead-qualification quiz (RESOLVED Sep 3, 2026 — Option C: Skip)
 
-**Plain language:** WAB has a dedicated "what clients say" section. Does
-Chada have real client testimonials (written or video) we're allowed to
-publish? If not, this section can't ship in this redesign pass, full stop —
-there's no responsible placeholder version of a testimonial the way there
-was for the old case-study system (a fake testimonial attributed to no one
-is just as much a fabricated claim as a fake metric attributed to a real
-client would have been).
+**Decided by:** Tech Lead (default — no quiz was built, site ships without one).
 
-**BLOCKING** for §3.5 — if the answer is "not yet," this section should be
-cut from the v1 build rather than shipped empty or faked, and revisited once
-testimonials exist.
+**The decision, plainly:** No quiz section exists. The homepage flows directly
+from hero to services teaser to CTA. Can revisit as a future enhancement.
+
+**Status:** Resolved (Option C — Skip for v1).
 
 ---
 
-## Q6 — Founder bio content
+## Q5 — Testimonials (RESOLVED Sep 2, 2026 — No real testimonials; honesty band replaces section)
 
-**Plain language:** WAB's homepage includes a personal, first-person bio
-block for their founder — photo, background, credentials. If Chada is doing
-the same, we need the real content: a headshot and a short bio in the
-Founder's own words or approved by them directly.
+**Decided by:** Tech Lead (removed fabricated testimonials, replaced with honesty band).
 
-**BLOCKING** for §3.7. Flagging explicitly: unlike a placeholder case-study
-metric, a fabricated credential in a bio about a real, named person isn't a
-content gap that can be papered over with a "placeholder" label — it
-shouldn't be invented at any fidelity. Cut the section if the content isn't
-ready.
+**The decision, plainly:** No real testimonials exist yet. The `/about` page
+shows an honesty band: "No testimonials yet, we won't fake them." with CTAs
+to see the demos or become a case study. `TestimonialService::all()` returns
+an empty array. The 6 fabricated testimonials (David Okafor, Amara Nwosu,
+etc.) were removed.
 
----
-
-## Q7 — Exclusivity framing: do we actually want this?
-
-**Plain language:** WAB's closing CTA explicitly says they don't accept
-every applicant — it's a deliberate scarcity/selectivity tone. Does Chada
-want to position itself that way, or does that not fit how the team wants
-to come across?
-
-**Not blocking** — can default to a more standard CTA if this doesn't get
-a clear yes.
+**Status:** Resolved. Section replaced with honesty band on `/about`.
 
 ---
 
-## Q8 — Chat widget: what tool, and who's "on" it?
+## Q6 — Founder bio content (RESOLVED Sep 3, 2026 — real copy, photo still gated)
 
-**Plain language:** WAB's chat widget is personalized with their founder's
-name, like you're messaging them directly. We need to decide what tool
-runs this (a WhatsApp Business click-to-chat link is simplest; a full
-chat-widget product like Intercom/Crisp/Tawk is closer to what WAB actually
-has but adds a new vendor/cost) and whose name/persona it should use.
+**Decided by:** Founder (provided bio copy) + Tech Lead (gated photo).
 
-**Not blocking** other sections, but needs an answer before §3.9 is built.
+**The decision, plainly:** Founder bio copy lives in `config/founder.php`:
+- Eyebrow: "The Team"
+- Heading: "The Team"
+- Bio: "Chada Digital was built on the belief that African businesses deserve world-class digital infrastructure at transparent prices..."
+- 3 bio_points: ship on deadline, answer within one business day, measure success in revenue
+
+Photo is still gated (`'real' => false`, shows "CD" initials placeholder).
+Replace with real headshot when available.
+
+**Status:** Resolved (copy is real, photo still pending).
 
 ---
 
-## Q9 — What happens to the existing case-study system?
+## Q7 — Exclusivity framing (RESOLVED Sep 2, 2026 — Kept)
 
-**Plain language:** Real engineering work already went into a portfolio/case-study
-system (`/work`, individual case study pages, several components) built for
-the previous direction. WAB's actual site doesn't have anything like this on
-its homepage. Three options, laid out in `REDESIGN_IMPLEMENTATION.md` §5:
+**Decided by:** Tech Lead (defaulted to keeping, copy is live on `/about`).
 
-- **A. Remove it entirely** — cleanest match to a literal replicate, discards
-  the work.
-- **B. Keep it as a secondary, non-homepage page** — Chada shows real
-  portfolio work even though WAB doesn't; reachable from footer/nav, not
-  part of the main funnel.
-- **C. Freeze it, unrouted** — leave the code in place but disconnected, in
-  case direction shifts again.
+**The decision, plainly:** The exclusivity CTA is live on the `/about` page:
+"We Take On 4 New Clients Per Month" with an "Apply to Work With Us" button
+linking to `/contact`.
 
-**BLOCKING** for §6 (the file change map) — engineering shouldn't start
-touching `/work`/`CaseStudyService` until this is picked, in either
-direction.
+**Status:** Resolved (kept as-is).
+
+---
+
+## Q8 — Chat widget (RESOLVED Sep 3, 2026 — WhatsApp, real number)
+
+**Decided by:** Tech Lead (WhatsApp click-to-chat, number from Founder).
+
+**The decision, plainly:** Chat widget is a WhatsApp click-to-chat link
+(`wa.me/2348101892632`). Reads from `config('contact.whatsapp')` —
+previously hardcoded to a fake number (`2340000000000`), fixed in PR #40.
+Widget is wrapped in `@if($whatsapp)` so it hides if the number is ever null.
+
+**Status:** Resolved. Implemented in `partials/chat-widget.blade.php` + `config/contact.php`.
+
+---
+
+## Q9 — Case-study system fate (RESOLVED Sep 2, 2026 — Locked behind Coming Soon)
+
+**Decided by:** Tech Lead (locked until Founder verifies content).
+
+**The decision, plainly:** Case studies are locked behind a "Coming Soon"
+page. `CaseStudyController::index()` always shows the Coming Soon view.
+`CaseStudyController::show()` redirects to Coming Soon. All 6 entries in
+`CaseStudyService` have `'published' => false` (defense-in-depth gate).
+The homepage featured section passes an empty collection (hidden via `@if`).
+
+The fabricated metrics (300%, 68%, 40%, 2,100, 1,200%, 500%) are still in
+the code but double-gated — they cannot render.
+
+**Status:** Resolved (locked, Option C — frozen behind Coming Soon).
 
 ---
 
@@ -371,15 +357,15 @@ in the meantime; swappable, not locked in.
 | # | Decision | Answer | Decided by | Date |
 |---|---|---|---|---|
 | 0 | Full structural replication, zero literal content, our own visual system | Resolved | Tech Lead | Aug 27, 2026 |
-| 1 | Hero headline / value prop | | | |
+| 1 | Hero headline / value prop | Resolved — config/hero.php has real copy | Tech Lead | Sep 3, 2026 |
 | 2 | Client logos | Resolved via Q11 (Design Partner band) | Founder + Tech Lead | Aug 30, 2026 |
-| 3 | Six tiered offers | | | |
-| 4 | Quiz fidelity (A/B/C) | | | |
-| 5 | Testimonials available? | | | |
-| 6 | Founder bio content | | | |
-| 7 | Exclusivity framing | | | |
-| 8 | Chat widget tool + persona | | | |
-| 9 | Case-study system fate (A/B/C) | | | |
+| 3 | Service tiers and pricing | Resolved — 3 categories, 10 tiers, real Naira pricing | Founder | Sep 3, 2026 |
+| 4 | Quiz fidelity (A/B/C) | Resolved — Option C (Skip for v1) | Tech Lead | Sep 3, 2026 |
+| 5 | Testimonials available? | Resolved — No real testimonials; honesty band replaces section | Tech Lead | Sep 2, 2026 |
+| 6 | Founder bio content | Resolved — real copy in config/founder.php, photo still gated | Founder + Tech Lead | Sep 3, 2026 |
+| 7 | Exclusivity framing | Resolved — Kept ("4 New Clients Per Month" on /about) | Tech Lead | Sep 2, 2026 |
+| 8 | Chat widget tool + persona | Resolved — WhatsApp, real number 2348101892632 | Tech Lead | Sep 3, 2026 |
+| 9 | Case-study system fate (A/B/C) | Resolved — Locked behind Coming Soon (Option C) | Tech Lead | Sep 2, 2026 |
 | 10 | Visual system pivot: Tailwind → Bootstrap 5 + Material Web Components | Resolved | Tech Lead + Founder | Aug 30, 2026 |
 | 11 | Design Partner band replaces trust strip | Resolved | Founder + Tech Lead | Aug 30, 2026 |
 | 12 | Multi-page architecture replaces single-page-with-anchors | Resolved | Founder + Tech Lead | Aug 30, 2026 |
