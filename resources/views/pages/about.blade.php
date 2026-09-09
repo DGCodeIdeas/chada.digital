@@ -119,7 +119,11 @@
     </div>
 </section>
 
-<!-- Exclusivity CTA -->
+{{-- Exclusivity CTA — DISABLED (Sep 8, 2026 per Founder directive).
+     Previously showed "We Take On 4 New Clients Per Month" with an
+     "Apply to Work With Us" button. Removed — the Founder decided the
+     selective/scarcity tone doesn't fit how the team wants to come across.
+     To re-enable: uncomment the section below.
 <section style="background: linear-gradient(135deg, var(--md-sys-color-primary) 0%, #1a5fd6 100%); padding: 5rem 0;">
     <div class="container text-center">
         <h2 class="fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: white;">We Take On 4 New Clients Per Month</h2>
@@ -131,5 +135,6 @@
         </a>
     </div>
 </section>
+--}}
 
 @endsection
