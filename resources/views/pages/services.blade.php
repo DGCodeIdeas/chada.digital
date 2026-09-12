@@ -89,7 +89,12 @@
                             </li>
                             @endforeach
                         </ul>
-                        <a href="{{ route('contact') }}" class="btn w-100 rounded-pill {{ $tier['highlight'] ? 'btn-primary' : 'btn-outline-primary' }}" style="{{ $tier['highlight'] ? 'background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary);' : 'border-color: var(--md-sys-color-primary); color: var(--md-sys-color-primary);' }} font-weight: 500; font-size: 0.8125rem; padding: 0.5rem 0.875rem;">
+                        @php
+                            $waNumber = config('contact.whatsapp');
+                            $waMessage = $tier['whatsapp_message'] ?? 'Hi Chada Digital, I would like to discuss a project.';
+                            $waLink = $waNumber ? 'https://wa.me/' . $waNumber . '?text=' . urlencode($waMessage) : route('contact');
+                        @endphp
+                        <a href="{{ $waLink }}" target="_blank" rel="noopener noreferrer" class="btn w-100 rounded-pill {{ $tier['highlight'] ? 'btn-primary' : 'btn-outline-primary' }}" style="{{ $tier['highlight'] ? 'background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary);' : 'border-color: var(--md-sys-color-primary); color: var(--md-sys-color-primary);' }} font-weight: 500; font-size: 0.8125rem; padding: 0.5rem 0.875rem;">
                             {{ $tier['cta'] }}
                         </a>
                     </div>
