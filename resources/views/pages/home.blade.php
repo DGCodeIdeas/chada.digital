@@ -183,6 +183,37 @@
     </div>
 </section>
 
+<!-- ===== TECHNOLOGIES ===== -->
+<section style="background: var(--md-sys-color-surface-container-low); padding: 3.5rem 0;">
+    <div class="container">
+        <div class="text-center mb-4">
+            <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;">Our Stack</p>
+            <h2 class="fw-bold mb-2" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface); font-size: 1.5rem;">Technologies We Work With</h2>
+            <p class="mx-auto" style="max-width: 540px; color: var(--md-sys-color-on-surface-variant); font-size: 0.875rem;">We integrate the best tools in the industry into systems that work for your business.</p>
+        </div>
+        @php $techCategories = config('martech.categories', []); @endphp
+        <div class="row g-2 justify-content-center">
+            @foreach($techCategories as $cat)
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="card h-100" style="background: var(--md-sys-color-surface); border-radius: 10px; box-shadow: var(--md-sys-elevation-1, 0 1px 2px 0 rgba(0,0,0,0.03));">
+                    <div class="card-body p-3 text-center">
+                        <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 36px; height: 36px; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container);">
+                            <i class="{{ $cat['icon'] }}" style="font-size: 1.125rem;"></i>
+                        </div>
+                        <h6 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface); font-size: 0.8125rem;">{{ $cat['name'] }}</h6>
+                        <div class="d-flex flex-wrap gap-1 justify-content-center">
+                            @foreach($cat['tools'] as $tool)
+                            <span class="badge" style="background: var(--md-sys-color-surface-container-highest); color: var(--md-sys-color-on-surface-variant); font-weight: 400; font-size: 0.6875rem; padding: 0.25rem 0.5rem; border-radius: 6px;">{{ $tool['name'] }}</span>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
 <!-- ===== CTA ===== -->
 <section style="background: linear-gradient(135deg, var(--md-sys-color-primary) 0%, #1a5fd6 100%); padding: 5rem 0;">
     <div class="container text-center">
