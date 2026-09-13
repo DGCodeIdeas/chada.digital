@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Petal & Stem — Lagos Florist</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--pink:#e8a5b8;--rose:#d76a8a;--blush:#fbe8ee;--sage:#8aa899;--cream:#fdfaf6;--ink:#5a3e44;--stem:#6b8e6b;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Quicksand',sans-serif;background:var(--cream);color:var(--ink);}
+a{text-decoration:none;color:inherit;}
+.topbar{background:var(--rose);color:#fff;text-align:center;font-size:12px;padding:8px;letter-spacing:.5px;}
+header{padding:20px 36px;display:flex;justify-content:space-between;align-items:center;background:#fff;border-bottom:2px dashed var(--pink);}
+.logo{font-family:'Cormorant Garamond';font-size:30px;font-weight:600;color:var(--rose);display:flex;align-items:center;gap:8px;}
+.logo .icon{font-size:24px;}
+nav{display:flex;gap:28px;align-items:center;}
+nav a{font-size:13px;font-weight:600;color:var(--ink);text-transform:uppercase;letter-spacing:1px;}
+nav a:hover{color:var(--rose);}
+.cart{background:var(--blush);color:var(--rose);padding:8px 16px;border-radius:20px;font-weight:700;font-size:13px;}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:0;min-height:520px;}
+.hero-text{padding:80px 50px;background:var(--blush);display:flex;flex-direction:column;justify-content:center;}
+.hero-text .eyebrow{font-family:'Cormorant Garamond';font-style:italic;font-size:20px;color:var(--rose);margin-bottom:8px;}
+.hero-text h1{font-family:'Cormorant Garamond';font-size:64px;font-weight:500;line-height:1;color:var(--ink);margin-bottom:18px;}
+.hero-text h1 em{color:var(--rose);font-style:italic;}
+.hero-text p{font-size:15px;color:#7a5c63;margin-bottom:26px;max-width:420px;}
+.hero-btns{display:flex;gap:14px;}
+.btn{background:var(--rose);color:#fff;padding:13px 28px;border-radius:30px;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:1px;display:inline-block;border:none;cursor:pointer;font-family:inherit;}
+.btn.alt{background:#fff;color:var(--rose);}
+.hero-img{background:url('https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=900&q=80') center/cover;min-height:520px;}
+section{padding:80px 36px;max-width:1300px;margin:0 auto;}
+.section-head{text-align:center;margin-bottom:50px;}
+.section-head .k{font-family:'Cormorant Garamond';font-style:italic;color:var(--rose);font-size:18px;}
+.section-head h2{font-family:'Cormorant Garamond';font-size:46px;font-weight:500;color:var(--ink);margin-top:4px;}
+.section-head p{color:#7a5c63;font-size:14px;margin-top:8px;}
+.occasions{display:flex;justify-content:center;gap:14px;margin-bottom:40px;flex-wrap:wrap;}
+.occ{padding:8px 22px;background:#fff;border:1.5px solid var(--pink);border-radius:25px;font-size:13px;font-weight:600;cursor:pointer;color:var(--ink);}
+.occ.active,.occ:hover{background:var(--rose);color:#fff;border-color:var(--rose);}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.product{background:#fff;border-radius:18px;overflow:hidden;transition:transform .25s,box-shadow .25s;cursor:pointer;}
+.product:hover{transform:translateY(-5px);box-shadow:0 14px 36px rgba(215,106,138,.18);}
+.product .img{height:240px;background-size:cover;background-position:center;position:relative;}
+.product .tag{position:absolute;top:12px;left:12px;background:var(--sage);color:#fff;font-size:10px;font-weight:700;padding:4px 12px;border-radius:15px;text-transform:uppercase;letter-spacing:1px;}
+.product .fav{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.95);width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.product .body{padding:18px;}
+.product .name{font-family:'Cormorant Garamond';font-size:22px;font-weight:600;color:var(--ink);}
+.product .desc{font-size:12px;color:#9a7a82;margin:4px 0;}
+.product .price{color:var(--rose);font-weight:700;font-size:18px;margin:8px 0;}
+.product .add{width:100%;background:var(--blush);color:var(--rose);border:none;padding:10px;border-radius:25px;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:1px;cursor:pointer;font-family:inherit;}
+.product .add:hover{background:var(--rose);color:#fff;}
+.delivery{background:linear-gradient(135deg,var(--sage),var(--stem));color:#fff;border-radius:24px;padding:50px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
+.delivery h2{font-family:'Cormorant Garamond';font-size:42px;font-weight:500;line-height:1.1;}
+.delivery p{opacity:.95;margin:14px 0 20px;font-size:14px;}
+.delivery ul{list-style:none;}
+.delivery ul li{padding:8px 0;font-size:14px;display:flex;align-items:center;gap:10px;}
+.delivery ul li::before{content:"✿";color:#fff;font-size:18px;}
+.delivery-img{height:280px;background:url('https://images.unsplash.com/photo-1487070183336-b863922373d4?w=600&q=80') center/cover;border-radius:18px;}
+.subs{background:var(--blush);padding:50px;border-radius:24px;}
+.subs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:30px;}
+.plan{background:#fff;padding:30px;border-radius:18px;text-align:center;border:2px solid transparent;transition:border-color .25s,transform .25s;}
+.plan:hover{border-color:var(--rose);transform:translateY(-4px);}
+.plan.pop{border-color:var(--rose);position:relative;}
+.plan.pop .ribbon{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--rose);color:#fff;font-size:11px;font-weight:700;padding:4px 16px;border-radius:15px;text-transform:uppercase;letter-spacing:1px;}
+.plan h3{font-family:'Cormorant Garamond';font-size:28px;color:var(--rose);font-weight:600;}
+.plan .price{font-size:34px;font-weight:700;color:var(--ink);margin:10px 0;font-family:'Cormorant Garamond';}
+.plan .price span{font-size:14px;color:#9a7a82;font-family:'Quicksand';font-weight:400;}
+.plan ul{list-style:none;margin:20px 0;text-align:left;}
+.plan ul li{padding:6px 0;font-size:13px;color:#7a5c63;display:flex;align-items:center;gap:8px;}
+.plan ul li::before{content:"✓";color:var(--sage);font-weight:800;}
+.testimonials{text-align:center;background:#fff;border-radius:24px;padding:50px;}
+.testimonials h2{font-family:'Cormorant Garamond';font-size:38px;font-weight:500;color:var(--ink);}
+.quote{font-family:'Cormorant Garamond';font-style:italic;font-size:24px;color:var(--rose);max-width:600px;margin:20px auto;line-height:1.4;}
+.quote-who{font-weight:700;font-size:14px;color:var(--ink);}
+footer{background:var(--ink);color:#e8c5d0;padding:50px 36px 24px;}
+.footer-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;}
+footer h4{font-family:'Cormorant Garamond';font-size:22px;color:#fff;margin-bottom:12px;}
+footer a{display:block;font-size:13px;padding:4px 0;color:#d8b5bf;}
+.footer-bottom{max-width:1300px;margin:30px auto 0;padding-top:20px;border-top:1px solid #3a2a2f;font-size:12px;text-align:center;color:#a87d88;}
+.footer-bottom a{display:inline;color:var(--pink);}
+@media(max-width:900px){.hero,.delivery,.footer-inner{grid-template-columns:1fr;}.products{grid-template-columns:1fr 1fr;}.subs-grid{grid-template-columns:1fr;}.hero-text h1{font-size:42px;}nav{display:none;}}
+@media(max-width:560px){.products{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="topbar">🌿 Same-day flower delivery across Lagos Island · Order before 1 PM</div>
+<header>
+<div class="logo"><span class="icon">🌷</span>Petal & Stem</div>
+<nav><a href="#shop">Shop</a><a href="#delivery">Delivery</a><a href="#subs">Subscriptions</a><a href="#about">About</a></nav>
+<a class="cart" href="#">🛒 (0)</a>
+</header>
+<div class="hero">
+<div class="hero-text">
+<div class="eyebrow">Lagos florist, est. 2017</div>
+<h1>Flowers that<br><em>speak</em> for you.</h1>
+<p>Hand-tied bouquets, event styling, and weekly subscription blooms — sourced fresh every morning from local growers and crafted with care in our Ikoyi studio.</p>
+<div class="hero-btns">
+<a class="btn" href="#shop">Shop Bouquets</a>
+<a class="btn alt" href="#subs">Subscription Plans</a>
+</div>
+</div>
+<div class="hero-img"></div>
+</div>
+<section id="shop">
+<div class="section-head">
+<div class="k">fresh picks</div>
+<h2>Shop by Occasion</h2>
+<p>Every arrangement is crafted the day you order — never the day before.</p>
+</div>
+<div class="occasions">
+<button class="occ active" onclick="filterOcc(this,'all')">All</button>
+<button class="occ" onclick="filterOcc(this,'love')">Love</button>
+<button class="occ" onclick="filterOcc(this,'birthday')">Birthday</button>
+<button class="occ" onclick="filterOcc(this,'sympathy')">Sympathy</button>
+<button class="occ" onclick="filterOcc(this,'wedding')">Wedding</button>
+</div>
+<div class="products" id="prodGrid">
+<div class="product" data-occ="love"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=600&q=80')"><span class="tag">Bestseller</span><span class="fav">♡</span></div><div class="body"><div class="name">Rosé All Day</div><div class="desc">24 blush roses · eucalyptus</div><div class="price">₦28,500</div><button class="add">Add to Cart</button></div></div>
+<div class="product" data-occ="birthday"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1519378058457-4c29a793ec53?w=600&q=80')"><span class="fav">♡</span></div><div class="body"><div class="name">Sunshine Surprise</div><div class="desc">Sunflowers · daisies · solidago</div><div class="price">₦18,000</div><button class="add">Add to Cart</button></div></div>
+<div class="product" data-occ="sympathy"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1567748157439-651aca2ff064?w=600&q=80')"><span class="tag">Sympathy</span><span class="fav">♡</span></div><div class="body"><div class="name">Peaceful White Lilies</div><div class="desc">12 white lilies · trailing greens</div><div class="price">₦32,000</div><button class="add">Add to Cart</button></div></div>
+<div class="product" data-occ="love"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1457089328109-e5d9bd499191?w=600&q=80')"><span class="fav">♡</span></div><div class="body"><div class="name">Crimson Romance</div><div class="desc">36 red roses · baby breath</div><div class="price">₦45,000</div><button class="add">Add to Cart</button></div></div>
+<div class="product" data-occ="birthday"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1487070183336-b863922373d4?w=600&q=80')"><span class="tag">New</span><span class="fav">♡</span></div><div class="body"><div class="name">Pastel Garden Mix</div><div class="desc">Seasonal pastel blooms</div><div class="price">₦22,500</div><button class="add">Add to Cart</button></div></div>
+<div class="product" data-occ="wedding"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=600&q=80')"><span class="fav">♡</span></div><div class="body"><div class="name">Bridal Cascade</div><div class="desc">Roses · peonies · orchids</div><div class="price">₦65,000</div><button class="add">Add to Cart</button></div></div>
+<div class="product" data-occ="sympathy"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1520763185298-1b434c919102?w=600&q=80')"><span class="fav">♡</span></div><div class="body"><div class="name">Gentle Comfort</div><div class="desc">White chrysanthemums</div><div class="price">₦24,000</div><button class="add">Add to Cart</button></div></div>
+<div class="product" data-occ="birthday"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1551431009-a802eeec77b1?w=600&q=80')"><span class="fav">♡</span></div><div class="body"><div class="name">Wildflower Joy</div><div class="desc">Mixed seasonal wildflowers</div><div class="price">₦16,500</div><button class="add">Add to Cart</button></div></div>
+</div>
+</section>
+<section id="delivery">
+<div class="delivery">
+<div>
+<h2>Fresh to your door,<br>across Lagos.</h2>
+<p>Same-day delivery on orders placed before 1 PM, Monday to Saturday. Every bouquet arrives in our signature kraft wrap with a handwritten note.</p>
+<ul>
+<li>Same-day delivery · Lagos Island, Lekki, Ikoyi</li>
+<li>Next-day delivery · mainland Lagos & suburbs</li>
+<li>Temperature-controlled transport for freshness</li>
+<li>Free delivery on orders above ₦40,000</li>
+</ul>
+</div>
+<div class="delivery-img"></div>
+</div>
+</section>
+<section id="subs">
+<div class="subs">
+<div class="section-head" style="margin-bottom:0;">
+<div class="k">always blooming</div>
+<h2>Weekly Subscription Plans</h2>
+<p>Fresh flowers delivered weekly or bi-weekly. Skip, pause, or cancel anytime.</p>
+</div>
+<div class="subs-grid">
+<div class="plan">
+<h3>The Petites</h3>
+<div class="price">₦12,000<span>/week</span></div>
+<ul><li>Small hand-tied bouquet</li><li>Weekly delivery</li><li>Seasonal mix</li><li>Pause anytime</li></ul>
+<button class="btn" style="width:100%;">Subscribe</button>
+</div>
+<div class="plan pop">
+<span class="ribbon">Most Loved</span>
+<h3>The Signature</h3>
+<div class="price">₦22,000<span>/week</span></div>
+<ul><li>Medium signature arrangement</li><li>Weekly delivery</li><li>Premium stems included</li><li>Free vase on first delivery</li></ul>
+<button class="btn" style="width:100%;">Subscribe</button>
+</div>
+<div class="plan">
+<h3>The Grand</h3>
+<div class="price">₦38,000<span>/week</span></div>
+<ul><li>Large statement arrangement</li><li>Weekly delivery</li><li>Luxury blooms & orchids</li><li>Personal stylist consult</li></ul>
+<button class="btn" style="width:100%;">Subscribe</button>
+</div>
+</div>
+</div>
+</section>
+<section id="about">
+<div class="testimonials">
+<h2>Loved across Lagos</h2>
+<p class="quote">"The bouquet for our anniversary was beyond beautiful — my wife cried. Petal & Stem has become our family's florist for every occasion."</p>
+<p class="quote-who">— Chidi & Adaeze, Lekki Phase 1</p>
+</div>
+</section>
+<footer>
+<div class="footer-inner">
+<div>
+<div class="logo" style="color:#fff;margin-bottom:10px;">🌷 Petal & Stem</div>
+<p style="font-size:13px;color:#d8b5bf;max-width:280px;">Lagos florist crafting fresh, hand-tied arrangements for every occasion since 2017.</p>
+</div>
+<div><h4>Shop</h4><a href="#">Bouquets</a><a href="#">Subscriptions</a><a href="#">Events</a><a href="#">Gift Cards</a></div>
+<div><h4>Help</h4><a href="#">Delivery</a><a href="#">Care Guide</a><a href="#">Returns</a><a href="#">FAQ</a></div>
+<div><h4>Visit</h4><a href="#">42 Cameron Rd, Ikoyi</a><a href="#">+234 809 225 1100</a><a href="#">hello@petalandstem.ng</a></div>
+</div>
+<div class="footer-bottom">© 2024 Petal & Stem · Built by <a href="#">Chada Digital</a></div>
+</footer>
+<script>
+function filterOcc(btn,occ){
+document.querySelectorAll('.occ').forEach(o=>o.classList.remove('active'));
+btn.classList.add('active');
+document.querySelectorAll('#prodGrid .product').forEach(p=>{p.style.display=(occ==='all'||p.dataset.occ===occ)?'block':'none';});
+}
+document.querySelectorAll('.add').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();b.textContent='Added ✓';b.style.background='var(--sage)';b.style.color='#fff';setTimeout(()=>{b.textContent='Add to Cart';b.style.background='';b.style.color='';},1500);}));
+document.querySelectorAll('.fav').forEach(f=>f.addEventListener('click',e=>{e.stopPropagation();f.textContent=f.textContent==='♡'?'♥':'♡';f.style.color=f.textContent==='♥'?'var(--rose)':'';}));
+document.querySelectorAll('.plan .btn').forEach(b=>b.addEventListener('click',()=>alert('Subscription started! Welcome to the Petal & Stem family 🌸')));
+</script>
+</body>
+</html>

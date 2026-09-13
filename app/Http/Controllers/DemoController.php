@@ -36,12 +36,32 @@ class DemoController extends Controller
      * so the controller doesn't depend on the service being instantiated.
      */
     private const ALLOWED_SLUGS = [
+        // Original 6 (kept for backward compatibility)
         'sterling-vale',
         'apexflow',
         'elysian',
         'hirebase',
         'noir',
         'timber-mill',
+        // New 18 — real-world categories
+        'bistro-noir',
+        'lagoon-lounge',
+        'suya-spot',
+        'ade-oke-law',
+        'meridian-accounting',
+        'cityscape-architecture',
+        'kente-collective',
+        'tech-hub',
+        'petal-and-stem',
+        'vitalis-clinic',
+        'zen-fitness',
+        'pure-skin',
+        'brightpath-academy',
+        'codecraft-bootcamp',
+        'lingua-lab',
+        'lagos-realty',
+        'zenith-homes',
+        'green-acres-development',
     ];
 
     /**

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lingua Lab — Speak the World</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{--purple:#7c3aed;--purple-light:#ede9fe;--coral:#fb7185;--yellow:#fbbf24;--teal:#14b8a6;--pink:#f472b6;--blue:#3b82f6;--ink:#1e1b4b;--gray:#64748b;--bg:#fef9f5;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins',sans-serif;color:var(--ink);background:var(--bg);}
+a{text-decoration:none;color:inherit;}
+.topbar{background:var(--ink);color:#fff;font-size:13px;padding:9px 28px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+.topbar a{color:var(--yellow);}
+header{padding:18px 32px;display:flex;justify-content:space-between;align-items:center;background:#fff;border-bottom:3px solid var(--purple);position:sticky;top:0;z-index:50;}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:24px;color:var(--purple);}
+.logo .mark{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--coral),var(--yellow));color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;transform:rotate(-6deg);}
+.logo span{color:var(--coral);}
+nav{display:flex;gap:28px;align-items:center;}
+nav a{font-weight:600;font-size:14px;color:var(--ink);}
+nav a:hover{color:var(--purple);}
+.btn{background:var(--purple);color:#fff;padding:12px 24px;border-radius:30px;font-weight:700;font-size:13px;display:inline-block;border:none;cursor:pointer;font-family:inherit;}
+.btn.coral{background:var(--coral);}
+.btn.outline{background:transparent;border:2px solid var(--purple);color:var(--purple);}
+.hero{padding:70px 32px;background:linear-gradient(135deg,var(--purple-light),#fff,var(--purple-light));position:relative;overflow:hidden;}
+.hero::before{content:"नमस्ते";position:absolute;top:40px;right:5%;font-family:'Caveat';font-size:80px;color:var(--coral);opacity:.18;transform:rotate(-10deg);}
+.hero::after{content:"你好";position:absolute;bottom:20px;left:3%;font-family:'Caveat';font-size:70px;color:var(--teal);opacity:.18;transform:rotate(8deg);}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:50px;align-items:center;position:relative;z-index:2;}
+.hero .tag{display:inline-flex;align-items:center;gap:8px;background:#fff;padding:6px 16px;border-radius:30px;font-size:13px;font-weight:600;color:var(--purple);box-shadow:0 4px 12px rgba(124,58,237,.1);margin-bottom:16px;}
+.hero h1{font-size:60px;font-weight:800;line-height:1.05;color:var(--ink);margin-bottom:20px;}
+.hero h1 .grad{background:linear-gradient(90deg,var(--purple),var(--coral));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero h1 .scribble{font-family:'Caveat';font-size:80px;color:var(--coral);font-weight:600;}
+.hero p{font-size:16px;color:var(--gray);margin-bottom:26px;max-width:480px;}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;}
+.hero-trust{display:flex;align-items:center;gap:16px;margin-top:30px;}
+.hero-trust .avatars{display:flex;}
+.hero-trust .avatars div{width:36px;height:36px;border-radius:50%;background-size:cover;background-position:center;border:2px solid #fff;margin-left:-10px;}
+.hero-trust .avatars div:first-child{margin-left:0;}
+.hero-trust .t{font-size:13px;color:var(--gray);}
+.hero-trust .t strong{color:var(--ink);}
+.hero-img{position:relative;height:460px;}
+.hero-img .main{width:80%;height:100%;background:url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=900&q=80') center/cover;border-radius:24px;box-shadow:0 20px 60px rgba(124,58,237,.25);}
+.hero-img .float{position:absolute;background:#fff;padding:14px 18px;border-radius:16px;box-shadow:0 14px 40px rgba(0,0,0,.12);font-size:13px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:8px;}
+.hero-img .float .em{font-size:22px;}
+.hero-img .f1{top:30px;left:-20px;}
+.hero-img .f2{bottom:40px;right:-10px;}
+section{padding:80px 32px;max-width:1200px;margin:0 auto;}
+.section-head{text-align:center;margin-bottom:50px;}
+.section-head .k{color:var(--coral);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:2px;}
+.section-head h2{font-size:44px;font-weight:800;color:var(--ink);margin-top:6px;}
+.section-head h2 em{font-family:'Caveat';font-size:54px;color:var(--purple);font-style:normal;font-weight:600;}
+.section-head p{color:var(--gray);max-width:600px;margin:10px auto 0;}
+.languages{background:#fff;border-radius:24px;padding:50px;box-shadow:0 12px 40px rgba(124,58,237,.08);}
+.lang-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+.lang{padding:24px;border-radius:18px;text-align:center;cursor:pointer;transition:transform .25s;position:relative;}
+.lang:hover{transform:translateY(-5px);}
+.lang .flag{font-size:46px;margin-bottom:10px;}
+.lang h3{font-size:18px;font-weight:700;color:var(--ink);}
+.lang .native{font-size:13px;color:var(--gray);margin:4px 0;}
+.lang .learners{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-top:8px;}
+.lang.l1{background:#fef3c7;}.lang.l1 .learners{color:#d97706;}
+.lang.l2{background:#fce7f3;}.lang.l2 .learners{color:#be185d;}
+.lang.l3{background:#dbeafe;}.lang.l3 .learners{color:#1d4ed8;}
+.lang.l4{background:#dcfce7;}.lang.l4 .learners{color:#15803d;}
+.lang.l5{background:#fed7aa;}.lang.l5 .learners{color:#c2410c;}
+.lang.l6{background:#e0e7ff;}.lang.l6 .learners{color:#4338ca;}
+.lang.l7{background:#cffafe;}.lang.l7 .learners{color:#0e7490;}
+.lang.l8{background:#f3e8ff;}.lang.l8 .learners{color:#7e22ce;}
+.method{display:grid;grid-template-columns:1fr 1.2fr;gap:50px;align-items:center;}
+.method-img{height:480px;background:url('https://images.unsplash.com/photo-1577896851231-70ef18881754?w=900&q=80') center/cover;border-radius:24px;}
+.method .k{color:var(--coral);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:2px;}
+.method h2{font-size:42px;font-weight:800;color:var(--ink);margin:6px 0 24px;line-height:1.1;}
+.method h2 em{font-family:'Caveat';font-size:52px;color:var(--purple);font-style:normal;font-weight:600;}
+.steps{list-style:none;counter-reset:s;}
+.steps li{counter-increment:s;display:flex;gap:18px;padding:18px 0;border-bottom:1px dashed #e5e7eb;}
+.steps li .num{min-width:44px;height:44px;border-radius:50%;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;}
+.steps li .num.c{background:var(--coral);}.steps li .num.y{background:var(--yellow);color:var(--ink);}.steps li .num.t{background:var(--teal);}
+.steps li h4{font-size:17px;font-weight:700;color:var(--ink);}
+.steps li p{font-size:14px;color:var(--gray);margin-top:4px;}
+.pricing{background:linear-gradient(135deg,var(--purple-light),#fff);padding:80px 32px;border-radius:24px;margin:0 auto;max-width:1200px;}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px;}
+.plan{background:#fff;border-radius:20px;padding:34px;text-align:center;box-shadow:0 12px 36px rgba(124,58,237,.1);border:3px solid transparent;transition:transform .25s,border-color .25s;position:relative;}
+.plan:hover{transform:translateY(-5px);}
+.plan.pop{border-color:var(--purple);transform:scale(1.03);}
+.plan.pop .ribbon{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--coral);color:#fff;font-size:11px;font-weight:700;padding:5px 16px;border-radius:15px;text-transform:uppercase;letter-spacing:1px;}
+.plan .emoji{font-size:40px;}
+.plan h3{font-size:22px;font-weight:700;color:var(--ink);margin:8px 0;}
+.plan .price{font-size:36px;font-weight:800;color:var(--purple);margin:10px 0;}
+.plan .price span{font-size:14px;color:var(--gray);font-weight:400;}
+.plan ul{list-style:none;margin:20px 0;text-align:left;}
+.plan ul li{padding:8px 0;font-size:14px;color:var(--ink);display:flex;align-items:center;gap:10px;}
+.plan ul li::before{content:"✓";color:var(--coral);font-weight:800;font-size:16px;}
+.trial{background:linear-gradient(135deg,var(--coral),var(--yellow));color:#fff;padding:60px 32px;border-radius:24px;text-align:center;max-width:1100px;margin:60px auto 0;}
+.trial h2{font-size:38px;font-weight:800;margin-bottom:8px;}
+.trial p{opacity:.95;margin-bottom:24px;font-weight:500;}
+.trial .btn{background:var(--ink);color:#fff;font-size:14px;padding:14px 32px;}
+.trial-form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px;}
+.trial-form input{padding:13px 18px;border:none;border-radius:30px;font-family:inherit;font-size:14px;min-width:240px;}
+footer{background:var(--ink);color:#c7d2fe;padding:50px 32px 24px;}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;}
+footer h4{color:#fff;margin-bottom:12px;font-size:14px;text-transform:uppercase;letter-spacing:1px;}
+footer a{display:block;font-size:13px;padding:5px 0;color:#c7d2fe;}
+.footer-bottom{max-width:1200px;margin:30px auto 0;padding-top:20px;border-top:1px solid #312e81;font-size:12px;text-align:center;color:#a5b4fc;}
+.footer-bottom a{display:inline;color:var(--yellow);}
+@media(max-width:900px){.hero-inner,.method,.footer-inner{grid-template-columns:1fr;}.lang-grid,.plans{grid-template-columns:1fr 1fr;}.hero h1{font-size:38px;}.hero h1 .scribble{font-size:54px;}nav{display:none;}.hero-img{height:380px;}}
+@media(max-width:560px){.lang-grid,.plans{grid-template-columns:1fr;}.plan.pop{transform:none;}}
+</style>
+</head>
+<body>
+<div class="topbar"><span>🌍 14 languages · 12,000+ students · 47 countries</span><span><a href="#">Sign In</a> · <a href="#">Free Trial</a></span></div>
+<header>
+<div class="logo"><div class="mark">L</div>Lingua<span>Lab</span></div>
+<nav><a href="#languages">Languages</a><a href="#method">Method</a><a href="#pricing">Pricing</a></nav>
+<a class="btn" href="#trial">Free Trial Lesson</a>
+</header>
+<div class="hero">
+<div class="hero-inner">
+<div>
+<span class="tag">🌍 Learn any language, your way</span>
+<h1>Speak the <span class="grad">world</span>,<br><span class="scribble">one word</span> at a time.</h1>
+<p>Lingua Lab makes language learning playful, practical, and personal. Live classes with native speakers, smart practice tools, and a community that cheers you on.</p>
+<div class="hero-cta">
+<a class="btn" href="#trial">Start Free Lesson</a>
+<a class="btn outline" href="#languages">Browse Languages</a>
+</div>
+<div class="hero-trust">
+<div class="avatars">
+<div style="background-image:url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80')"></div>
+<div style="background-image:url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80')"></div>
+<div style="background-image:url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80')"></div>
+<div style="background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80')"></div>
+</div>
+<div class="t"><strong>12,000+ learners</strong><br>across 47 countries</div>
+</div>
+</div>
+<div class="hero-img">
+<div class="main"></div>
+<div class="float f1"><span class="em">🗣️</span> Live native speakers</div>
+<div class="float f2"><span class="em">⭐</span> 4.9/5 from 3,200 reviews</div>
+</div>
+</div>
+</div>
+<section id="languages">
+<div class="section-head">
+<div class="k">Choose your adventure</div>
+<h2>14 languages, <em>endless</em> stories</h2>
+<p>From Mandarin to Swahili — pick the language that calls to you and start today.</p>
+</div>
+<div class="languages">
+<div class="lang-grid">
+<div class="lang l1"><div class="flag">🇫🇷</div><h3>French</h3><div class="native">Bonjour!</div><div class="learners">2,400 learners</div></div>
+<div class="lang l2"><div class="flag">🇪🇸</div><h3>Spanish</h3><div class="native">¡Hola!</div><div class="learners">1,950 learners</div></div>
+<div class="lang l3"><div class="flag">🇨🇳</div><h3>Mandarin</h3><div class="native">你好</div><div class="learners">1,420 learners</div></div>
+<div class="lang l4"><div class="flag">🇯🇵</div><h3>Japanese</h3><div class="native">こんにちは</div><div class="learners">1,180 learners</div></div>
+<div class="lang l5"><div class="flag">🇸🇦</div><h3>Arabic</h3><div class="native">مرحبا</div><div class="learners">980 learners</div></div>
+<div class="lang l6"><div class="flag">🇩🇪</div><h3>German</h3><div class="native">Hallo</div><div class="learners">870 learners</div></div>
+<div class="lang l7"><div class="flag">🇧🇷</div><h3>Portuguese</h3><div class="native">Olá</div><div class="learners">640 learners</div></div>
+<div class="lang l8"><div class="flag">🇰🇪</div><h3>Swahili</h3><div class="native">Jambo</div><div class="learners">520 learners</div></div>
+</div>
+</div>
+</section>
+<section id="method">
+<div class="method">
+<div class="method-img"></div>
+<div>
+<div class="k">Our methodology</div>
+<h2>Learn like you <em>actually</em> live it.</h2>
+<ol class="steps">
+<li><div class="num">1</div><div><h4>Live classes with native speakers</h4><p>Small group or 1-on-1 sessions, 3x weekly, with teachers who actually live the language.</p></div></li>
+<li><div class="num c">2</div><div><h4>Daily smart practice</h4><p>Bite-sized lessons with spaced repetition that adapts to how you learn — never too easy, never too hard.</p></div></li>
+<li><div class="num y">3</div><div><h4>Real conversations, real people</h4><p>Weekly language exchange with native speakers in our global community lounge.</p></div></li>
+<li><div class="num t">4</div><div><h4>Culture, not just grammar</h4><p>Music, films, food, and traditions — because language lives inside culture, not textbooks.</p></div></li>
+</ol>
+</div>
+</div>
+</section>
+<section class="pricing" id="pricing">
+<div class="section-head">
+<div class="k">Simple pricing</div>
+<h2>Plans that fit <em>your</em> pace</h2>
+<p>Switch or cancel anytime. Every plan starts with a free trial lesson.</p>
+</div>
+<div class="plans">
+<div class="plan">
+<div class="emoji">🌱</div>
+<h3>Casual</h3>
+<div class="price">₦9,500<span>/month</span></div>
+<ul><li>2 group classes weekly</li><li>Daily smart practice</li><li>Community access</li><li>Progress tracking</li></ul>
+<a class="btn outline" href="#trial">Start Free Trial</a>
+</div>
+<div class="plan pop">
+<span class="ribbon">Most Popular</span>
+<div class="emoji">🚀</div>
+<h3>Fluent</h3>
+<div class="price">₦22,000<span>/month</span></div>
+<ul><li>4 group classes weekly</li><li>1 private lesson weekly</li><li>Language exchange</li><li>Culture workshops</li><li>Certificate on completion</li></ul>
+<a class="btn" href="#trial">Start Free Trial</a>
+</div>
+<div class="plan">
+<div class="emoji">💎</div>
+<h3>Immersion</h3>
+<div class="price">₦45,000<span>/month</span></div>
+<ul><li>Unlimited group classes</li><li>3 private lessons weekly</li><li>Personal curriculum</li><li>Priority scheduling</li><li>1-on-1 culture mentor</li></ul>
+<a class="btn outline" href="#trial">Start Free Trial</a>
+</div>
+</div>
+</section>
+<section class="trial" id="trial">
+<h2>Your first lesson is on us 🎁</h2>
+<p>30 minutes, 1-on-1 with a native speaker. No card required, no commitment.</p>
+<form class="trial-form" onsubmit="event.preventDefault();alert('Trial booked! Check your email for your lesson confirmation.');this.reset();">
+<input type="text" required placeholder="Your name">
+<input type="email" required placeholder="Email address">
+<select style="padding:13px 18px;border:none;border-radius:30px;font-family:inherit;font-size:14px;background:#fff;color:var(--ink);">
+<option>Choose a language</option>
+<option>French</option><option>Spanish</option><option>Mandarin</option><option>Swahili</option>
+</select>
+<button type="submit" class="btn" style="background:var(--ink);">Book My Free Lesson</button>
+</form>
+</section>
+<footer>
+<div class="footer-inner">
+<div>
+<div class="logo" style="color:#fff;margin-bottom:14px;"><div class="mark">L</div>Lingua<span style="color:var(--coral);">Lab</span></div>
+<p style="font-size:13px;color:#c7d2fe;max-width:280px;">A playful, practical, personal way to learn languages — taught by native speakers, loved across 47 countries.</p>
+</div>
+<div><h4>Languages</h4><a href="#">French</a><a href="#">Spanish</a><a href="#">Mandarin</a><a href="#">Swahili</a></div>
+<div><h4>Learn</h4><a href="#">Method</a><a href="#">Pricing</a><a href="#">Free Trial</a><a href="#">Gift Cards</a></div>
+<div><h4>Company</h4><a href="#">About</a><a href="#">Teachers</a><a href="#">Blog</a><a href="#">Contact</a></div>
+</div>
+<div class="footer-bottom">© 2024 Lingua Lab · 29 Marthan Lane, Yaba, Lagos · Built by <a href="#">Chada Digital</a></div>
+</footer>
+</body>
+</html>

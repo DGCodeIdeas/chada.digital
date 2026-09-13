@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lagoon Lounge — Beachside Cocktails · Lagos</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--coral:#ff6b6b;--teal:#06b6a8;--sun:#ffd166;--sand:#fff8ee;--deep:#1f3a3d;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins',sans-serif;background:var(--sand);color:var(--deep);}
+a{text-decoration:none;color:inherit;}
+.topbar{background:var(--deep);color:var(--sand);padding:10px 30px;display:flex;justify-content:space-between;font-size:12px;flex-wrap:wrap;gap:10px;}
+header{background:linear-gradient(135deg,var(--teal),var(--coral));padding:18px 30px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:50;}
+header .brand{font-family:'Pacifico';font-size:30px;color:var(--sand);}
+header nav{display:flex;gap:24px;}
+header nav a{color:var(--sand);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;}
+.hero{position:relative;height:80vh;min-height:560px;background:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80') center/cover;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--sand);}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(31,58,61,.45),rgba(255,107,107,.45));}
+.hero-inner{position:relative;z-index:2;padding:0 20px;}
+.hero h1{font-family:'Pacifico';font-size:72px;line-height:1.1;text-shadow:0 4px 20px rgba(0,0,0,.4);}
+.hero p{font-size:18px;margin:14px 0 26px;font-weight:300;}
+.btn{background:var(--coral);color:var(--sand);padding:14px 34px;border-radius:40px;font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:1px;display:inline-block;transition:transform .25s;cursor:pointer;border:none;}
+.btn:hover{transform:scale(1.05);}
+.btn.alt{background:var(--teal);}
+.container{max-width:1200px;margin:0 auto;padding:80px 30px;}
+.section-title{text-align:center;font-size:36px;font-weight:700;margin-bottom:8px;color:var(--deep);}
+.section-sub{text-align:center;color:var(--coral);font-weight:600;text-transform:uppercase;letter-spacing:3px;font-size:12px;margin-bottom:50px;}
+.drinks{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.drink{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 8px 30px rgba(31,58,61,.08);transition:transform .3s;}
+.drink:hover{transform:translateY(-6px);}
+.drink .img{height:160px;background-size:cover;background-position:center;}
+.drink .body{padding:18px;}
+.drink h3{font-size:17px;font-weight:600;}
+.drink .tag{color:var(--teal);font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:600;margin:4px 0;}
+.drink .price{color:var(--coral);font-weight:700;margin-top:8px;display:block;}
+.events{background:var(--deep);color:var(--sand);}
+.events .section-title{color:var(--sand);}
+.events .section-sub{color:var(--sun);}
+.event-list{display:grid;gap:18px;}
+.event{display:grid;grid-template-columns:80px 1fr auto;gap:20px;align-items:center;padding:18px 24px;background:rgba(255,255,255,.06);border-radius:14px;border-left:4px solid var(--coral);}
+.event .day{font-family:'Pacifico';font-size:30px;color:var(--sun);text-align:center;}
+.event .day span{display:block;font-size:11px;font-family:'Poppins';letter-spacing:2px;}
+.event h4{font-size:17px;}
+.event p{font-size:13px;opacity:.7;}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.gallery img{width:100%;height:260px;object-fit:cover;border-radius:14px;}
+.map{background:var(--teal);color:#fff;}
+.map-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
+.map-wrap iframe{width:100%;height:340px;border:0;border-radius:18px;}
+.map h3{font-family:'Pacifico';font-size:34px;margin-bottom:14px;}
+.map p{opacity:.9;margin-bottom:8px;}
+footer{background:var(--deep);color:var(--sand);padding:36px;text-align:center;}
+footer .brand{font-family:'Pacifico';font-size:24px;color:var(--sun);margin-bottom:8px;}
+footer a{color:var(--coral);}
+@media(max-width:768px){.drinks{grid-template-columns:1fr 1fr;}.gallery,.map-wrap{grid-template-columns:1fr;}.hero h1{font-size:44px;}header nav{display:none;}.event{grid-template-columns:60px 1fr;}}
+</style>
+</head>
+<body>
+<div class="topbar"><span>Open Wed–Sun · 4 PM till late</span><span>Tarkwa Bay Road, Lagos · +234 809 415 2200</span></div>
+<header>
+<div class="brand">Lagoon Lounge</div>
+<nav><a href="#drinks">Drinks</a><a href="#events">Events</a><a href="#gallery">Gallery</a><a href="#map">Find Us</a></nav>
+</header>
+<div class="hero">
+<div class="hero-inner">
+<h1>Sip the Sunset</h1>
+<p>Where the lagoon meets the sea, and every cocktail is a holiday.</p>
+<a href="#drinks" class="btn">View Drink Menu</a>
+</div>
+</div>
+<div class="container" id="drinks">
+<div class="section-sub">Liquid Sunshine</div>
+<h2 class="section-title">Signature Cocktails</h2>
+<div class="drinks">
+<div class="drink"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=600&q=80')"></div><div class="body"><div class="tag">Tropical</div><h3>Lagoon Breeze</h3><p>Rum, pineapple, hibiscus, lime</p><span class="price">₦6,500</span></div></div>
+<div class="drink"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=600&q=80')"></div><div class="body"><div class="tag">Citrus</div><h3>Sunset Margarita</h3><p>Tequila, blood orange, chili salt</p><span class="price">₦7,000</span></div></div>
+<div class="drink"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1568643136126-c0e7e9e0c7e0?w=600&q=80')"></div><div class="body"><div class="tag">Spiced</div><h3>Zobo Spritz</h3><p>Gin, zobo reduction, prosecco</p><span class="price">₦6,800</span></div></div>
+<div class="drink"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1551751299-1b51cab2694c?w=600&q=80')"></div><div class="body"><div class="tag">Creamy</div><h3>Coconut Colada</h3><p>Dark rum, coconut, vanilla bean</p><span class="price">₦7,200</span></div></div>
+</div>
+</div>
+<div class="events container-fluid" id="events" style="max-width:none;padding:0;">
+<div class="container">
+<div class="section-sub">What's On</div>
+<h2 class="section-title">This Week at the Lounge</h2>
+<div class="event-list">
+<div class="event"><div class="day">Fri<span>JUL 11</span></div><div><h4>Sunset Sessions Live</h4><p>Acoustic set by Folake & The Tides · 6 PM</p></div><a class="btn">RSVP</a></div>
+<div class="event"><div class="day">Sat<span>JUL 12</span></div><div><h4>Salsa by the Sea</h4><p>Free beginner lesson · DJ Bosé from 9 PM</p></div><a class="btn">RSVP</a></div>
+<div class="event"><div class="day">Sun<span>JUL 13</span></div><div><h4>Brunch & Beats</h4><p>Bottomless mimosas · Live afro-house</p></div><a class="btn">RSVP</a></div>
+</div>
+</div>
+</div>
+<div class="container" id="gallery">
+<div class="section-sub">The Vibe</div>
+<h2 class="section-title">Gallery</h2>
+<div class="gallery">
+<img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&q=80">
+<img src="https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=800&q=80">
+<img src="https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=800&q=80">
+<img src="https://images.unsplash.com/photo-1485872299712-7ed6e85e89e9?w=800&q=80">
+<img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=800&q=80">
+<img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=800&q=80">
+</div>
+</div>
+<div class="map" id="map">
+<div class="container">
+<div class="map-wrap">
+<div>
+<h3>Find Your Way</h3>
+<p>📍 Tarkwa Bay Road, Off Ahmadu Bello Way, Victoria Island, Lagos</p>
+<p>🕒 Open Wed–Sun · 4 PM till late</p>
+<p>📞 +234 809 415 2200</p>
+<a class="btn alt" href="#">Get Directions</a>
+</div>
+<iframe src="https://www.openstreetmap.org/export/embed.html?bbox=3.40%2C6.41%2C3.45%2C6.44&layer=mapnik"></iframe>
+</div>
+</div>
+</div>
+<footer>
+<div class="brand">Lagoon Lounge</div>
+<p>Sip. Sun. Sea. Repeat.</p>
+<p style="margin-top:10px;font-size:12px;opacity:.7;">Built by <a href="#">Chada Digital</a></p>
+</footer>
+<script>
+document.querySelectorAll('.btn').forEach(b=>{if(b.textContent.trim()==='RSVP')b.addEventListener('click',()=>alert('Saved a spot! See you at Lagoon Lounge 🌅'))});
+</script>
+</body>
+</html>

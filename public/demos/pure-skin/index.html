@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pure Skin — Luxury Skincare</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--beige:#e8dccb;--beige-dark:#c9b89a;--cream:#faf6ef;--taupe:#8a7a64;--ink:#3d3528;--soft:#f4ede0;--accent:#a87c4a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);line-height:1.7;letter-spacing:.3px;}
+a{text-decoration:none;color:inherit;}
+.announce{background:var(--ink);color:var(--cream);text-align:center;font-size:11px;padding:8px;letter-spacing:3px;text-transform:uppercase;}
+header{padding:24px 40px;display:flex;justify-content:space-between;align-items:center;background:var(--cream);position:sticky;top:0;z-index:50;border-bottom:1px solid var(--beige);}
+.logo{font-family:'Cormorant Garamond';font-size:28px;font-weight:400;letter-spacing:4px;text-transform:uppercase;color:var(--ink);}
+.logo em{font-style:italic;color:var(--accent);}
+nav{display:flex;gap:32px;}
+nav a{font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:400;color:var(--ink);transition:color .3s;}
+nav a:hover{color:var(--accent);}
+.head-ic{display:flex;gap:18px;font-size:14px;}
+.hero{display:grid;grid-template-columns:1fr 1.2fr;min-height:88vh;}
+.hero-left{padding:80px 60px;display:flex;flex-direction:column;justify-content:center;background:var(--soft);}
+.hero-left .eyebrow{font-family:'Cormorant Garamond';font-style:italic;font-size:22px;color:var(--accent);margin-bottom:12px;}
+.hero-left h1{font-family:'Cormorant Garamond';font-size:80px;font-weight:300;line-height:.95;letter-spacing:-2px;margin-bottom:24px;}
+.hero-left h1 em{font-style:italic;}
+.hero-left p{font-size:15px;font-weight:300;color:var(--taupe);max-width:420px;margin-bottom:32px;}
+.btn{display:inline-block;padding:14px 36px;background:var(--ink);color:var(--cream);font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:500;border:none;cursor:pointer;font-family:inherit;width:fit-content;}
+.btn:hover{background:var(--accent);}
+.hero-right{background:url('https://images.unsplash.com/photo-1556228720-195a672e8a03?w=900&q=80') center/cover;}
+section{padding:100px 40px;max-width:1300px;margin:0 auto;}
+.section-head{text-align:center;margin-bottom:60px;}
+.section-head .k{font-family:'Cormorant Garamond';font-style:italic;font-size:18px;color:var(--accent);}
+.section-head h2{font-family:'Cormorant Garamond';font-size:52px;font-weight:300;letter-spacing:-1px;margin-top:6px;}
+.ingredients{background:var(--soft);}
+.ing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;max-width:1300px;margin:0 auto;}
+.ing{text-align:center;padding:30px;}
+.ing .ic{width:90px;height:90px;border-radius:50%;background:var(--beige);margin:0 auto 20px;background-size:cover;background-position:center;}
+.ing h3{font-family:'Cormorant Garamond';font-size:26px;font-weight:500;}
+.ing p{font-size:14px;color:var(--taupe);margin-top:8px;font-weight:300;}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.product{background:#fff;border-radius:4px;overflow:hidden;cursor:pointer;transition:transform .3s;}
+.product:hover{transform:translateY(-5px);}
+.product .img{height:280px;background-size:cover;background-position:center;background-color:var(--soft);}
+.product .body{padding:22px;text-align:center;}
+.product .cat{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:500;}
+.product h3{font-family:'Cormorant Garamond';font-size:22px;font-weight:500;margin:6px 0;}
+.product .desc{font-size:12px;color:var(--taupe);font-weight:300;}
+.product .price{font-size:16px;color:var(--ink);font-weight:500;margin-top:10px;letter-spacing:1px;}
+.before-after{background:var(--ink);color:var(--cream);padding:100px 40px;text-align:center;}
+.ba-head .k{font-family:'Cormorant Garamond';font-style:italic;color:var(--accent);font-size:18px;}
+.ba-head h2{font-family:'Cormorant Garamond';font-size:48px;font-weight:300;margin-top:6px;}
+.ba-head p{color:var(--beige);opacity:.8;margin-top:10px;font-weight:300;max-width:600px;margin-left:auto;margin-right:auto;}
+.ba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;max-width:1100px;margin:50px auto 0;}
+.ba{background:rgba(255,255,255,.04);padding:24px;border-radius:4px;}
+.ba .imgs{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:16px;}
+.ba .imgs div{height:160px;background-size:cover;background-position:center;border-radius:2px;position:relative;}
+.ba .imgs div::before{content:attr(data-label);position:absolute;top:8px;left:8px;font-size:9px;letter-spacing:2px;text-transform:uppercase;background:rgba(0,0,0,.6);padding:3px 8px;color:#fff;}
+.ba h4{font-family:'Cormorant Garamond';font-size:20px;font-weight:500;}
+.ba p{font-size:12px;color:var(--beige);opacity:.7;font-weight:300;margin-top:6px;}
+.ritual{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
+.ritual-img{height:560px;background:url('https://images.unsplash.com/photo-1570194065650-d99fb4bedf0a?w=900&q=80') center/cover;}
+.ritual-text .k{font-family:'Cormorant Garamond';font-style:italic;color:var(--accent);font-size:18px;}
+.ritual-text h2{font-family:'Cormorant Garamond';font-size:48px;font-weight:300;line-height:1.05;margin:8px 0 24px;}
+.ritual-text p{color:var(--taupe);font-weight:300;margin-bottom:20px;font-size:15px;}
+.steps{list-style:none;counter-reset:s;margin-top:24px;}
+.steps li{counter-increment:s;padding:14px 0 14px 50px;border-bottom:1px solid var(--beige);position:relative;font-size:14px;font-weight:300;}
+.steps li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:14px;font-family:'Cormorant Garamond';font-size:22px;color:var(--accent);font-weight:500;}
+.steps li strong{display:block;font-weight:500;color:var(--ink);font-size:15px;}
+.quote-banner{text-align:center;background:var(--soft);padding:80px 40px;}
+.quote-banner blockquote{font-family:'Cormorant Garamond';font-style:italic;font-size:36px;font-weight:300;line-height:1.3;color:var(--ink);max-width:780px;margin:0 auto;}
+.quote-banner cite{display:block;margin-top:18px;font-style:normal;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);}
+footer{background:var(--ink);color:var(--beige);padding:60px 40px 30px;}
+.footer-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;}
+footer h4{font-family:'Cormorant Garamond';font-size:22px;color:var(--cream);margin-bottom:14px;font-weight:500;}
+footer a{display:block;font-size:13px;padding:5px 0;color:var(--beige-dark);font-weight:300;}
+.newsletter input{background:transparent;border:none;border-bottom:1px solid var(--beige-dark);color:var(--cream);padding:10px 0;font-family:inherit;font-size:13px;width:100%;margin-bottom:10px;}
+.newsletter input::placeholder{color:var(--beige-dark);}
+.newsletter button{background:var(--accent);color:#fff;border:none;padding:12px 24px;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-family:inherit;cursor:pointer;font-weight:500;}
+.footer-bottom{max-width:1300px;margin:40px auto 0;padding-top:24px;border-top:1px solid #4a4030;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-align:center;color:var(--taupe);}
+.footer-bottom a{display:inline;color:var(--accent);}
+@media(max-width:900px){.hero,.ritual{grid-template-columns:1fr;}.ing-grid,.products,.ba-grid,.footer-inner{grid-template-columns:1fr 1fr;}.hero-left h1{font-size:48px;}.hero-right{min-height:400px;}nav{display:none;}}
+@media(max-width:560px){.ing-grid,.products,.ba-grid,.footer-inner{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="announce">Complimentary shipping on all orders · Free samples with every purchase</div>
+<header>
+<div class="logo">Pure<em>·</em>Skin</div>
+<nav><a href="#products">Shop</a><a href="#ingredients">Ingredients</a><a href="#ritual">Ritual</a><a href="#results">Results</a></nav>
+<div class="head-ic"><a href="#">Search</a><a href="#">Account</a><a href="#">Bag (0)</a></div>
+</header>
+<div class="hero">
+<div class="hero-left">
+<div class="eyebrow">— Clean skincare, crafted in small batches</div>
+<h1>Skin, in its<br><em>purest</em> form.</h1>
+<p>Botanical formulations rooted in science and ritual. Every ingredient earns its place — nothing more, nothing less. For skin that glows from within.</p>
+<a class="btn" href="#products">Discover the Collection</a>
+</div>
+<div class="hero-right"></div>
+</div>
+<section class="ingredients" id="ingredients">
+<div class="section-head">
+<div class="k">— the source</div>
+<h2>Ingredients with intention</h2>
+</div>
+<div class="ing-grid">
+<div class="ing"><div class="ic" style="background-image:url('https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=300&q=80')"></div><h3>Marula Oil</h3><p>Cold-pressed from South African marula kernels. Rich in omega-9 for deep nourishment.</p></div>
+<div class="ing"><div class="ic" style="background-image:url('https://images.unsplash.com/photo-1572638649513-6c2e3b1e9d75?w=300&q=80')"></div><h3>Rooibos Extract</h3><p>Antioxidant powerhouse from the Cederberg mountains. Soothes, calms, and protects.</p></div>
+<div class="ing"><div class="ic" style="background-image:url('https://images.unsplash.com/photo-1607344645866-009c320b63e0?w=300&q=80')"></div><h3>Baobab</h3><p>Vitamin C-dense fruit from the baobab tree. Brightens and evens skin tone.</p></div>
+</div>
+</section>
+<section id="products">
+<div class="section-head">
+<div class="k">— the collection</div>
+<h2>The Essentials</h2>
+</div>
+<div class="products">
+<div class="product"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600&q=80')"></div><div class="body"><div class="cat">Cleanser</div><h3>Gentle Cream Cleanser</h3><p class="desc">Marula · oat · 150ml</p><div class="price">₦14,500</div></div></div>
+<div class="product"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=600&q=80')"></div><div class="body"><div class="cat">Serum</div><h3>Baobab Brightening Serum</h3><p class="desc">Vitamin C · 30ml</p><div class="price">₦22,000</div></div></div>
+<div class="product"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1611080626919-7cf5a9dbab12?w=600&q=80')"></div><div class="body"><div class="cat">Moisturiser</div><h3>Daily Renewal Cream</h3><p class="desc">Rooibos · hyaluronic · 50ml</p><div class="price">₦18,500</div></div></div>
+<div class="product"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=600&q=80')"></div><div class="body"><div class="cat">Treatment</div><h3>Overnight Recovery Oil</h3><p class="desc">Marula · rosehip · 30ml</p><div class="price">₦26,000</div></div></div>
+</div>
+</section>
+<section class="before-after" id="results">
+<div class="ba-head">
+<div class="k">— real results</div>
+<h2>Before & after</h2>
+<p>Documented over 8 weeks of consistent use. Unretouched. Real people, real skin.</p>
+</div>
+<div class="ba-grid">
+<div class="ba">
+<div class="imgs">
+<div data-label="Before" style="background-image:url('https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=400&q=80')"></div>
+<div data-label="Week 8" style="background-image:url('https://images.unsplash.com/photo-1614108223425-1a9dcb1b6a72?w=400&q=80')"></div>
+</div>
+<h4>Adaeze, 32</h4><p>"Hyperpigmentation visibly faded by week 6."</p>
+</div>
+<div class="ba">
+<div class="imgs">
+<div data-label="Before" style="background-image:url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&q=80')"></div>
+<div data-label="Week 8" style="background-image:url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400&q=80')"></div>
+</div>
+<h4>Chinwe, 28</h4><p>"Skin texture smoothed, glow restored."</p>
+</div>
+<div class="ba">
+<div class="imgs">
+<div data-label="Before" style="background-image:url('https://images.unsplash.com/photo-1612544409025-e57b0d0e4c9b?w=400&q=80')"></div>
+<div data-label="Week 8" style="background-image:url('https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&q=80')"></div>
+</div>
+<h4>Folake, 41</h4><p>"Fine lines softened, hydration deepened."</p>
+</div>
+</div>
+</section>
+<section id="ritual">
+<div class="ritual">
+<div class="ritual-img"></div>
+<div class="ritual-text">
+<div class="k">— the ritual</div>
+<h2>A morning moment, just for you.</h2>
+<p>Skincare is more than routine — it's a daily act of self-respect. Our four-step ritual takes five minutes and transforms the way your skin feels, looks, and ages.</p>
+<ol class="steps">
+<li><strong>Cleanse</strong>Gentle Cream Cleanser — massage onto damp skin, rinse with warm water.</li>
+<li><strong>Treat</strong>Baobab Brightening Serum — 3 drops, pressed into skin.</li>
+<li><strong>Hydrate</strong>Daily Renewal Cream — smooth over face and neck.</li>
+<li><strong>Nourish</strong>Overnight Recovery Oil — evenings only, 4 drops.</li>
+</ol>
+<a class="btn" href="#">Shop the Ritual Set · ₦72,000</a>
+</div>
+</div>
+</section>
+<section class="quote-banner">
+<blockquote>"Pure Skin gave me back the glow I thought I'd lost. It's not skincare — it's a homecoming."</blockquote>
+<cite>— Vanessa Mwangi · Lagos</cite>
+</section>
+<footer>
+<div class="footer-inner">
+<div>
+<div class="logo" style="color:var(--cream);margin-bottom:14px;">Pure<em style="color:var(--accent);">·</em>Skin</div>
+<p style="font-size:13px;color:var(--beige-dark);font-weight:300;max-width:280px;">Botanical skincare, crafted in small batches. Made in Nigeria, loved globally.</p>
+<div class="newsletter" style="margin-top:20px;">
+<input type="email" placeholder="Email for 10% off first order">
+<button onclick="alert('Welcome to Pure Skin. Check your inbox for 10% off.')">Subscribe</button>
+</div>
+</div>
+<div><h4>Shop</h4><a href="#">Cleansers</a><a href="#">Serums</a><a href="#">Moisturisers</a><a href="#">Oils</a><a href="#">Sets</a></div>
+<div><h4>About</h4><a href="#">Our Story</a><a href="#">Ingredients</a><a href="#">Sustainability</a><a href="#">Journal</a></div>
+<div><h4>Help</h4><a href="#">Shipping</a><a href="#">Returns</a><a href="#">Skin Quiz</a><a href="#">Contact</a></div>
+</div>
+<div class="footer-bottom">© 2024 Pure Skin · Lagos · Built by <a href="#">Chada Digital</a></div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechHub — Electronics Retailer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#0066ff;--blue-dark:#0a1a3a;--blue-light:#eaf2ff;--green:#00c896;--gray:#6b7280;--bg:#f5f7fa;--line:#e5e9f0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;color:#1a1a2e;background:var(--bg);}
+a{text-decoration:none;color:inherit;}
+.topbar{background:var(--blue-dark);color:#fff;font-size:12px;padding:8px 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.topbar a{color:#a9c6ff;}
+header{background:#fff;padding:14px 24px;display:flex;align-items:center;gap:24px;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;}
+.logo{font-family:'Space Grotesk';font-weight:700;font-size:24px;color:var(--blue);display:flex;align-items:center;gap:8px;}
+.logo .dot{width:10px;height:10px;background:var(--green);border-radius:50%;}
+.search{flex:1;max-width:600px;display:flex;border:2px solid var(--blue);border-radius:8px;overflow:hidden;}
+.search input{flex:1;border:none;padding:11px 16px;font-size:14px;font-family:inherit;}
+.search button{background:var(--blue);color:#fff;border:none;padding:0 22px;cursor:pointer;font-weight:600;}
+.head-actions{display:flex;gap:18px;align-items:center;font-size:13px;font-weight:600;}
+.head-actions a{display:flex;align-items:center;gap:6px;cursor:pointer;}
+.cart-pill{background:var(--blue);color:#fff;padding:8px 14px;border-radius:8px;}
+.layout{display:grid;grid-template-columns:240px 1fr;gap:0;}
+.sidebar{background:#fff;padding:24px;border-right:1px solid var(--line);min-height:80vh;}
+.sidebar h3{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--gray);margin-bottom:14px;font-weight:700;}
+.sidebar .cat{padding:9px 12px;border-radius:6px;font-size:14px;cursor:pointer;font-weight:500;display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;}
+.sidebar .cat:hover,.sidebar .cat.active{background:var(--blue-light);color:var(--blue);}
+.sidebar .cat .count{font-size:11px;background:var(--bg);padding:2px 8px;border-radius:10px;color:var(--gray);}
+.sidebar .cat.active .count{background:var(--blue);color:#fff;}
+.sidebar .group{margin-bottom:24px;}
+.sidebar .check{display:flex;align-items:center;gap:8px;font-size:13px;padding:5px 12px;cursor:pointer;color:var(--gray);}
+.sidebar .check input{accent-color:var(--blue);}
+.main{padding:24px;}
+.breadcrumb{font-size:12px;color:var(--gray);margin-bottom:14px;}
+.breadcrumb span{color:var(--blue);}
+.banner{background:linear-gradient(135deg,var(--blue),var(--blue-dark));color:#fff;padding:34px;border-radius:14px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:center;}
+.banner h2{font-family:'Space Grotesk';font-size:30px;font-weight:700;}
+.banner p{opacity:.9;margin:6px 0 16px;font-size:14px;}
+.banner .btn{background:var(--green);color:#fff;padding:10px 22px;border-radius:8px;font-weight:700;font-size:13px;display:inline-block;}
+.banner .img{font-size:80px;}
+.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
+.section-head h2{font-family:'Space Grotesk';font-size:24px;font-weight:700;}
+.sort{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--gray);}
+.sort select{padding:7px 10px;border:1px solid var(--line);border-radius:6px;font-family:inherit;font-size:13px;}
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.product{background:#fff;border-radius:12px;padding:18px;border:1px solid var(--line);transition:box-shadow .25s,transform .25s;cursor:pointer;position:relative;}
+.product:hover{box-shadow:0 12px 36px rgba(0,102,255,.12);transform:translateY(-3px);}
+.product .img{height:180px;background:#f5f7fa;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:80px;margin-bottom:14px;position:relative;}
+.product .img .disc{position:absolute;top:10px;left:10px;background:var(--blue);color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:6px;}
+.product .img .heart{position:absolute;top:10px;right:10px;color:var(--gray);cursor:pointer;font-size:18px;}
+.product .brand{font-size:11px;color:var(--gray);font-weight:600;text-transform:uppercase;letter-spacing:.5px;}
+.product h3{font-size:16px;font-weight:600;margin:4px 0;line-height:1.3;}
+.product .specs{font-size:12px;color:var(--gray);margin:8px 0;}
+.product .specs span{display:block;padding:2px 0;}
+.product .price{display:flex;align-items:center;gap:8px;margin:10px 0;}
+.product .price .now{color:var(--blue);font-weight:700;font-size:20px;font-family:'Space Grotesk';}
+.product .price .was{color:var(--gray);text-decoration:line-through;font-size:13px;}
+.product .rating{font-size:12px;color:#f5a623;margin:6px 0;}
+.product .rating span{color:var(--gray);margin-left:6px;}
+.product .actions{display:flex;gap:8px;}
+.product .add{flex:1;background:var(--blue);color:#fff;border:none;padding:9px;border-radius:6px;font-weight:700;font-size:12px;cursor:pointer;text-transform:uppercase;}
+.product .add:hover{background:var(--blue-dark);}
+.product .wishlist{background:var(--bg);border:none;padding:9px 12px;border-radius:6px;cursor:pointer;}
+.brands{background:#fff;padding:24px;margin-top:30px;border-radius:12px;border:1px solid var(--line);}
+.brands h3{font-family:'Space Grotesk';font-size:18px;margin-bottom:14px;}
+.brand-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;text-align:center;}
+.brand-grid .b{padding:18px;background:var(--bg);border-radius:8px;font-weight:700;font-size:14px;color:var(--blue-dark);transition:background .2s;}
+.brand-grid .b:hover{background:var(--blue-light);}
+footer{background:var(--blue-dark);color:#a9c6ff;padding:50px 24px 24px;margin-top:30px;}
+.footer-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;}
+footer h4{color:#fff;margin-bottom:12px;font-size:14px;text-transform:uppercase;letter-spacing:1px;}
+footer a{display:block;font-size:13px;padding:4px 0;color:#a9c6ff;}
+.footer-bottom{max-width:1300px;margin:30px auto 0;padding-top:20px;border-top:1px solid #1a2f5c;font-size:12px;text-align:center;color:#6b87c4;}
+.footer-bottom a{display:inline;color:var(--green);}
+@media(max-width:900px){.layout{grid-template-columns:1fr;}.sidebar{display:none;}.products{grid-template-columns:1fr 1fr;}.brand-grid{grid-template-columns:repeat(3,1fr);}.footer-inner{grid-template-columns:1fr 1fr;}.search{display:none;}}
+@media(max-width:560px){.products{grid-template-columns:1fr;}.head-actions a:not(.cart-pill){display:none;}}
+</style>
+</head>
+<body>
+<div class="topbar"><span>🚚 Free delivery in Lagos · Pay on delivery available</span><span><a href="#">Track Order</a> · <a href="#">Support</a> · <a href="#">Sign In</a></span></div>
+<header>
+<div class="logo"><span class="dot"></span>TechHub</div>
+<div class="search"><input type="text" placeholder="Search laptops, phones, accessories..."><button>Search</button></div>
+<div class="head-actions">
+<a href="#">Wishlist</a>
+<a href="#">Account</a>
+<a href="#" class="cart-pill">🛒 Cart · <span id="cnt">0</span></a>
+</div>
+</header>
+<div class="layout">
+<aside class="sidebar">
+<div class="group">
+<h3>Categories</h3>
+<div class="cat active">Smartphones <span class="count">128</span></div>
+<div class="cat">Laptops <span class="count">94</span></div>
+<div class="cat">Audio <span class="count">76</span></div>
+<div class="cat">Gaming <span class="count">52</span></div>
+<div class="cat">Wearables <span class="count">41</span></div>
+<div class="cat">Cameras <span class="count">38</span></div>
+<div class="cat">Accessories <span class="count">210</span></div>
+</div>
+<div class="group">
+<h3>Price Range</h3>
+<div class="check"><input type="checkbox" checked> Under ₦50,000</div>
+<div class="check"><input type="checkbox"> ₦50,000 – ₦150,000</div>
+<div class="check"><input type="checkbox"> ₦150,000 – ₦500,000</div>
+<div class="check"><input type="checkbox"> Above ₦500,000</div>
+</div>
+<div class="group">
+<h3>Brand</h3>
+<div class="check"><input type="checkbox"> Apple</div>
+<div class="check"><input type="checkbox"> Samsung</div>
+<div class="check"><input type="checkbox"> Dell</div>
+<div class="check"><input type="checkbox"> HP</div>
+<div class="check"><input type="checkbox"> Sony</div>
+</div>
+</aside>
+<main class="main">
+<div class="breadcrumb">Home / <span>Smartphones</span></div>
+<div class="banner">
+<div>
+<h2>Mega Gadget Sale</h2>
+<p>Up to 30% off flagship phones & laptops. Ends in 5 days.</p>
+<a class="btn" href="#">Shop Deals →</a>
+</div>
+<div class="img" style="background:url('https://images.unsplash.com/photo-1592286927505-1def25115558?w=600&q=80') center/cover;font-size:0;">📱</div>
+</div>
+<div class="section-head">
+<h2>Featured Smartphones</h2>
+<div class="sort">Sort: <select><option>Popularity</option><option>Price ↑</option><option>Price ↓</option><option>Newest</option></select></div>
+</div>
+<div class="products">
+<div class="product">
+<div class="img" style="background:url('https://images.unsplash.com/photo-1592286927505-1def25115558?w=600&q=80') center/cover;"><span class="disc">-15%</span><span class="heart">♡</span></div>
+<div class="brand">Apple</div>
+<h3>iPhone 15 Pro Max 256GB</h3>
+<div class="specs"><span>6.7" OLED · A17 Pro · 48MP</span><span>Natural Titanium</span></div>
+<div class="rating">★★★★★ <span>(412 reviews)</span></div>
+<div class="price"><span class="now">₦1,290,000</span><span class="was">₦1,520,000</span></div>
+<div class="actions"><button class="add" onclick="addToCart()">Add to Cart</button><button class="wishlist">♡</button></div>
+</div>
+<div class="product">
+<div class="img" style="background:url('https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=600&q=80') center/cover;"><span class="heart">♡</span></div>
+<div class="brand">Samsung</div>
+<h3>Galaxy S24 Ultra 512GB</h3>
+<div class="specs"><span>6.8" QHD+ · Snapdragon 8 Gen 3</span><span>200MP · S-Pen included</span></div>
+<div class="rating">★★★★★ <span>(328 reviews)</span></div>
+<div class="price"><span class="now">₦1,150,000</span></div>
+<div class="actions"><button class="add" onclick="addToCart()">Add to Cart</button><button class="wishlist">♡</button></div>
+</div>
+<div class="product">
+<div class="img" style="background:url('https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600&q=80') center/cover;"><span class="disc">-10%</span><span class="heart">♡</span></div>
+<div class="brand">Google</div>
+<h3>Pixel 8 Pro 128GB</h3>
+<div class="specs"><span>6.7" LTPO · Tensor G3</span><span>50MP · Magic Editor</span></div>
+<div class="rating">★★★★☆ <span>(194 reviews)</span></div>
+<div class="price"><span class="now">₦890,000</span><span class="was">₦990,000</span></div>
+<div class="actions"><button class="add" onclick="addToCart()">Add to Cart</button><button class="wishlist">♡</button></div>
+</div>
+<div class="product">
+<div class="img" style="background:url('https://images.unsplash.com/photo-1565849904461-04a58ad377e0?w=600&q=80') center/cover;"><span class="heart">♡</span></div>
+<div class="brand">Tecno</div>
+<h3>Phantom V Fold 2 5G</h3>
+<div class="specs"><span>7.85" foldable · Dimensity 9000+</span><span>50MP triple · 512GB</span></div>
+<div class="rating">★★★★☆ <span>(87 reviews)</span></div>
+<div class="price"><span class="now">₦720,000</span></div>
+<div class="actions"><button class="add" onclick="addToCart()">Add to Cart</button><button class="wishlist">♡</button></div>
+</div>
+<div class="product">
+<div class="img" style="background:url('https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600&q=80') center/cover;"><span class="disc">-20%</span><span class="heart">♡</span></div>
+<div class="brand">Xiaomi</div>
+<h3>Redmi Note 13 Pro 256GB</h3>
+<div class="specs"><span>6.67" AMOLED · 200MP</span><span>5000mAh · 67W fast charge</span></div>
+<div class="rating">★★★★★ <span>(612 reviews)</span></div>
+<div class="price"><span class="now">₦295,000</span><span class="was">₦368,000</span></div>
+<div class="actions"><button class="add" onclick="addToCart()">Add to Cart</button><button class="wishlist">♡</button></div>
+</div>
+<div class="product">
+<div class="img" style="background:url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&q=80') center/cover;"><span class="heart">♡</span></div>
+<div class="brand">Infinix</div>
+<h3>Note 40 Pro+ 5G 256GB</h3>
+<div class="specs"><span>6.78" 120Hz · 108MP</span><span>70W wireless charging</span></div>
+<div class="rating">★★★★☆ <span>(243 reviews)</span></div>
+<div class="price"><span class="now">₦348,000</span></div>
+<div class="actions"><button class="add" onclick="addToCart()">Add to Cart</button><button class="wishlist">♡</button></div>
+</div>
+</div>
+<div class="brands">
+<h3>Shop by Brand</h3>
+<div class="brand-grid">
+<div class="b">Apple</div><div class="b">Samsung</div><div class="b">Dell</div><div class="b">HP</div><div class="b">Sony</div><div class="b">Lenovo</div>
+<div class="b">Xiaomi</div><div class="b">Tecno</div><div class="b">Infinix</div><div class="b">Asus</div><div class="b">JBL</div><div class="b">Logitech</div>
+</div>
+</div>
+</main>
+</div>
+<footer>
+<div class="footer-inner">
+<div>
+<div class="logo" style="color:#fff;margin-bottom:10px;"><span class="dot"></span>TechHub</div>
+<p style="font-size:13px;color:#a9c6ff;max-width:280px;">Nigeria's destination for the latest gadgets. Authorised retailer. Genuine warranty. Nationwide delivery.</p>
+</div>
+<div><h4>Shop</h4><a href="#">Phones</a><a href="#">Laptops</a><a href="#">Audio</a><a href="#">Gaming</a></div>
+<div><h4>Support</h4><a href="#">Track Order</a><a href="#">Returns</a><a href="#">Warranty</a><a href="#">Contact</a></div>
+<div><h4>Company</h4><a href="#">About</a><a href="#">Stores</a><a href="#">Careers</a><a href="#">Blog</a></div>
+</div>
+<div class="footer-bottom">© 2024 TechHub Nigeria · 12 Computer Village, Ikeja · Built by <a href="#">Chada Digital</a></div>
+</footer>
+<script>
+function addToCart(){let c=document.getElementById('cnt');c.textContent=parseInt(c.textContent)+1;}
+document.querySelectorAll('.sidebar .cat').forEach(c=>c.addEventListener('click',()=>{document.querySelectorAll('.sidebar .cat').forEach(x=>x.classList.remove('active'));c.classList.add('active');}));
+document.querySelectorAll('.heart,.wishlist').forEach(h=>h.addEventListener('click',e=>{e.stopPropagation();h.textContent=h.textContent==='♡'?'♥':'♡';h.style.color=h.textContent==='♥'?'#ff4757':'';}));
+</script>
+</body>
+</html>

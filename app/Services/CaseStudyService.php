@@ -225,12 +225,30 @@ class CaseStudyService
     public function demos(): array
     {
         return [
-            ['slug' => 'sterling-vale', 'title' => 'Sterling & Vale', 'category' => 'Corporate Website', 'thumbnail' => '/assets/images/project-sterling.jpg'],
-            ['slug' => 'apexflow', 'title' => 'ApexFlow', 'category' => 'SaaS Onboarding', 'thumbnail' => '/assets/images/project-apexflow.jpg'],
-            ['slug' => 'elysian', 'title' => 'ELYSIAN', 'category' => 'Hotel Booking Engine', 'thumbnail' => '/assets/images/project-elysian.jpg'],
-            ['slug' => 'hirebase', 'title' => 'HIREBASE', 'category' => 'Job Matching Platform', 'thumbnail' => '/assets/images/project-hirebase.jpg'],
-            ['slug' => 'noir', 'title' => 'NOIR', 'category' => 'Fashion E-Commerce', 'thumbnail' => '/assets/images/project-noir.jpg'],
-            ['slug' => 'timber-mill', 'title' => 'TimberMill', 'category' => 'Artisan Catalogue', 'thumbnail' => '/assets/images/project-timbermill.jpg'],
+            // Restaurants & Hospitality
+            ['slug' => 'bistro-noir', 'title' => 'Bistro Noir', 'category' => 'Restaurants & Hospitality', 'thumbnail' => null],
+            ['slug' => 'lagoon-lounge', 'title' => 'Lagoon Lounge', 'category' => 'Restaurants & Hospitality', 'thumbnail' => null],
+            ['slug' => 'suya-spot', 'title' => 'Suya Spot', 'category' => 'Restaurants & Hospitality', 'thumbnail' => null],
+            // Professional Services
+            ['slug' => 'ade-oke-law', 'title' => 'Ade & Oke Law', 'category' => 'Professional Services', 'thumbnail' => null],
+            ['slug' => 'meridian-accounting', 'title' => 'Meridian Accounting', 'category' => 'Professional Services', 'thumbnail' => null],
+            ['slug' => 'cityscape-architecture', 'title' => 'Cityscape Architecture', 'category' => 'Professional Services', 'thumbnail' => null],
+            // E-Commerce & Retail
+            ['slug' => 'kente-collective', 'title' => 'Kente Collective', 'category' => 'E-Commerce & Retail', 'thumbnail' => null],
+            ['slug' => 'tech-hub', 'title' => 'TechHub', 'category' => 'E-Commerce & Retail', 'thumbnail' => null],
+            ['slug' => 'petal-and-stem', 'title' => 'Petal & Stem', 'category' => 'E-Commerce & Retail', 'thumbnail' => null],
+            // Health & Wellness
+            ['slug' => 'vitalis-clinic', 'title' => 'Vitalis Clinic', 'category' => 'Health & Wellness', 'thumbnail' => null],
+            ['slug' => 'zen-fitness', 'title' => 'Zen Fitness', 'category' => 'Health & Wellness', 'thumbnail' => null],
+            ['slug' => 'pure-skin', 'title' => 'Pure Skin', 'category' => 'Health & Wellness', 'thumbnail' => null],
+            // Education & Learning
+            ['slug' => 'brightpath-academy', 'title' => 'BrightPath Academy', 'category' => 'Education & Learning', 'thumbnail' => null],
+            ['slug' => 'codecraft-bootcamp', 'title' => 'CodeCraft Bootcamp', 'category' => 'Education & Learning', 'thumbnail' => null],
+            ['slug' => 'lingua-lab', 'title' => 'Lingua Lab', 'category' => 'Education & Learning', 'thumbnail' => null],
+            // Real Estate & Construction
+            ['slug' => 'lagos-realty', 'title' => 'Lagos Realty', 'category' => 'Real Estate & Construction', 'thumbnail' => null],
+            ['slug' => 'zenith-homes', 'title' => 'Zenith Homes', 'category' => 'Real Estate & Construction', 'thumbnail' => null],
+            ['slug' => 'green-acres-development', 'title' => 'Green Acres Development', 'category' => 'Real Estate & Construction', 'thumbnail' => null],
         ];
     }
 

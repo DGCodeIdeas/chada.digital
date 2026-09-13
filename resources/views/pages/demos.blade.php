@@ -7,7 +7,7 @@
         <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;">Frontend</p>
         <h1 class="display-6 fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface); font-size: 2.25rem;">See Our Work</h1>
         <p class="mx-auto" style="max-width: 540px; color: var(--md-sys-color-on-surface-variant); font-size: 0.9375rem; line-height: 1.65;">
-            Explore live, interactive previews of the systems we have built. Every project is real, deployed, and interactive.
+            18 live frontend demos across 6 real-world categories. Every project is interactive, responsive, and built from scratch.
         </p>
     </div>
 </section>
@@ -15,37 +15,33 @@
 <section style="background: var(--md-sys-color-surface); padding: 3rem 0;">
     <div class="container">
         @php
-        $categories = [
-            'Web Development' => ['sterling-vale', 'elysian', 'noir', 'timber-mill'],
-            'SaaS / Product' => ['apexflow', 'hirebase'],
-        ];
+        // Group demos by category, preserving order
+        $grouped = [];
+        foreach ($demos as $demo) {
+            $cat = $demo['category'] ?? 'Other';
+            $grouped[$cat][] = $demo;
+        }
         @endphp
-        @foreach($categories as $categoryName => $slugs)
+        @foreach($grouped as $categoryName => $categoryDemos)
         <div class="mb-5">
             <h2 class="fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface); font-size: 1.25rem;">{{ $categoryName }}</h2>
             <div class="row g-3">
-                @foreach($slugs as $slug)
-                @php
-                $demo = collect($demos)->firstWhere('slug', $slug);
-                @endphp
-                @if($demo)
-                <div class="col-md-6 col-lg-3">
+                @foreach($categoryDemos as $demo)
+                <div class="col-md-6 col-lg-4">
                     <a href="{{ route('preview.show', $demo['slug']) }}" class="text-decoration-none">
                         <div class="card h-100 overflow-hidden" style="background: var(--md-sys-color-surface-container-low); border-radius: 12px; box-shadow: var(--md-sys-elevation-1, 0 1px 2px 0 rgba(0,0,0,0.03)); transition: box-shadow 0.2s ease, transform 0.2s ease;" onmouseover="this.style.boxShadow='0 4px 16px rgba(0,0,0,0.08)'; this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='var(--md-sys-elevation-1, 0 1px 2px 0 rgba(0,0,0,0.03))'; this.style.transform=''">
-                            @if(isset($demo['thumbnail']))
+                            @if(isset($demo['thumbnail']) && $demo['thumbnail'])
                             <div class="ratio ratio-16x9" style="background: var(--md-sys-color-surface-container-highest);">
                                 <img src="{{ asset($demo['thumbnail']) }}" alt="{{ $demo['title'] }} preview" style="object-fit: cover;" loading="lazy">
                             </div>
                             @endif
                             <div class="card-body p-3">
-                                <span class="badge rounded-pill mb-2" style="background: var(--md-sys-color-surface-container-highest); color: var(--md-sys-color-on-surface-variant); font-weight: 500; font-size: 0.6875rem;">{{ $demo['category'] }}</span>
-                                <h6 class="fw-semibold mb-0" style="color: var(--md-sys-color-on-surface); font-size: 0.9375rem;">{{ $demo['title'] }}</h6>
-                                <p class="mb-0 mt-1" style="font-size: 0.75rem; color: var(--md-sys-color-primary);">View frontend →</p>
+                                <h6 class="fw-semibold mb-1" style="color: var(--md-sys-color-on-surface); font-size: 0.9375rem;">{{ $demo['title'] }}</h6>
+                                <p class="mb-0" style="font-size: 0.75rem; color: var(--md-sys-color-primary);">View frontend →</p>
                             </div>
                         </div>
                     </a>
                 </div>
-                @endif
                 @endforeach
             </div>
         </div>
