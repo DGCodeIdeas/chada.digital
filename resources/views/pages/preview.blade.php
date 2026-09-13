@@ -11,7 +11,7 @@
             </div>
             <div class="d-flex gap-2">
                 <a href="{{ route('demos') }}" class="btn btn-outline-secondary btn-sm rounded-pill" style="border-color: var(--md-sys-color-outline); color: var(--md-sys-color-on-surface-variant);">
-                    ← All Demos
+                    ← All Work
                 </a>
                 <a href="{{ route('demo.content', ['slug' => $project['slug']]) }}" target="_blank" class="btn btn-primary btn-sm rounded-pill" style="background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary);">
                     Open in New Tab

@@ -18,9 +18,9 @@ return [
     'services_heading' => 'Three Services. Clear Pricing.',
     'services_subhead' => 'Every service has a transparent price range. You know what you are paying for before we start.',
     'services' => [
-        ['icon' => 'code', 'title' => 'Website Design', 'desc' => 'Starter sites, business websites, premium builds, and full e-commerce stores. Mobile-responsive, SEO-ready, conversion-focused.', 'tools' => ['Starter ₦200K', 'Business ₦300K', 'Premium ₦500K', 'E-Commerce ₦500K']],
-        ['icon' => 'zap', 'title' => 'Automation', 'desc' => 'Lead capture workflows, CRM integration, WhatsApp/email automation, and AI-powered business processes.', 'tools' => ['Starter ₦150K', 'Business ₦250K', 'Advanced ₦500K+']],
-        ['icon' => 'pen-tool', 'title' => 'Branding', 'desc' => 'Logo design, colour palettes, typography, brand guidelines, social media templates, and business stationery.', 'tools' => ['Starter ₦100K', 'Business ₦200K', 'Complete ₦350K+']],
+        ['icon' => 'code', 'title' => 'Website Design', 'desc' => 'Starter sites, business websites, premium builds, and full e-commerce stores. Mobile-responsive, SEO-ready, conversion-focused.', 'tools' => ['Starter', 'Business', 'Premium', 'E-Commerce']],
+        ['icon' => 'zap', 'title' => 'Automation', 'desc' => 'Lead capture workflows, CRM integration, WhatsApp/email automation, and AI-powered business processes.', 'tools' => ['Starter', 'Business', 'Advanced']],
+        ['icon' => 'pen-tool', 'title' => 'Branding', 'desc' => 'Logo design, colour palettes, typography, brand guidelines, social media templates, and business stationery.', 'tools' => ['Starter', 'Business', 'Complete']],
     ],
 
     // Final CTA
