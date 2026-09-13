@@ -58,21 +58,14 @@ class DemoController extends Controller
             abort(404, "Unknown demo: {$slug}");
         }
 
-        // 2. If the path is the default ('index.html'), the user visited
-        //    /demo-content/{slug} without a trailing slash. Redirect to
-        //    /demo-content/{slug}/ so the browser resolves relative paths
-        //    correctly. Use a hardcoded URL — getRequestUri() causes a loop.
-        if ($path === 'index.html') {
-            $requestUrl = $request->getRequestUri();
-            if (!str_ends_with($requestUrl, '/')) {
-                return redirect('/demo-content/' . $slug . '/', 301);
-            }
-            $path = 'index.html';
-        }
-
-        // 3. If the path ends with /, treat it as a directory and serve index.html
+        // 2. If the path ends with /, treat it as a directory and serve index.html
         if (str_ends_with($path, '/')) {
             $path .= 'index.html';
+        }
+
+        // 3. If the path is empty, serve index.html
+        if ($path === '' || $path === '/') {
+            $path = 'index.html';
         }
 
         // 4. Build the full file path
@@ -111,7 +104,28 @@ class DemoController extends Controller
         //    The extension map is authoritative for web content.
         $mimeType = self::getMimeType($realFilePath);
 
-        // 8. Stream the file with appropriate headers
+        // 8. For HTML files (index.html), inject a <base> tag so relative paths
+        //    (assets/css/styles.css) resolve against /demo-content/{slug}/
+        //    regardless of whether the URL has a trailing slash or not.
+        //    This replaces the redirect approach which caused an infinite loop
+        //    (nginx stripped the trailing slash from the Location header).
+        if ($mimeType === 'text/html') {
+            $html = file_get_contents($realFilePath);
+            $baseTag = '<base href="/demo-content/' . $slug . '/">';
+            // Inject after <head> or at the start of the document
+            if (preg_match('/<head[^>]*>/i', $html)) {
+                $html = preg_replace('/(<head[^>]*>)/i', '$1' . $baseTag, $html, 1);
+            } else {
+                $html = $baseTag . $html;
+            }
+            return response($html, 200, [
+                'Content-Type' => 'text/html; charset=UTF-8',
+                'Cache-Control' => 'public, max-age=3600',
+                'X-Content-Type-Options' => 'nosniff',
+            ]);
+        }
+
+        // 9. For non-HTML files (CSS, JS, images), stream directly
         return Response::file($realFilePath, [
             'Content-Type' => $mimeType,
             'Cache-Control' => 'public, max-age=3600',
