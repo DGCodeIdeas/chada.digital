@@ -225,12 +225,12 @@ class CaseStudyService
     public function demos(): array
     {
         return [
-            ['slug' => 'sterling-vale', 'title' => 'Sterling & Vale', 'category' => 'Corporate Website'],
-            ['slug' => 'apexflow', 'title' => 'ApexFlow', 'category' => 'SaaS Onboarding'],
-            ['slug' => 'elysian', 'title' => 'ELYSIAN', 'category' => 'Hotel Booking Engine'],
-            ['slug' => 'hirebase', 'title' => 'HIREBASE', 'category' => 'Job Matching Platform'],
-            ['slug' => 'noir', 'title' => 'NOIR', 'category' => 'Fashion E-Commerce'],
-            ['slug' => 'timber-mill', 'title' => 'TimberMill', 'category' => 'Artisan Catalogue'],
+            ['slug' => 'sterling-vale', 'title' => 'Sterling & Vale', 'category' => 'Corporate Website', 'thumbnail' => '/assets/images/project-sterling.jpg'],
+            ['slug' => 'apexflow', 'title' => 'ApexFlow', 'category' => 'SaaS Onboarding', 'thumbnail' => '/assets/images/project-apexflow.jpg'],
+            ['slug' => 'elysian', 'title' => 'ELYSIAN', 'category' => 'Hotel Booking Engine', 'thumbnail' => '/assets/images/project-elysian.jpg'],
+            ['slug' => 'hirebase', 'title' => 'HIREBASE', 'category' => 'Job Matching Platform', 'thumbnail' => '/assets/images/project-hirebase.jpg'],
+            ['slug' => 'noir', 'title' => 'NOIR', 'category' => 'Fashion E-Commerce', 'thumbnail' => '/assets/images/project-noir.jpg'],
+            ['slug' => 'timber-mill', 'title' => 'TimberMill', 'category' => 'Artisan Catalogue', 'thumbnail' => '/assets/images/project-timbermill.jpg'],
         ];
     }
 
