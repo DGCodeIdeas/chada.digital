@@ -33,6 +33,16 @@ Route::get('/services', [PageController::class, 'services'])->name('services');
 // About
 Route::get('/about', [PageController::class, 'about'])->name('about');
 
+// Design Partner page
+Route::get('/design-partner', function () {
+    $meta = [
+        'title' => 'Become a Design Partner | ' . config('brand.name'),
+        'description' => 'No customer logos yet, we will not fake them. Become a design partner and work directly with the team building your project.',
+        'og_image' => asset('og-image.jpg'),
+    ];
+    return view('pages.design-partner', compact('meta'));
+})->name('design-partner');
+
 // Contact
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/api/contact', [ContactController::class, 'store'])->name('contact.store');
