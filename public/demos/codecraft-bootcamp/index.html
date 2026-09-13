@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CodeCraft Bootcamp — Become a Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--bg2:#111729;--card:#1a2138;--neon:#00ff9d;--neon2:#ff2e8a;--blue:#3b82f6;--text:#e2e8f0;--muted:#7c8aa5;--border:#2a3454;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+.code{font-family:'JetBrains Mono';}
+.topbar{background:var(--bg2);border-bottom:1px solid var(--border);font-family:'JetBrains Mono';font-size:12px;padding:8px 32px;color:var(--muted);}
+.topbar .blink{color:var(--neon);}
+.topbar .blink::before{content:"●";animation:blink 1.5s infinite;margin-right:6px;}
+@keyframes blink{50%{opacity:.3;}}
+header{padding:18px 32px;display:flex;justify-content:space-between;align-items:center;background:var(--bg);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);}
+.logo{font-family:'JetBrains Mono';font-weight:700;font-size:22px;display:flex;align-items:center;gap:10px;}
+.logo .bracket{color:var(--neon);}
+.logo .name{color:var(--text);}
+.logo .accent{color:var(--neon2);}
+nav{display:flex;gap:28px;align-items:center;}
+nav a{font-size:13px;font-weight:500;color:var(--muted);transition:color .25s;}
+nav a:hover{color:var(--neon);}
+.btn{background:var(--neon);color:var(--bg);padding:11px 22px;border-radius:6px;font-weight:700;font-size:13px;font-family:'JetBrains Mono';display:inline-block;border:none;cursor:pointer;transition:box-shadow .25s,transform .25s;}
+.btn:hover{box-shadow:0 0 24px rgba(0,255,157,.5);transform:translateY(-2px);}
+.btn.ghost{background:transparent;border:1px solid var(--neon);color:var(--neon);}
+.btn.pink{background:var(--neon2);color:#fff;}
+.hero{padding:100px 32px 80px;max-width:1200px;margin:0 auto;position:relative;}
+.hero .grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(59,130,246,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,.05) 1px,transparent 1px);background-size:40px 40px;mask-image:radial-gradient(ellipse at center,#000 30%,transparent 70%);}
+.hero-inner{position:relative;z-index:2;}
+.hero .tag{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);padding:6px 14px;border-radius:30px;font-family:'JetBrains Mono';font-size:12px;color:var(--neon);margin-bottom:20px;}
+.hero .tag::before{content:"";width:8px;height:8px;background:var(--neon);border-radius:50%;box-shadow:0 0 10px var(--neon);}
+.hero h1{font-size:72px;font-weight:700;line-height:1;letter-spacing:-2px;margin-bottom:22px;}
+.hero h1 .grad{background:linear-gradient(90deg,var(--neon),var(--neon2));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero h1 .cursor{display:inline-block;width:4px;height:60px;background:var(--neon);animation:cursor 1s infinite;vertical-align:middle;}
+@keyframes cursor{50%{opacity:0;}}
+.hero p{font-size:18px;color:var(--muted);max-width:540px;margin-bottom:30px;}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;}
+.hero-stats{display:flex;gap:32px;margin-top:50px;flex-wrap:wrap;}
+.hero-stats .s .n{font-family:'JetBrains Mono';font-size:32px;color:var(--neon);font-weight:700;}
+.hero-stats .s .l{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+section{padding:80px 32px;max-width:1200px;margin:0 auto;}
+.section-head{margin-bottom:50px;}
+.section-head .k{font-family:'JetBrains Mono';color:var(--neon);font-size:13px;}
+.section-head .k::before{content:"# ";}
+.section-head h2{font-size:42px;font-weight:700;margin-top:6px;letter-spacing:-1px;}
+.section-head p{color:var(--muted);max-width:600px;margin-top:10px;}
+.curriculum{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);max-width:none;padding:80px 32px;}
+.curriculum-inner{max-width:1200px;margin:0 auto;}
+.modules{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+.mod{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:26px;transition:border-color .25s,transform .25s;cursor:pointer;}
+.mod:hover{border-color:var(--neon);transform:translateY(-3px);}
+.mod .num{font-family:'JetBrains Mono';color:var(--neon2);font-size:13px;font-weight:700;}
+.mod h3{font-size:20px;margin:6px 0 10px;font-weight:600;}
+.mod p{font-size:14px;color:var(--muted);margin-bottom:14px;}
+.mod .topics{display:flex;flex-wrap:wrap;gap:8px;}
+.mod .topics span{font-family:'JetBrains Mono';font-size:11px;background:var(--bg);border:1px solid var(--border);color:var(--muted);padding:4px 10px;border-radius:6px;}
+.instructors{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.ins{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color .25s;}
+.ins:hover{border-color:var(--neon);}
+.ins .top{height:200px;background-size:cover;background-position:center;filter:grayscale(40%);}
+.ins .info{padding:22px;}
+.ins .role{font-family:'JetBrains Mono';font-size:12px;color:var(--neon);}
+.ins h4{font-size:20px;margin:6px 0;font-weight:600;}
+.ins .bio{font-size:13px;color:var(--muted);margin-bottom:14px;}
+.ins .stack{display:flex;gap:8px;flex-wrap:wrap;}
+.ins .stack span{font-family:'JetBrains Mono';font-size:10px;background:var(--bg2);color:var(--neon);padding:3px 8px;border-radius:4px;border:1px solid var(--border);}
+.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.proj{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:transform .25s,border-color .25s;}
+.proj:hover{transform:translateY(-4px);border-color:var(--neon2);}
+.proj .img{height:180px;background-size:cover;background-position:center;position:relative;}
+.proj .img .level{position:absolute;top:12px;left:12px;background:var(--bg);border:1px solid var(--neon);color:var(--neon);font-family:'JetBrains Mono';font-size:11px;padding:3px 10px;border-radius:6px;}
+.proj .info{padding:18px;}
+.proj h4{font-size:17px;font-weight:600;}
+.proj .by{font-size:12px;color:var(--neon2);font-family:'JetBrains Mono';margin:4px 0;}
+.proj .desc{font-size:13px;color:var(--muted);}
+.enroll-banner{background:linear-gradient(135deg,var(--card),var(--bg2));border:1px solid var(--neon);border-radius:20px;padding:50px;text-align:center;max-width:1100px;margin:0 auto;position:relative;overflow:hidden;}
+.enroll-banner::before{content:"</>";position:absolute;top:-20px;right:20px;font-family:'JetBrains Mono';font-size:160px;color:var(--neon);opacity:.05;}
+.enroll-banner h2{font-size:36px;margin-bottom:10px;}
+.enroll-banner p{color:var(--muted);margin-bottom:24px;}
+.enroll-form{display:grid;grid-template-columns:1fr 1fr auto;gap:12px;max-width:600px;margin:0 auto;}
+.enroll-form input{background:var(--bg);border:1px solid var(--border);color:var(--text);padding:13px;border-radius:8px;font-family:'JetBrains Mono';font-size:13px;}
+.enroll-form input::placeholder{color:var(--muted);}
+.enroll-form input:focus{outline:none;border-color:var(--neon);}
+.cohorts{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px;text-align:left;}
+.cohort{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:18px;}
+.cohort .label{font-family:'JetBrains Mono';font-size:11px;color:var(--neon2);}
+.cohort h4{font-size:18px;margin:6px 0;}
+.cohort .meta{font-size:12px;color:var(--muted);}
+.cohort .seats{font-family:'JetBrains Mono';font-size:13px;color:var(--neon);margin-top:8px;}
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:50px 32px 24px;}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;}
+footer h4{color:var(--neon);font-family:'JetBrains Mono';font-size:13px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px;}
+footer a{display:block;font-size:13px;padding:5px 0;color:var(--muted);}
+footer a:hover{color:var(--neon);}
+.footer-bottom{max-width:1200px;margin:30px auto 0;padding-top:20px;border-top:1px solid var(--border);font-family:'JetBrains Mono';font-size:12px;text-align:center;color:var(--muted);}
+.footer-bottom a{display:inline;color:var(--neon);}
+@media(max-width:900px){.hero h1{font-size:42px;}.modules,.instructors,.projects,.cohorts,.footer-inner{grid-template-columns:1fr 1fr;}.enroll-form{grid-template-columns:1fr;}nav{display:none;}.hero h1 .cursor{height:42px;}}
+@media(max-width:560px){.modules,.instructors,.projects,.cohorts,.footer-inner{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="topbar"><span class="blink">Next cohort starts Sept 15 · 12 seats left</span> · <span>// Lagos · Remote · Hybrid</span></div>
+<header>
+<div class="logo"><span class="bracket">&lt;</span><span class="name">CodeCraft</span><span class="accent">_</span><span class="bracket">/&gt;</span></div>
+<nav><a href="#curriculum">Curriculum</a><a href="#instructors">Instructors</a><a href="#projects">Projects</a><a href="#enroll">Enroll</a></nav>
+<a class="btn" href="#enroll">apply()</a>
+</header>
+<div class="hero">
+<div class="grid-bg"></div>
+<div class="hero-inner">
+<span class="tag">16-week intensive · Lagos & Remote</span>
+<h1>Ship code.<br><span class="grad">Get hired.</span><span class="cursor"></span></h1>
+<p>An immersive software engineering bootcamp that takes you from <span class="code" style="color:var(--neon);">console.log("hello")</span> to production-grade full-stack applications. Built by engineers, for engineers.</p>
+<div class="hero-cta">
+<a class="btn" href="#enroll">Start Application</a>
+<a class="btn ghost" href="#curriculum">View Curriculum</a>
+</div>
+<div class="hero-stats">
+<div class="s"><div class="n">94%</div><div class="l">Job placement</div></div>
+<div class="s"><div class="n">680+</div><div class="l">Graduates</div></div>
+<div class="s"><div class="n">₦450k</div><div class="l">Avg starting salary</div></div>
+<div class="s"><div class="n">4.9★</div><div class="l">Student rating</div></div>
+</div>
+</div>
+</div>
+<section class="curriculum" id="curriculum">
+<div class="curriculum-inner">
+<div class="section-head">
+<div class="k">curriculum</div>
+<h2>The 16-week journey</h2>
+<p>Eight modules. Six projects. One portfolio that gets you hired.</p>
+</div>
+<div class="modules">
+<div class="mod"><div class="num">// module_01</div><h3>Foundations of the Web</h3><p>How the web actually works — HTTP, browsers, dev tools, and the command line.</p><div class="topics"><span>HTML5</span><span>CSS3</span><span>Git</span><span>Terminal</span></div></div>
+<div class="mod"><div class="num">// module_02</div><h3>JavaScript Mastery</h3><p>From variables to async — the language that powers the modern web.</p><div class="topics"><span>ES6+</span><span>DOM</span><span>Promises</span><span>Fetch API</span></div></div>
+<div class="mod"><div class="num">// module_03</div><h3>React & Frontend</h3><p>Build dynamic, component-driven UIs with the industry standard.</p><div class="topics"><span>React</span><span>Hooks</span><span>Redux</span><span>Tailwind</span></div></div>
+<div class="mod"><div class="num">// module_04</div><h3>Backend with Node.js</h3><p>Servers, APIs, databases — the engine room of every product.</p><div class="topics"><span>Node</span><span>Express</span><span>REST</span><span>PostgreSQL</span></div></div>
+<div class="mod"><div class="num">// module_05</div><h3>Databases & Data</h3><p>Model, query, and optimise data with SQL and NoSQL databases.</p><div class="topics"><span>SQL</span><span>MongoDB</span><span>Redis</span><span>Prisma</span></div></div>
+<div class="mod"><div class="num">// module_06</div><h3>DevOps & Deploy</h3><p>Ship to production — Docker, CI/CD, cloud, and monitoring.</p><div class="topics"><span>Docker</span><span>AWS</span><span>GitHub Actions</span><span>Vercel</span></div></div>
+<div class="mod"><div class="num">// module_07</div><h3>Capstone Project</h3><p>Design, build, and ship a full-stack product with a team of four.</p><div class="topics"><span>Agile</span><span>Code Review</span><span>Testing</span><span>Docs</span></div></div>
+<div class="mod"><div class="num">// module_08</div><h3>Job Search Bootcamp</h3><p>Resume reviews, mock interviews, and direct intros to hiring partners.</p><div class="topics"><span>Resume</span><span>LeetCode</span><span>System Design</span><span>Negotiation</span></div></div>
+</div>
+</div>
+</section>
+<section id="instructors">
+<div class="section-head">
+<div class="k">instructors</div>
+<h2>Taught by working engineers</h2>
+<p>Not career teachers — senior engineers from Andela, Paystack, Flutterwave, and Microsoft.</p>
+</div>
+<div class="instructors">
+<div class="ins"><div class="top" style="background-image:url('https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=500&q=80')"></div><div class="info"><div class="role">Lead Instructor</div><h4>Chidi Okafor</h4><p class="bio">Senior Engineer at Paystack. 9 years building payment systems at scale.</p><div class="stack"><span>Node</span><span>Go</span><span>AWS</span></div></div></div>
+<div class="ins"><div class="top" style="background-image:url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&q=80')"></div><div class="info"><div class="role">Frontend Lead</div><h4>Amara Nwosu</h4><p class="bio">Ex-Andela. Built UI for apps used by 5M+ users across Africa.</p><div class="stack"><span>React</span><span>TypeScript</span><span>Next.js</span></div></div></div>
+<div class="ins"><div class="top" style="background-image:url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&q=80')"></div><div class="info"><div class="role">DevOps Lead</div><h4>Tunde Bakare</h4><p class="bio">Cloud architect at Flutterwave. AWS certified, Kubernetes whisperer.</p><div class="stack"><span>Docker</span><span>K8s</span><span>Terraform</span></div></div></div>
+</div>
+</section>
+<section id="projects">
+<div class="section-head">
+<div class="k">student_work</div>
+<h2>Shipped by our graduates</h2>
+<p>Real products. Real users. Real impact.</p>
+</div>
+<div class="projects">
+<div class="proj"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80')"><span class="level">Full-stack</span></div><div class="info"><h4>MarketPulse</h4><div class="by">// by Adaeze, Class of '24</div><p class="desc">Real-time Lagos market price tracker with 12k daily users.</p></div></div>
+<div class="proj"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&q=80')"><span class="level">Mobile-first</span></div><div class="info"><h4>QuickMed</h4><div class="by">// by Ibrahim, Class of '23</div><p class="desc">Telemedicine booking app now used in 4 Lagos clinics.</p></div></div>
+<div class="proj"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80')"><span class="level">SaaS</span></div><div class="info"><h4>Invoicely</h4><div class="by">// by Funmi & team, Class of '24</div><p class="desc">Invoicing tool for Nigerian freelancers. 800+ paying users.</p></div></div>
+</div>
+</section>
+<section id="enroll">
+<div class="enroll-banner">
+<h2>Ready to ship?</h2>
+<p>Apply now — we review applications within 48 hours. No prior coding experience required.</p>
+<form class="enroll-form" onsubmit="event.preventDefault();alert('Application received! Check your email for next steps.');this.reset();">
+<input type="email" required placeholder="your@email.com">
+<input type="tel" required placeholder="+234 ...">
+<button type="submit" class="btn">apply()</button>
+</form>
+<div class="cohorts">
+<div class="cohort"><div class="label">// cohort_07</div><h4>September 2024</h4><div class="meta">Lagos · On-site · Mon-Fri</div><div class="seats">7 seats left</div></div>
+<div class="cohort"><div class="label">// cohort_08</div><h4>November 2024</h4><div class="meta">Remote · Part-time · evenings</div><div class="seats">15 seats left</div></div>
+<div class="cohort"><div class="label">// cohort_09</div><h4>January 2025</h4><div class="meta">Hybrid · Full-time</div><div class="seats">22 seats left</div></div>
+</div>
+</div>
+</section>
+<footer>
+<div class="footer-inner">
+<div>
+<div class="logo" style="margin-bottom:14px;"><span class="bracket">&lt;</span><span class="name">CodeCraft</span><span class="accent">_</span><span class="bracket">/&gt;</span></div>
+<p style="font-size:13px;color:var(--muted);max-width:280px;">A 16-week software engineering bootcamp built by working engineers, for the next generation of African tech talent.</p>
+</div>
+<div><h4>Program</h4><a href="#">Curriculum</a><a href="#">Schedule</a><a href="#">Tuition</a><a href="#">FAQ</a></div>
+<div><h4>Resources</h4><a href="#">Blog</a><a href="#">Free Prep</a><a href="#">Alumni</a><a href="#">Hire Grads</a></div>
+<div><h4>Contact</h4><a href="#">21b Adeola Odeku, VI</a><a href="#">hello@codecraft.ng</a><a href="#">+234 809 447 8800</a></div>
+</div>
+<div class="footer-bottom">© 2024 CodeCraft Bootcamp · Built by <a href="#">Chada Digital</a> · <span style="color:var(--neon2);">npm run build</span></div>
+</footer>
+</body>
+</html>

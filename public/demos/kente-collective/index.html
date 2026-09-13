@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kente Collective — African Fashion & Textiles</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--terracotta:#c1502e;--ochre:#d4a017;--earth:#6b3410;--cream:#faf3e8;--ink:#2a1a0e;--brown:#8b5a2b;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);}
+a{text-decoration:none;color:inherit;}
+.topbar{background:var(--ink);color:var(--cream);text-align:center;font-size:12px;padding:9px;letter-spacing:1px;}
+.topbar span{color:var(--ochre);}
+header{background:#fff;padding:18px 32px;display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--earth);position:sticky;top:0;z-index:50;}
+.logo{font-family:'Fraunces';font-weight:900;font-size:30px;color:var(--ink);letter-spacing:-1px;}
+.logo span{color:var(--terracotta);}
+.search{flex:1;max-width:380px;margin:0 30px;display:flex;border:1.5px solid var(--earth);border-radius:30px;overflow:hidden;}
+.search input{flex:1;border:none;padding:10px 16px;font-family:inherit;font-size:13px;background:transparent;}
+.search button{background:var(--ink);color:var(--cream);border:none;padding:0 18px;cursor:pointer;}
+.nav-icons{display:flex;gap:18px;align-items:center;}
+.nav-icons a{font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;}
+.cart{background:var(--terracotta);color:#fff;padding:8px 16px;border-radius:30px;font-weight:700;}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:0;min-height:560px;}
+.hero-left{padding:80px 50px;background:var(--terracotta);color:#fff;display:flex;flex-direction:column;justify-content:center;}
+.hero-left .eyebrow{font-family:'Fraunces';font-style:italic;font-size:18px;color:var(--ochre);margin-bottom:14px;}
+.hero-left h1{font-family:'Fraunces';font-size:64px;font-weight:900;line-height:.95;letter-spacing:-2px;margin-bottom:20px;}
+.hero-left p{opacity:.9;font-size:16px;margin-bottom:30px;max-width:420px;}
+.hero-btn{display:inline-block;background:var(--ink);color:#fff;padding:14px 30px;border-radius:30px;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:1px;width:fit-content;}
+.hero-right{background:url('https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=900&q=80') center/cover;min-height:560px;}
+.container{padding:70px 32px;max-width:1300px;margin:0 auto;}
+.filters-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:36px;flex-wrap:wrap;gap:14px;}
+.filters-bar h2{font-family:'Fraunces';font-size:38px;font-weight:900;color:var(--ink);}
+.filter-chips{display:flex;gap:10px;flex-wrap:wrap;}
+.chip{padding:7px 16px;border:1.5px solid var(--earth);border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;transition:all .2s;}
+.chip.active,.chip:hover{background:var(--ink);color:var(--cream);border-color:var(--ink);}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.product{background:#fff;border-radius:14px;overflow:hidden;cursor:pointer;transition:transform .25s,box-shadow .25s;}
+.product:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(107,52,16,.18);}
+.product .img{height:260px;background-size:cover;background-position:center;position:relative;}
+.product .badge{position:absolute;top:12px;left:12px;background:var(--ochre);color:var(--ink);font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:1px;}
+.product .fav{position:absolute;top:12px;right:12px;background:rgba(255,255,255,.9);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;}
+.product .body{padding:16px;}
+.product .cat{font-size:11px;color:var(--brown);text-transform:uppercase;letter-spacing:1px;font-weight:600;}
+.product h3{font-family:'Fraunces';font-size:19px;font-weight:700;margin:4px 0;}
+.product .price{color:var(--terracotta);font-weight:700;font-size:18px;}
+.product .price s{color:#999;font-size:14px;font-weight:400;margin-left:6px;}
+.banner{background:var(--earth);color:var(--cream);padding:50px 32px;text-align:center;border-radius:18px;max-width:1300px;margin:0 auto 60px;}
+.banner h3{font-family:'Fraunces';font-size:34px;font-weight:900;}
+.banner p{opacity:.85;margin:10px 0 20px;}
+.story{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;background:#fff;border-radius:18px;overflow:hidden;max-width:1300px;margin:0 auto 60px;}
+.story img{width:100%;height:420px;object-fit:cover;}
+.story .text{padding:40px;}
+.story .eyebrow{color:var(--terracotta);font-weight:700;text-transform:uppercase;font-size:12px;letter-spacing:2px;}
+.story h2{font-family:'Fraunces';font-size:36px;font-weight:900;margin:10px 0 18px;}
+.story p{color:#4a3520;line-height:1.8;margin-bottom:14px;}
+.modal{position:fixed;inset:0;background:rgba(42,26,14,.7);display:none;align-items:center;justify-content:center;z-index:200;padding:20px;}
+.modal.active{display:flex;}
+.modal-card{background:#fff;border-radius:16px;max-width:760px;width:100%;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;position:relative;}
+.modal-card .close{position:absolute;top:14px;right:14px;background:#fff;border:none;width:34px;height:34px;border-radius:50%;font-size:18px;cursor:pointer;z-index:5;}
+.modal-card .img{min-height:400px;background-size:cover;background-position:center;}
+.modal-card .info{padding:30px;}
+.modal-card .cat{color:var(--brown);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;}
+.modal-card h2{font-family:'Fraunces';font-size:28px;margin:6px 0;}
+.modal-card .price{color:var(--terracotta);font-size:24px;font-weight:700;margin-bottom:14px;}
+.modal-card p{font-size:14px;color:#4a3520;margin-bottom:18px;}
+.modal-card .sizes{display:flex;gap:8px;margin-bottom:18px;}
+.modal-card .sizes button{width:36px;height:36px;border:1.5px solid var(--earth);background:#fff;border-radius:50%;font-weight:700;cursor:pointer;}
+.modal-card .sizes button.sel{background:var(--ink);color:#fff;border-color:var(--ink);}
+footer{background:var(--ink);color:var(--cream);padding:50px 32px 30px;}
+.footer-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;}
+footer h4{font-family:'Fraunces';margin-bottom:14px;color:var(--ochre);}
+footer a{display:block;color:#c9b69b;font-size:13px;padding:4px 0;}
+.footer-bottom{max-width:1300px;margin:30px auto 0;padding-top:20px;border-top:1px solid #4a3520;font-size:12px;text-align:center;color:#9a8870;}
+.footer-bottom a{display:inline;color:var(--ochre);}
+@media(max-width:900px){.hero,.story{grid-template-columns:1fr;}.products{grid-template-columns:1fr 1fr;}.footer-inner{grid-template-columns:1fr 1fr;}.search{display:none;}.hero-left h1{font-size:42px;}}
+@media(max-width:560px){.products{grid-template-columns:1fr;}.modal-card{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="topbar">✨ Free shipping across Nigeria on orders above ₦40,000 · <span>Use code KENTE10 for 10% off</span></div>
+<header>
+<div class="logo">Kente<span>°</span>Collective</div>
+<div class="search"><input type="text" placeholder="Search ankara, agbada, accessories..."><button>🔍</button></div>
+<div class="nav-icons">
+<a href="#">Wishlist</a>
+<a href="#" class="cart">🛒 Cart · <span id="cartCount">2</span></a>
+</div>
+</header>
+<div class="hero">
+<div class="hero-left">
+<div class="eyebrow">African heritage, modern silhouettes</div>
+<h1>Wear the<br>continent.</h1>
+<p>Handwoven kente, hand-dyed adire, and contemporary pieces designed in Lagos — crafted by artisans across West Africa.</p>
+<a href="#shop" class="hero-btn">Shop the Collection</a>
+</div>
+<div class="hero-right"></div>
+</div>
+<div class="container" id="shop">
+<div class="filters-bar">
+<h2>New Arrivals</h2>
+<div class="filter-chips">
+<button class="chip active" onclick="filterProds(this,'all')">All</button>
+<button class="chip" onclick="filterProds(this,'women')">Women</button>
+<button class="chip" onclick="filterProds(this,'men')">Men</button>
+<button class="chip" onclick="filterProds(this,'textiles')">Textiles</button>
+<button class="chip" onclick="filterProds(this,'acc')">Accessories</button>
+</div>
+</div>
+<div class="products" id="grid">
+<div class="product" data-cat="women" onclick="openModal('Adire Wrap Dress','women','₦24,500','https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600&q=80','Hand-dyed adire cotton, tailored in Lagos. A flowing wrap dress that flatters every silhouette.')">
+<div class="img" style="background-image:url('https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600&q=80')"><span class="badge">New</span><span class="fav">♡</span></div>
+<div class="body"><div class="cat">Women</div><h3>Adire Wrap Dress</h3><div class="price">₦24,500</div></div>
+</div>
+<div class="product" data-cat="men" onclick="openModal('Kente Agbada Set','men','₦85,000','https://images.unsplash.com/photo-1622519407650-3df9883f76a5?w=600&q=80','Three-piece agbada in royal kente weave. Hand-loomed in Bonwire, Ghana. Includes trousers, inner tunic, and outer robe.')">
+<div class="img" style="background-image:url('https://images.unsplash.com/photo-1622519407650-3df9883f76a5?w=600&q=80')"><span class="badge">Bestseller</span><span class="fav">♡</span></div>
+<div class="body"><div class="cat">Men</div><h3>Kente Agbada Set</h3><div class="price">₦85,000</div></div>
+</div>
+<div class="product" data-cat="acc" onclick="openModal('Beaded Maasai Choker','acc','₦12,000','https://images.unsplash.com/photo-1535632787350-4e68ef0ac584?w=600&q=80','Hand-strung Maasai beads in signature red and gold. Adjustable, lightweight, statement-making.')">
+<div class="img" style="background-image:url('https://images.unsplash.com/photo-1535632787350-4e68ef0ac584?w=600&q=80')"><span class="fav">♡</span></div>
+<div class="body"><div class="cat">Accessories</div><h3>Beaded Maasai Choker</h3><div class="price">₦12,000</div></div>
+</div>
+<div class="product" data-cat="women" onclick="openModal('Ankara Two-Piece','women','₦32,000','https://images.unsplash.com/photo-1581338834647-b0fb40704e21?w=600&q=80','Bold ankara print in a structured crop and high-waist trouser. Made to order in 7 days.')">
+<div class="img" style="background-image:url('https://images.unsplash.com/photo-1581338834647-b0fb40704e21?w=600&q=80')"><span class="badge">Trending</span><span class="fav">♡</span></div>
+<div class="body"><div class="cat">Women</div><h3>Ankara Two-Piece</h3><div class="price">₦32,000 <s>₦38,000</s></div></div>
+</div>
+<div class="product" data-cat="textiles" onclick="openModal('Handwoven Kente Cloth','textiles','₦45,000','https://images.unsplash.com/photo-1604871000636-074fa5117945?w=600&q=80','Six-yard kente strip, handwoven on traditional looms. Each piece carries the weaver\\'s mark and a story.')">
+<div class="img" style="background-image:url('https://images.unsplash.com/photo-1604871000636-074fa5117945?w=600&q=80')"><span class="fav">♡</span></div>
+<div class="body"><div class="cat">Textiles</div><h3>Handwoven Kente Cloth</h3><div class="price">₦45,000</div></div>
+</div>
+<div class="product" data-cat="men" onclick="openModal('Dashiki Tunic','men','₦18,500','https://images.unsplash.com/photo-1583794972356-1d0e5d7a1c64?w=600&q=80','Classic dashiki in earth tones. Soft cotton, embroidered neckline. Available in five colours.')">
+<div class="img" style="background-image:url('https://images.unsplash.com/photo-1583794972356-1d0e5d7a1c64?w=600&q=80')"><span class="fav">♡</span></div>
+<div class="body"><div class="cat">Men</div><h3>Dashiki Tunic</h3><div class="price">₦18,500</div></div>
+</div>
+<div class="product" data-cat="acc" onclick="openModal('Mudcloth Tote','acc','₦14,500','https://images.unsplash.com/photo-1591195854234-9d4f7e4a4b9c?w=600&q=80','Hand-painted bogolanfini (mudcloth) tote with leather handles. Each pattern tells a Malian proverb.')">
+<div class="img" style="background-image:url('https://images.unsplash.com/photo-1591195854234-9d4f7e4a4b9c?w=600&q=80')"><span class="badge">Limited</span><span class="fav">♡</span></div>
+<div class="body"><div class="cat">Accessories</div><h3>Mudcloth Tote</h3><div class="price">₦14,500</div></div>
+</div>
+<div class="product" data-cat="women" onclick="openModal('Kente Headwrap','women','₦6,500','https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80','Stretchy kente headwrap, 2 yards. Pre-knotted option available. African heritage made modern.')">
+<div class="img" style="background-image:url('https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80')"><span class="fav">♡</span></div>
+<div class="body"><div class="cat">Women</div><h3>Kente Headwrap</h3><div class="price">₦6,500</div></div>
+</div>
+</div>
+</div>
+<div class="banner">
+<h3>Become a Kente Insider</h3>
+<p>Early access to drops, artisan stories, and 15% off your first order.</p>
+<a class="hero-btn" style="background:var(--ochre);color:var(--ink);" href="#" onclick="event.preventDefault();alert('Welcome to the Collective! Check your inbox for 15% off.');">Join the Collective</a>
+</div>
+<div class="story">
+<img src="https://images.unsplash.com/photo-1604871000636-074fa5117945?w=900&q=80">
+<div class="text">
+<div class="eyebrow">— Our Story</div>
+<h2>Threads That Carry Generations</h2>
+<p>Every Kente Collective piece begins with an artisan — a weaver in Bonwire, a dyer in Abeokuta, a beader in Nairobi. We partner directly with 47 makers across West and East Africa, paying fair wages and sharing their stories with every garment.</p>
+<p>We believe fashion should honour its makers. That's why each tag carries the name of the artisan who created your piece.</p>
+<a class="hero-btn" style="background:var(--terracotta);" href="#">Meet Our Makers</a>
+</div>
+</div>
+<footer>
+<div class="footer-inner">
+<div>
+<div class="logo" style="color:var(--cream);margin-bottom:14px;">Kente<span style="color:var(--ochre);">°</span>Collective</div>
+<p style="font-size:13px;color:#c9b69b;max-width:280px;">African fashion and textiles, made by hands you can name. Shipping from Lagos to the world.</p>
+</div>
+<div><h4>Shop</h4><a href="#">Women</a><a href="#">Men</a><a href="#">Textiles</a><a href="#">Accessories</a></div>
+<div><h4>About</h4><a href="#">Our Story</a><a href="#">Artisans</a><a href="#">Sustainability</a><a href="#">Press</a></div>
+<div><h4>Help</h4><a href="#">Shipping</a><a href="#">Returns</a><a href="#">Size Guide</a><a href="#">Contact</a></div>
+</div>
+<div class="footer-bottom">© 2024 Kente Collective · Lagos, Nigeria · Built by <a href="#">Chada Digital</a></div>
+</footer>
+<div class="modal" id="modal">
+<div class="modal-card">
+<button class="close" onclick="closeModal()">×</button>
+<div class="img" id="modalImg"></div>
+<div class="info">
+<div class="cat" id="modalCat">Category</div>
+<h2 id="modalName">Product</h2>
+<div class="price" id="modalPrice">₦0</div>
+<p id="modalDesc">Description</p>
+<div style="font-size:12px;font-weight:700;margin-bottom:8px;">SELECT SIZE</div>
+<div class="sizes">
+<button onclick="selSize(this)">S</button>
+<button class="sel" onclick="selSize(this)">M</button>
+<button onclick="selSize(this)">L</button>
+<button onclick="selSize(this)">XL</button>
+</div>
+<button class="hero-btn" style="background:var(--terracotta);width:100%;border:none;font-family:inherit;cursor:pointer;text-align:center;" onclick="addToCart()">Add to Cart</button>
+</div>
+</div>
+</div>
+<script>
+function openModal(name,cat,price,img,desc){
+document.getElementById('modalName').textContent=name;
+document.getElementById('modalCat').textContent=cat.toUpperCase();
+document.getElementById('modalPrice').textContent=price;
+document.getElementById('modalDesc').textContent=desc;
+document.getElementById('modalImg').style.backgroundImage=`url('${img}')`;
+document.getElementById('modal').classList.add('active');
+}
+function closeModal(){document.getElementById('modal').classList.remove('active');}
+function selSize(b){document.querySelectorAll('.sizes button').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');}
+function addToCart(){let c=document.getElementById('cartCount');c.textContent=parseInt(c.textContent)+1;closeModal();alert('Added to cart!');}
+function filterProds(btn,cat){
+document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+btn.classList.add('active');
+document.querySelectorAll('#grid .product').forEach(p=>{p.style.display=(cat==='all'||p.dataset.cat===cat)?'block':'none';});
+}
+document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal();});
+document.querySelectorAll('.fav').forEach(f=>f.addEventListener('click',e=>{e.stopPropagation();f.textContent=f.textContent==='♡'?'♥':'♡';f.style.color=f.textContent==='♥'?'var(--terracotta)':'';}));
+</script>
+</body>
+</html>

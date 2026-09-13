@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lagos Realty — Premium Property Specialists</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#1e3a5f;--blue-mid:#2c5282;--gold:#c9a961;--gold-light:#f5ecd6;--ink:#1a202c;--gray:#718096;--bg:#f7f8fa;--line:#e2e8f0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;color:var(--ink);background:#fff;}
+a{text-decoration:none;color:inherit;}
+.topbar{background:var(--blue);color:#fff;font-size:13px;padding:9px 32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.topbar a{color:var(--gold);}
+header{padding:18px 32px;display:flex;justify-content:space-between;align-items:center;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Playfair Display';font-weight:700;font-size:24px;color:var(--blue);}
+.logo .mark{width:44px;height:44px;background:var(--blue);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:22px;}
+.logo span{color:var(--gold);font-size:13px;display:block;font-family:'Inter';font-weight:600;letter-spacing:2px;text-transform:uppercase;}
+nav{display:flex;gap:28px;align-items:center;}
+nav a{font-size:14px;font-weight:500;color:var(--ink);}
+nav a:hover{color:var(--blue);}
+.btn{background:var(--gold);color:#fff;padding:11px 24px;border-radius:4px;font-weight:600;font-size:13px;display:inline-block;border:none;cursor:pointer;font-family:inherit;letter-spacing:.5px;}
+.btn.blue{background:var(--blue);}
+.btn.outline{background:transparent;border:1.5px solid var(--blue);color:var(--blue);}
+.hero{background:linear-gradient(rgba(30,58,95,.7),rgba(30,58,95,.85)),url('https://images.unsplash.com/photo-1582407941472-0748b2d6aae9?w=1600&q=80') center/cover;color:#fff;padding:90px 32px;min-height:560px;}
+.hero-inner{max-width:1200px;margin:0 auto;}
+.hero .tag{color:var(--gold);letter-spacing:3px;text-transform:uppercase;font-size:12px;font-weight:600;}
+.hero h1{font-family:'Playfair Display';font-size:60px;font-weight:700;line-height:1.05;margin:14px 0 18px;max-width:780px;}
+.hero p{font-size:17px;opacity:.9;max-width:520px;margin-bottom:30px;}
+.search-card{background:#fff;padding:24px;border-radius:6px;max-width:880px;display:grid;grid-template-columns:1.2fr 1fr 1fr auto;gap:14px;align-items:end;box-shadow:0 20px 50px rgba(0,0,0,.18);}
+.search-card .field label{display:block;font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;}
+.search-card .field select,.search-card .field input{width:100%;padding:11px;border:1px solid var(--line);border-radius:4px;font-family:inherit;font-size:14px;color:var(--ink);}
+.search-card .btn{padding:13px 24px;}
+section{padding:80px 32px;max-width:1300px;margin:0 auto;}
+.section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px;}
+.section-head .l .k{color:var(--gold);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:2px;}
+.section-head .l h2{font-family:'Playfair Display';font-size:38px;font-weight:700;color:var(--blue);margin-top:6px;}
+.section-head .r a{font-size:13px;font-weight:600;color:var(--blue);border-bottom:1px solid var(--blue);padding-bottom:2px;}
+.filters-bar{display:flex;gap:10px;margin-bottom:30px;flex-wrap:wrap;}
+.fchip{padding:8px 18px;border:1px solid var(--line);border-radius:30px;font-size:13px;font-weight:600;cursor:pointer;background:#fff;color:var(--gray);}
+.fchip.active,.fchip:hover{background:var(--blue);color:#fff;border-color:var(--blue);}
+.listings{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.listing{background:#fff;border:1px solid var(--line);border-radius:6px;overflow:hidden;cursor:pointer;transition:transform .25s,box-shadow .25s;}
+.listing:hover{transform:translateY(-5px);box-shadow:0 14px 40px rgba(30,58,95,.12);}
+.listing .img{height:240px;background-size:cover;background-position:center;position:relative;}
+.listing .tag{position:absolute;top:14px;left:14px;background:var(--gold);color:#fff;font-size:11px;font-weight:700;padding:5px 14px;border-radius:3px;text-transform:uppercase;letter-spacing:1px;}
+.listing .tag.blue{background:var(--blue);}
+.listing .fav{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.95);width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;}
+.listing .body{padding:20px;}
+.listing .price{font-family:'Playfair Display';font-size:24px;font-weight:700;color:var(--blue);}
+.listing .price span{font-size:13px;color:var(--gray);font-family:'Inter';font-weight:400;}
+.listing h3{font-size:17px;font-weight:600;margin:6px 0;}
+.listing .loc{font-size:13px;color:var(--gray);margin-bottom:12px;}
+.listing .specs{display:flex;gap:14px;font-size:13px;color:var(--gray);border-top:1px solid var(--line);padding-top:12px;}
+.listing .specs span{display:flex;align-items:center;gap:4px;}
+.agents{background:var(--bg);}
+.agent-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1300px;margin:0 auto;}
+.agent{background:#fff;border-radius:6px;overflow:hidden;text-align:center;border:1px solid var(--line);}
+.agent img{width:100%;height:280px;object-fit:cover;}
+.agent .info{padding:18px;}
+.agent h4{font-size:17px;color:var(--blue);font-weight:700;}
+.agent .role{font-size:12px;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-top:4px;}
+.agent .stats{font-size:12px;color:var(--gray);margin-top:8px;}
+.agent .stats strong{color:var(--ink);}
+.valuation{background:var(--blue);color:#fff;padding:80px 32px;}
+.val-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
+.val-inner .k{color:var(--gold);font-weight:700;text-transform:uppercase;font-size:12px;letter-spacing:2px;margin-bottom:10px;}
+.val-inner h2{font-family:'Playfair Display';font-size:42px;font-weight:700;margin-bottom:14px;}
+.val-inner p{opacity:.9;margin-bottom:24px;}
+.val-form{background:#fff;color:var(--ink);padding:30px;border-radius:6px;display:grid;gap:14px;}
+.val-form .row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.val-form label{display:block;font-size:11px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;}
+.val-form input,.val-form select{width:100%;padding:11px;border:1px solid var(--line);border-radius:4px;font-family:inherit;font-size:14px;}
+footer{background:#0f1e36;color:#a0b4cf;padding:50px 32px 24px;}
+.footer-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;}
+footer h4{color:#fff;margin-bottom:12px;font-size:14px;text-transform:uppercase;letter-spacing:1px;}
+footer a{display:block;font-size:13px;padding:5px 0;color:#a0b4cf;}
+.footer-bottom{max-width:1300px;margin:30px auto 0;padding-top:20px;border-top:1px solid #1a2f4d;font-size:12px;text-align:center;color:#6b87a8;}
+.footer-bottom a{display:inline;color:var(--gold);}
+@media(max-width:900px){.hero h1{font-size:36px;}.search-card,.listings,.agent-grid,.val-inner,.footer-inner{grid-template-columns:1fr;}.section-head{flex-direction:column;align-items:flex-start;gap:10px;}}
+@media(max-width:560px){.listings,.agent-grid{grid-template-columns:1fr;}.search-card{grid-template-columns:1fr;}.val-form .row{grid-template-columns:1fr;}nav{display:none;}}
+</style>
+</head>
+<body>
+<div class="topbar"><span>📍 7 Akin Adesola Street, Victoria Island, Lagos · +234 805 661 4400</span><span><a href="#">List Property</a> · <a href="#">Agent Login</a></span></div>
+<header>
+<div class="logo"><div class="mark">⌂</div><div>Lagos Realty<span>Premium Property</span></div></div>
+<nav><a href="#listings">Listings</a><a href="#agents">Agents</a><a href="#valuation">Valuation</a></nav>
+<a class="btn" href="#valuation">Request Valuation</a>
+</header>
+<div class="hero">
+<div class="hero-inner">
+<div class="tag">Luxury & Commercial Property · Since 2004</div>
+<h1>Find a place worth calling home.</h1>
+<p>From Banana Island penthouses to Lekki family homes and Ikoyi commercial spaces — Lagos Realty connects you to the city's most exceptional properties.</p>
+</div>
+<form class="search-card" onsubmit="event.preventDefault();alert('Searching listings...');">
+<div class="field"><label>Location</label><select><option>Any</option><option>Victoria Island</option><option>Ikoyi</option><option>Lekki</option><option>Banana Island</option><option>Ikeja</option></select></div>
+<div class="field"><label>Type</label><select><option>Any</option><option>Apartment</option><option>Duplex</option><option>Terrace</option><option>Land</option><option>Commercial</option></select></div>
+<div class="field"><label>Max Price</label><select><option>Any</option><option>₦50M – ₦100M</option><option>₦100M – ₦300M</option><option>₦300M – ₦1B</option><option>₦1B+</option></select></div>
+<button type="submit" class="btn">Search</button>
+</form>
+</div>
+<section id="listings">
+<div class="section-head">
+<div class="l"><div class="k">Featured Properties</div><h2>Handpicked for you</h2></div>
+<div class="r"><a href="#">View All 240 Listings →</a></div>
+</div>
+<div class="filters-bar">
+<button class="fchip active" onclick="filterList(this,'all')">All</button>
+<button class="fchip" onclick="filterList(this,'sale')">For Sale</button>
+<button class="fchip" onclick="filterList(this,'rent')">For Rent</button>
+<button class="fchip" onclick="filterList(this,'lease')">Lease</button>
+</div>
+<div class="listings" id="listingGrid">
+<div class="listing" data-type="sale"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1613490493576-7fde63acd311?w=600&q=80')"><span class="tag">For Sale</span><span class="fav">♡</span></div><div class="body"><div class="price">₦450M</div><h3>5-Bedroom Luxury Villa</h3><div class="loc">📍 Banana Island, Lagos</div><div class="specs"><span>🛏 5</span><span>🛁 6</span><span>📐 850m²</span><span>🚗 4</span></div></div></div>
+<div class="listing" data-type="rent"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&q=80')"><span class="tag blue">For Rent</span><span class="fav">♡</span></div><div class="body"><div class="price">₦12M<span>/yr</span></div><h3>Furnished 3-Bed Apartment</h3><div class="loc">📍 Eko Atlantic, Victoria Island</div><div class="specs"><span>🛏 3</span><span>🛁 4</span><span>📐 220m²</span><span>🚗 2</span></div></div></div>
+<div class="listing" data-type="sale"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80')"><span class="tag">For Sale</span><span class="fav">♡</span></div><div class="body"><div class="price">₦180M</div><h3>Modern 4-Bedroom Duplex</h3><div class="loc">📍 Lekki Phase 1, Lagos</div><div class="specs"><span>🛏 4</span><span>🛁 5</span><span>📐 380m²</span><span>🚗 3</span></div></div></div>
+<div class="listing" data-type="lease"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=600&q=80')"><span class="tag blue">Lease</span><span class="fav">♡</span></div><div class="body"><div class="price">₦25M<span>/yr</span></div><h3>Grade-A Office Floor</h3><div class="loc">📍 Ikoyi, Lagos</div><div class="specs"><span>🏢 600m²</span><span>🛗 Lift</span><span>🅿 30</span></div></div></div>
+<div class="listing" data-type="sale"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80')"><span class="tag">For Sale</span><span class="fav">♡</span></div><div class="body"><div class="price">₦95M</div><h3>4-Bedroom Terrace Duplex</h3><div class="loc">📍 Ikate Elegushi, Lekki</div><div class="specs"><span>🛏 4</span><span>🛁 5</span><span>📐 280m²</span><span>🚗 2</span></div></div></div>
+<div class="listing" data-type="rent"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80')"><span class="tag blue">For Rent</span><span class="fav">♡</span></div><div class="body"><div class="price">₦8M<span>/yr</span></div><h3>Penthouse with Sea View</h3><div class="loc">📍 Oniru, Victoria Island</div><div class="specs"><span>🛏 4</span><span>🛁 4</span><span>📐 320m²</span><span>🚗 3</span></div></div></div>
+</div>
+</section>
+<section class="agents" id="agents">
+<div class="section-head">
+<div class="l"><div class="k">Meet the Team</div><h2>Our specialist agents</h2></div>
+<div class="r"><a href="#">Become an Agent →</a></div>
+</div>
+<div class="agent-grid">
+<div class="agent"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80"><div class="info"><h4>Babatunde Okoye</h4><div class="role">Director · Luxury</div><div class="stats"><strong>180</strong> deals · <strong>15</strong> yrs</div></div></div>
+<div class="agent"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80"><div class="info"><h4>Adaeze Iroha</h4><div class="role">Senior Agent · Lekki</div><div class="stats"><strong>240</strong> deals · <strong>11</strong> yrs</div></div></div>
+<div class="agent"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80"><div class="info"><h4>Chidi Nwosu</h4><div class="role">Commercial Specialist</div><div class="stats"><strong>95</strong> deals · <strong>9</strong> yrs</div></div></div>
+<div class="agent"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80"><div class="info"><h4>Funmi Adeyemi</h4><div class="role">Lettings · VI & Ikoyi</div><div class="stats"><strong>310</strong> deals · <strong>13</strong> yrs</div></div></div>
+</div>
+</section>
+<section class="valuation" id="valuation">
+<div class="val-inner">
+<div>
+<div class="k">— Free Property Valuation</div>
+<h2>What's your property worth?</h2>
+<p>Our certified valuers provide a complimentary, no-obligation market valuation based on recent comparable sales and current Lagos market trends.</p>
+<ul style="list-style:none;margin-top:14px;">
+<li style="padding:6px 0;color:var(--gold);">✓ Certified RICS valuers</li>
+<li style="padding:6px 0;color:var(--gold);">✓ 48-hour turnaround</li>
+<li style="padding:6px 0;color:var(--gold);">✓ No obligation to list</li>
+</ul>
+</div>
+<form class="val-form" onsubmit="event.preventDefault();alert('Valuation request received. An agent will contact you within 48 hours.');this.reset();">
+<div class="row">
+<div><label>Property Type</label><select><option>Select</option><option>Apartment</option><option>Duplex</option><option>Detached</option><option>Commercial</option><option>Land</option></select></div>
+<div><label>Bedrooms</label><select><option>Studio</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5+</option></select></div>
+</div>
+<div><label>Location</label><input type="text" required placeholder="e.g. Lekki Phase 1"></div>
+<div class="row">
+<div><label>Your Name</label><input type="text" required placeholder="Full name"></div>
+<div><label>Phone</label><input type="tel" required placeholder="+234 ..."></div>
+</div>
+<button type="submit" class="btn blue" style="width:100%;">Request Valuation</button>
+</form>
+</div>
+</section>
+<footer>
+<div class="footer-inner">
+<div>
+<div class="logo" style="color:#fff;margin-bottom:14px;"><div class="mark">⌂</div><div>Lagos Realty<span style="color:var(--gold);">Premium Property</span></div></div>
+<p style="font-size:13px;color:#a0b4cf;max-width:280px;">Lagos's trusted name in premium residential and commercial property since 2004.</p>
+</div>
+<div><h4>Buy</h4><a href="#">Apartments</a><a href="#">Houses</a><a href="#">Land</a><a href="#">Commercial</a></div>
+<div><h4>Services</h4><a href="#">Valuations</a><a href="#">Property Mgmt</a><a href="#">Investments</a><a href="#">Relocation</a></div>
+<div><h4>Contact</h4><a href="#">7 Akin Adesola, VI</a><a href="#">+234 805 661 4400</a><a href="#">hello@lagosrealty.ng</a></div>
+</div>
+<div class="footer-bottom">© 2024 Lagos Realty · RC 612904 · Built by <a href="#">Chada Digital</a></div>
+</footer>
+<script>
+function filterList(btn,t){document.querySelectorAll('.fchip').forEach(c=>c.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('#listingGrid .listing').forEach(l=>{l.style.display=(t==='all'||l.dataset.type===t)?'block':'none';});}
+document.querySelectorAll('.fav').forEach(f=>f.addEventListener('click',e=>{e.stopPropagation();f.textContent=f.textContent==='♡'?'♥':'♡';f.style.color=f.textContent==='♥'?'#c9a961':'';}));
+</script>
+</body>
+</html>

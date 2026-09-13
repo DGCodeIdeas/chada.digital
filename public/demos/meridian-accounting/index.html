@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meridian Accounting — Trusted Advisory · Lagos</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#1e5fb4;--blue-dark:#0f3d80;--blue-light:#e8f0fb;--accent:#00b8a9;--ink:#1a2333;--gray:#64748b;--bg:#f8fafc;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;color:var(--ink);background:#fff;line-height:1.7;}
+a{text-decoration:none;color:inherit;}
+.topbar{background:var(--blue-dark);color:#fff;font-size:13px;padding:10px 32px;display:flex;justify-content:space-between;align-items:center;}
+.topbar a{color:#a9d6ff;}
+.topbar .portal{background:var(--accent);color:#fff;padding:6px 16px;border-radius:6px;font-weight:600;font-size:12px;}
+header{padding:18px 32px;display:flex;justify-content:space-between;align-items:center;background:#fff;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:50;}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px;color:var(--blue-dark);}
+.logo .mark{width:38px;height:38px;background:var(--blue);color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px;}
+.logo span{color:var(--blue);font-weight:400;}
+nav{display:flex;gap:30px;}
+nav a{color:var(--ink);font-weight:500;font-size:14px;}
+nav a:hover{color:var(--blue);}
+.btn{background:var(--blue);color:#fff;padding:11px 24px;border-radius:6px;font-weight:600;font-size:13px;display:inline-block;}
+.hero{background:linear-gradient(135deg,var(--blue-light),#fff);padding:80px 32px;}
+.hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:50px;align-items:center;}
+.hero .eyebrow{color:var(--blue);font-weight:600;font-size:13px;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;}
+.hero h1{font-size:48px;font-weight:800;line-height:1.1;color:var(--blue-dark);margin-bottom:18px;}
+.hero h1 em{color:var(--accent);font-style:normal;}
+.hero p{color:var(--gray);font-size:17px;margin-bottom:28px;max-width:520px;}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;}
+.btn.outline{background:transparent;border:2px solid var(--blue);color:var(--blue);}
+.hero-card{background:#fff;padding:34px;border-radius:14px;box-shadow:0 20px 50px rgba(15,61,128,.12);}
+.hero-card h3{font-size:16px;color:var(--blue-dark);margin-bottom:18px;}
+.field{margin-bottom:14px;}
+.field label{display:block;font-size:12px;font-weight:600;color:var(--gray);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px;}
+.field input{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:6px;font-family:inherit;font-size:14px;}
+.field input:focus{outline:none;border-color:var(--blue);}
+.hero-card .row{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:12px;color:var(--gray);}
+.hero-card .row a{color:var(--blue);font-weight:600;}
+section{padding:80px 32px;max-width:1200px;margin:0 auto;}
+.section-head{text-align:center;margin-bottom:50px;}
+.section-head .k{color:var(--accent);font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase;}
+.section-head h2{font-size:36px;font-weight:800;color:var(--blue-dark);margin-top:6px;}
+.section-head p{color:var(--gray);max-width:600px;margin:10px auto 0;}
+.services{background:var(--bg);}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1200px;margin:0 auto;}
+.svc{background:#fff;padding:34px;border-radius:12px;border-top:4px solid var(--blue);transition:transform .25s,box-shadow .25s;}
+.svc:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(15,61,128,.1);}
+.svc .ic{width:54px;height:54px;background:var(--blue-light);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px;color:var(--blue);}
+.svc h3{font-size:20px;color:var(--blue-dark);margin-bottom:10px;}
+.svc p{color:var(--gray);font-size:14px;margin-bottom:14px;}
+.svc ul{list-style:none;font-size:13px;}
+.svc ul li{padding:4px 0;color:var(--ink);position:relative;padding-left:18px;}
+.svc ul li::before{content:"✓";color:var(--accent);font-weight:800;position:absolute;left:0;}
+.team{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+.member{background:#fff;border-radius:12px;overflow:hidden;border:1px solid #e2e8f0;text-align:center;}
+.member img{width:100%;height:240px;object-fit:cover;}
+.member .info{padding:18px;}
+.member h4{font-size:17px;color:var(--blue-dark);}
+.member .role{font-size:12px;color:var(--accent);font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-top:4px;}
+.member .cred{font-size:12px;color:var(--gray);margin-top:6px;}
+.stats-row{background:var(--blue-dark);color:#fff;padding:60px 32px;}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1100px;margin:0 auto;text-align:center;}
+.stat .n{font-size:42px;font-weight:800;color:var(--accent);}
+.stat .l{font-size:13px;text-transform:uppercase;letter-spacing:1px;opacity:.85;margin-top:6px;}
+.portal-banner{background:var(--blue-light);padding:60px 32px;text-align:center;}
+.portal-banner h2{font-size:32px;color:var(--blue-dark);font-weight:800;}
+.portal-banner p{color:var(--gray);margin:10px 0 20px;}
+footer{background:#0f1e36;color:#94a3b8;padding:50px 32px;}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;}
+footer h4{color:#fff;margin-bottom:12px;font-size:14px;text-transform:uppercase;letter-spacing:1px;}
+footer a{display:block;color:#94a3b8;font-size:13px;padding:4px 0;}
+footer a:hover{color:var(--accent);}
+.footer-bottom{max-width:1200px;margin:30px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);font-size:12px;text-align:center;color:#64748b;}
+.footer-bottom a{display:inline;color:var(--accent);}
+@media(max-width:768px){.hero-inner,.svc-grid,.team,.stats-grid,.footer-inner{grid-template-columns:1fr;}nav,.topbar a:not(.portal){display:none;}.hero h1{font-size:32px;}}
+</style>
+</head>
+<body>
+<div class="topbar">
+<span>📍 24 Adeola Odeku Street, Victoria Island, Lagos · +234 805 778 2200</span>
+<span><a href="#">Careers</a> · <a href="#">Insights</a> · <a href="#" class="portal">Client Portal Login →</a></span>
+</div>
+<header>
+<div class="logo"><div class="mark">M</div>Meridian<span>Accounting</span></div>
+<nav><a href="#services">Services</a><a href="#team">Team</a><a href="#stats">Why Us</a><a href="#portal">Portal</a></nav>
+<a class="btn" href="#">Get a Quote</a>
+</header>
+<div class="hero">
+<div class="hero-inner">
+<div>
+<div class="eyebrow">Chartered Accountants · Since 2003</div>
+<h1>Numbers You Can Trust.<br><em>Advisory That Moves You Forward.</em></h1>
+<p>From tax planning to audit assurance and strategic business advisory, Meridian helps Nigerian enterprises navigate complexity with clarity and confidence.</p>
+<div class="hero-cta">
+<a class="btn" href="#services">Explore Services</a>
+<a class="btn outline" href="#">Download Brochure</a>
+</div>
+</div>
+<div class="hero-card">
+<h3>Client Portal Login</h3>
+<form onsubmit="event.preventDefault();alert('Demo only — connect to your Meridian client account.');">
+<div class="field"><label>Client ID</label><input type="text" required placeholder="MER-XXXXXX"></div>
+<div class="field"><label>Password</label><input type="password" required placeholder="••••••••"></div>
+<button class="btn" style="width:100%;border:none;font-family:inherit;font-size:14px;cursor:pointer;">Secure Login →</button>
+<div class="row"><a href="#">Forgot password?</a><a href="#">Request access</a></div>
+</form>
+</div>
+</div>
+</div>
+<section class="services" id="services">
+<div class="section-head">
+<div class="k">What We Do</div>
+<h2>Comprehensive Financial Services</h2>
+<p>Integrated solutions across tax, audit, and advisory — tailored for businesses of every size.</p>
+</div>
+<div class="svc-grid">
+<div class="svc">
+<div class="ic">🧾</div>
+<h3>Tax & Compliance</h3>
+<p>Strategic tax planning, FIRS compliance, and PAYE management that minimises liability and maximises efficiency.</p>
+<ul><li>CIT & VAT filings</li><li>Personal income tax</li><li>Transfer pricing</li><li>Tax controversy defence</li></ul>
+</div>
+<div class="svc">
+<div class="ic">📊</div>
+<h3>Audit & Assurance</h3>
+<p>Independent audit services that strengthen credibility with investors, regulators, and stakeholders.</p>
+<ul><li>Statutory audits</li><li>Internal audit outsourcing</li><li>Forensic accounting</li><li>Due diligence reviews</li></ul>
+</div>
+<div class="svc">
+<div class="ic">📈</div>
+<h3>Advisory & Consulting</h3>
+<p>Practical business advisory for growth, restructuring, and operational improvement.</p>
+<ul><li>Business valuations</li><li>Forecasting & budgeting</li><li>Process improvement</li><li>M&A transaction support</li></ul>
+</div>
+</div>
+</section>
+<section class="stats-row" id="stats">
+<div class="stats-grid">
+<div class="stat"><div class="n">21+</div><div class="l">Years of Practice</div></div>
+<div class="stat"><div class="n">340+</div><div class="l">Active Clients</div></div>
+<div class="stat"><div class="n">₦2.8B</div><div class="l">Tax Saved (2023)</div></div>
+<div class="stat"><div class="n">98%</div><div class="l">Client Retention</div></div>
+</div>
+</section>
+<section id="team">
+<div class="section-head">
+<div class="k">The Team</div>
+<h2>Meet Our Leadership</h2>
+</div>
+<div class="team">
+<div class="member"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80"><div class="info"><h4>Adebayo Meridian</h4><div class="role">Managing Partner</div><div class="cred">FCA · ICAN 1998</div></div></div>
+<div class="member"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80"><div class="info"><h4>Funmi Adewale</h4><div class="role">Head, Audit</div><div class="cred">ACA · ACCA</div></div></div>
+<div class="member"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80"><div class="info"><h4>Daniel Okon</h4><div class="role">Head, Tax</div><div class="cred">FCTI · CITN</div></div></div>
+<div class="member"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&q=80"><div class="info"><h4>Hauwa Bello</h4><div class="role">Head, Advisory</div><div class="cred">ACA · MBA LBS</div></div></div>
+</div>
+</section>
+<section class="portal-banner" id="portal">
+<h2>Your Finances, Always Accessible</h2>
+<p>The Meridian Client Portal gives you 24/7 access to filings, reports, and your dedicated advisor.</p>
+<a class="btn" href="#">Access Client Portal →</a>
+</section>
+<footer>
+<div class="footer-inner">
+<div>
+<div class="logo" style="margin-bottom:14px;"><div class="mark">M</div>Meridian</div>
+<p style="font-size:13px;color:#94a3b8;max-width:300px;">Chartered accountants and business advisors helping Nigerian enterprises grow with confidence since 2003.</p>
+</div>
+<div><h4>Services</h4><a href="#">Tax & Compliance</a><a href="#">Audit & Assurance</a><a href="#">Advisory</a><a href="#">Forensic</a></div>
+<div><h4>Firm</h4><a href="#">About Us</a><a href="#">Team</a><a href="#">Careers</a><a href="#">Insights</a></div>
+<div><h4>Contact</h4><a href="#">Victoria Island HQ</a><a href="#">Abuja Office</a><a href="#">Port Harcourt</a><a href="#">+234 805 778 2200</a></div>
+</div>
+<div class="footer-bottom">© 2024 Meridian Accounting · RC 521830 · Built by <a href="#">Chada Digital</a></div>
+</footer>
+</body>
+</html>

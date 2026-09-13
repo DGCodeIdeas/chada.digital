@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suya Spot — Lagos Street Food</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--red:#e63946;--yellow:#f4a300;--green:#2a9d4f;--dark:#1c1c1c;--paper:#fff7e8;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:var(--paper);color:var(--dark);}
+a{text-decoration:none;color:inherit;}
+.top{background:var(--red);color:#fff;text-align:center;font-size:13px;font-weight:600;padding:8px;letter-spacing:1px;}
+header{background:var(--dark);padding:14px 24px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:50;}
+.logo{font-family:'Bebas Neue';font-size:34px;color:var(--yellow);letter-spacing:2px;}
+.logo span{color:var(--red);}
+nav{display:flex;gap:22px;}
+nav a{color:#fff;font-size:13px;font-weight:600;text-transform:uppercase;}
+nav a:hover{color:var(--yellow);}
+.whatsapp{background:#25D366;color:#fff;padding:10px 20px;border-radius:30px;font-weight:800;font-size:13px;display:flex;align-items:center;gap:8px;}
+.hero{background:linear-gradient(rgba(28,28,28,.55),rgba(28,28,28,.55)),url('https://images.unsplash.com/photo-1601050690597-df0568f70950?w=1600&q=80') center/cover;height:78vh;color:#fff;display:flex;flex-direction:column;justify-content:center;padding:0 8%;text-align:left;}
+.hero h1{font-family:'Bebas Neue';font-size:96px;line-height:.9;color:var(--yellow);}
+.hero h1 span{display:block;color:#fff;}
+.hero p{font-size:18px;max-width:460px;margin:18px 0 24px;font-weight:600;}
+.tags{display:flex;gap:12px;flex-wrap:wrap;}
+.tag{background:rgba(255,255,255,.15);backdrop-filter:blur(8px);padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;}
+.menu{padding:70px 24px;max-width:1100px;margin:0 auto;}
+.menu-head{text-align:center;margin-bottom:50px;}
+.menu-head .kicker{color:var(--red);font-weight:800;text-transform:uppercase;letter-spacing:3px;font-size:12px;}
+.menu-head h2{font-family:'Bebas Neue';font-size:64px;color:var(--dark);line-height:1;}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.08);border-top:6px solid var(--yellow);}
+.card .img{height:180px;background-size:cover;background-position:center;}
+.card .body{padding:18px;}
+.card h3{font-family:'Bebas Neue';font-size:26px;letter-spacing:1px;}
+.card .meta{font-size:12px;color:#888;font-weight:600;margin:4px 0;}
+.card .price{color:var(--red);font-weight:800;font-size:22px;}
+.card button{margin-top:12px;width:100%;background:var(--green);color:#fff;border:none;padding:10px;border-radius:8px;font-weight:700;font-size:13px;cursor:pointer;text-transform:uppercase;}
+.card button:hover{background:#227a3c;}
+.order-bar{background:var(--yellow);color:var(--dark);text-align:center;padding:50px 24px;}
+.order-bar h2{font-family:'Bebas Neue';font-size:54px;}
+.order-bar p{font-weight:600;margin:10px 0 22px;}
+.order-bar a{background:var(--dark);color:#fff;padding:16px 40px;border-radius:30px;font-weight:800;font-size:15px;display:inline-block;}
+.reviews{padding:70px 24px;background:#fff;}
+.reviews h2{text-align:center;font-family:'Bebas Neue';font-size:54px;margin-bottom:40px;}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:0 auto;}
+.rev{padding:24px;background:var(--paper);border-radius:12px;border-left:5px solid var(--red);}
+.stars{color:var(--yellow);font-size:18px;letter-spacing:2px;margin-bottom:8px;}
+.rev p{font-size:14px;font-style:italic;margin-bottom:10px;}
+.rev .who{font-weight:800;font-size:13px;}
+.rev .who span{display:block;font-weight:400;color:#888;font-size:11px;}
+.loc{padding:50px 24px;text-align:center;background:var(--dark);color:#fff;}
+.loc h2{font-family:'Bebas Neue';font-size:48px;color:var(--yellow);}
+.loc p{margin:10px 0;}
+footer{background:#000;color:#999;padding:30px;text-align:center;font-size:13px;}
+footer a{color:var(--yellow);}
+@media(max-width:768px){.grid,.rev-grid{grid-template-columns:1fr;}.hero h1{font-size:60px;}nav{display:none;}.menu-head h2{font-size:48px;}}
+</style>
+</head>
+<body>
+<div class="top">🔥 SUYA SEASON IS ON · Free delivery on orders above ₦8,000 within Lagos Island 🔥</div>
+<header>
+<div class="logo">SUYA<span>SPOT</span></div>
+<nav><a href="#menu">Menu</a><a href="#reviews">Reviews</a><a href="#loc">Find Us</a></nav>
+<a class="whatsapp" href="https://wa.me/2348012345678">💬 Order Now</a>
+</header>
+<section class="hero">
+<h1>Real Lagos<span>Suya, Spice, Smoke.</span></h1>
+<p>Charcoal-grilled the authentic way — yaji spice, fresh cuts, open flame. Same Mama Suya recipe since 1998.</p>
+<div class="tags"><span class="tag">🔥 Charcoal Grilled</span><span class="tag">🌶 Extra Yaji</span><span class="tag">🛵 30-min Delivery</span></div>
+</section>
+<section class="menu" id="menu">
+<div class="menu-head"><div class="kicker">Straight Off The Grill</div><h2>The Suya Menu</h2></div>
+<div class="grid">
+<div class="card"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&q=80')"></div><div class="body"><h3>Beef Suya</h3><p class="meta">300g · extra yaji · onions & cabbage</p><span class="price">₦2,500</span><br><button>Add to Order</button></div></div>
+<div class="card"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1604908554007-1c6c2c7c5e1c?w=600&q=80')"></div><div class="body"><h3>Chicken Suya</h3><p class="meta">Marinated thigh · smoked pepper</p><span class="price">₦2,800</span><br><button>Add to Order</button></div></div>
+<div class="card"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80')"></div><div class="body"><h3>Ram Suya Special</h3><p class="meta">Premium cuts · suya spice rub</p><span class="price">₦3,500</span><br><button>Add to Order</button></div></div>
+<div class="card"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1574484184081-afea8a62f9b7?w=600&q=80')"></div><div class="body"><h3>Kilishi Pack</h3><p class="meta">Dried · 200g · northern recipe</p><span class="price">₦4,000</span><br><button>Add to Order</button></div></div>
+<div class="card"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600&q=80')"></div><div class="body"><h3>Gizzard Suya</h3><p class="meta">Crispy · peppery · 6 skewers</p><span class="price">₦3,200</span><br><button>Add to Order</button></div></div>
+<div class="card"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=600&q=80')"></div><div class="body"><h3>Suya & Plantain Combo</h3><p class="meta">Beef suya + fried plantain + drink</p><span class="price">₦4,500</span><br><button>Add to Order</button></div></div>
+</div>
+</section>
+<section class="order-bar">
+<h2>Hungry Yet? Tap to Order.</h2>
+<p>Chat us on WhatsApp — we'll grill it fresh and send it your way.</p>
+<a href="https://wa.me/2348012345678">💬 Order on WhatsApp</a>
+</section>
+<section class="reviews" id="reviews">
+<h2>What Lagos Is Saying</h2>
+<div class="rev-grid">
+<div class="rev"><div class="stars">★★★★★</div><p>"Best suya on the Island, hands down. That yaji is unreal — I dream about it."</p><div class="who">Tunde Bakare<span>Lekki Phase 1</span></div></div>
+<div class="rev"><div class="stars">★★★★★</div><p>"Ordered the ram special for guests and everyone asked for the contact. Legend."</p><div class="who">Amaka Eze<span>Yaba</span></div></div>
+<div class="rev"><div class="stars">★★★★★</div><p>"Authentic Northern taste in Lagos. The kilishi transports me back home every time."</p><div class="who">Ibrahim Suleiman<span>Ikeja</span></div></div>
+</div>
+</section>
+<section class="loc" id="loc">
+<h2>Find Your Spot</h2>
+<p>📍 5 Adeniran Ogunsanya Street, Surulere, Lagos</p>
+<p>📍 12 Admiralty Way, Lekki Phase 1, Lagos</p>
+<p>🕒 Open daily · 4 PM till 2 AM</p>
+<p>📞 +234 801 234 5678</p>
+</section>
+<footer>
+<p>Suya Spot © 2024 — Authentic Lagos Street Food</p>
+<p style="margin-top:8px;">Built by <a href="#">Chada Digital</a></p>
+</footer>
+<script>
+document.querySelectorAll('.card button').forEach(b=>b.addEventListener('click',()=>{b.textContent='Added ✓';b.style.background='#1c1c1c';setTimeout(()=>{b.textContent='Add to Order';b.style.background='';},1500);}));
+</script>
+</body>
+</html>

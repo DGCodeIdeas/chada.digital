@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Green Acres Development — Land & Investment</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--green-dark:#1a3a1f;--green:#2d5a3d;--green-mid:#4a7c4e;--green-light:#d4e6d4;--brown:#6b4226;--brown-light:#c9a47a;--earth:#8b6f47;--cream:#f5f1e8;--ink:#1f2a1f;--gray:#5a6b5a;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Source Sans Pro',sans-serif;color:var(--ink);background:var(--cream);line-height:1.7;}
+a{text-decoration:none;color:inherit;}
+.topbar{background:var(--green-dark);color:var(--cream);font-size:13px;padding:9px 32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.topbar a{color:var(--brown-light);}
+header{padding:18px 32px;display:flex;justify-content:space-between;align-items:center;background:var(--cream);border-bottom:3px solid var(--green);position:sticky;top:0;z-index:50;}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Merriweather';font-weight:900;font-size:22px;color:var(--green-dark);}
+.logo .mark{width:46px;height:46px;background:var(--green);color:var(--cream);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:24px;}
+.logo span{color:var(--green);font-weight:400;}
+nav{display:flex;gap:28px;align-items:center;}
+nav a{font-weight:600;font-size:14px;color:var(--ink);}
+nav a:hover{color:var(--green);}
+.btn{background:var(--green);color:#fff;padding:12px 26px;border-radius:6px;font-weight:700;font-size:13px;display:inline-block;border:none;cursor:pointer;font-family:inherit;letter-spacing:.5px;}
+.btn.brown{background:var(--brown);}
+.btn.outline{background:transparent;border:2px solid var(--green);color:var(--green);}
+.hero{background:linear-gradient(rgba(26,58,31,.6),rgba(45,90,61,.75)),url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=80') center/cover;color:#fff;padding:90px 32px;min-height:580px;display:flex;align-items:center;}
+.hero-inner{max-width:1200px;margin:0 auto;}
+.hero .eyebrow{color:var(--brown-light);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:3px;margin-bottom:14px;}
+.hero h1{font-family:'Merriweather';font-size:56px;font-weight:900;line-height:1.05;margin-bottom:18px;max-width:780px;}
+.hero p{font-size:18px;opacity:.95;max-width:540px;margin-bottom:30px;font-weight:400;}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:900px;margin-top:40px;}
+.hero-stats .s{background:rgba(255,255,255,.1);backdrop-filter:blur(8px);padding:18px;border-left:3px solid var(--brown-light);}
+.hero-stats .n{font-family:'Merriweather';font-size:30px;font-weight:900;color:var(--brown-light);line-height:1;}
+.hero-stats .l{font-size:12px;text-transform:uppercase;letter-spacing:1px;opacity:.9;margin-top:6px;}
+section{padding:80px 32px;max-width:1300px;margin:0 auto;}
+.section-head{text-align:center;margin-bottom:50px;}
+.section-head .k{color:var(--brown);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:2px;}
+.section-head h2{font-family:'Merriweather';font-size:38px;font-weight:900;color:var(--green-dark);margin-top:6px;}
+.section-head p{color:var(--gray);max-width:600px;margin:10px auto 0;}
+.projects-map{background:#fff;padding:50px;border-radius:16px;box-shadow:0 8px 30px rgba(45,90,61,.1);}
+.map-area{height:380px;background:url('https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&q=80') center/cover;border-radius:12px;position:relative;margin-bottom:30px;}
+.map-pin{position:absolute;background:var(--brown);color:#fff;width:32px;height:32px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.3);border:2px solid #fff;}
+.map-pin span{transform:rotate(45deg);}
+.map-pin:hover{background:var(--green);}
+.map-pin.p1{top:35%;left:28%;}.map-pin.p2{top:55%;left:48%;}.map-pin.p3{top:25%;left:62%;}.map-pin.p4{top:65%;left:72%;}
+.projects-list{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.project{background:var(--cream);border-radius:12px;overflow:hidden;border:1px solid var(--green-light);cursor:pointer;transition:transform .25s,box-shadow .25s;}
+.project:hover{transform:translateY(-5px);box-shadow:0 12px 30px rgba(45,90,61,.15);}
+.project .img{height:200px;background-size:cover;background-position:center;position:relative;}
+.project .phase{position:absolute;top:12px;left:12px;background:var(--green);color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:1px;}
+.project .phase.sold{background:var(--brown);}
+.project .body{padding:22px;}
+.project .loc{font-size:12px;color:var(--brown);font-weight:700;text-transform:uppercase;letter-spacing:1px;}
+.project h3{font-family:'Merriweather';font-size:20px;font-weight:700;color:var(--green-dark);margin:6px 0;}
+.project .desc{font-size:13px;color:var(--gray);margin-bottom:14px;}
+.project .meta{display:flex;justify-content:space-between;border-top:1px solid var(--green-light);padding-top:12px;font-size:13px;}
+.project .meta .price{font-weight:700;color:var(--green);}
+.project .meta .avail{color:var(--gray);}
+.phases{background:var(--green-light);padding:80px 32px;max-width:none;}
+.phases-inner{max-width:1300px;margin:0 auto;}
+.phase-table{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 8px 30px rgba(45,90,61,.1);}
+.phase-row{display:grid;grid-template-columns:60px 2fr 1fr 1fr 1fr 1fr;gap:20px;padding:18px 24px;align-items:center;border-bottom:1px solid var(--green-light);}
+.phase-row.head{background:var(--green-dark);color:#fff;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:1px;}
+.phase-row .num{font-family:'Merriweather';font-size:22px;font-weight:900;color:var(--brown);}
+.phase-row.head .num{color:var(--brown-light);font-size:13px;}
+.phase-row .status{font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px;text-align:center;text-transform:uppercase;letter-spacing:1px;}
+.phase-row .status.open{background:var(--green-light);color:var(--green-dark);}
+.phase-row .status.selling{background:#fef3c7;color:#92400e;}
+.phase-row .status.sold{background:#fee2e2;color:#991b1b;}
+.invest{background:var(--green-dark);color:#fff;padding:80px 32px;}
+.invest-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.invest .k{color:var(--brown-light);font-weight:700;text-transform:uppercase;font-size:12px;letter-spacing:2px;}
+.invest h2{font-family:'Merriweather';font-size:42px;font-weight:900;margin:8px 0 18px;}
+.invest p{opacity:.9;margin-bottom:24px;}
+.invest ul{list-style:none;margin-bottom:24px;}
+.invest ul li{padding:8px 0 8px 28px;position:relative;font-size:15px;}
+.invest ul li::before{content:"✓";position:absolute;left:0;color:var(--brown-light);font-weight:900;font-size:18px;}
+.invest-cards{display:grid;gap:16px;}
+.invest-card{background:rgba(255,255,255,.06);border:1px solid rgba(201,164,122,.25);padding:24px;border-radius:10px;}
+.invest-card .ret{font-family:'Merriweather';font-size:32px;font-weight:900;color:var(--brown-light);}
+.invest-card .ret span{font-size:14px;color:#fff;opacity:.8;font-family:'Source Sans Pro';font-weight:400;}
+.invest-card h4{font-size:17px;margin:6px 0 6px;}
+.invest-card p{font-size:13px;opacity:.8;margin:0;}
+.contact{background:var(--cream);}
+.contact-form{background:#fff;padding:40px;border-radius:16px;max-width:600px;margin:0 auto;box-shadow:0 8px 30px rgba(45,90,61,.1);}
+.contact-form .field{margin-bottom:16px;}
+.contact-form label{display:block;font-size:12px;font-weight:700;color:var(--gray);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px;}
+.contact-form input,.contact-form select,.contact-form textarea{width:100%;padding:12px;border:1px solid var(--green-light);border-radius:6px;font-family:inherit;font-size:14px;}
+.contact-form input:focus,.contact-form select:focus{outline:none;border-color:var(--green);}
+.contact-form .row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+footer{background:var(--ink);color:#a8b8a8;padding:50px 32px 24px;}
+.footer-inner{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;}
+footer h4{color:#fff;font-family:'Merriweather';margin-bottom:12px;font-size:16px;}
+footer a{display:block;font-size:13px;padding:5px 0;color:#a8b8a8;}
+.footer-bottom{max-width:1300px;margin:30px auto 0;padding-top:20px;border-top:1px solid #2a3a2a;font-size:12px;text-align:center;color:#7a8a7a;}
+.footer-bottom a{display:inline;color:var(--brown-light);}
+@media(max-width:900px){.hero h1{font-size:36px;}.projects-list,.invest-inner,.footer-inner{grid-template-columns:1fr 1fr;}.phase-row{grid-template-columns:1fr 1fr;gap:8px;font-size:13px;}.phase-row.head{display:none;}.contact-form .row{grid-template-columns:1fr;}.hero-stats{grid-template-columns:1fr 1fr;}nav{display:none;}}
+@media(max-width:560px){.projects-list,.invest-inner,.footer-inner,.hero-stats{grid-template-columns:1fr;}.phase-row{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="topbar"><span>📍 19 Admiralty Way, Lekki Phase 1, Lagos · +234 805 339 8800</span><span><a href="#">Investor Portal</a> · <a href="#">Brochure</a></span></div>
+<header>
+<div class="logo"><div class="mark">🌱</div>Green Acres<span>Development</span></div>
+<nav><a href="#projects">Projects</a><a href="#phases">Phases</a><a href="#invest">Invest</a><a href="#contact">Contact</a></nav>
+<a class="btn" href="#contact">Schedule Site Visit</a>
+</header>
+<div class="hero">
+<div class="hero-inner">
+<div class="eyebrow">— Land development & investment · Since 2010</div>
+<h1>Land, developed with intention.</h1>
+<p>We transform raw land into thriving, titled estates across Lagos and Ogun — secure, serviced, and built to appreciate. Your investment, rooted in trust.</p>
+<div class="hero-cta">
+<a class="btn brown" href="#invest">View Investment Opportunities</a>
+<a class="btn outline" href="#projects" style="color:#fff;border-color:#fff;">Explore Projects</a>
+</div>
+<div class="hero-stats">
+<div class="s"><div class="n">14</div><div class="l">Estates Developed</div></div>
+<div class="s"><div class="n">2,800</div><div class="l">Plots Sold</div></div>
+<div class="s"><div class="n">₦42B</div><div class="l">Land Bank Value</div></div>
+<div class="s"><div class="n">+38%</div><div class="l">Avg ROI / 3yr</div></div>
+</div>
+</div>
+</div>
+<section id="projects">
+<div class="section-head">
+<div class="k">— Our Projects</div>
+<h2>Estates across the corridor</h2>
+<p>From Lekki to Epe and Mowe — serviced plots with C of O, ready to build.</p>
+</div>
+<div class="projects-map">
+<div class="map-area">
+<div class="map-pin p1" title="Lekki Gardens"><span>1</span></div>
+<div class="map-pin p2" title="Epe Heights"><span>2</span></div>
+<div class="map-pin p3" title="Ibeju Town"><span>3</span></div>
+<div class="map-pin p4" title="Mowe Plains"><span>4</span></div>
+</div>
+<div class="projects-list">
+<div class="project"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=80')"><span class="phase">Phase 3 Open</span></div><div class="body"><div class="loc">📍 Lekki-Epe Expressway</div><h3>Lekki Gardens Estate</h3><p class="desc">300 serviced plots · 600–1000 sqm · C of O included · 24/7 security.</p><div class="meta"><span class="price">From ₦18M/plot</span><span class="avail">42 plots left</span></div></div></div>
+<div class="project"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=600&q=80')"><span class="phase selling">Selling Fast</span></div><div class="body"><div class="loc">📍 Epe, Lagos</div><h3>Epe Heights</h3><p class="desc">500 plots · 450–900 sqm · Gazette title · Solar street lighting.</p><div class="meta"><span class="price">From ₦6.5M/plot</span><span class="avail">18 plots left</span></div></div></div>
+<div class="project"><div class="img" style="background-image:url('https://images.unsplash.com/photo-1473773508845-188df298d2d1?w=600&q=80')"><span class="phase sold">Sold Out</span></div><div class="body"><div class="loc">📍 Ibeju-Lekki</div><h3>Ibeju Town Phase 1</h3><p class="desc">220 plots · Fully sold out in 8 months · 220% appreciation since 2021.</p><div class="meta"><span class="price">Closed</span><span class="avail">Waitlist open</span></div></div></div>
+</div>
+</div>
+</section>
+<section class="phases" id="phases">
+<div class="phases-inner">
+<div class="section-head">
+<div class="k">— Development Phases</div>
+<h2>Track our progress</h2>
+<p>Transparent reporting on every estate, every phase, every plot.</p>
+</div>
+<div class="phase-table">
+<div class="phase-row head"><div class="num">#</div><div>Estate</div><div>Plots</div><div>Sold</div><div>Available</div><div>Status</div></div>
+<div class="phase-row"><div class="num">01</div><div>Lekki Gardens</div><div>300</div><div>258</div><div>42</div><div><span class="status open">Open</span></div></div>
+<div class="phase-row"><div class="num">02</div><div>Epe Heights</div><div>500</div><div>482</div><div>18</div><div><span class="status selling">Selling</span></div></div>
+<div class="phase-row"><div class="num">03</div><div>Mowe Plains</div><div>800</div><div>0</div><div>800</div><div><span class="status open">Pre-Launch</span></div></div>
+<div class="phase-row"><div class="num">04</div><div>Ibeju Town II</div><div>450</div><div>120</div><div>330</div><div><span class="status open">Open</span></div></div>
+<div class="phase-row"><div class="num">05</div><div>Shimawa Gardens</div><div>380</div><div>380</div><div>0</div><div><span class="status sold">Sold Out</span></div></div>
+</div>
+</div>
+</section>
+<section class="invest" id="invest">
+<div class="invest-inner">
+<div>
+<div class="k">— Investment Opportunities</div>
+<h2>Land that works as hard as you do.</h2>
+<p>Strategic land banking in Lagos's fastest-appreciating corridors. Minimum entry ₦5M, with structured 12–36 month exits.</p>
+<ul>
+<li>Titled land with verified C of O & survey</li>
+<li>30% deposit, 12-month payment plans</li>
+<li>Quarterly appreciation reports</li>
+<li>Buyback guarantee on select plots</li>
+<li>Resale support through our broker network</li>
+</ul>
+<a class="btn brown" href="#contact">Book Investment Consult</a>
+</div>
+<div class="invest-cards">
+<div class="invest-card"><div class="ret">+42%<span> / 24 months</span></div><h4>Lekki Gardens — Phase 3</h4><p>Serviced plots near Dangote Refinery access road. Title: C of O.</p></div>
+<div class="invest-card"><div class="ret">+35%<span> / 18 months</span></div><h4>Epe Heights — Premium Block</h4><p>Corner plots with main-road frontage. Title: Lagos State Gazette.</p></div>
+<div class="invest-card"><div class="ret">+55%<span> / 36 months</span></div><h4>Mowe Plains — Pre-Launch</h4><p>Early-investor pricing on next flagship estate. Limited allocation.</p></div>
+</div>
+</div>
+</section>
+<section class="contact" id="contact">
+<div class="section-head">
+<div class="k">— Get in Touch</div>
+<h2>Schedule your site visit</h2>
+<p>Walk the land. Meet the team. See the title documents. We make land investment transparent.</p>
+</div>
+<form class="contact-form" onsubmit="event.preventDefault();alert('Site visit request received. Our team will call within 24 hours to schedule.');this.reset();">
+<div class="row">
+<div class="field"><label>Full Name</label><input type="text" required placeholder="Your name"></div>
+<div class="field"><label>Phone</label><input type="tel" required placeholder="+234 ..."></div>
+</div>
+<div class="field"><label>Email</label><input type="email" required placeholder="you@email.com"></div>
+<div class="field"><label>Interested In</label>
+<select><option>Select a project</option><option>Lekki Gardens</option><option>Epe Heights</option><option>Mowe Plains (Pre-launch)</option><option>Ibeju Town II</option><option>Investment Consult</option></select></div>
+<div class="field"><label>Preferred Visit Date</label><input type="date"></div>
+<div class="field"><label>Message (optional)</label><textarea rows="3" placeholder="Tell us what you're looking for"></textarea></div>
+<button type="submit" class="btn" style="width:100%;">Request Site Visit</button>
+</form>
+</section>
+<footer>
+<div class="footer-inner">
+<div>
+<div class="logo" style="color:#fff;margin-bottom:14px;"><div class="mark">🌱</div>Green Acres<span style="color:var(--brown-light);">Development</span></div>
+<p style="font-size:13px;color:#a8b8a8;max-width:280px;">Titled, serviced land developments across Lagos & Ogun — building value for investors and communities since 2010.</p>
+</div>
+<div><h4>Projects</h4><a href="#">Lekki Gardens</a><a href="#">Epe Heights</a><a href="#">Mowe Plains</a><a href="#">Ibeju Town</a></div>
+<div><h4>Investors</h4><a href="#">Opportunities</a><a href="#">Land Banking</a><a href="#">Payment Plans</a><a href="#">Investor Portal</a></div>
+<div><h4>Contact</h4><a href="#">19 Admiralty Way, Lekki</a><a href="#">+234 805 339 8800</a><a href="#">info@greenacres.ng</a></div>
+</div>
+<div class="footer-bottom">© 2024 Green Acres Development Ltd · RC 884921 · Built by <a href="#">Chada Digital</a></div>
+</footer>
+<script>
+document.querySelectorAll('.map-pin').forEach(p=>p.addEventListener('click',()=>alert(p.title+' — pin selected. Scroll to projects below for details.')));
+</script>
+</body>
+</html>

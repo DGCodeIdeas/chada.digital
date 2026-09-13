@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ade & Oke — Legal Practitioners</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0f2540;--navy2:#1a3a5c;--gold:#b8924c;--cream:#f7f3ec;--text:#2c3e50;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Source Sans Pro',sans-serif;background:#fff;color:var(--text);line-height:1.7;}
+a{text-decoration:none;color:inherit;}
+.topbar{background:var(--navy);color:var(--cream);font-size:12px;padding:8px 30px;display:flex;justify-content:space-between;letter-spacing:.5px;}
+.topbar span a{color:var(--gold);margin-left:14px;}
+header{background:#fff;padding:24px 30px;display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid var(--navy);position:sticky;top:0;z-index:50;}
+.logo{display:flex;align-items:center;gap:12px;}
+.logo .mark{width:48px;height:48px;background:var(--navy);color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display';font-size:22px;font-weight:700;}
+.logo .name{font-family:'Playfair Display';font-size:22px;color:var(--navy);line-height:1;}
+.logo .name span{display:block;font-size:10px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;font-family:'Source Sans Pro';margin-top:4px;font-weight:600;}
+nav{display:flex;gap:28px;align-items:center;}
+nav a{color:var(--navy);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:1px;}
+nav a:hover{color:var(--gold);}
+.cta{background:var(--gold);color:#fff;padding:12px 26px;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+.hero{background:linear-gradient(rgba(15,37,64,.92),rgba(15,37,64,.85)),url('https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=1600&q=80') center/cover;color:#fff;padding:120px 30px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:1300px;margin:0 auto;}
+.hero .left .tag{color:var(--gold);letter-spacing:4px;text-transform:uppercase;font-size:11px;font-weight:600;}
+.hero h1{font-family:'Playfair Display';font-size:54px;line-height:1.15;margin:14px 0 20px;font-weight:500;}
+.hero p{opacity:.85;margin-bottom:28px;max-width:520px;font-size:16px;}
+.btn{display:inline-block;padding:14px 32px;background:var(--gold);color:#fff;font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;}
+.btn.line{background:transparent;border:2px solid #fff;}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;background:var(--navy2);padding:30px;border:1px solid var(--gold);}
+.stats .s{text-align:center;border-right:1px solid rgba(255,255,255,.15);padding:6px 0;}
+.stats .s:last-child{border:0;}
+.stats .num{font-family:'Playfair Display';font-size:42px;color:var(--gold);line-height:1;}
+.stats .lbl{font-size:11px;text-transform:uppercase;letter-spacing:2px;opacity:.8;margin-top:6px;}
+section{padding:90px 30px;max-width:1200px;margin:0 auto;}
+.section-head{text-align:center;margin-bottom:60px;}
+.section-head .k{color:var(--gold);letter-spacing:4px;font-size:11px;text-transform:uppercase;font-weight:600;}
+.section-head h2{font-family:'Playfair Display';font-size:40px;color:var(--navy);margin-top:8px;font-weight:500;}
+.practice{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.p-item{background:#fff;border:1px solid #e5e0d6;padding:32px;border-top:4px solid var(--gold);transition:box-shadow .3s,transform .3s;}
+.p-item:hover{box-shadow:0 12px 40px rgba(15,37,64,.1);transform:translateY(-4px);}
+.p-item .ic{font-family:'Playfair Display';font-size:36px;color:var(--gold);}
+.p-item h3{font-family:'Playfair Display';font-size:21px;color:var(--navy);margin:10px 0 12px;}
+.attorneys{background:var(--cream);}
+.att-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.att{background:#fff;text-align:center;padding:30px;border:1px solid #e5e0d6;}
+.att img{width:140px;height:140px;border-radius:50%;object-fit:cover;border:4px solid var(--gold);margin-bottom:14px;}
+.att h3{font-family:'Playfair Display';font-size:22px;color:var(--navy);}
+.att .role{color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:2px;font-weight:600;margin:6px 0 12px;}
+.results{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+.res{display:flex;gap:20px;padding:24px;background:#fff;border-left:4px solid var(--gold);}
+.res .amt{font-family:'Playfair Display';font-size:30px;color:var(--navy);min-width:120px;}
+.res .amt span{color:var(--gold);}
+.res p{font-size:14px;}
+.res .type{font-weight:700;color:var(--navy);}
+.consult{background:var(--navy);color:#fff;padding:90px 30px;}
+.consult .inner{max-width:560px;margin:0 auto;text-align:center;}
+.consult h2{font-family:'Playfair Display';font-size:36px;margin-bottom:10px;}
+.consult p{opacity:.8;margin-bottom:30px;}
+.consult form{display:grid;gap:16px;text-align:left;}
+.consult input,.consult select,.consult textarea{background:rgba(255,255,255,.05);border:1px solid rgba(184,146,76,.4);color:#fff;padding:14px;font-family:inherit;font-size:14px;}
+.consult input::placeholder,.consult textarea::placeholder{color:rgba(255,255,255,.5);}
+footer{background:#08182c;color:#9fb1c2;padding:50px 30px;text-align:center;font-size:13px;}
+footer a{color:var(--gold);}
+@media(max-width:768px){.hero,.practice,.att-grid,.results{grid-template-columns:1fr;}nav{display:none;}.hero h1{font-size:34px;}.stats{grid-template-columns:1fr 1fr;}}
+</style>
+</head>
+<body>
+<div class="topbar"><span>40 Marina Street, Lagos Island · +234 803 119 4400</span><span><a href="#">Client Portal</a><a href="#">Careers</a></span></div>
+<header>
+<div class="logo"><div class="mark">A&O</div><div class="name">Ade & Oke<span>Legal Practitioners</span></div></div>
+<nav><a href="#practice">Practice</a><a href="#attorneys">Attorneys</a><a href="#results">Case Results</a><a href="#consult">Consult</a></nav>
+<a class="cta" href="#consult">Book Consultation</a>
+</header>
+<div class="hero">
+<div class="left">
+<div class="tag">Established 1998 · Lagos</div>
+<h1>Counsel Rooted in Integrity, Driven by Results.</h1>
+<p>For over two decades, Ade & Oke has represented individuals, corporations, and institutions across Nigeria with discretion, diligence, and an unwavering commitment to justice.</p>
+<a class="btn" href="#consult">Schedule a Consultation</a>
+<a class="btn line" href="#practice" style="margin-left:10px;">Our Practice</a>
+</div>
+<div class="stats">
+<div class="s"><div class="num">26</div><div class="lbl">Years Practice</div></div>
+<div class="s"><div class="num">800+</div><div class="lbl">Cases Won</div></div>
+<div class="s"><div class="num">₦4B+</div><div class="lbl">Recovered</div></div>
+</div>
+</div>
+<section id="practice">
+<div class="section-head"><div class="k">Our Practice Areas</div><h2>Disciplines of Law We Excel In</h2></div>
+<div class="practice">
+<div class="p-item"><div class="ic">§</div><h3>Corporate & Commercial</h3><p>Mergers, acquisitions, joint ventures, regulatory compliance, and corporate governance advisory for enterprises across sectors.</p></div>
+<div class="p-item"><div class="ic">⚖</div><h3>Litigation & Dispute Resolution</h3><p>High-stakes civil and commercial litigation, arbitration, and alternative dispute resolution before Nigerian courts and tribunals.</p></div>
+<div class="p-item"><div class="ic">⌂</div><h3>Real Estate & Property</h3><p>Property acquisition, title perfection, tenancy disputes, and land documentation across all 36 states of the federation.</p></div>
+<div class="p-item"><div class="ic">⛊</div><h3>Intellectual Property</h3><p>Trademark and patent registration, copyright enforcement, brand protection, and licensing agreements.</p></div>
+<div class="p-item"><div class="ic">⊍</div><h3>Family & Probate</h3><p>Estate planning, wills, probate administration, divorce, custody, and inheritance disputes handled with sensitivity.</p></div>
+<div class="p-item"><div class="ic">✦</div><h3>Energy & Natural Resources</h3><p>Advisory services for upstream and downstream operators, regulatory licensing, and community relations agreements.</p></div>
+</div>
+</section>
+<section id="attorneys" class="attorneys">
+<div class="section-head"><div class="k">The Bench</div><h2>Meet Our Attorneys</h2></div>
+<div class="att-grid">
+<div class="att"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&q=80"><h3>Babatunde Ade, SAN</h3><div class="role">Senior Partner</div><p>Notable for landmark commercial litigation. Called to the Nigerian Bar 1992.</p></div>
+<div class="att"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&q=80"><h3>Ngozi Oke</h3><div class="role">Managing Partner</div><p>Corporate law specialist advising Fortune 500 firms operating in West Africa.</p></div>
+<div class="att"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80"><h3>Emeka Obi</h3><div class="role">Partner, Litigation</div><p>Former state counsel with 18 years in commercial dispute resolution.</p></div>
+</div>
+</section>
+<section id="results">
+<div class="section-head"><div class="k">Verdicts & Settlements</div><h2>Case Results</h2></div>
+<div class="results">
+<div class="res"><div class="amt">₦850<span>M</span></div><div><p class="type">Corporate Fraud Recovery</p><p>Secured full recovery for a multinational client in a complex cross-border fraud matter. Federal High Court, Lagos Division.</p></div></div>
+<div class="res"><div class="amt">₦220<span>M</span></div><div><p class="type">Property Dispute Victory</p><p>Successfully defended ownership rights in a contested Ikoyi estate matter spanning three decades.</p></div></div>
+<div class="res"><div class="amt">₦1.4<span>B</span></div><div><p class="type">Insurance Settlement</p><p>Negotiated record settlement for a logistics company following catastrophic loss claim denial.</p></div></div>
+<div class="res"><div class="amt">Acquittal</div><div><p class="type">White Collar Defence</p><p>Full acquittal for a senior bank executive facing 14 counts of financial misappropriation.</p></div></div>
+</div>
+</section>
+<section id="consult" class="consult">
+<div class="inner">
+<div class="k" style="color:var(--gold);letter-spacing:4px;font-size:11px;text-transform:uppercase;">Book a Consultation</div>
+<h2>Speak With Our Counsel</h2>
+<p>Confidential consultations available in-person, by phone, or via secure video conference.</p>
+<form onsubmit="event.preventDefault();alert('Consultation request received. Our intake team will contact you within 24 hours.');this.reset();">
+<input type="text" required placeholder="Full Name">
+<input type="email" required placeholder="Email Address">
+<input type="tel" required placeholder="Phone Number">
+<select><option>Select Practice Area</option><option>Corporate & Commercial</option><option>Litigation</option><option>Real Estate</option><option>Family & Probate</option><option>Other</option></select>
+<textarea rows="3" placeholder="Briefly describe your matter (confidential)"></textarea>
+<button type="submit" class="btn">Request Consultation</button>
+</form>
+</div>
+</section>
+<footer>
+<p>Ade & Oke Legal Practitioners · 40 Marina Street, Lagos Island · RC 234829</p>
+<p style="margin-top:8px;">© 2024 All rights reserved · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+<p style="margin-top:8px;">Built by <a href="#">Chada Digital</a></p>
+</footer>
+</body>
+</html>
