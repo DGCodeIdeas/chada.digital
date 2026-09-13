@@ -4,10 +4,10 @@
 
 <section style="background: linear-gradient(135deg, #f8f6f3 0%, #f0ede8 100%); padding: 5rem 0 3rem;">
     <div class="container text-center">
-        <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.08em;">Demo Lab</p>
+        <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.08em;">Frontend</p>
         <h1 class="display-5 fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface);">See Our Work in Action</h1>
         <p class="mx-auto" style="max-width: 600px; color: var(--md-sys-color-on-surface-variant); font-size: 1.125rem;">
-            Explore live, interactive previews of the systems we have built. Every demo is a real project deployed for a real client.
+            Explore live, interactive previews of the systems we have built. Every project is real, deployed, and interactive.
         </p>
     </div>
 </section>

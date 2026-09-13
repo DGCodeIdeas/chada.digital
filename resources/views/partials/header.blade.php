@@ -20,7 +20,7 @@
                     <a class="nav-link {{ request()->routeIs('about') ? 'active fw-semibold' : '' }}" href="{{ route('about') }}" style="color: var(--md-sys-color-on-surface); font-size: 0.875rem; padding: 0.25rem 0.5rem;">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('demos') ? 'active fw-semibold' : '' }}" href="{{ route('demos') }}" style="color: var(--md-sys-color-on-surface); font-size: 0.875rem; padding: 0.25rem 0.5rem;">Demos</a>
+                    <a class="nav-link {{ request()->routeIs('demos') ? 'active fw-semibold' : '' }}" href="{{ route('demos') }}" style="color: var(--md-sys-color-on-surface); font-size: 0.875rem; padding: 0.25rem 0.5rem;">Work</a>
                 </li>
                 <li class="nav-item ms-2">
                     <a class="btn btn-primary rounded-pill px-3" href="{{ route('contact') }}" style="background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); font-weight: 500; font-size: 0.8125rem; padding: 0.375rem 0.875rem;">
