@@ -20,7 +20,7 @@
             No customer logos yet &mdash; we won&rsquo;t fake them.
         </h2>
         <p class="lead mb-0" style="color: var(--md-sys-color-on-surface-variant);">
-            Become a <a href="{{ route('contact') }}#partner" style="color: var(--md-sys-color-primary); text-decoration: none; font-weight: 500;">design partner</a>.
+            Become a <a href="{{ route('design-partner') }}" style="color: var(--md-sys-color-primary); text-decoration: none; font-weight: 500;">design partner</a>.
         </p>
     </div>
 </section>
