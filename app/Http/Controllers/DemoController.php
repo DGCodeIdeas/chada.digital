@@ -58,15 +58,14 @@ class DemoController extends Controller
             abort(404, "Unknown demo: {$slug}");
         }
 
-        // 2. If the path is empty or just '/', redirect to add trailing slash.
-        //    This is CRITICAL: without the trailing slash, the browser resolves
-        //    relative paths (assets/css/styles.css) against /demo-content/ instead
-        //    of /demo-content/{slug}/ — causing 404s and MIME mismatch errors.
-        if ($path === '' || $path === '/' || $path === 'index.html') {
-            // If the request URL doesn't end with /, redirect to add it
+        // 2. If the path is the default ('index.html'), the user visited
+        //    /demo-content/{slug} without a trailing slash. Redirect to
+        //    /demo-content/{slug}/ so the browser resolves relative paths
+        //    correctly. Use a hardcoded URL — getRequestUri() causes a loop.
+        if ($path === 'index.html') {
             $requestUrl = $request->getRequestUri();
             if (!str_ends_with($requestUrl, '/')) {
-                return redirect(rtrim($requestUrl, '/') . '/', 301);
+                return redirect('/demo-content/' . $slug . '/', 301);
             }
             $path = 'index.html';
         }
