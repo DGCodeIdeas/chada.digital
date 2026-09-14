@@ -84,7 +84,7 @@
         </div>
         <div class="row g-4">
             @foreach(config('home.steps') as $step)
-            <div class="col-md-6 col-lg-3">
+            <div class="col-md-6 col-lg-4">
                 <div class="card h-100 border-0" style="background: var(--md-sys-color-surface-container-low); border-radius: 16px;">
                     <div class="card-body p-4">
                         <p class="fw-bold mb-2" style="font-family: 'Outfit', sans-serif; font-size: 2.5rem; color: var(--md-sys-color-primary); opacity: 0.3;">{{ $step['number'] }}</p>
@@ -167,7 +167,7 @@
                         <p class="mb-3" style="font-size: 0.9375rem; color: var(--md-sys-color-on-surface-variant); line-height: 1.6;">{{ $service['desc'] }}</p>
                         <div class="d-flex flex-wrap gap-1">
                             @foreach($service['tools'] as $tool)
-                            <span class="badge" style="background: var(--md-sys-color-surface-container-highest); color: var(--md-sys-color-on-surface-variant); font-weight: 400; font-size: 0.75rem;">{{ $tool }}</span>
+                            <span class="badge rounded-pill" style="background: var(--md-sys-color-surface-container-highest); color: var(--md-sys-color-on-surface-variant); font-weight: 500; font-size: 0.6875rem; padding: 0.3rem 0.625rem;">{{ $tool }}</span>
                             @endforeach
                         </div>
                     </div>
@@ -203,7 +203,7 @@
                         <h6 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface); font-size: 0.8125rem;">{{ $cat['name'] }}</h6>
                         <div class="d-flex flex-wrap gap-1 justify-content-center">
                             @foreach($cat['tools'] as $tool)
-                            <span class="badge" style="background: var(--md-sys-color-surface-container-highest); color: var(--md-sys-color-on-surface-variant); font-weight: 400; font-size: 0.6875rem; padding: 0.25rem 0.5rem; border-radius: 6px;">{{ $tool['name'] }}</span>
+                            <span class="badge rounded-pill" style="background: var(--md-sys-color-surface-container-highest); color: var(--md-sys-color-on-surface-variant); font-weight: 500; font-size: 0.6875rem; padding: 0.25rem 0.625rem;">{{ $tool['name'] }}</span>
                             @endforeach
                         </div>
                     </div>
