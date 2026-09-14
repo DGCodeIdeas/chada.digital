@@ -90,7 +90,7 @@
         </div>
 
         <div class="px-4 py-3">
-            <a href="{{ route('contact') }}" class="btn btn-primary w-100 rounded-pill" data-bs-dismiss="offcanvas" style="background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); font-weight: 500; font-size: 0.875rem; padding: 0.625rem 1rem;">
+            <a onclick="setTimeout(function(){bootstrap.Offcanvas.getInstance(document.getElementById('mobileNav'))?.hide();}, 100)" href="{{ route('contact') }}" class="btn btn-primary w-100 rounded-pill" style="background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); font-weight: 500; font-size: 0.875rem; padding: 0.625rem 1rem;">
                 Start a Project
             </a>
         </div>
