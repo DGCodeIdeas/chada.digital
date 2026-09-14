@@ -84,7 +84,7 @@
         </div>
         <div class="row g-4">
             @foreach(config('home.steps') as $step)
-            <div class="col-md-6 col-lg-4">
+            <div class="col-md-6 col-lg-3">
                 <div class="card h-100 border-0" style="background: var(--md-sys-color-surface-container-low); border-radius: 16px;">
                     <div class="card-body p-4">
                         <p class="fw-bold mb-2" style="font-family: 'Outfit', sans-serif; font-size: 2.5rem; color: var(--md-sys-color-primary); opacity: 0.3;">{{ $step['number'] }}</p>
@@ -149,7 +149,7 @@
         </div>
         <div class="row g-4">
             @foreach(config('home.services') as $service)
-            <div class="col-md-6 col-lg-3">
+            <div class="col-md-6 col-lg-4">
                 <div class="card h-100 border-0" style="background: var(--md-sys-color-surface-container-low); border-radius: 16px;">
                     <div class="card-body p-4">
                         <div class="rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 48px; height: 48px; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container);">
