@@ -80,14 +80,17 @@
                             @foreach($cat['tools'] as $tool)
                             @php
                                 // Backward compat: $tool may be a string (old data) or
-                                // an array with 'name' + 'brand' keys (new data).
+                                // an array with 'name' + 'brand' + 'icon' keys (new data).
                                 $toolName  = is_array($tool) ? data_get($tool, 'name')  : $tool;
                                 $toolBrand = is_array($tool) ? data_get($tool, 'brand') : null;
+                                $toolIcon  = is_array($tool) ? data_get($tool, 'icon')  : null;
                             @endphp
                             <span class="badge d-inline-flex align-items-center gap-1" style="background: var(--md-sys-color-surface-container-highest); color: var(--md-sys-color-on-surface); font-weight: 500; font-size: 0.875rem; padding: 0.5rem 0.75rem; border-radius: 8px;">
                                 @if($toolBrand)
-                                    <i class="si si-{{ $toolBrand }}" aria-hidden="true" style="font-size: 0.875rem; line-height: 1;"></i>
+                                    <i class="fab fa-{{ $toolBrand }}" aria-hidden="true" style="font-size: 0.875rem; line-height: 1;"></i>
                                     <span class="visually-hidden">{{ $toolName }}</span>
+                                @elseif($toolIcon)
+                                    <i class="fas {{ $toolIcon }}" aria-hidden="true" style="font-size: 0.875rem; line-height: 1;"></i>
                                 @endif
                                 {{ $toolName }}
                             </span>

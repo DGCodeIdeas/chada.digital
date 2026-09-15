@@ -198,17 +198,17 @@
                 <div class="card h-100" style="background: var(--md-sys-color-surface); border-radius: 10px; box-shadow: var(--md-sys-elevation-1, 0 1px 2px 0 rgba(0,0,0,0.03));">
                     <div class="card-body p-3 text-center">
                         <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 36px; height: 36px; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container);">
-                            <i class="{{ $cat['icon'] }}" style="font-size: 1.125rem;"></i>
+                            <i class="fas {{ $cat['icon'] }}" style="font-size: 1.125rem;"></i>
                         </div>
                         <h6 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface); font-size: 0.8125rem;">{{ $cat['name'] }}</h6>
                         <div class="d-flex flex-wrap gap-1 justify-content-center">
                             @foreach($cat['tools'] as $tool)
                             <span class="badge rounded-pill d-inline-flex align-items-center gap-1" style="background: var(--md-sys-color-surface-container-highest); color: var(--md-sys-color-on-surface-variant); font-weight: 500; font-size: 0.6875rem; padding: 0.25rem 0.625rem;">
                                 @if(!empty($tool['brand']))
-                                    <i class="si si-{{ $tool['brand'] }}" aria-hidden="true" style="font-size: 0.75rem; line-height: 1;"></i>
+                                    <i class="fab fa-{{ $tool['brand'] }}" aria-hidden="true" style="font-size: 0.75rem; line-height: 1;"></i>
                                     <span class="visually-hidden">{{ $tool['name'] }}</span>
                                 @elseif(!empty($tool['icon']))
-                                    <i class="{{ $tool['icon'] }}" aria-hidden="true" style="font-size: 0.75rem; line-height: 1;"></i>
+                                    <i class="fas {{ $tool['icon'] }}" aria-hidden="true" style="font-size: 0.75rem; line-height: 1;"></i>
                                 @endif
                                 {{ $tool['name'] }}
                             </span>

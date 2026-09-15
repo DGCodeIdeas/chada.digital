@@ -7,83 +7,87 @@ return [
     'subtitle' => 'Paystack, HubSpot, Laravel, Meta Ads. Reliable tools, wired together so your team can manage them day to day.',
     'footnote' => 'Tool logos are property of their respective owners. Listed tools reflect our standard integration stack.',
 
-    // Tools: each entry may set `brand` (a Simple Icons slug, e.g. 'stripe')
-    // to render a real brand logo via the `si si-{slug}` webfont class.
-    // If `brand` is absent, the partial falls back to the generic Bootstrap
-    // Icons class given in `icon`. Brands not shipped by Simple Icons
-    // (Paystack, Flutterwave, Ahrefs, RankMath, AWS) intentionally keep
-    // their Bootstrap Icons fallback — see partials/our-stack.blade.php.
+    // Tools & categories use Font Awesome 6 Free.
+    //   - 'brand' (string|null) — Font Awesome BRAND slug (rendered as <i class="fab fa-{brand}">).
+    //     Set when FA ships a brand logo for the tool (e.g. 'stripe', 'laravel').
+    //   - 'icon' (string) — Font Awesome SOLID slug (rendered as <i class="fas fa-{icon}">).
+    //     Used for category headers and as a fallback for tools without a brand logo
+    //     (e.g. Paystack, Flutterwave, Ahrefs — these are not in Font Awesome Brands).
+    //
+    // FA brand slugs were verified against the live FA 6.7.2 brands.min.css at
+    // https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/brands.min.css
+    // Solid slugs were verified against all.min.css.
     'categories' => [
         [
             'name' => 'Payments',
-            'icon' => 'bi-credit-card',
+            'icon' => 'fa-credit-card',
             'tools' => [
-                ['name' => 'Paystack',       'icon' => 'bi-cash-stack'],
-                ['name' => 'Stripe',         'icon' => 'bi-credit-card-2-front', 'brand' => 'stripe'],
-                ['name' => 'Flutterwave',    'icon' => 'bi-bank'],
+                ['name' => 'Paystack',       'brand' => null,         'icon' => 'fa-credit-card'],
+                ['name' => 'Stripe',         'brand' => 'stripe',     'icon' => 'fa-credit-card'],
+                ['name' => 'Flutterwave',    'brand' => null,         'icon' => 'fa-money-bill-wave'],
             ],
         ],
         [
             'name' => 'Analytics',
-            'icon' => 'bi-bar-chart-line',
+            'icon' => 'fa-chart-line',
             'tools' => [
-                ['name' => 'Google Analytics 4', 'icon' => 'bi-graph-up-arrow', 'brand' => 'googleanalytics'],
-                ['name' => 'Plausible',          'icon' => 'bi-eye',            'brand' => 'plausibleanalytics'],
-                ['name' => 'PostHog',            'icon' => 'bi-piggy-bank',     'brand' => 'posthog'],
+                ['name' => 'Google Analytics 4', 'brand' => 'google', 'icon' => 'fa-chart-line'],
+                ['name' => 'Plausible',          'brand' => null,      'icon' => 'fa-chart-line'],
+                ['name' => 'PostHog',            'brand' => null,      'icon' => 'fa-piggy-bank'],
             ],
         ],
         [
             'name' => 'CRM & Marketing',
-            'icon' => 'bi-people',
+            'icon' => 'fa-users',
             'tools' => [
-                ['name' => 'HubSpot',    'icon' => 'bi-bullseye',   'brand' => 'hubspot'],
-                ['name' => 'Brevo',      'icon' => 'bi-envelope-at','brand' => 'brevo'],
-                ['name' => 'Mailchimp',  'icon' => 'bi-mailbox',    'brand' => 'mailchimp'],
+                ['name' => 'HubSpot',    'brand' => 'hubspot',   'icon' => 'fa-users'],
+                ['name' => 'Brevo',      'brand' => null,        'icon' => 'fa-envelope'],
+                ['name' => 'Mailchimp',  'brand' => 'mailchimp', 'icon' => 'fa-envelope'],
             ],
         ],
         [
             'name' => 'Advertising',
-            'icon' => 'bi-megaphone',
+            'icon' => 'fa-bullhorn',
             'tools' => [
-                ['name' => 'Meta Ads',     'icon' => 'bi-facebook',     'brand' => 'meta'],
-                ['name' => 'Google Ads',   'icon' => 'bi-google',       'brand' => 'googleads'],
-                ['name' => 'TikTok Ads',   'icon' => 'bi-music-note-beamed', 'brand' => 'tiktok'],
+                ['name' => 'Meta Ads',     'brand' => 'meta',   'icon' => 'fa-bullhorn'],
+                ['name' => 'Google Ads',   'brand' => 'google', 'icon' => 'fa-bullhorn'],
+                ['name' => 'TikTok Ads',   'brand' => 'tiktok',  'icon' => 'fa-bullhorn'],
             ],
         ],
         [
             'name' => 'Automation',
-            'icon' => 'bi-gear-wide-connected',
+            'icon' => 'fa-bolt',
             'tools' => [
-                ['name' => 'Zapier', 'icon' => 'bi-lightning-charge', 'brand' => 'zapier'],
-                ['name' => 'Make',   'icon' => 'bi-hammer',          'brand' => 'make'],
-                ['name' => 'n8n',    'icon' => 'bi-diagram-3',       'brand' => 'n8n'],
+                ['name' => 'Zapier', 'brand' => null, 'icon' => 'fa-bolt'],
+                ['name' => 'Make',   'brand' => null, 'icon' => 'fa-gears'],
+                ['name' => 'n8n',    'brand' => null, 'icon' => 'fa-diagram-project'],
             ],
         ],
         [
             'name' => 'CMS & E-Commerce',
-            'icon' => 'bi-cart',
+            'icon' => 'fa-cart-shopping',
             'tools' => [
-                ['name' => 'Laravel',   'icon' => 'bi-box',  'brand' => 'laravel'],
-                ['name' => 'WordPress', 'icon' => 'bi-type', 'brand' => 'wordpress'],
-                ['name' => 'Shopify',   'icon' => 'bi-bag',  'brand' => 'shopify'],
+                ['name' => 'Laravel',   'brand' => 'laravel',   'icon' => 'fa-cart-shopping'],
+                ['name' => 'WordPress', 'brand' => 'wordpress', 'icon' => 'fa-cart-shopping'],
+                ['name' => 'Shopify',   'brand' => 'shopify',   'icon' => 'fa-cart-shopping'],
             ],
         ],
         [
             'name' => 'SEO',
-            'icon' => 'bi-search',
+            'icon' => 'fa-magnifying-glass',
             'tools' => [
-                ['name' => 'Ahrefs',   'icon' => 'bi-link-45deg'],
-                ['name' => 'SEMrush',  'icon' => 'bi-graph-up', 'brand' => 'semrush'],
-                ['name' => 'RankMath', 'icon' => 'bi-123'],
+                ['name' => 'Ahrefs',   'brand' => null, 'icon' => 'fa-link'],
+                ['name' => 'SEMrush',  'brand' => null, 'icon' => 'fa-magnifying-glass-chart'],
+                ['name' => 'RankMath', 'brand' => null, 'icon' => 'fa-ranking-star'],
             ],
         ],
         [
             'name' => 'Infrastructure',
-            'icon' => 'bi-hdd-network',
+            'icon' => 'fa-server',
             'tools' => [
-                ['name' => 'AWS',         'icon' => 'bi-cloud'],
-                ['name' => 'Cloudflare',  'icon' => 'bi-shield-check', 'brand' => 'cloudflare'],
-                ['name' => 'Vercel',      'icon' => 'bi-triangle',     'brand' => 'vercel'],
+                ['name' => 'AWS',         'brand' => 'aws',         'icon' => 'fa-server'],
+                ['name' => 'Cloudflare',  'brand' => 'cloudflare',  'icon' => 'fa-shield-halved'],
+                ['name' => 'Vercel',      'brand' => null,          'icon' => 'fa-rocket'],
             ],
         ],
     ],
