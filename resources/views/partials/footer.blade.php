@@ -24,7 +24,7 @@
 
             {{-- Navigation --}}
             <div class="col-lg-2 col-md-6">
-                <h6 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;">Navigate</h6>
+                <h6 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;">Pages</h6>
                 <ul class="list-unstyled mb-0" style="font-size: 0.8125rem;">
                     <li class="mb-1"><a href="{{ route('home') }}" style="color: var(--md-sys-color-on-surface-variant);">Home</a></li>
                     <li class="mb-1"><a href="{{ route('case-studies.index') }}" style="color: var(--md-sys-color-on-surface-variant);">Case Studies</a></li>

@@ -4,7 +4,7 @@ return [
     'heading' => 'Our Stack',
     'eyebrow' => 'Our Stack',
     'title' => 'The Tools We Build With',
-    'subtitle' => 'We do not reinvent the wheel — we integrate the best tools in the industry into systems that work for your business.',
+    'subtitle' => 'We use the best tools in the industry and wire them together into systems that work for your business.',
     'footnote' => 'Tool logos are property of their respective owners. Listed tools reflect our standard integration stack.',
 
     'categories' => [
