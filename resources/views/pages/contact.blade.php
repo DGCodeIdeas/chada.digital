@@ -40,7 +40,7 @@
 
                 <div class="card border-0" style="background: var(--md-sys-color-surface); border-radius: 16px;">
                     <div class="card-body p-4">
-                        <h6 class="fw-semibold mb-3" style="font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--md-sys-color-on-surface);">Response Guarantee</h6>
+                        <h6 class="fw-semibold mb-3" style="font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--md-sys-color-on-surface);">When you will hear back</h6>
                         <p class="mb-0" style="font-size: 0.875rem; color: var(--md-sys-color-on-surface-variant); line-height: 1.6;">
                             {{ config('contact.response_time') }}
                         </p>

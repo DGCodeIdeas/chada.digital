@@ -15,14 +15,14 @@ class PricingService
         return [
             'website' => [
                 'title' => 'Website Design',
-                'description' => 'From starter sites to full e-commerce storefronts. Every build is mobile-responsive, SEO-ready, and conversion-focused.',
+                'description' => 'From starter sites to full shops. They work on a phone, they show up on Google, and people can reach you.',
                 'tiers' => [
                     [
                         'name' => 'Starter Website',
                         'price' => '₦200,000',
                         'price_range' => '₦200,000 – ₦250,000',
                         'price_note' => 'one-time',
-                        'description' => 'A clean, professional landing presence for new businesses.',
+                        'description' => 'A small site so people can find you and get in touch.',
                         'features' => [
                             'Up to 3 pages',
                             'Mobile responsive',
@@ -41,7 +41,7 @@ class PricingService
                         'price' => '₦300,000',
                         'price_range' => '₦300,000 – ₦450,000',
                         'price_note' => 'one-time',
-                        'description' => 'A complete business website built to convert visitors into leads.',
+                        'description' => 'Five to seven pages, a form, and room for the proof you already have.',
                         'features' => [
                             'Up to 5–7 pages',
                             'Custom design',
@@ -51,7 +51,7 @@ class PricingService
                             'Google Analytics',
                             'Testimonials',
                             'FAQ section',
-                            'Strong CTA/conversion structure',
+                            'Obvious next step on each page',
                             '3 revisions',
                         ],
                         'cta' => 'Chat on WhatsApp',
@@ -63,7 +63,7 @@ class PricingService
                         'price' => '₦500,000',
                         'price_range' => '₦500,000 – ₦750,000+',
                         'price_note' => 'one-time',
-                        'description' => 'Advanced, custom-designed websites with integrations and full conversion architecture.',
+                        'description' => 'Bigger sites with extra pages, tracking, and the tools you already pay for plugged in.',
                         'features' => [
                             '7+ pages',
                             'Advanced/custom design',
@@ -72,7 +72,7 @@ class PricingService
                             'Forms and lead capture',
                             'Third-party integrations',
                             'Advanced functionality',
-                            'Conversion-focused structure',
+                            'Clear call-to-action on every page',
                         ],
                         'cta' => 'Chat on WhatsApp',
                         'whatsapp_message' => 'Hi! I need a Premium Website (₦500K–₦750K+) with advanced functionality. Let us talk scope.',
@@ -91,7 +91,7 @@ class PricingService
                             'Paystack/Flutterwave',
                             'Order notifications',
                             'Customer management',
-                            'Mobile optimization',
+                            'Works on phones',
                             'Basic SEO',
                         ],
                         'cta' => 'Chat on WhatsApp',
@@ -102,7 +102,7 @@ class PricingService
             ],
             'automation' => [
                 'title' => 'Automation',
-                'description' => 'Workflows that capture, nurture, and convert leads automatically — 24/7.',
+                'description' => 'Forms, WhatsApp pings, and follow-ups that keep running after you close the laptop.',
                 'tiers' => [
                     [
                         'name' => 'Starter Automation',
@@ -144,7 +144,7 @@ class PricingService
                         'price' => '₦500,000+',
                         'price_range' => '₦500,000+',
                         'price_note' => 'one-time',
-                        'description' => 'Complex, AI-powered automation systems with custom business processes.',
+                        'description' => 'Several workflows talking to each other, plus the odd extra step if it actually helps.',
                         'features' => [
                             'Multiple interconnected workflows',
                             'CRM',
@@ -163,7 +163,7 @@ class PricingService
             ],
             'branding' => [
                 'title' => 'Branding',
-                'description' => 'Visual identities that make your business impossible to ignore.',
+                'description' => 'A logo and a look you can use on the site, Instagram, and a business card.',
                 'tiers' => [
                     [
                         'name' => 'Starter Branding',
@@ -215,7 +215,7 @@ class PricingService
                             'Business stationery',
                         ],
                         'cta' => 'Chat on WhatsApp',
-                        'whatsapp_message' => 'Hello Chada Digital! I need a Complete Brand Identity (₦350K+) including logo system, guidelines, and stationery. Let us build something great.',
+                        'whatsapp_message' => 'Hello Chada Digital! I need a Complete Brand Identity (₦350K+) including logo system, guidelines, and stationery. Can we talk through it?',
                         'highlight' => false,
                     ],
                 ],

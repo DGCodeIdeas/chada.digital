@@ -17,7 +17,7 @@
             Early Access
         </p>
         <h2 class="display-6 fw-bold mb-3" style="font-family: 'Inter', sans-serif; color: var(--md-sys-color-on-surface);">
-            No customer logos yet &mdash; we won&rsquo;t fake them.
+            No customer logos yet. We won&rsquo;t fake them.
         </h2>
         <p class="lead mb-0" style="color: var(--md-sys-color-on-surface-variant);">
             Become a <a href="{{ route('design-partner') }}" style="color: var(--md-sys-color-primary); text-decoration: none; font-weight: 500;">design partner</a>.

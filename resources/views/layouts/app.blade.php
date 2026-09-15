@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ $meta['title'] ?? config('brand.name') }}</title>
     <meta name="description" content="{{ $meta['description'] ?? config('brand.tagline') }}">
-    <meta name="keywords" content="web development, digital marketing, automation, {{ config('contact.location') }}">
+    <meta name="keywords" content="website design Lagos, automation, branding, {{ config('contact.location') }}">
     <meta name="author" content="{{ config('brand.name') }}">
     <meta name="robots" content="index, follow">
 

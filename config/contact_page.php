@@ -6,6 +6,6 @@
 
 return [
     'eyebrow' => 'Contact',
-    'headline' => 'Let Us Build Your Next Revenue System',
-    'subhead' => 'Tell us what you want to build. We will reply within 24 hours with what is possible, how long it takes, and what it costs.',
+    'headline' => 'Tell us what you want built',
+    'subhead' => 'Describe the job. We reply within 24 hours with a yes or no on fit, a timeline, and a price.',
 ];

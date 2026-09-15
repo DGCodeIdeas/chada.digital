@@ -7,7 +7,7 @@
         <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;">Frontend</p>
         <h1 class="display-6 fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface); font-size: 2.25rem;">See Our Work</h1>
         <p class="mx-auto" style="max-width: 540px; color: var(--md-sys-color-on-surface-variant); font-size: 0.9375rem; line-height: 1.65;">
-            18 live frontend demos across 6 real-world categories. Every project is interactive, responsive, and built from scratch.
+            Eighteen clickable sites, grouped the way we actually get hired: shops, clinics, schools, and the rest. Open one and poke around.
         </p>
     </div>
 </section>

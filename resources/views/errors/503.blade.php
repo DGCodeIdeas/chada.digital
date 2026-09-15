@@ -57,8 +57,8 @@
             </svg>
         </div>
         <h1 class="mb-3">We Will Be Right Back</h1>
-        <p class="text-muted mb-4">{{ config('brand.name', 'Chada Digital') }} is currently undergoing scheduled maintenance. We are making improvements to serve you better.</p>
-        <p class="text-muted mb-0" style="font-size: 0.875rem;">Expected to return shortly. Thank you for your patience.</p>
+        <p class="text-muted mb-4">{{ config('brand.name', 'Chada Digital') }} is down for a short maintenance window. Back soon.</p>
+        <p class="text-muted mb-0" style="font-size: 0.875rem;">Thanks for waiting.</p>
     </div>
 </body>
 </html>
