@@ -48,32 +48,32 @@
     <div class="offcanvas-body" style="padding: 0.5rem 0;">
         <ul class="list-unstyled mb-0">
             <li>
-                <a class="d-block py-3 px-4 {{ request()->routeIs('home') ? 'fw-semibold' : '' }}" href="{{ route('home') }}" data-bs-dismiss="offcanvas" style="color: var(--md-sys-color-on-surface); font-size: 0.9375rem; text-decoration: none;">
+                <a class="d-block py-3 px-4 {{ request()->routeIs('home') ? 'fw-semibold' : '' }}" href="{{ route('home') }}" style="color: var(--md-sys-color-on-surface); font-size: 0.9375rem; text-decoration: none;">
                     Home
                 </a>
             </li>
             <li>
-                <a class="d-block py-3 px-4 {{ request()->routeIs('case-studies.*') ? 'fw-semibold' : '' }}" href="{{ route('case-studies.index') }}" data-bs-dismiss="offcanvas" style="color: var(--md-sys-color-on-surface); font-size: 0.9375rem; text-decoration: none;">
+                <a class="d-block py-3 px-4 {{ request()->routeIs('case-studies.*') ? 'fw-semibold' : '' }}" href="{{ route('case-studies.index') }}" style="color: var(--md-sys-color-on-surface); font-size: 0.9375rem; text-decoration: none;">
                     Case Studies
                 </a>
             </li>
             <li>
-                <a class="d-block py-3 px-4 {{ request()->routeIs('services') ? 'fw-semibold' : '' }}" href="{{ route('services') }}" data-bs-dismiss="offcanvas" style="color: var(--md-sys-color-on-surface); font-size: 0.9375rem; text-decoration: none;">
+                <a class="d-block py-3 px-4 {{ request()->routeIs('services') ? 'fw-semibold' : '' }}" href="{{ route('services') }}" style="color: var(--md-sys-color-on-surface); font-size: 0.9375rem; text-decoration: none;">
                     Services
                 </a>
             </li>
             <li>
-                <a class="d-block py-3 px-4 {{ request()->routeIs('about') ? 'fw-semibold' : '' }}" href="{{ route('about') }}" data-bs-dismiss="offcanvas" style="color: var(--md-sys-color-on-surface); font-size: 0.9375rem; text-decoration: none;">
+                <a class="d-block py-3 px-4 {{ request()->routeIs('about') ? 'fw-semibold' : '' }}" href="{{ route('about') }}" style="color: var(--md-sys-color-on-surface); font-size: 0.9375rem; text-decoration: none;">
                     About
                 </a>
             </li>
             <li>
-                <a class="d-block py-3 px-4 {{ request()->routeIs('demos') ? 'fw-semibold' : '' }}" href="{{ route('demos') }}" data-bs-dismiss="offcanvas" style="color: var(--md-sys-color-on-surface); font-size: 0.9375rem; text-decoration: none;">
+                <a class="d-block py-3 px-4 {{ request()->routeIs('demos') ? 'fw-semibold' : '' }}" href="{{ route('demos') }}" style="color: var(--md-sys-color-on-surface); font-size: 0.9375rem; text-decoration: none;">
                     Demos
                 </a>
             </li>
             <li>
-                <a class="d-block py-3 px-4 {{ request()->routeIs('contact') ? 'fw-semibold' : '' }}" href="{{ route('contact') }}" data-bs-dismiss="offcanvas" style="color: var(--md-sys-color-on-surface); font-size: 0.9375rem; text-decoration: none;">
+                <a class="d-block py-3 px-4 {{ request()->routeIs('contact') ? 'fw-semibold' : '' }}" href="{{ route('contact') }}" style="color: var(--md-sys-color-on-surface); font-size: 0.9375rem; text-decoration: none;">
                     Contact
                 </a>
             </li>
