@@ -77,5 +77,21 @@ Route::get('/demos', function () {
 Route::get('/preview/{slug}', [PageController::class, 'preview'])->name('preview.show');
 Route::get('/preview/{slug}/{subpage}', [PageController::class, 'previewSubpage'])->name('preview.subpage');
 
+// Legal pages
+Route::get('/terms', function () {
+    $meta = ['title' => 'Terms of Service | ' . config('brand.name'), 'description' => 'Terms of service for Chada Digital.'];
+    return view('pages.terms', compact('meta'));
+})->name('terms');
+
+Route::get('/privacy', function () {
+    $meta = ['title' => 'Privacy Policy | ' . config('brand.name'), 'description' => 'Privacy policy for Chada Digital.'];
+    return view('pages.privacy', compact('meta'));
+})->name('privacy');
+
+Route::get('/cookies', function () {
+    $meta = ['title' => 'Cookie Policy | ' . config('brand.name'), 'description' => 'Cookie policy for Chada Digital.'];
+    return view('pages.cookies', compact('meta'));
+})->name('cookies');
+
 // Sitemap
 Route::get('/sitemap.xml', [PageController::class, 'sitemap'])->name('sitemap');

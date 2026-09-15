@@ -4,8 +4,8 @@
 
 return [
     'eyebrow' => 'Services & Pricing',
-    'headline' => 'Prices in Naira. Nothing hiding behind a call.',
-    'subhead' => 'Ten packages, all priced in Naira. Pick the one that matches the job. If you need something else, say so.',
+    'headline' => 'Prices in Naira, listed up front.',
+    'subhead' => 'Ten packages, all priced in Naira. Pick the one that fits your project. If you need something different, let us know.',
     // Stats are GATED — null means the stat is hidden.
     'stats' => [
         ['value' => null, 'label' => 'Projects Delivered'],
