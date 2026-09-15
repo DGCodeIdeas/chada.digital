@@ -6,7 +6,7 @@ return [
     'eyebrow' => 'Website Design, Automation, Branding',
     'headline' => 'We Build Websites That Work for Your Business',
     'headline_highlight' => 'Work',
-    'subhead' => 'From starter websites to full e-commerce stores, automated lead workflows, and complete brand identities. Transparent pricing, real deliverables, no surprises.',
+    'subhead' => 'From starter websites to full e-commerce stores, lead automation, and complete brand identities. Clear pricing, real work, no surprises.',
     'primary_cta' => 'See Services & Pricing',
     'primary_cta_route' => 'services',
     'secondary_cta' => 'View Our Work',

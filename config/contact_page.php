@@ -7,5 +7,5 @@
 return [
     'eyebrow' => 'Contact',
     'headline' => 'Let Us Build Your Next Revenue System',
-    'subhead' => 'Tell us what you are trying to achieve. We will reply within 24 hours with a clear assessment of what is possible, how long it will take, and what it will cost.',
+    'subhead' => 'Tell us what you want to build. We will reply within 24 hours with what is possible, how long it takes, and what it costs.',
 ];
