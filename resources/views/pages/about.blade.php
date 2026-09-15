@@ -78,7 +78,19 @@
                         <h6 class="fw-semibold mb-3" style="color: var(--md-sys-color-on-surface); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em;">{{ $cat['category'] }}</h6>
                         <div class="d-flex flex-wrap gap-2">
                             @foreach($cat['tools'] as $tool)
-                            <span class="badge" style="background: var(--md-sys-color-surface-container-highest); color: var(--md-sys-color-on-surface); font-weight: 500; font-size: 0.875rem; padding: 0.5rem 0.75rem; border-radius: 8px;">{{ $tool }}</span>
+                            @php
+                                // Backward compat: $tool may be a string (old data) or
+                                // an array with 'name' + 'brand' keys (new data).
+                                $toolName  = is_array($tool) ? data_get($tool, 'name')  : $tool;
+                                $toolBrand = is_array($tool) ? data_get($tool, 'brand') : null;
+                            @endphp
+                            <span class="badge d-inline-flex align-items-center gap-1" style="background: var(--md-sys-color-surface-container-highest); color: var(--md-sys-color-on-surface); font-weight: 500; font-size: 0.875rem; padding: 0.5rem 0.75rem; border-radius: 8px;">
+                                @if($toolBrand)
+                                    <i class="si si-{{ $toolBrand }}" aria-hidden="true" style="font-size: 0.875rem; line-height: 1;"></i>
+                                    <span class="visually-hidden">{{ $toolName }}</span>
+                                @endif
+                                {{ $toolName }}
+                            </span>
                             @endforeach
                         </div>
                     </div>
