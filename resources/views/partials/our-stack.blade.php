@@ -17,7 +17,7 @@
                         <div class="card-body p-4">
                             <div class="d-flex align-items-center gap-3 mb-3">
                                 <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary bg-opacity-10 text-primary flex-shrink-0" style="width: 2.5rem; height: 2.5rem;">
-                                    <i class="bi {{ data_get($category, 'icon', 'bi-tools') }}"></i>
+                                    <i class="fas {{ data_get($category, 'icon', 'fa-tools') }}"></i>
                                 </span>
                                 <h3 class="h6 fw-semibold mb-0">{{ data_get($category, 'name') }}</h3>
                             </div>
@@ -25,13 +25,14 @@
                                 @foreach(data_get($category, 'tools', []) as $tool)
                                     @php
                                         $brandSlug = data_get($tool, 'brand');
+                                        $iconSlug  = data_get($tool, 'icon', 'fa-circle');
                                     @endphp
                                     <span class="badge bg-light text-dark border d-inline-flex align-items-center gap-2 px-3 py-2 fw-normal">
                                         @if($brandSlug)
-                                            <i class="si si-{{ $brandSlug }} text-primary" aria-hidden="true"></i>
+                                            <i class="fab fa-{{ $brandSlug }} text-primary" aria-hidden="true"></i>
                                             <span class="visually-hidden">{{ data_get($tool, 'name') }}</span>
                                         @else
-                                            <i class="bi {{ data_get($tool, 'icon', 'bi-circle') }} text-primary" aria-hidden="true"></i>
+                                            <i class="fas {{ $iconSlug }} text-primary" aria-hidden="true"></i>
                                         @endif
                                         {{ data_get($tool, 'name') }}
                                     </span>

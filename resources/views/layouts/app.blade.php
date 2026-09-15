@@ -32,11 +32,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Brand Icons (Simple Icons webfont) — used by Our Stack section.
+    <!-- Brand Icons (Font Awesome 6 Free) — used by Our Stack section.
          Renders brand logos (Stripe, Laravel, Shopify, HubSpot, Meta, etc.)
-         as a single webfont alongside Bootstrap Icons. -->
+         via the `fab fa-{slug}` class and solid fallback icons via `fas fa-{slug}`.
+         Replaces the earlier Simple Icons CDN. -->
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-icons-font@13/font/simple-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css">
 
     <!-- Styles -->
     <!-- Preload CSS to prevent FOUC (flash of unstyled content) -->
