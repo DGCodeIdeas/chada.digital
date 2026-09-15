@@ -23,8 +23,16 @@
                             </div>
                             <div class="d-flex flex-wrap gap-2">
                                 @foreach(data_get($category, 'tools', []) as $tool)
+                                    @php
+                                        $brandSlug = data_get($tool, 'brand');
+                                    @endphp
                                     <span class="badge bg-light text-dark border d-inline-flex align-items-center gap-2 px-3 py-2 fw-normal">
-                                        <i class="bi {{ data_get($tool, 'icon', 'bi-circle') }} text-primary"></i>
+                                        @if($brandSlug)
+                                            <i class="si si-{{ $brandSlug }} text-primary" aria-hidden="true"></i>
+                                            <span class="visually-hidden">{{ data_get($tool, 'name') }}</span>
+                                        @else
+                                            <i class="bi {{ data_get($tool, 'icon', 'bi-circle') }} text-primary" aria-hidden="true"></i>
+                                        @endif
                                         {{ data_get($tool, 'name') }}
                                     </span>
                                 @endforeach
