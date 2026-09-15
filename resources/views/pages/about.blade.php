@@ -4,8 +4,8 @@
 
 <section style="background: linear-gradient(135deg, #f8f6f3 0%, #f0ede8 100%); padding: 5rem 0 3rem;">
     <div class="container text-center">
-        <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.08em;">About Us</p>
-        <h1 class="display-5 fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface);">We Build Digital Systems That Generate Revenue</h1>
+        <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.08em;">{{ config('about_page.eyebrow', 'About') }}</p>
+        <h1 class="display-5 fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface);">{{ config('about_page.headline') }}</h1>
         <p class="mx-auto" style="max-width: 700px; color: var(--md-sys-color-on-surface-variant); font-size: 1.125rem;">
             {{ config('about_page.body') }}
         </p>
@@ -20,22 +20,22 @@
                 <div class="rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 64px; height: 64px; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container);">
                     <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
                 </div>
-                <h5 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface);">We Do What We Say</h5>
-                <p class="mb-0" style="color: var(--md-sys-color-on-surface-variant); font-size: 0.9375rem;">If we commit to a deadline, we hit it. If we commit to a metric, we measure it. No excuses.</p>
+                <h5 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface);">Deadlines are real</h5>
+                <p class="mb-0" style="color: var(--md-sys-color-on-surface-variant); font-size: 0.9375rem;">If we name a date, that is the date. We do not vanish mid-project.</p>
             </div>
             <div class="col-md-4">
                 <div class="rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 64px; height: 64px; background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container);">
                     <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
                 </div>
-                <h5 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface);">We Hold Ourselves Accountable</h5>
-                <p class="mb-0" style="color: var(--md-sys-color-on-surface-variant); font-size: 0.9375rem;">Every project has clear KPIs, weekly reports, and a direct line to the team. You are never in the dark.</p>
+                <h5 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface);">You can reach us</h5>
+                <p class="mb-0" style="color: var(--md-sys-color-on-surface-variant); font-size: 0.9375rem;">Questions get an answer within a business day. You are not chasing a ticket queue.</p>
             </div>
             <div class="col-md-4">
                 <div class="rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 64px; height: 64px; background: var(--md-sys-color-tertiary-container); color: var(--md-sys-color-on-tertiary-container);">
                     <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
                 </div>
-                <h5 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface);">We Get Results Fast</h5>
-                <p class="mb-0" style="color: var(--md-sys-color-on-surface-variant); font-size: 0.9375rem;">We do not bill by the hour. We bill by the outcome. If it does not make you money, we do not build it.</p>
+                <h5 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface);">We bill the job, not the clock</h5>
+                <p class="mb-0" style="color: var(--md-sys-color-on-surface-variant); font-size: 0.9375rem;">Hourly retainers hide waste. You pay for a finished site, a working workflow, or a brand kit.</p>
             </div>
         </div>
     </div>
@@ -67,8 +67,8 @@
     <div class="container">
         <div class="text-center mb-5">
             <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.08em;">Our Stack</p>
-            <h2 class="fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface);">Tools We Use to Build Your System</h2>
-            <p class="mx-auto" style="max-width: 600px; color: var(--md-sys-color-on-surface-variant);">We do not reinvent the wheel. We integrate the best tools in the industry into a single, coherent system.</p>
+            <h2 class="fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface);">{{ config('martech.title', 'The tools we actually use') }}</h2>
+            <p class="mx-auto" style="max-width: 600px; color: var(--md-sys-color-on-surface-variant);">{{ config('martech.subtitle') }}</p>
         </div>
         <div class="row g-4">
             @foreach($marTech as $cat)

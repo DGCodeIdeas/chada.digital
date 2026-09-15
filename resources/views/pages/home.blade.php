@@ -11,7 +11,7 @@
                     {{ config('hero.eyebrow') }}
                 </p>
                 <h1 class="display-5 fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface); line-height: 1.15; font-size: 2.5rem;">
-                    {{ config('hero.headline_before_highlight', 'We Build Systems That Generate ') }}<span style="color: var(--md-sys-color-primary);">{{ config('hero.headline_highlight', 'Revenue') }}</span>
+                    {{ config('hero.headline_before_highlight', 'We Build Websites That ') }}<span style="color: var(--md-sys-color-primary);">{{ config('hero.headline_highlight', 'Work') }}</span>{{ config('hero.headline_after_highlight', ' for Your Business') }}
                 </h1>
                 <p class="mb-4" style="color: var(--md-sys-color-on-surface-variant); max-width: 540px; font-size: 0.9375rem; line-height: 1.65;">
                     {{ config('hero.subhead') }}
@@ -105,7 +105,7 @@
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-5 gap-3">
             <div>
                 <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.08em;">Case Studies</p>
-                <h2 class="fw-bold mb-0" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface);">Real Results for Real Businesses</h2>
+                <h2 class="fw-bold mb-0" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface);">Work we can show with a real number</h2>
             </div>
             <a href="{{ route('case-studies.index') }}" class="btn btn-outline-primary rounded-pill px-4" style="border-color: var(--md-sys-color-primary); color: var(--md-sys-color-primary); font-weight: 500;">
                 View All Case Studies
@@ -187,9 +187,9 @@
 <section style="background: var(--md-sys-color-surface-container-low); padding: 3.5rem 0;">
     <div class="container">
         <div class="text-center mb-4">
-            <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;">Our Stack</p>
-            <h2 class="fw-bold mb-2" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface); font-size: 1.5rem;">Technologies We Work With</h2>
-            <p class="mx-auto" style="max-width: 540px; color: var(--md-sys-color-on-surface-variant); font-size: 0.875rem;">We integrate the best tools in the industry into systems that work for your business.</p>
+            <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;">{{ config('martech.eyebrow', 'Our Stack') }}</p>
+            <h2 class="fw-bold mb-2" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface); font-size: 1.5rem;">{{ config('martech.title', 'The tools we actually use') }}</h2>
+            <p class="mx-auto" style="max-width: 540px; color: var(--md-sys-color-on-surface-variant); font-size: 0.875rem;">{{ config('martech.subtitle') }}</p>
         </div>
         @php $techCategories = config('martech.categories', []); @endphp
         <div class="row g-2 justify-content-center">

@@ -4,6 +4,6 @@
 
 return [
     'eyebrow' => 'About',
-    'headline' => 'We Build Websites, Automation, and Brands',
-    'body' => 'Chada Digital is a Lagos-based studio specialising in website design, automation, and branding. We do not build portfolios, we build tools that help your business grow. Transparent pricing, honest timelines, real deliverables.',
+    'headline' => 'A Lagos studio for websites, automation, and brands',
+    'body' => 'Chada Digital is based in Lagos. We design websites, set up automation, and make brand kits. Prices are on the site. Timelines are honest. You get the files and the logins when we are done.',
 ];

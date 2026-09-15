@@ -7,7 +7,7 @@
         <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;">Early Access</p>
         <h1 class="display-6 fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface); font-size: 2.25rem;">Become a Design Partner</h1>
         <p class="mx-auto mb-4" style="max-width: 540px; color: var(--md-sys-color-on-surface-variant); font-size: 0.9375rem; line-height: 1.65;">
-            We do not have a wall of client logos yet, and we will not fake one. What we have is a portfolio of real, interactive demo projects and a commitment to building systems that generate revenue. If you want a partner who treats your project like their own, this is your invitation.
+            We do not have a wall of client logos yet, and we will not fake one. Click the demos, look at the prices, and if the work looks like yours, message us.
         </p>
         <a href="https://wa.me/{{ config('contact.whatsapp') }}?text={{ urlencode('Hi Chada Digital! I am interested in becoming a design partner. Can you tell me more about what that involves?') }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill" style="background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); font-weight: 500; font-size: 0.8125rem; padding: 0.625rem 1.5rem;">
             Apply on WhatsApp
@@ -24,8 +24,8 @@
                         <div class="rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 48px; height: 48px; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container);">
                             <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                         </div>
-                        <h5 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface); font-size: 1rem;">Direct Access</h5>
-                        <p class="mb-0" style="font-size: 0.8125rem; color: var(--md-sys-color-on-surface-variant); line-height: 1.6;">You work directly with the team building your project. No account managers, no handoffs, no lost context.</p>
+                        <h5 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface); font-size: 1rem;">You talk to the people writing it</h5>
+                        <p class="mb-0" style="font-size: 0.8125rem; color: var(--md-sys-color-on-surface-variant); line-height: 1.6;">Not a salesperson who then writes it up for someone else.</p>
                     </div>
                 </div>
             </div>
@@ -35,8 +35,8 @@
                         <div class="rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 48px; height: 48px; background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container);">
                             <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
                         </div>
-                        <h5 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface); font-size: 1rem;">Built Fast, Built Right</h5>
-                        <p class="mb-0" style="font-size: 0.8125rem; color: var(--md-sys-color-on-surface-variant); line-height: 1.6;">We ship on deadline, every time. You get weekly updates, a staging URL, and a final product that works.</p>
+                        <h5 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface); font-size: 1rem;">A date in the quote</h5>
+                        <p class="mb-0" style="font-size: 0.8125rem; color: var(--md-sys-color-on-surface-variant); line-height: 1.6;">Weekly check-ins and a staging link while we work. Live date is in the quote.</p>
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                             <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
                         </div>
                         <h5 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface); font-size: 1rem;">Transparent Pricing</h5>
-                        <p class="mb-0" style="font-size: 0.8125rem; color: var(--md-sys-color-on-surface-variant); line-height: 1.6;">Every service has a clear Naira price range. You know what you are paying for before we start. No hidden fees.</p>
+                        <p class="mb-0" style="font-size: 0.8125rem; color: var(--md-sys-color-on-surface-variant); line-height: 1.6;">Every package has a Naira range on the site. You know the number before we start.</p>
                     </div>
                 </div>
             </div>

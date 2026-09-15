@@ -3,8 +3,8 @@
 return [
     'heading' => 'Our Stack',
     'eyebrow' => 'Our Stack',
-    'title' => 'The Tools We Build With',
-    'subtitle' => 'We use the best tools in the industry and wire them together into systems that work for your business.',
+    'title' => 'The tools we actually use',
+    'subtitle' => 'Paystack, HubSpot, Laravel, Meta Ads. Same tools bigger shops use, wired so your team can run them.',
     'footnote' => 'Tool logos are property of their respective owners. Listed tools reflect our standard integration stack.',
 
     'categories' => [

@@ -38,7 +38,7 @@
 <section style="background: var(--md-sys-color-primary-container); padding: 2rem 0;">
     <div class="container text-center">
         <p class="mb-2" style="color: var(--md-sys-color-on-primary-container); font-size: 1.0625rem;">
-            Not sure which tier is right for you? <strong>Book a free 30-minute consultation.</strong> No pitch. No pressure.
+            Not sure which package fits? <strong>Book a free 30-minute call.</strong> Ask anything. We will tell you if we are a bad fit.
         </p>
         <a href="{{ route('contact') }}" class="btn btn-primary rounded-pill px-4" style="background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); font-weight: 500;">
             Book Free Consultation
@@ -109,11 +109,11 @@
 <!-- Final CTA -->
 <section style="background: linear-gradient(135deg, var(--md-sys-color-primary) 0%, #1a5fd6 100%); padding: 5rem 0;">
     <div class="container text-center">
-        <h2 class="fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: white;">Still Have Questions?</h2>
+        <h2 class="fw-bold mb-3" style="font-family: 'Outfit', sans-serif; color: white;">{{ config('cta.services_headline', 'Want to talk it through first?') }}</h2>
         <p class="mx-auto mb-4" style="max-width: 500px; color: rgba(255,255,255,0.85); font-size: 1.125rem;">
-            Every project starts with a conversation. Tell us what you are trying to achieve and we will tell you exactly how we can help.
+            {{ config('cta.services_body') }}
         </p>
-        <a href="{{ route('contact') }}" class="btn btn-light btn-lg rounded-pill px-5" style="font-weight: 500; color: var(--md-sys-color-primary);">Start a Conversation</a>
+        <a href="{{ route('contact') }}" class="btn btn-light btn-lg rounded-pill px-5" style="font-weight: 500; color: var(--md-sys-color-primary);">{{ config('cta.services_button', 'Start a Conversation') }}</a>
     </div>
 </section>
 
