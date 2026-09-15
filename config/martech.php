@@ -4,7 +4,7 @@ return [
     'heading' => 'Our Stack',
     'eyebrow' => 'Our Stack',
     'title' => 'The tools we actually use',
-    'subtitle' => 'Paystack, HubSpot, Laravel, Meta Ads. Same tools bigger shops use, wired so your team can run them.',
+    'subtitle' => 'Paystack, HubSpot, Laravel, Meta Ads. Reliable tools, wired together so your team can manage them day to day.',
     'footnote' => 'Tool logos are property of their respective owners. Listed tools reflect our standard integration stack.',
 
     'categories' => [

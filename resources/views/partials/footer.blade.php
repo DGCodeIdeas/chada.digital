@@ -67,8 +67,8 @@
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 mt-4 pt-3" style="font-size: 0.75rem; color: var(--md-sys-color-on-surface-variant);">
             <p class="mb-0">&copy; {{ date('Y') }} {{ config('brand.name') }}. All rights reserved.</p>
             <div class="d-flex gap-3">
-                <a href="#" style="color: var(--md-sys-color-on-surface-variant);">Privacy Policy</a>
-                <a href="#" style="color: var(--md-sys-color-on-surface-variant);">Terms of Service</a>
+                <a href="{{ route('privacy') }}" style="color: var(--md-sys-color-on-surface-variant);">Privacy Policy</a>
+                <a href="{{ route('terms') }}" style="color: var(--md-sys-color-on-surface-variant);">Terms of Service</a> · <a href="{{ route('cookies') }}" style="color: var(--md-sys-color-on-surface-variant);">Cookies</a>
             </div>
         </div>
     </div>
