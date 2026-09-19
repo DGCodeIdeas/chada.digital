@@ -17,8 +17,13 @@ return [
         'We respond within one business day. You will not be left waiting.',
         'A finished website, a working automation, or a brand kit you can actually use.',
     ],
-    'photo' => null,
-    'real' => false,
+    // Real founder portrait — replaces the "CD" initials placeholder on /about.
+    // Image lives at public/assets/images/founder.jpg (46 KB optimized JPEG,
+    // 490x626 source downsized to fit the founder card). When 'real' is true
+    // and 'photo' is set, the about page renders <img>; otherwise it falls
+    // back to the initials placeholder.
+    'photo' => '/assets/images/founder.jpg',
+    'real' => true,
     'initials' => 'CD',
     'cta_label' => 'Start a Conversation',
     'cta_route' => 'contact',

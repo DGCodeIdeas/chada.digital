@@ -109,13 +109,28 @@
     <div class="container">
         <div class="row g-5 align-items-center">
             <div class="col-lg-5">
-                <div class="rounded-4 overflow-hidden" style="background: var(--md-sys-color-surface); aspect-ratio: 1; display: flex; align-items: center; justify-content: center; border: 1px solid var(--md-sys-color-outline-variant);">
-                    <div class="text-center p-4">
-                        <div class="rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 120px; height: 120px; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); font-family: 'Outfit', sans-serif; font-size: 3rem; font-weight: 700;">
-                            CD
+                @php
+                    $founderPhoto = config('founder.photo');
+                    $founderReal  = (bool) config('founder.real', false);
+                    $founderInitials = config('founder.initials', 'CD');
+                    $founderHeading  = config('founder.heading', 'The Team');
+                @endphp
+                <div class="rounded-4 overflow-hidden" style="background: var(--md-sys-color-surface); aspect-ratio: 4 / 5; display: flex; align-items: center; justify-content: center; border: 1px solid var(--md-sys-color-outline-variant);">
+                    @if($founderReal && $founderPhoto)
+                        <img src="{{ asset($founderPhoto) }}"
+                             alt="{{ config('brand.name') }} — {{ $founderHeading }}"
+                             class="w-100 h-100"
+                             style="object-fit: cover; object-position: center;"
+                             loading="lazy"
+                             decoding="async">
+                    @else
+                        <div class="text-center p-4">
+                            <div class="rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 120px; height: 120px; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); font-family: 'Outfit', sans-serif; font-size: 3rem; font-weight: 700;">
+                                {{ $founderInitials }}
+                            </div>
+                            <p class="text-muted" style="font-size: 0.875rem;">Founder portrait placeholder.<br>Replace with professional headshot.</p>
                         </div>
-                        <p class="text-muted" style="font-size: 0.875rem;">Founder portrait placeholder.<br>Replace with professional headshot.</p>
-                    </div>
+                    @endif
                 </div>
             </div>
             <div class="col-lg-7">
