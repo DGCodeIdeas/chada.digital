@@ -1,20 +1,30 @@
 <?php
 
 // Founder section — /about page.
+//
+// Voice: third-person, semi-formal. Names the founder (Okeoma Joseph) and
+// credits the team he leads. No "I" — the team is acknowledged alongside
+// the founder. The /about page renders this copy next to the founder
+// portrait.
+//
+// Copy provided verbatim by the founder (Sep 19, 2026). Two minor copy-edits
+// applied at apply time: completed the cut-off last sentence of paragraph 1
+// ("When a project is done, complete files and access are handed over.") and
+// added the missing period before "Live demos" in paragraph 2.
 
 return [
-    'eyebrow' => 'The Team',
-    'heading' => 'The Team',
+    'eyebrow' => 'Founder',
+    'heading' => 'Founder',
     'title' => 'Founder & Lead Engineer',
-    'bio' => 'We started Chada Digital because we saw Nigerian businesses paying too much for websites that did not bring in customers. Our goal is straightforward: clear pricing, honest timelines, and work we are proud to put our name on.',
+    'bio' => 'Okeoma Joseph founded Chada Digital and leads a small team of designers and engineers in Lagos. He sets the standard for the work; the team designs, builds, and delivers it. Pricing is listed on the site. Timelines are realistic. When a project is done, complete files and access are handed over.',
     'paragraphs' => [
-        'We started Chada Digital because we saw Nigerian businesses paying too much for websites that did not bring in customers. Our goal is straightforward: clear pricing, honest timelines, and work we are proud to put our name on.',
-        'We do not have a long client list yet, and we will not pretend otherwise. What we do have is a set of live demo projects and transparent pricing. Take a look and decide if the work feels right for you.',
-        'We meet the deadlines we set. We reply within one business day. And we measure success by whether the work helps your business grow, not just by whether we shipped it.',
+        'Okeoma Joseph founded Chada Digital and leads a small team of designers and engineers in Lagos. He sets the standard for the work; the team designs, builds, and delivers it. Pricing is listed on the site. Timelines are realistic. When a project is done, complete files and access are handed over.',
+        'The studio is still early. There is no long client list to display. Live demos and Naira prices are on the site so you can judge the work for yourself.',
+        'Deadlines are the dates in the quote. Replies come within one business day. Success is whether the site, workflow, or brand kit is useful to your business.',
     ],
     'bio_points' => [
-        'We deliver on the date we quoted. If anything changes, you hear it from us right away.',
-        'We respond within one business day. You will not be left waiting.',
+        'The team delivers on the date quoted. If that changes, you hear it from them first.',
+        'Someone replies within one business day. You will not be left waiting.',
         'A finished website, a working automation, or a brand kit you can actually use.',
     ],
     // Real founder portrait — replaces the "CD" initials placeholder on /about.
