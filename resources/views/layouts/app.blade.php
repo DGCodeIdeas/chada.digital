@@ -1,31 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ $meta['title'] ?? config('brand.name') }}</title>
-    <meta name="description" content="{{ $meta['description'] ?? config('brand.tagline') }}">
-    <meta name="keywords" content="website design Lagos, automation, branding, {{ config('contact.location') }}">
-    <meta name="author" content="{{ config('brand.name') }}">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="{{ $meta['title'] ?? config('brand.name') }}">
-    <meta property="og:description" content="{{ $meta['description'] ?? config('brand.tagline') }}">
-    <meta property="og:image" content="{{ $meta['og_image'] ?? asset('og-image.jpg') }}">
-    <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="{{ config('brand.name') }}">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ $meta['title'] ?? config('brand.name') }}">
-    <meta name="twitter:description" content="{{ $meta['description'] ?? config('brand.tagline') }}">
-    <meta name="twitter:image" content="{{ $meta['og_image'] ?? asset('og-image.jpg') }}">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ asset('favicon.ico') }}">
+    {{-- Site-wide meta (title, description, OG, Twitter, canonical,
+         hreflang, theme-color, csrf-token, referrer, icons, structured
+         data). Per-page overrides via $meta passed from the controller. --}}
+    @include('partials.meta')
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,8 +22,6 @@
     <!-- Preload CSS to prevent FOUC (flash of unstyled content) -->
     <link rel="preload" href="{{ mix('css/app.css') }}" as="style">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-
-    @include('partials.structured-data')
 
     @stack('styles')
 </head>
