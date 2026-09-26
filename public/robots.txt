@@ -1,5 +1,51 @@
+# Chada Digital — robots.txt
+# https://chadadigital.com/robots.txt
+#
+# Crawler policy:
+#   - All crawlers (including AI/LLM crawlers) are ALLOWED to crawl the
+#     public marketing pages (home, about, services, contact, demos,
+#     design-partner, terms, privacy, cookies).
+#   - The /api/* endpoints are functional (contact form submission), not
+#     content — blocked from indexing.
+#   - The /demo-content/* paths serve raw HTML/CSS/JS files for embedded
+#     demo iframes — these duplicate content that lives at /demo-lab and
+#     /preview/, so they're blocked to avoid duplicate-content signals.
+#
+# Sitemap is at https://chadadigital.com/sitemap.xml
+
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /demo-content/
+Disallow: /preview/
+Disallow: /storage/
 
+# Explicit AI/LLM crawler policy — see config/seo.php ai_crawlers map.
+# All listed below are ALLOWED. Listed explicitly so future crawlers
+# inheriting from User-agent: * still see the policy.
 
-Sitemap: https://www.chadadigital.com/sitemap.xml
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+Sitemap: https://chadadigital.com/sitemap.xml

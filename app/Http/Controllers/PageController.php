@@ -8,6 +8,7 @@ use App\Services\TestimonialService;
 use App\Services\MarTechService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Str;
 
 class PageController extends Controller
 {
@@ -29,6 +30,32 @@ class PageController extends Controller
     }
 
     /**
+     * Build a $meta array for a view by merging the route's per-route meta
+     * from config/seo.php with site-wide defaults, then overriding with
+     * any explicit values passed in. Ensures every page gets:
+     *   - title (page-specific)
+     *   - description (page-specific)
+     *   - keywords (page-specific or site-wide)
+     *   - canonical (route URL)
+     *   - og_url (canonical)
+     *   - og_image (page-specific or site default)
+     */
+    protected function buildMeta(string $routeName, array $overrides = []): array
+    {
+        $routeMeta = config("seo.routes.{$routeName}", []);
+        $defaults  = config('seo.defaults', []);
+
+        $canonical = $overrides['canonical'] ?? route($routeName);
+        $ogImage   = $overrides['og_image'] ?? ($defaults['og_image'] ?? asset('og-image.jpg'));
+
+        return array_merge($defaults, $routeMeta, [
+            'canonical' => $canonical,
+            'og_url'    => $canonical,
+            'og_image'  => $ogImage,
+        ], $overrides);
+    }
+
+    /**
      * Home page — conversion hub
      * Patterns: Hero, Stats, Trust, Tiers, Consult, Process, Services, Webinar
      */
@@ -41,11 +68,7 @@ class PageController extends Controller
         // To unlock: restore $this->caseStudyService->featured(3)
         $featuredStudies = collect([]);
         $stats = $this->caseStudyService->stats();
-        $meta = [
-            'title' => 'Chada Digital — Digital Solutions That Help Businesses Grow',
-            'description' => 'Web development, funnel automation, paid advertising, and brand strategy for startups, SMEs, and enterprises in Nigeria.',
-            'og_image' => asset('og-image.jpg'),
-        ];
+        $meta = $this->buildMeta('home');
         return view('pages.home', compact('featuredStudies', 'stats', 'meta'));
     }
 
@@ -56,11 +79,7 @@ class PageController extends Controller
     public function services()
     {
         $tiers = $this->pricingService->all();
-        $meta = [
-            'title' => 'Services & Pricing — Chada Digital',
-            'description' => 'Strategy sessions, done-for-you builds, and monthly retainers. Transparent pricing for web development, automation, and advertising.',
-            'og_image' => asset('og-image.jpg'),
-        ];
+        $meta = $this->buildMeta('services');
         return view('pages.services', compact('tiers', 'meta'));
     }
 
@@ -72,11 +91,7 @@ class PageController extends Controller
     {
         $testimonials = $this->testimonialService->all();
         $marTech = $this->marTechService->all();
-        $meta = [
-            'title' => 'About — Chada Digital',
-            'description' => 'Meet the team behind Chada Digital. We build digital systems that generate revenue, not just websites.',
-            'og_image' => asset('og-image.jpg'),
-        ];
+        $meta = $this->buildMeta('about');
         return view('pages.about', compact('testimonials', 'marTech', 'meta'));
     }
 
@@ -85,11 +100,7 @@ class PageController extends Controller
      */
     public function contact()
     {
-        $meta = [
-            'title' => 'Contact — Chada Digital',
-            'description' => 'Start a project, book a consultation, or ask a question. We reply within 24 hours.',
-            'og_image' => asset('og-image.jpg'),
-        ];
+        $meta = $this->buildMeta('contact');
         return view('pages.contact', compact('meta'));
     }
 
@@ -100,11 +111,7 @@ class PageController extends Controller
     public function demos()
     {
         $demos = $this->caseStudyService->demos();
-        $meta = [
-            'title' => 'Demo Lab — Chada Digital',
-            'description' => 'Explore live demos of our work. See the systems we build in action.',
-            'og_image' => asset('og-image.jpg'),
-        ];
+        $meta = $this->buildMeta('demos');
         return view('pages.demos', compact('demos', 'meta'));
     }
 
@@ -138,23 +145,48 @@ class PageController extends Controller
     }
 
     /**
-     * Sitemap — updated for multi-page architecture
+     * Sitemap — updated for multi-page architecture.
+     *
+     * Returns per-page priority + lastmod + image sitemap entries.
+     * Lower-priority pages (legal, case-studies-coming-soon) get 0.3-0.5;
+     * main marketing pages get 0.8; the home page gets 1.0.
      */
     public function sitemap()
     {
+        $today = now()->toDateString();
+        $site  = rtrim(config('app.url', 'https://chadadigital.com'), '/');
+
         $pages = [
-            route('home'),
-            route('case-studies.index'),
-            route('services'),
-            route('about'),
-            route('contact'),
-            route('demos'),
+            route('home')              => ['url' => route('home'),              'priority' => '1.0', 'changefreq' => 'weekly',  'lastmod' => $today, 'images' => [
+                ['loc' => $site . '/og-image.jpg', 'title' => 'Chada Digital — Web Design, Automation, and Branding in Lagos', 'caption' => 'Chada Digital'],
+            ]],
+            route('services')          => ['url' => route('services'),            'priority' => '0.9', 'changefreq' => 'weekly',  'lastmod' => $today],
+            route('about')             => ['url' => route('about'),              'priority' => '0.9', 'changefreq' => 'monthly', 'lastmod' => $today, 'images' => config('founder.real') ? [
+                ['loc' => asset((string) config('founder.photo')), 'title' => 'Okeoma Joseph — Founder, Chada Digital', 'caption' => 'Founder portrait'],
+            ] : []],
+            route('contact')           => ['url' => route('contact'),            'priority' => '0.8', 'changefreq' => 'monthly', 'lastmod' => $today],
+            route('demos')              => ['url' => route('demos'),              'priority' => '0.8', 'changefreq' => 'weekly',  'lastmod' => $today],
+            route('case-studies.index') => ['url' => route('case-studies.index'), 'priority' => '0.5', 'changefreq' => 'weekly',  'lastmod' => $today],
+            route('design-partner')     => ['url' => route('design-partner'),     'priority' => '0.5', 'changefreq' => 'monthly', 'lastmod' => $today],
+            route('terms')              => ['url' => route('terms'),              'priority' => '0.3', 'changefreq' => 'yearly',  'lastmod' => $today],
+            route('privacy')            => ['url' => route('privacy'),            'priority' => '0.3', 'changefreq' => 'yearly',  'lastmod' => $today],
+            route('cookies')            => ['url' => route('cookies'),            'priority' => '0.3', 'changefreq' => 'yearly',  'lastmod' => $today],
         ];
         foreach ($this->caseStudyService->all() as $study) {
-            $pages[] = route('case-study.show', $study['slug']);
+            $pages[route('case-study.show', $study['slug'])] = [
+                'url' => route('case-study.show', $study['slug']),
+                'priority' => '0.6',
+                'changefreq' => 'monthly',
+                'lastmod' => $today,
+            ];
         }
         foreach ($this->caseStudyService->demos() as $demo) {
-            $pages[] = route('preview.show', $demo['slug']);
+            $pages[route('preview.show', $demo['slug'])] = [
+                'url' => route('preview.show', $demo['slug']),
+                'priority' => '0.4',
+                'changefreq' => 'monthly',
+                'lastmod' => $today,
+            ];
         }
         $content = view('pages.sitemap', compact('pages'))->render();
         return Response::make($content, 200, ['Content-Type' => 'application/xml']);

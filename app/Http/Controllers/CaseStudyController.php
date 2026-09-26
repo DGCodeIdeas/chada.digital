@@ -29,9 +29,11 @@ class CaseStudyController extends Controller
     public function index(Request $request)
     {
         $meta = [
-            'title' => 'Case Studies Coming Soon | Chada Digital',
+            'title'       => 'Case Studies Coming Soon | Chada Digital',
             'description' => 'Detailed case studies for each of our demo projects are being prepared. Each will include the full workflow, tech stack, and verified business outcomes.',
-            'og_image' => asset('og-image.jpg'),
+            'og_image'    => asset('og-image.jpg'),
+            'canonical'   => route('case-studies.index'),
+            'og_url'      => route('case-studies.index'),
         ];
         return view('pages.case-studies', compact('meta'));
     }

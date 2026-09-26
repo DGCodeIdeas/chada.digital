@@ -36,9 +36,11 @@ Route::get('/about', [PageController::class, 'about'])->name('about');
 // Design Partner page
 Route::get('/design-partner', function () {
     $meta = [
-        'title' => 'Become a Design Partner | ' . config('brand.name'),
+        'title'       => 'Become a Design Partner | ' . config('brand.name'),
         'description' => 'No customer logos yet, we will not fake them. Become a design partner and work directly with the team building your project.',
-        'og_image' => asset('og-image.jpg'),
+        'og_image'    => asset('og-image.jpg'),
+        'canonical'   => route('design-partner'),
+        'og_url'      => route('design-partner'),
     ];
     return view('pages.design-partner', compact('meta'));
 })->name('design-partner');
@@ -79,17 +81,35 @@ Route::get('/preview/{slug}/{subpage}', [PageController::class, 'previewSubpage'
 
 // Legal pages
 Route::get('/terms', function () {
-    $meta = ['title' => 'Terms of Service | ' . config('brand.name'), 'description' => 'Terms of service for Chada Digital.'];
+    $meta = [
+        'title'       => 'Terms of Service | ' . config('brand.name'),
+        'description' => 'Terms of service for Chada Digital.',
+        'canonical'   => route('terms'),
+        'og_url'      => route('terms'),
+        'og_type'     => 'article',
+    ];
     return view('pages.terms', compact('meta'));
 })->name('terms');
 
 Route::get('/privacy', function () {
-    $meta = ['title' => 'Privacy Policy | ' . config('brand.name'), 'description' => 'Privacy policy for Chada Digital.'];
+    $meta = [
+        'title'       => 'Privacy Policy | ' . config('brand.name'),
+        'description' => 'Privacy policy for Chada Digital.',
+        'canonical'   => route('privacy'),
+        'og_url'      => route('privacy'),
+        'og_type'     => 'article',
+    ];
     return view('pages.privacy', compact('meta'));
 })->name('privacy');
 
 Route::get('/cookies', function () {
-    $meta = ['title' => 'Cookie Policy | ' . config('brand.name'), 'description' => 'Cookie policy for Chada Digital.'];
+    $meta = [
+        'title'       => 'Cookie Policy | ' . config('brand.name'),
+        'description' => 'Cookie policy for Chada Digital.',
+        'canonical'   => route('cookies'),
+        'og_url'      => route('cookies'),
+        'og_type'     => 'article',
+    ];
     return view('pages.cookies', compact('meta'));
 })->name('cookies');
 
