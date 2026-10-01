@@ -16,8 +16,51 @@
          injected before any inline SVG/icon usage runs, avoiding FOUC.
          The Kit auto-handles icon subset loading, accessibility, and
          version updates — replaces the earlier @fortawesome/fontawesome-free
-         CDN link. -->
+         CDN link.
+
+         FOUC prevention: the Kit injects its CSS asynchronously after the
+         script runs. To prevent the brief flash of unstyled <i> elements
+         (which render as tiny empty italic boxes before the FA CSS loads),
+         we hide them by default with an inline <style> block and reveal
+         them once a polling script confirms the FA CSS is parsed. The
+         poller checks computed font-family on a probe element — when it
+         starts returning "Font Awesome*", the CSS is loaded. -->
+    <style>
+        /* FOUC prevention: hide FA icon elements until the Kit's CSS loads.
+           Otherwise <i class="fa-*"> renders as tiny empty italic boxes
+           for the brief moment between page paint and Kit CSS injection. */
+        i[class*="fa-"] { visibility: hidden; }
+        /* Reveal once JS adds the .fa-icons-ready class to <html>. */
+        html.fa-icons-ready i[class*="fa-"] { visibility: visible; }
+        /* If JS is disabled, fall back to visible after a 1s delay via
+           a CSS animation (worst case: 1s of hidden icons, then visible). */
+        @keyframes chada-fa-fallback { to { visibility: visible; } }
+        i[class*="fa-"] { animation: chada-fa-fallback 0s 1s forwards; }
+        html.fa-icons-ready i[class*="fa-"] { animation: none; }
+    </style>
     <script src="https://kit.fontawesome.com/2a76805d59.js" crossorigin="anonymous"></script>
+    <script>
+        // Poller: reveal FA icons once the Kit's CSS is parsed.
+        // Checks the computed font-family of a probe <i class="fa">
+        // element — when it contains "Font Awesome", the CSS is loaded.
+        (function() {
+            function check() {
+                var test = document.createElement('i');
+                test.className = 'fa';
+                test.style.cssText = 'position:absolute;visibility:hidden;pointer-events:none;';
+                document.body.appendChild(test);
+                var ff = window.getComputedStyle(test).fontFamily || '';
+                document.body.removeChild(test);
+                if (/Font Awesome/i.test(ff)) {
+                    document.documentElement.classList.add('fa-icons-ready');
+                } else {
+                    setTimeout(check, 50);
+                }
+            }
+            if (document.readyState !== 'loading') check();
+            else document.addEventListener('DOMContentLoaded', check);
+        })();
+    </script>
 
     <!-- Web Components (Web Awesome by Font Awesome) — used by all
          card components site-wide. The loader is an ES module that

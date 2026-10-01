@@ -443,21 +443,24 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0;
   display: flex;
   align-items: center;
-  gap: 1.25rem;             // mobile base — 20px between logos
-  padding: 0 1rem;         // breathing room at the scroll edges
-  min-width: max-content;  // track is at least as wide as content (so overflow works)
+  // Larger gap to match the larger icons. Mobile 2rem (32px), tablet 3rem,
+  // desktop 4rem. The marquee is now full-bleed (outside the .container)
+  // so the track can be as wide as it needs to be.
+  gap: 2rem;               // mobile base — 32px between logos
+  padding: 0 2rem;         // breathing room at the scroll edges
+  min-width: max-content;  // track is at least as wide as content
   white-space: nowrap;
 
-  // Tablet — slightly more gap
+  // Tablet — 3rem (48px) gap
   @media (min-width: 768px) {
-    gap: 2rem;
-    padding: 0 1.5rem;
+    gap: 3rem;
+    padding: 0 2.5rem;
   }
 
-  // Desktop — full gap
+  // Desktop — 4rem (64px) gap
   @media (min-width: 1024px) {
-    gap: 3rem;
-    padding: 0 2rem;
+    gap: 4rem;
+    padding: 0 3rem;
   }
 }
 
@@ -477,22 +480,24 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
   user-select: none;
 
-  // The FA brand glyph
+  // The FA brand glyph — "slightly muted and a bit large" per founder.
+  // Muted: text-on-surface-variant (grey) by default; brand color on hover.
+  // A bit large: 2.5rem (40px) on mobile, scaling up to 3.5rem (56px) on desktop.
   > i {
-    font-size: 1.5rem;       // mobile base — 24px
+    font-size: 2.5rem;       // mobile base — 40px (was 24px — too tiny)
     line-height: 1;
     color: var(--md-sys-color-on-surface-variant, #525252);
     transition: color 200ms ease;
   }
 
-  // Tablet — larger glyph
+  // Tablet — 3rem (48px)
   @media (min-width: 768px) {
-    > i { font-size: 1.875rem; }   // 30px
+    > i { font-size: 3rem; }
   }
 
-  // Desktop — full 40px glyph (matches original brief)
+  // Desktop — 3.5rem (56px)
   @media (min-width: 1024px) {
-    > i { font-size: 2.5rem; }     // 40px
+    > i { font-size: 3.5rem; }
   }
 
   // Hover (desktop only — touch falls back to the @media (hover: none) rule below)
