@@ -67,6 +67,18 @@ chown -R www-data:www-data \
      "${APP_DIR}/bootstrap/cache" \
      "${APP_DIR}/public"
 
+echo "→ Re-gzipping CSS/JS files (for nginx gzip_static)"
+# Pre-gzip the CSS/JS so nginx can serve the .gz versions directly
+# (much faster than on-the-fly compression). Idempotent — gzip -k
+# keeps the original, -f overwrites any stale .gz file.
+# Requires the one-time setup script scripts/enable-gzip-on-nginx.sh
+# to have been run once (installs the gzip config snippet + enables
+# gzip_static in nginx).
+for f in "${APP_DIR}/public/css"/*.css "${APP_DIR}/public/js"/*.js; do
+    [ -f "${f}" ] || continue
+    gzip -k -9 -f "${f}" 2>/dev/null || true
+done
+
 echo "→ Reloading host nginx"
 nginx -t && systemctl reload nginx
 
