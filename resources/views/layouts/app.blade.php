@@ -26,13 +26,45 @@
         wa-card:defined {
             visibility: visible;
         }
-        /* Font Awesome Kit injects CSS/SVG after JS runs. Hide glyphs until then. */
-        html:not(.fontawesome-i2svg-complete):not(.fontawesome-i2svg-active) .fab,
-        html:not(.fontawesome-i2svg-complete):not(.fontawesome-i2svg-active) .fas,
-        html:not(.fontawesome-i2svg-complete):not(.fontawesome-i2svg-active) .far {
+        /* Font Awesome Kit (method:"js" / i2svg mode) injects SVGs after
+           the deferred Kit script runs. The Kit adds two classes to <html>:
+             - .fontawesome-i2svg-active  — added at the START of the scan
+                                            (icons are still <i> elements,
+                                             NOT yet replaced by SVGs)
+             - .fontawesome-i2svg-complete — added when ALL icons have been
+                                              replaced with inline SVGs
+
+           The previous rule used :not(.complete):not(.active) which means
+           "hide if NEITHER class is present" — i.e. show icons when EITHER
+           is added. That was wrong: as soon as .fontawesome-i2svg-active
+           was added (at scan START), the icons became visible as empty
+           italic <i> boxes for the brief moment before SVG replacement.
+           That was the FOUC.
+
+           Fixed: only reveal when .fontawesome-i2svg-complete is present
+           (scan is DONE, all icons are SVGs). If the Kit fails to add
+           the class (Kit blocked, errored, etc.), a 2s fallback timer in
+           the inline script below adds .fa-fallback-ready so icons
+           become visible even without the Kit completing. */
+        html:not(.fontawesome-i2svg-complete):not(.fa-fallback-ready) .fab,
+        html:not(.fontawesome-i2svg-complete):not(.fa-fallback-ready) .fas,
+        html:not(.fontawesome-i2svg-complete):not(.fa-fallback-ready) .far {
             visibility: hidden;
         }
     </style>
+
+    {{-- Fallback: if the FA Kit never adds .fontawesome-i2svg-complete
+         (script blocked, errored, slow CDN, etc.), reveal icons after
+         a 2s delay so they don't stay hidden forever. The Kit's own
+         completion class still wins (it's added by the Kit before
+         the 2s elapses in the normal case). --}}
+    <script>
+        (function() {
+            setTimeout(function() {
+                document.documentElement.classList.add('fa-fallback-ready');
+            }, 2000);
+        })();
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
