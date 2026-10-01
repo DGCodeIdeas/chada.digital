@@ -18,16 +18,21 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css">
 
-    <!-- Web Components (Web Awesome / Shoelace) — used by all card
-         components site-wide. Loaded as ES module (autoloader registers
-         every <sl-*> custom element on the page). Pinned to v2.20.1
-         (the current production version of @shoelace-style/shoelace,
-         which is being renamed to "Web Awesome"). The light theme CSS
-         is loaded separately so the components inherit our MD3 token
-         values via the .sl-style-custom-bridge overrides in
-         resources/sass/_chada-custom.scss. -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css">
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"></script>
+    <!-- Web Components (Web Awesome by Font Awesome) — used by all
+         card components site-wide. The loader is an ES module that
+         auto-registers every <wa-*> custom element on the page as it's
+         encountered. Pinned to v3.14.0. Three stylesheets:
+           - default.css: design tokens (--wa-* custom properties)
+           - utilities.css: utility classes ("CSS Utilities")
+           - native.css: CSS reset ("Native Styles")
+         The MD3 ↔ WA token bridge in resources/sass/_chada-custom.scss
+         maps our --md-sys-color-* values into --wa-color-* / --wa-panel-*
+         tokens so wa-card components inherit Chada's brand palette
+         instead of WA's defaults. -->
+    <link rel="stylesheet" href="https://ka-f.webawesome.com/webawesome@3.14.0/styles/themes/default.css">
+    <link rel="stylesheet" href="https://ka-f.webawesome.com/webawesome@3.14.0/styles/utilities.css">
+    <link rel="stylesheet" href="https://ka-f.webawesome.com/webawesome@3.14.0/styles/native.css">
+    <script type="module" src="https://ka-f.webawesome.com/webawesome@3.14.0/webawesome.loader.js"></script>
 
     <!-- Styles -->
     <!-- Preload CSS to prevent FOUC (flash of unstyled content) -->
