@@ -357,43 +357,46 @@ h1, h2, h3, h4, h5, h6 {
 // ============================================================
 // Our Stack — Marquee Logo Cloud (mobile-first, single row)
 // ============================================================
-// Design (per founder directive, Oct 1, 2026):
+// Design (per founder directive, Oct 1, 2026 — refined same day):
 //   - SINGLE row (was dual). No more reverse-direction track.
-//   - DETERMINISTIC: logos sorted alphabetically by brand slug
-//     (AWS, Cloudflare, Google, HubSpot, Laravel, Mailchimp, Meta,
-//      Shopify, Stripe, TikTok, WordPress) — order is independent
-//     of which category the tool was listed under in config.
-//   - NON-REPEATING: each logo appears ONCE in the track. No
-//     duplicated track for seamless loop. No infinite animation.
+//   - RANDOM shuffle per page load (PHP ->shuffle() — different
+//     order every request). Was alphabetical, now random.
+//   - SOURCE LIST NOT DUPLICATED: each unique brand appears ONCE
+//     in the @foreach source. The track is rendered TWICE in the
+//     markup for the seamless-loop trick (so the animation can
+//     translate from 0 to -50% with no visible "snap" at the loop
+//     boundary). This is the standard CSS marquee technique —
+//     the source list itself is not duplicated.
+//   - CONTINUOUS INFINITE SCROLL: track translates from
+//     translateX(0) to translateX(-50%) over 60s, linear, infinite.
+//     No entrance animation — logos are visible by default and
+//     scroll continuously. They fade out at the left edge via the
+//     mask-image gradient ("the disappearing left edge"), then the
+//     loop continues.
 //   - BRAND LABEL ON HOVER: glyph is shown by default; hovering
-//     the logo fades in a text label next to the glyph.
+//     the logo fades in a text label below the glyph.
 //   - MOBILE-FIRST: base styles target mobile (smaller glyph,
-//     smaller gap, single-row horizontal scroll if needed).
-//     Tablet/desktop scale up via min-width media queries.
+//     smaller gap). Tablet/desktop scale up via min-width media
+//     queries. No manual scroll — animation is the only motion.
 //   - TOUCH FALLBACK: on `(hover: none)` devices (no hover),
 //     the label is always visible below the glyph so mobile users
 //     still see the brand name.
-//   - ONE-SHOT ENTRANCE: on first paint, the track fades + slides
-//     up briefly via a CSS animation that runs ONCE (no infinite).
-//     prefers-reduced-motion disables the entrance animation.
+//   - prefers-reduced-motion disables the scroll animation
+//     entirely (logos stay visible at their natural positions).
 // ============================================================
 
-@keyframes chada-marquee-enter {
-  0%   { opacity: 0; transform: translateY(0.75rem); }
-  100% { opacity: 1; transform: translateY(0); }
+@keyframes chada-marquee-scroll {
+  0%   { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
 
 .chada-marquee {
   position: relative;
-  overflow-x: auto;            // horizontal scroll on mobile when track overflows
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;  // iOS momentum scroll
-  scroll-snap-type: x proximity;       // soft snap to nearest logo
-  scrollbar-width: none;              // hide scrollbar on Firefox
-  &::-webkit-scrollbar { display: none; }  // hide on Chrome/Safari
+  overflow: hidden;            // no manual scroll — animation is the only motion
   // Edge fade — subtle horizontal mask so logos at the scroll edges
-  // dissolve into the section background. Kept from the previous
-  // design (still relevant for the horizontal-scroll case on mobile).
+  // dissolve into the section background (the founder's "disappearing
+  // left edge"). Both edges fade so logos appear/disappear smoothly
+  // rather than getting cut off hard at the container boundary.
   mask-image: linear-gradient(to right,
     transparent 0%,
     rgba(0, 0, 0, 0.85) 3%,
@@ -410,15 +413,17 @@ h1, h2, h3, h4, h5, h6 {
     rgba(0, 0, 0, 0.85) 97%,
     transparent 100%
   );
-  // One-shot entrance animation — fades in + slides up briefly.
-  // Single iteration, no infinite. Fill-mode forwards so the final
-  // state (opacity: 1, translateY: 0) is retained after the animation.
-  animation: chada-marquee-enter 400ms ease-out 1;
-  animation-fill-mode: both;
+  // Continuous infinite scroll: track translates from 0 to -50% over
+  // 60 seconds, then loops. The track is rendered twice in the markup
+  // (see pages/home.blade.php) so at the -50% position the second copy
+  // is in the same position the first copy started at — the loop is
+  // seamless, no visible "snap" at the boundary.
+  animation: chada-marquee-scroll 60s linear infinite;
+  will-change: transform;
 
-  // Respect reduced-motion preferences: kill the entrance animation
-  // entirely. The track renders at its final state (opacity 1, no
-  // translateY) immediately.
+  // Respect reduced-motion preferences: kill the scroll animation
+  // entirely. The track renders at its starting position (translateX(0))
+  // — logos stay visible at their natural positions, no motion.
   @media (prefers-reduced-motion: reduce) {
     animation: none;
   }
@@ -461,7 +466,8 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
   gap: 0.25rem;
   padding: 0.25rem;
-  scroll-snap-align: center;   // each logo is a snap point when scrolling
+  // (scroll-snap removed — the marquee now scrolls automatically via
+  // CSS animation, no manual horizontal scroll to snap.)
   text-decoration: none;
   user-select: none;
 
