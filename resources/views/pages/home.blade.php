@@ -184,12 +184,28 @@
 </section>
 
 <!-- ===== TECHNOLOGIES — Marquee Logo Cloud =====
-     Dual-row marquee: top scrolls R→L, bottom L→R, ~40s/loop.
-     Logos are muted by default; hovering lights them up in the
-     brand's native color (per-tool 'color' field in config/martech.php).
-     Edges fade + blur via CSS mask-image gradient. Animation pauses
-     on hover and is fully disabled under prefers-reduced-motion.
-     See resources/sass/_chada-custom.scss for the keyframes + styles. -->
+     Single row, RANDOM shuffle (per page load), continuous infinite scroll.
+     Each unique brand appears ONCE in the source list. The track is
+     rendered TWICE in the markup for the seamless-loop trick (so the
+     animation can translate from 0 to -50% and the user sees no visible
+     "snap" at the loop boundary). This is the standard CSS marquee
+     technique — the source list itself is not duplicated.
+
+     No entrance animation. Logos are visible by default. They scroll
+     continuously from right to left, fade out at the left edge via the
+     mask-image gradient, then the loop continues infinitely.
+
+     Mobile-first: smaller glyph + gap on mobile, scale up via min-width
+     media queries for tablet/desktop. No manual scroll — animation is
+     the only motion. Logos muted by default; hovering lights them up
+     in the brand's native color AND fades in a text label below the
+     glyph. On touch devices (no hover), the label is always visible
+     below the glyph so mobile users still see the brand name.
+
+     prefers-reduced-motion disables the scroll animation entirely
+     (logos stay visible at their natural positions).
+
+     See resources/sass/_chada-custom.scss for the styles. -->
 <section style="background: var(--md-sys-color-surface-container-low); padding: 3.5rem 0;">
     <div class="container">
         <div class="text-center mb-4">
@@ -199,43 +215,37 @@
         </div>
 
         @php
+            // Single source list: flatten all categories, keep only tools
+            // with an FA brand slug, dedupe by brand slug (Google is
+            // referenced twice — for GA4 and Google Ads — appears once),
+            // then SHUFFLE for a random order per page load. The shuffle
+            // is seeded by PHP's mt_rand — different on every request,
+            // so visitors see a different order each time they land on /.
             $brandTools = collect(config('martech.categories', []))
                 ->flatMap(fn($cat) => $cat['tools'])
                 ->filter(fn($t) => !empty($t['brand']))
                 ->unique('brand')
+                ->shuffle()
                 ->values();
-            $half = (int) ceil($brandTools->count() / 2);
-            $row1 = $brandTools->take($half);
-            $row2 = $brandTools->slice($half);
         @endphp
 
-        <div class="chada-marquee" aria-label="Technology stack logos, row 1">
-            <div class="chada-marquee__track">
-                @foreach([$row1, $row1] as $row)
+        <div class="chada-marquee" aria-label="Technology stack logos">
+            {{-- The track is rendered TWICE — once for the visible scroll,
+                 once for the seamless-loop trick. The animation translates
+                 from translateX(0) to translateX(-50%), at which point the
+                 second copy is in the same position the first copy started
+                 at, so the loop is invisible. --}}
+            <ul class="chada-marquee__track" role="list">
+                @foreach([$brandTools, $brandTools] as $row)
                     @foreach($row as $tool)
-                        <span class="chada-marquee__logo" style="--brand-color: {{ $tool['color'] ?? 'var(--md-sys-color-primary)' }};">
+                        <li class="chada-marquee__logo" style="--brand-color: {{ $tool['color'] ?? 'var(--md-sys-color-primary)' }};">
                             <i class="fab fa-{{ $tool['brand'] }}" aria-hidden="true"></i>
-                            <span class="chada-marquee__sr-only">{{ $tool['name'] }}</span>
-                        </span>
+                            <span class="chada-marquee__label">{{ $tool['name'] }}</span>
+                        </li>
                     @endforeach
                 @endforeach
-            </div>
+            </ul>
         </div>
-
-        @if($row2->isNotEmpty())
-        <div class="chada-marquee chada-marquee--reverse" aria-label="Technology stack logos, row 2">
-            <div class="chada-marquee__track">
-                @foreach([$row2, $row2] as $row)
-                    @foreach($row as $tool)
-                        <span class="chada-marquee__logo" style="--brand-color: {{ $tool['color'] ?? 'var(--md-sys-color-primary)' }};">
-                            <i class="fab fa-{{ $tool['brand'] }}" aria-hidden="true"></i>
-                            <span class="chada-marquee__sr-only">{{ $tool['name'] }}</span>
-                        </span>
-                    @endforeach
-                @endforeach
-            </div>
-        </div>
-        @endif
 
         @if(config('martech.footnote'))
             <p class="text-center text-muted small mt-4">{{ config('martech.footnote') }}</p>

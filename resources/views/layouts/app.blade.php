@@ -11,12 +11,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Brand Icons (Font Awesome 6 Free) — used by Our Stack section.
-         Renders brand logos (Stripe, Laravel, Shopify, HubSpot, Meta, etc.)
-         via the `fab fa-{slug}` class and solid fallback icons via `fas fa-{slug}`.
-         Replaces the earlier Simple Icons CDN. -->
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css">
+    <!-- Font Awesome Kit — the founder's own Kit at kit.fontawesome.com.
+         Loaded as a synchronous <script> (no defer) so the icon CSS is
+         injected before any inline SVG/icon usage runs, avoiding FOUC.
+         The Kit auto-handles icon subset loading, accessibility, and
+         version updates — replaces the earlier @fortawesome/fontawesome-free
+         CDN link. -->
+    <script src="https://kit.fontawesome.com/2a76805d59.js" crossorigin="anonymous"></script>
 
     <!-- Web Components (Web Awesome by Font Awesome) — used by all
          card components site-wide. The loader is an ES module that
@@ -33,6 +34,15 @@
     <link rel="stylesheet" href="https://ka-f.webawesome.com/webawesome@3.14.0/styles/utilities.css">
     <link rel="stylesheet" href="https://ka-f.webawesome.com/webawesome@3.14.0/styles/native.css">
     <script type="module" src="https://ka-f.webawesome.com/webawesome@3.14.0/webawesome.loader.js"></script>
+
+    <!-- GSAP — GreenSock Animation Platform. Used for all site
+         animations (replaces CSS keyframes for the marquee, plus any
+         future animation work). Loaded as a regular <script> (not
+         type=module) so it's globally available as window.gsap before
+         app.js runs. Pinned to v3.12.5. The ScrollTrigger plugin is
+         NOT loaded — we don't use scroll-driven animations yet. Add
+         it via a separate <script> tag if needed later. -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 
     <!-- Styles -->
     <!-- Preload CSS to prevent FOUC (flash of unstyled content) -->

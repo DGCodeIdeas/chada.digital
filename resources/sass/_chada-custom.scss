@@ -355,137 +355,193 @@ h1, h2, h3, h4, h5, h6 {
 
 
 // ============================================================
-// Our Stack — Marquee Logo Cloud
+// Our Stack — Marquee Logo Cloud (mobile-first, single row)
 // ============================================================
-// Dual-row "logo cloud" — top row scrolls right-to-left, bottom row
-// scrolls left-to-right at the same speed. Both pause on hover and
-// are completely disabled under prefers-reduced-motion.
-//
-// Edge fade: a horizontal linear-gradient mask softens both edges so
-// logos appear to dissolve into the section background rather than
-// getting cut off hard at the container boundary. The fade spans
-// ~8% of the container width on each side.
-//
-// Logo color: muted (var(--md-sys-color-on-surface-variant)) by
-// default; each logo's <i> sets `--brand-color` inline via the
-// tool's 'color' config value. On hover the logo lights up in its
-// native brand color.
-//
-// Track duplication: each row's track contains the logo list
-// rendered TWICE (in the blade template). The keyframe translates
-// from 0% to -50% — when the second copy reaches the start
-// position, the animation loops seamlessly because the layout
-// looks identical to the start state.
+// Design (per founder directive, Oct 1, 2026 — refined same day):
+//   - SINGLE row (was dual). No more reverse-direction track.
+//   - RANDOM shuffle per page load (PHP ->shuffle() — different
+//     order every request). Was alphabetical, now random.
+//   - SOURCE LIST NOT DUPLICATED: each unique brand appears ONCE
+//     in the @foreach source. The track is rendered TWICE in the
+//     markup for the seamless-loop trick (so the animation can
+//     translate from 0 to -50% with no visible "snap" at the loop
+//     boundary). This is the standard CSS marquee technique —
+//     the source list itself is not duplicated.
+//   - CONTINUOUS INFINITE SCROLL: track translates from
+//     translateX(0) to translateX(-50%) over 60s, linear, infinite.
+//     No entrance animation — logos are visible by default and
+//     scroll continuously. They fade out at the left edge via the
+//     mask-image gradient ("the disappearing left edge"), then the
+//     loop continues.
+//   - BRAND LABEL ON HOVER: glyph is shown by default; hovering
+//     the logo fades in a text label below the glyph.
+//   - MOBILE-FIRST: base styles target mobile (smaller glyph,
+//     smaller gap). Tablet/desktop scale up via min-width media
+//     queries. No manual scroll — animation is the only motion.
+//   - TOUCH FALLBACK: on `(hover: none)` devices (no hover),
+//     the label is always visible below the glyph so mobile users
+//     still see the brand name.
+//   - prefers-reduced-motion disables the scroll animation
+//     entirely (logos stay visible at their natural positions).
 // ============================================================
 
-@keyframes chada-marquee-r2l {
+@keyframes chada-marquee-scroll {
   0%   { transform: translate3d(0, 0, 0); }
   100% { transform: translate3d(-50%, 0, 0); }
 }
 
-@keyframes chada-marquee-l2r {
-  0%   { transform: translate3d(-50%, 0, 0); }
-  100% { transform: translate3d(0, 0, 0); }
-}
-
 .chada-marquee {
-  display: flex;
   position: relative;
-  overflow: hidden;
-  // Edge fade — logos dissolve into the section background at both
-  // edges. The mask is non-destructive (clip-path would clip; mask
-  // just affects alpha). -webkit- prefix for Safari/older Chromium.
+  overflow: hidden;            // no manual scroll — animation is the only motion
+  // Edge fade — subtle horizontal mask so logos at the scroll edges
+  // dissolve into the section background (the founder's "disappearing
+  // left edge"). Both edges fade so logos appear/disappear smoothly
+  // rather than getting cut off hard at the container boundary.
   mask-image: linear-gradient(to right,
     transparent 0%,
-    rgba(0, 0, 0, 0.85) 4%,
-    rgba(0, 0, 0, 1) 8%,
-    rgba(0, 0, 0, 1) 92%,
-    rgba(0, 0, 0, 0.85) 96%,
+    rgba(0, 0, 0, 0.85) 3%,
+    rgba(0, 0, 0, 1) 6%,
+    rgba(0, 0, 0, 1) 94%,
+    rgba(0, 0, 0, 0.85) 97%,
     transparent 100%
   );
   -webkit-mask-image: linear-gradient(to right,
     transparent 0%,
-    rgba(0, 0, 0, 0.85) 4%,
-    rgba(0, 0, 0, 1) 8%,
-    rgba(0, 0, 0, 1) 92%,
-    rgba(0, 0, 0, 0.85) 96%,
+    rgba(0, 0, 0, 0.85) 3%,
+    rgba(0, 0, 0, 1) 6%,
+    rgba(0, 0, 0, 1) 94%,
+    rgba(0, 0, 0, 0.85) 97%,
     transparent 100%
   );
-  // Subtle blur right at the edge — pairs with the mask for the
-  // "faded and blurred" brief. Limited to a thin band via the mask
-  // so logos in the centre stay crisp.
-  // Note: applying `filter: blur` to the container would blur ALL
-  // logos, not just the edges — so we skip the global blur and rely
-  // on the mask alone for the edge effect.
-  user-select: none;
-}
-
-.chada-marquee + .chada-marquee {
-  margin-top: 1.5rem;
-}
-
-.chada-marquee__track {
-  display: flex;
-  align-items: center;
-  gap: 3rem;
-  padding: 0 1.5rem;
-  flex-shrink: 0;
-  min-width: max-content;
-  white-space: nowrap;
-  // 40s per loop, linear, infinite. Pause on hover handled by the
-  // parent .chada-marquee:hover rule below.
-  animation: chada-marquee-r2l 40s linear infinite;
+  // PROGRESSIVE ENHANCEMENT: this CSS animation is the NO-JS FALLBACK.
+  // When GSAP loads (via resources/js/modules/marquee-gsap.js), it
+  // calls gsap.killTweensOf(track) + gsap.set(track, {x:0}) + a new
+  // gsap.to() tween that takes over the scroll. GSAP-driven animation
+  // is GPU-accelerated and easier to debug. If GSAP fails to load
+  // (CDN blocked, network error), this CSS animation keeps the marquee
+  // scrolling. The keyframe (chada-marquee-scroll) and the GSAP tween
+  // both translate the track from 0 to -50% over 60s linear infinite
+  // — same behavior, different driver.
+  animation: chada-marquee-scroll 60s linear infinite;
   will-change: transform;
-}
 
-// Reverse direction for the second row — same speed, opposite direction.
-.chada-marquee--reverse .chada-marquee__track {
-  animation: chada-marquee-l2r 40s linear infinite;
-}
-
-.chada-marquee:hover .chada-marquee__track {
-  animation-play-state: paused;
-}
-
-// Reduced-motion: kill the animation entirely. Users who prefer
-// reduced motion see a static logo row (still fully readable, just
-// not animated).
-@media (prefers-reduced-motion: reduce) {
-  .chada-marquee__track {
+  // Respect reduced-motion preferences: kill the scroll animation
+  // entirely. The track renders at its starting position (translateX(0))
+  // — logos stay visible at their natural positions, no motion. GSAP
+  // also respects prefers-reduced-motion via matchMedia check in the
+  // marquee-gsap.js module — both drivers agree on this.
+  @media (prefers-reduced-motion: reduce) {
     animation: none;
   }
 }
 
+.chada-marquee__track {
+  // <ul> default has padding/margin/list-style — strip them so the
+  // track behaves like a flex row of logos.
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;             // mobile base — 20px between logos
+  padding: 0 1rem;         // breathing room at the scroll edges
+  min-width: max-content;  // track is at least as wide as content (so overflow works)
+  white-space: nowrap;
+
+  // Tablet — slightly more gap
+  @media (min-width: 768px) {
+    gap: 2rem;
+    padding: 0 1.5rem;
+  }
+
+  // Desktop — full gap
+  @media (min-width: 1024px) {
+    gap: 3rem;
+    padding: 0 2rem;
+  }
+}
+
 .chada-marquee__logo {
+  // Each logo is a flex column: glyph on top, label below.
+  // Label is hidden by default (height 0, opacity 0) so the row
+  // is a single-line glyph strip on mobile and desktop.
+  // On hover (desktop) or always (touch), label fades in.
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 2.5rem;  // ~40px glyph
-  line-height: 1;
-  color: var(--md-sys-color-on-surface-variant, #525252);
-  transition: color 200ms ease;
-  text-decoration: none;
+  gap: 0.25rem;
   padding: 0.25rem;
-  // On hover, light up in the brand's native color. The brand color
-  // is passed via inline style="--brand-color: #..." on each <i>.
-  &:hover,
-  &:focus-visible {
+  // (scroll-snap removed — the marquee now scrolls automatically via
+  // CSS animation, no manual horizontal scroll to snap.)
+  text-decoration: none;
+  user-select: none;
+
+  // The FA brand glyph
+  > i {
+    font-size: 1.5rem;       // mobile base — 24px
+    line-height: 1;
+    color: var(--md-sys-color-on-surface-variant, #525252);
+    transition: color 200ms ease;
+  }
+
+  // Tablet — larger glyph
+  @media (min-width: 768px) {
+    > i { font-size: 1.875rem; }   // 30px
+  }
+
+  // Desktop — full 40px glyph (matches original brief)
+  @media (min-width: 1024px) {
+    > i { font-size: 2.5rem; }     // 40px
+  }
+
+  // Hover (desktop only — touch falls back to the @media (hover: none) rule below)
+  &:hover > i,
+  &:focus-visible > i {
     color: var(--brand-color, var(--md-sys-color-primary, #2563eb));
   }
 }
 
-// Accessibility: hide the visually-hidden label span that follows
-// each glyph. The text is still in the DOM for AT users.
-.chada-marquee__sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
+// The brand label — hidden by default, fades in on hover.
+.chada-marquee__label {
+  font-size: 0.6875rem;       // 11px on mobile
+  font-weight: 500;
+  line-height: 1;
+  color: var(--md-sys-color-on-surface-variant, #525252);
+  text-align: center;
+  // Hidden by default — collapsed height + opacity 0
+  opacity: 0;
+  max-height: 0;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+  transition: opacity 200ms ease, max-height 200ms ease, margin-top 200ms ease;
+  margin-top: 0;
+
+  // Larger on desktop
+  @media (min-width: 1024px) {
+    font-size: 0.75rem;       // 12px
+  }
+}
+
+// Desktop hover — fade the label in and give it some height
+@media (hover: hover) {
+  .chada-marquee__logo:hover .chada-marquee__label,
+  .chada-marquee__logo:focus-visible .chada-marquee__label {
+    opacity: 1;
+    max-height: 1.25rem;
+    margin-top: 0.25rem;
+  }
+}
+
+// Touch devices (no hover) — show the label always, below the glyph,
+// so mobile users still see the brand name. This is the mobile-first
+// accessibility fallback: don't hide information behind an interaction
+// that doesn't exist on touch.
+@media (hover: none) {
+  .chada-marquee__label {
+    opacity: 1;
+    max-height: 1.5rem;
+    margin-top: 0.25rem;
+  }
 }
 
 // ============================================================

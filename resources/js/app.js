@@ -11,10 +11,13 @@ window.$ = window.jQuery = $;
 // Bootstrap 5 JS (depends on jQuery being available for some components)
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
+// Custom modules — site-specific JS
+import { initMarqueeGsap } from './modules/marquee-gsap.js';
+
 // jQuery modules (preserved from original site)
 $(document).ready(function() {
     // Smooth scroll for anchor links
-    // Fix: was $('aref^="#"]') — missing [href — now corrected
+    // Fix: was $('a[href^="#"]') — missing [href — now corrected
     $('a[href^="#"]').on('click', function(e) {
         const target = $(this.getAttribute('href'));
         if (target.length) {
@@ -22,6 +25,11 @@ $(document).ready(function() {
             $('html, body').animate({ scrollTop: target.offset().top - 80 }, 600);
         }
     });
+
+    // Initialize GSAP-driven animations (replaces CSS keyframes for the
+    // marquee). The marquee-gsap module handles prefers-reduced-motion
+    // and falls back to CSS animation if GSAP fails to load.
+    initMarqueeGsap();
 
     // Header shadow on scroll
     const header = document.querySelector('header');
