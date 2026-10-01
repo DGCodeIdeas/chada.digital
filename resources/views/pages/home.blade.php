@@ -85,13 +85,13 @@
         <div class="row g-4">
             @foreach(config('home.steps') as $step)
             <div class="col-md-6 col-lg-3">
-                <sl-card class="card h-100 border-0" style="--sl-card-background-color: var(--md-sys-color-surface-container-low); --sl-card-border-radius: 16px; --sl-card-border-width: 0;">
+                <wa-card class="card h-100 border-0" style="--wa-color-surface-default: var(--md-sys-color-surface-container-low); --wa-panel-border-radius: 16px; --wa-panel-border-width: 0;">
                     <div class="card-body p-4">
                         <p class="fw-bold mb-2" style="font-family: 'Outfit', sans-serif; font-size: 2.5rem; color: var(--md-sys-color-primary); opacity: 0.3;">{{ $step['number'] }}</p>
                         <h5 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface);">{{ $step['title'] }}</h5>
                         <p class="mb-0" style="font-size: 0.9375rem; color: var(--md-sys-color-on-surface-variant); line-height: 1.6;">{{ $step['desc'] }}</p>
                     </div>
-                </sl-card>
+                </wa-card>
             </div>
             @endforeach
         </div>
@@ -114,7 +114,7 @@
         <div class="row g-4">
             @foreach($featuredStudies as $study)
             <div class="col-md-6 col-lg-4">
-                <sl-card class="card h-100 border-0" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 24px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'" style="--sl-card-background-color: var(--md-sys-color-surface); --sl-card-border-radius: 16px; --sl-card-border-width: 0; transition: transform 0.2s ease, box-shadow 0.2s ease;">
+                <wa-card class="card h-100 border-0" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 24px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'" style="--wa-color-surface-default: var(--md-sys-color-surface); --wa-panel-border-radius: 16px; --wa-panel-border-width: 0; transition: transform 0.2s ease, box-shadow 0.2s ease;">
                     <div class="card-body p-4">
                         <div class="d-flex align-items-center gap-2 mb-3">
                             <span class="badge rounded-pill" style="background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); font-weight: 500; font-size: 0.75rem;">{{ $study['industry'] }}</span>
@@ -127,7 +127,7 @@
                             Read Story →
                         </a>
                     </div>
-                </sl-card>
+                </wa-card>
             </div>
             @endforeach
         </div>
@@ -150,7 +150,7 @@
         <div class="row g-4">
             @foreach(config('home.services') as $service)
             <div class="col-md-6 col-lg-4">
-                <sl-card class="card h-100 border-0" style="--sl-card-background-color: var(--md-sys-color-surface-container-low); --sl-card-border-radius: 16px; --sl-card-border-width: 0;">
+                <wa-card class="card h-100 border-0" style="--wa-color-surface-default: var(--md-sys-color-surface-container-low); --wa-panel-border-radius: 16px; --wa-panel-border-width: 0;">
                     <div class="card-body p-4">
                         <div class="rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 48px; height: 48px; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container);">
                             @if($service['icon'] === 'code')
@@ -171,7 +171,7 @@
                             @endforeach
                         </div>
                     </div>
-                </sl-card>
+                </wa-card>
             </div>
             @endforeach
         </div>

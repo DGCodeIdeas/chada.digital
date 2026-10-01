@@ -489,88 +489,99 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 // ============================================================
-// Shoelace ↔ MD3 Token Bridge
+// Web Awesome ↔ MD3 Token Bridge
 // ============================================================
-// Shoelace (renaming to "Web Awesome") ships a CSS-variable-based
-// theming system. Its default light theme defines a palette via
-// --sl-color-* tokens. We override those tokens with our MD3
-// palette so the <sl-card>, <sl-button>, etc. components inherit
-// Chada's brand colors instead of Shoelace's defaults.
+// Web Awesome (webawesome.io, by Font Awesome) ships a CSS-variable
+// theming system. Its default theme defines a palette via --wa-*
+// tokens (e.g. --wa-color-surface-default, --wa-color-brand-40,
+// --wa-panel-border-radius). We override those tokens with our MD3
+// palette so <wa-card> (and other wa-* components) inherit Chada's
+// brand colors instead of WA's defaults.
 //
 // The overrides are scoped to :root so they apply everywhere.
-// Shoelace also accepts overrides per-component via part selectors
-// (e.g., sl-card::part(base)), but the global approach is simpler
-// and works for our card usage.
+// WA also accepts per-component overrides via its own custom
+// properties (--wa-color-surface-default etc.), but the global
+// approach is simpler and works for our card usage.
 // ============================================================
 
 :root {
-  // Map Shoelace's neutral palette → MD3 surface tokens
-  --sl-color-primary-50:  color-mix(in srgb, var(--md-sys-color-primary) 50%, transparent);
-  --sl-color-primary-100: color-mix(in srgb, var(--md-sys-color-primary) 70%, transparent);
-  --sl-color-primary-200: color-mix(in srgb, var(--md-sys-color-primary) 80%, transparent);
-  --sl-color-primary-300: color-mix(in srgb, var(--md-sys-color-primary) 90%, transparent);
-  --sl-color-primary-400: var(--md-sys-color-primary);
-  --sl-color-primary-500: var(--md-sys-color-primary);
-  --sl-color-primary-600: var(--md-sys-color-primary);
-  --sl-color-primary-700: color-mix(in srgb, var(--md-sys-color-primary) 85%, black);
-  --sl-color-primary-800: color-mix(in srgb, var(--md-sys-color-primary) 70%, black);
-  --sl-color-primary-900: color-mix(in srgb, var(--md-sys-color-primary) 55%, black);
+  // Map WA's brand color palette (50–95) to MD3's primary color.
+  // WA ships a 50-95 ramp (50=lightest, 95=darkest tint). We synthesize
+  // all 10 shades from var(--md-sys-color-primary) via color-mix.
+  --wa-color-brand-50:  color-mix(in srgb, var(--md-sys-color-primary) 10%, white);
+  --wa-color-brand-60:  color-mix(in srgb, var(--md-sys-color-primary) 20%, white);
+  --wa-color-brand-70:  color-mix(in srgb, var(--md-sys-color-primary) 35%, white);
+  --wa-color-brand-80:  color-mix(in srgb, var(--md-sys-color-primary) 55%, white);
+  --wa-color-brand-90:  color-mix(in srgb, var(--md-sys-color-primary) 85%, white);
+  --wa-color-brand-95:  color-mix(in srgb, var(--md-sys-color-primary) 92%, white);
+  --wa-color-brand-10: color-mix(in srgb, var(--md-sys-color-primary) 90%, black);
+  --wa-color-brand-20: color-mix(in srgb, var(--md-sys-color-primary) 75%, black);
+  --wa-color-brand-30: color-mix(in srgb, var(--md-sys-color-primary) 55%, black);
+  --wa-color-brand-40: var(--md-sys-color-primary);
 
-  // Neutrals → MD3 surface
-  --sl-color-gray-50:  var(--md-sys-color-surface);
-  --sl-color-gray-100: var(--md-sys-color-surface-container-low);
-  --sl-color-gray-200: var(--md-sys-color-surface-container);
-  --sl-color-gray-300: var(--md-sys-color-surface-container-high);
-  --sl-color-gray-400: var(--md-sys-color-surface-container-highest);
-  --sl-color-gray-500: var(--md-sys-color-outline-variant);
-  --sl-color-gray-600: var(--md-sys-color-on-surface-variant);
-  --sl-color-gray-700: var(--md-sys-color-on-surface);
-  --sl-color-gray-800: var(--md-sys-color-on-surface);
-  --sl-color-gray-900: var(--md-sys-color-on-surface);
+  // Surfaces → MD3 surface tokens
+  --wa-color-surface-raised:  var(--md-sys-color-surface);
+  --wa-color-surface-default: var(--md-sys-color-surface);
+  --wa-color-surface-lowered: var(--md-sys-color-surface-container-low);
+  --wa-color-surface-border:  var(--md-sys-color-outline-variant);
 
-  // Text + background
-  --sl-color-text:                    var(--md-sys-color-on-surface);
-  --sl-color-text-secondary:         var(--md-sys-color-on-surface-variant);
-  --sl-color-background:             var(--md-sys-color-surface);
-  --sl-color-body:                    var(--md-sys-color-background);
-  --sl-color-body-text:               var(--md-sys-color-on-background);
+  // Text
+  --wa-color-text-normal: var(--md-sys-color-on-surface);
+  --wa-color-text-quiet:  var(--md-sys-color-on-surface-variant);
+  --wa-color-text-link:   var(--md-sys-color-primary);
 
-  // Borders, default buttons, success/warn/danger are kept on
-  // Shoelace defaults — the brand doesn't override them.
+  // Neutrals (used for fill/border variants on wa-card)
+  --wa-color-neutral-05:  var(--md-sys-color-surface);
+  --wa-color-neutral-10: var(--md-sys-color-on-surface);
+  --wa-color-neutral-40: var(--md-sys-color-on-surface-variant);
+  --wa-color-neutral-80: var(--md-sys-color-outline-variant);
+  --wa-color-neutral-90: var(--md-sys-color-outline-variant);
+  --wa-color-neutral-95: var(--md-sys-color-surface-container-high);
+
+  // Panel border + radius (used by wa-card via --wa-panel-*)
+  --wa-panel-border-radius: var(--md-sys-shape-corner-medium, 0.75rem);
+  --wa-panel-border-width: 1px;
+  --wa-panel-border-style: solid;
+
+  // Shadows
+  --wa-shadow-s: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  --wa-shadow-m: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --wa-shadow-l: 0 12px 24px rgba(0, 0, 0, 0.08);
 }
 
-// <sl-card> — match the Bootstrap cards we're replacing.
+// <wa-card> — match the Bootstrap cards we're replacing.
 //
 //   Bootstrap card defaults: 1px border, 0.25rem radius, no padding
-//   Shoelace card defaults: 1px border, 0.25rem radius, no padding
+//   WA card defaults: 1px border, var(--wa-panel-border-radius), no padding
 //
 // We're matching 1:1 so the visual change is minimal — same shape,
 // same border, but now a web component with slot-based composition
 // instead of nested .card / .card-body divs.
 //
-// The default Shoelace card also has its own border and shadow, which
-// we lean into. We only override the radius to match Bootstrap (which
-// defaults to var(--sl-border-radius-medium) = 0.25rem).
-sl-card {
-  --sl-card-border-color: var(--md-sys-color-outline-variant, #e0e0e0);
-  --sl-card-border-width: 1px;
-  --sl-card-border-radius: var(--md-sys-shape-corner-medium, 0.75rem);
-  --sl-card-background-color: var(--md-sys-color-surface, #ffffff);
-  --sl-shadow-x-small: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+// Per-card overrides happen via inline style on each <wa-card> element
+// (the migrator script set --wa-color-surface-default,
+// --wa-panel-border-radius, --wa-panel-border-width inline per card
+// because each card has a different background/border-radius).
+wa-card {
+  // The internal .body slot padding — defaults to var(--wa-space-l)
+  // which is too much when there's already a Bootstrap .card-body
+  // inside. Set to 0 so the inner .card-body's p-X class provides
+  // all the padding (matches the pre-migration Bootstrap behavior).
+  --spacing: 0;
 }
 
-// When the layout needs an h-100 card (e.g.Bootstrap grid rows where
-// all cards in a row should match height), the sl-card component
-// doesn't expose a height prop. We use a flexbox approach instead:
-//   <sl-card style="height: 100%;">
-// We could also set .card-h-100 class on the sl-card to make the
+// When the layout needs an h-100 card (e.g. Bootstrap grid rows where
+// all cards in a row should match height), WA's wa-card doesn't expose
+// a height prop. We use a flexbox approach instead:
+//   <wa-card style="height: 100%;">
+// We could also set .card-h-100 class on the wa-card to make the
 // migration cleaner — both work.
 .card-h-100 { height: 100%; }
 
-// Bootstrap .card-body replacement — sl-card has its own internal
-// padding via the --sl-card-spacing-* tokens. When migrating a card
-// with class="card-body p-4" we just pass p-4 onto sl-card directly
-// (since the sl-card padding is controlled by CSS vars not by class
-// on the body slot). The .card-body class becomes a no-op when
-// applied to an <sl-card>.
-sl-card.card-body { display: block; }
+// Bootstrap .card-body replacement — wa-card has its own internal
+// padding via the --spacing token (set to 0 above). When migrating a
+// card with class="card-body p-4" we keep the inner .card-body div
+// as slotted content — Bootstrap's .card-body CSS rules still apply
+// to slotted content. The .card-body class becomes a no-op when
+// applied directly to a <wa-card> (which we don't do, but defensive).
+wa-card.card-body { display: block; }

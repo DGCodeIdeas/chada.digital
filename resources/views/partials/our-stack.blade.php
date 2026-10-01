@@ -13,7 +13,7 @@
         <div class="row g-4">
             @foreach(data_get($stack, 'categories', []) as $category)
                 <div class="col-md-6 col-lg-3">
-                    <sl-card class="card h-100 border-0 shadow-sm">
+                    <wa-card class="card h-100 border-0 shadow-sm">
                         <div class="card-body p-4">
                             <div class="d-flex align-items-center gap-3 mb-3">
                                 <span class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary bg-opacity-10 text-primary flex-shrink-0" style="width: 2.5rem; height: 2.5rem;">
@@ -39,7 +39,7 @@
                                 @endforeach
                             </div>
                         </div>
-                    </sl-card>
+                    </wa-card>
                 </div>
             @endforeach
         </div>
