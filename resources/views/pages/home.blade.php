@@ -213,40 +213,36 @@
             <h2 class="fw-bold mb-2" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface); font-size: 1.5rem;">{{ config('martech.title', 'The tools we actually use') }}</h2>
             <p class="mx-auto" style="max-width: 540px; color: var(--md-sys-color-on-surface-variant); font-size: 0.875rem;">{{ config('martech.subtitle') }}</p>
         </div>
+    </div>
 
-        @php
-            // Single source list: flatten all categories, keep only tools
-            // with an FA brand slug, dedupe by brand slug (Google is
-            // referenced twice — for GA4 and Google Ads — appears once),
-            // then SHUFFLE for a random order per page load. The shuffle
-            // is seeded by PHP's mt_rand — different on every request,
-            // so visitors see a different order each time they land on /.
-            $brandTools = collect(config('martech.categories', []))
-                ->flatMap(fn($cat) => $cat['tools'])
-                ->filter(fn($t) => !empty($t['brand']))
-                ->unique('brand')
-                ->shuffle()
-                ->values();
-        @endphp
+    @php
+        $brandTools = collect(config('martech.categories', []))
+            ->flatMap(fn($cat) => $cat['tools'])
+            ->filter(fn($t) => !empty($t['brand']))
+            ->unique('brand')
+            ->shuffle()
+            ->values();
+    @endphp
 
-        <div class="chada-marquee" aria-label="Technology stack logos">
-            {{-- The track is rendered TWICE — once for the visible scroll,
-                 once for the seamless-loop trick. The animation translates
-                 from translateX(0) to translateX(-50%), at which point the
-                 second copy is in the same position the first copy started
-                 at, so the loop is invisible. --}}
-            <ul class="chada-marquee__track" role="list">
-                @foreach([$brandTools, $brandTools] as $row)
-                    @foreach($row as $tool)
-                        <li class="chada-marquee__logo" style="--brand-color: {{ $tool['color'] ?? 'var(--md-sys-color-primary)' }};">
-                            <i class="fab fa-{{ $tool['brand'] }}" aria-hidden="true"></i>
-                            <span class="chada-marquee__label">{{ $tool['name'] }}</span>
-                        </li>
-                    @endforeach
+    {{-- The marquee sits OUTSIDE the .container so the strip touches
+         both edges of the viewport (per founder directive: "let the
+         marquee touch each end of the window border"). The heading
+         and footnote above/below remain inside .container for
+         centered alignment with the rest of the page. --}}
+    <div class="chada-marquee" aria-label="Technology stack logos">
+        <ul class="chada-marquee__track" role="list">
+            @foreach([$brandTools, $brandTools] as $row)
+                @foreach($row as $tool)
+                    <li class="chada-marquee__logo" style="--brand-color: {{ $tool['color'] ?? 'var(--md-sys-color-primary)' }};">
+                        <i class="fab fa-{{ $tool['brand'] }}" aria-hidden="true"></i>
+                        <span class="chada-marquee__label">{{ $tool['name'] }}</span>
+                    </li>
                 @endforeach
-            </ul>
-        </div>
+            @endforeach
+        </ul>
+    </div>
 
+    <div class="container">
         @if(config('martech.footnote'))
             <p class="text-center text-muted small mt-4">{{ config('martech.footnote') }}</p>
         @endif
