@@ -6,7 +6,7 @@
 
 return [
     'eyebrow' => 'Early Access',
-    'headline' => 'No customer logos yet, we won\'t fake them.',
+    'headline' => 'No customer logos yet. We will not invent them.',
     'subhead' => 'Become a',
     'cta_text' => 'design partner',
     'cta_route' => 'contact',

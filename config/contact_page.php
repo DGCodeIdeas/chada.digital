@@ -7,5 +7,5 @@
 return [
     'eyebrow' => 'Contact',
     'headline' => 'Tell us what you want built',
-    'subhead' => 'Describe the job. We reply within 24 hours with a yes or no on fit, a timeline, and a price.',
+    'subhead' => 'A short note about the work is enough. The team replies within a business day with whether it is a fit, and what the next step looks like.',
 ];

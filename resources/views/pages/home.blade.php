@@ -17,11 +17,11 @@
                     {{ config('hero.subhead') }}
                 </p>
                 <div class="d-flex flex-wrap gap-3">
-                    <a href="{{ route('services') }}" class="btn btn-primary btn-lg rounded-pill px-4" style="background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); font-weight: 500;">
-                        See Services & Pricing
+                    <a href="{{ route(config('hero.primary_cta_route', 'services')) }}" class="btn btn-primary btn-lg rounded-pill px-4" style="background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); font-weight: 500;">
+                        {{ config('hero.primary_cta', 'See What We Build') }}
                     </a>
-                    <a href="{{ route('case-studies.index') }}" class="btn btn-outline-primary btn-lg rounded-pill px-4" style="border-color: var(--md-sys-color-primary); color: var(--md-sys-color-primary); font-weight: 500;">
-                        View Our Work
+                    <a href="{{ route(config('hero.secondary_cta_route', 'demos')) }}" class="btn btn-outline-primary btn-lg rounded-pill px-4" style="border-color: var(--md-sys-color-primary); color: var(--md-sys-color-primary); font-weight: 500;">
+                        {{ config('hero.secondary_cta', 'View Our Work') }}
                     </a>
                 </div>
                 {{-- Design Partner band replaces the V2 trust-strip + the hardcoded "Trusted by 50+ brands"
@@ -38,7 +38,7 @@
                             </div>
                             <div class="flex-grow-1">
                                 <p class="fw-semibold mb-0" style="font-size: 0.875rem;">Website Design</p>
-                                <p class="mb-0" style="font-size: 0.75rem; color: var(--md-sys-color-on-surface-variant);">From ₦200,000</p>
+                                <p class="mb-0" style="font-size: 0.75rem; color: var(--md-sys-color-on-surface-variant);">Sites people can find and use</p>
                             </div>
                             <a href="{{ route('services') }}" class="btn btn-sm btn-outline-primary rounded-pill flex-shrink-0" style="border-color: var(--md-sys-color-primary); color: var(--md-sys-color-primary); font-size: 0.6875rem; padding: 0.25rem 0.625rem;">View</a>
                         </div>
@@ -48,7 +48,7 @@
                             </div>
                             <div class="flex-grow-1">
                                 <p class="fw-semibold mb-0" style="font-size: 0.875rem;">Automation</p>
-                                <p class="mb-0" style="font-size: 0.75rem; color: var(--md-sys-color-on-surface-variant);">From ₦150,000</p>
+                                <p class="mb-0" style="font-size: 0.75rem; color: var(--md-sys-color-on-surface-variant);">Follow-ups that keep running</p>
                             </div>
                             <a href="{{ route('services') }}" class="btn btn-sm btn-outline-primary rounded-pill flex-shrink-0" style="border-color: var(--md-sys-color-primary); color: var(--md-sys-color-primary); font-size: 0.6875rem; padding: 0.25rem 0.625rem;">View</a>
                         </div>
@@ -58,12 +58,12 @@
                             </div>
                             <div class="flex-grow-1">
                                 <p class="fw-semibold mb-0" style="font-size: 0.875rem;">Branding</p>
-                                <p class="mb-0" style="font-size: 0.75rem; color: var(--md-sys-color-on-surface-variant);">From ₦100,000</p>
+                                <p class="mb-0" style="font-size: 0.75rem; color: var(--md-sys-color-on-surface-variant);">A look that holds together</p>
                             </div>
                             <a href="{{ route('services') }}" class="btn btn-sm btn-outline-primary rounded-pill flex-shrink-0" style="border-color: var(--md-sys-color-primary); color: var(--md-sys-color-primary); font-size: 0.6875rem; padding: 0.25rem 0.625rem;">View</a>
                         </div>
                         <a href="{{ route('services') }}" class="btn btn-primary w-100 rounded-pill mt-2" style="background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); font-weight: 500; font-size: 0.8125rem;">
-                            See All Pricing
+                            See What We Build
                         </a>
                     </div>
                 </div>
@@ -177,7 +177,7 @@
         </div>
         <div class="text-center mt-5">
             <a href="{{ route('services') }}" class="btn btn-primary rounded-pill px-4" style="background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); font-weight: 500;">
-                See Full Services & Pricing
+                See What We Build
             </a>
         </div>
     </div>

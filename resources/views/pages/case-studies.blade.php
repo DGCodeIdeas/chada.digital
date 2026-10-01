@@ -13,10 +13,10 @@
                 </p>
                 <div class="d-flex flex-wrap gap-2 justify-content-center">
                     <a href="{{ route('demos') }}" class="btn btn-primary rounded-pill" style="background: var(--md-sys-color-primary); border-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); font-weight: 500; font-size: 0.8125rem; padding: 0.5rem 1rem;">
-                        See the Frontend
+                        See the Demos
                     </a>
                     <a href="{{ route('services') }}" class="btn btn-outline-primary rounded-pill" style="border-color: var(--md-sys-color-primary); color: var(--md-sys-color-primary); font-weight: 500; font-size: 0.8125rem; padding: 0.5rem 1rem;">
-                        View Services & Pricing
+                        View Services
                     </a>
                     <a href="{{ route('contact') }}" class="btn btn-outline-primary rounded-pill" style="border-color: var(--md-sys-color-primary); color: var(--md-sys-color-primary); font-weight: 500; font-size: 0.8125rem; padding: 0.5rem 1rem;">
                         Start a Project

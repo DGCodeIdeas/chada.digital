@@ -3,8 +3,8 @@
 return [
     'heading' => 'Our Stack',
     'eyebrow' => 'Our Stack',
-    'title' => 'The tools we actually use',
-    'subtitle' => 'Paystack, HubSpot, Laravel, Meta Ads. Reliable tools, wired together so your team can manage them day to day.',
+    'title' => 'The tools behind the work',
+    'subtitle' => 'Paystack, HubSpot, Laravel, Meta Ads. Tools the people who run the business can keep using after handover.',
     'footnote' => 'Tool logos are property of their respective owners. Listed tools reflect our standard integration stack.',
 
     // Tools & categories use Font Awesome 6 Free.
