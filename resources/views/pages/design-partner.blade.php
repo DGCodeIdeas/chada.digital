@@ -19,7 +19,7 @@
     <div class="container">
         <div class="row g-4">
             <div class="col-md-4">
-                <div class="card h-100" style="background: var(--md-sys-color-surface-container-low); border-radius: 12px; box-shadow: var(--md-sys-elevation-1, 0 1px 2px 0 rgba(0,0,0,0.03));">
+                <sl-card class="card h-100" style="--sl-card-background-color: var(--md-sys-color-surface-container-low); --sl-card-border-radius: 12px; box-shadow: var(--md-sys-elevation-1, 0 1px 2px 0 rgba(0,0,0,0.03));">
                     <div class="card-body p-4">
                         <div class="rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 48px; height: 48px; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container);">
                             <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -27,10 +27,10 @@
                         <h5 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface); font-size: 1rem;">You talk to the people writing it</h5>
                         <p class="mb-0" style="font-size: 0.8125rem; color: var(--md-sys-color-on-surface-variant); line-height: 1.6;">Not a salesperson who then writes it up for someone else.</p>
                     </div>
-                </div>
+                </sl-card>
             </div>
             <div class="col-md-4">
-                <div class="card h-100" style="background: var(--md-sys-color-surface-container-low); border-radius: 12px; box-shadow: var(--md-sys-elevation-1, 0 1px 2px 0 rgba(0,0,0,0.03));">
+                <sl-card class="card h-100" style="--sl-card-background-color: var(--md-sys-color-surface-container-low); --sl-card-border-radius: 12px; box-shadow: var(--md-sys-elevation-1, 0 1px 2px 0 rgba(0,0,0,0.03));">
                     <div class="card-body p-4">
                         <div class="rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 48px; height: 48px; background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container);">
                             <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg>
@@ -38,10 +38,10 @@
                         <h5 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface); font-size: 1rem;">A date in the quote</h5>
                         <p class="mb-0" style="font-size: 0.8125rem; color: var(--md-sys-color-on-surface-variant); line-height: 1.6;">Weekly check-ins and a staging link while we work. Live date is in the quote.</p>
                     </div>
-                </div>
+                </sl-card>
             </div>
             <div class="col-md-4">
-                <div class="card h-100" style="background: var(--md-sys-color-surface-container-low); border-radius: 12px; box-shadow: var(--md-sys-elevation-1, 0 1px 2px 0 rgba(0,0,0,0.03));">
+                <sl-card class="card h-100" style="--sl-card-background-color: var(--md-sys-color-surface-container-low); --sl-card-border-radius: 12px; box-shadow: var(--md-sys-elevation-1, 0 1px 2px 0 rgba(0,0,0,0.03));">
                     <div class="card-body p-4">
                         <div class="rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 48px; height: 48px; background: var(--md-sys-color-tertiary-container); color: var(--md-sys-color-on-tertiary-container);">
                             <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
@@ -49,7 +49,7 @@
                         <h5 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface); font-size: 1rem;">Transparent Pricing</h5>
                         <p class="mb-0" style="font-size: 0.8125rem; color: var(--md-sys-color-on-surface-variant); line-height: 1.6;">Every package has a Naira range on the site. You know the number before we start.</p>
                     </div>
-                </div>
+                </sl-card>
             </div>
         </div>
     </div>

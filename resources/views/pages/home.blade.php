@@ -85,13 +85,13 @@
         <div class="row g-4">
             @foreach(config('home.steps') as $step)
             <div class="col-md-6 col-lg-3">
-                <div class="card h-100 border-0" style="background: var(--md-sys-color-surface-container-low); border-radius: 16px;">
+                <sl-card class="card h-100 border-0" style="--sl-card-background-color: var(--md-sys-color-surface-container-low); --sl-card-border-radius: 16px; --sl-card-border-width: 0;">
                     <div class="card-body p-4">
                         <p class="fw-bold mb-2" style="font-family: 'Outfit', sans-serif; font-size: 2.5rem; color: var(--md-sys-color-primary); opacity: 0.3;">{{ $step['number'] }}</p>
                         <h5 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface);">{{ $step['title'] }}</h5>
                         <p class="mb-0" style="font-size: 0.9375rem; color: var(--md-sys-color-on-surface-variant); line-height: 1.6;">{{ $step['desc'] }}</p>
                     </div>
-                </div>
+                </sl-card>
             </div>
             @endforeach
         </div>
@@ -114,7 +114,7 @@
         <div class="row g-4">
             @foreach($featuredStudies as $study)
             <div class="col-md-6 col-lg-4">
-                <div class="card h-100 border-0" style="background: var(--md-sys-color-surface); border-radius: 16px; transition: transform 0.2s ease, box-shadow 0.2s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 24px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                <sl-card class="card h-100 border-0" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 12px 24px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'" style="--sl-card-background-color: var(--md-sys-color-surface); --sl-card-border-radius: 16px; --sl-card-border-width: 0; transition: transform 0.2s ease, box-shadow 0.2s ease;">
                     <div class="card-body p-4">
                         <div class="d-flex align-items-center gap-2 mb-3">
                             <span class="badge rounded-pill" style="background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); font-weight: 500; font-size: 0.75rem;">{{ $study['industry'] }}</span>
@@ -127,7 +127,7 @@
                             Read Story →
                         </a>
                     </div>
-                </div>
+                </sl-card>
             </div>
             @endforeach
         </div>
@@ -150,7 +150,7 @@
         <div class="row g-4">
             @foreach(config('home.services') as $service)
             <div class="col-md-6 col-lg-4">
-                <div class="card h-100 border-0" style="background: var(--md-sys-color-surface-container-low); border-radius: 16px;">
+                <sl-card class="card h-100 border-0" style="--sl-card-background-color: var(--md-sys-color-surface-container-low); --sl-card-border-radius: 16px; --sl-card-border-width: 0;">
                     <div class="card-body p-4">
                         <div class="rounded-circle d-flex align-items-center justify-content-center mb-3" style="width: 48px; height: 48px; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container);">
                             @if($service['icon'] === 'code')
@@ -171,7 +171,7 @@
                             @endforeach
                         </div>
                     </div>
-                </div>
+                </sl-card>
             </div>
             @endforeach
         </div>
@@ -183,7 +183,13 @@
     </div>
 </section>
 
-<!-- ===== TECHNOLOGIES ===== -->
+<!-- ===== TECHNOLOGIES — Marquee Logo Cloud =====
+     Dual-row marquee: top scrolls R→L, bottom L→R, ~40s/loop.
+     Logos are muted by default; hovering lights them up in the
+     brand's native color (per-tool 'color' field in config/martech.php).
+     Edges fade + blur via CSS mask-image gradient. Animation pauses
+     on hover and is fully disabled under prefers-reduced-motion.
+     See resources/sass/_chada-custom.scss for the keyframes + styles. -->
 <section style="background: var(--md-sys-color-surface-container-low); padding: 3.5rem 0;">
     <div class="container">
         <div class="text-center mb-4">
@@ -191,34 +197,49 @@
             <h2 class="fw-bold mb-2" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface); font-size: 1.5rem;">{{ config('martech.title', 'The tools we actually use') }}</h2>
             <p class="mx-auto" style="max-width: 540px; color: var(--md-sys-color-on-surface-variant); font-size: 0.875rem;">{{ config('martech.subtitle') }}</p>
         </div>
-        @php $techCategories = config('martech.categories', []); @endphp
-        <div class="row g-2 justify-content-center">
-            @foreach($techCategories as $cat)
-            <div class="col-6 col-md-4 col-lg-3">
-                <div class="card h-100" style="background: var(--md-sys-color-surface); border-radius: 10px; box-shadow: var(--md-sys-elevation-1, 0 1px 2px 0 rgba(0,0,0,0.03));">
-                    <div class="card-body p-3 text-center">
-                        <div class="rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 36px; height: 36px; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container);">
-                            <i class="fas {{ $cat['icon'] }}" style="font-size: 1.125rem;"></i>
-                        </div>
-                        <h6 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface); font-size: 0.8125rem;">{{ $cat['name'] }}</h6>
-                        <div class="d-flex flex-wrap gap-1 justify-content-center">
-                            @foreach($cat['tools'] as $tool)
-                            <span class="badge rounded-pill d-inline-flex align-items-center gap-1" style="background: var(--md-sys-color-surface-container-highest); color: var(--md-sys-color-on-surface-variant); font-weight: 500; font-size: 0.6875rem; padding: 0.25rem 0.625rem;">
-                                @if(!empty($tool['brand']))
-                                    <i class="fab fa-{{ $tool['brand'] }}" aria-hidden="true" style="font-size: 0.75rem; line-height: 1;"></i>
-                                    <span class="visually-hidden">{{ $tool['name'] }}</span>
-                                @elseif(!empty($tool['icon']))
-                                    <i class="fas {{ $tool['icon'] }}" aria-hidden="true" style="font-size: 0.75rem; line-height: 1;"></i>
-                                @endif
-                                {{ $tool['name'] }}
-                            </span>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
+
+        @php
+            $brandTools = collect(config('martech.categories', []))
+                ->flatMap(fn($cat) => $cat['tools'])
+                ->filter(fn($t) => !empty($t['brand']))
+                ->unique('brand')
+                ->values();
+            $half = (int) ceil($brandTools->count() / 2);
+            $row1 = $brandTools->take($half);
+            $row2 = $brandTools->slice($half);
+        @endphp
+
+        <div class="chada-marquee" aria-label="Technology stack logos, row 1">
+            <div class="chada-marquee__track">
+                @foreach([$row1, $row1] as $row)
+                    @foreach($row as $tool)
+                        <span class="chada-marquee__logo" style="--brand-color: {{ $tool['color'] ?? 'var(--md-sys-color-primary)' }};">
+                            <i class="fab fa-{{ $tool['brand'] }}" aria-hidden="true"></i>
+                            <span class="chada-marquee__sr-only">{{ $tool['name'] }}</span>
+                        </span>
+                    @endforeach
+                @endforeach
             </div>
-            @endforeach
         </div>
+
+        @if($row2->isNotEmpty())
+        <div class="chada-marquee chada-marquee--reverse" aria-label="Technology stack logos, row 2">
+            <div class="chada-marquee__track">
+                @foreach([$row2, $row2] as $row)
+                    @foreach($row as $tool)
+                        <span class="chada-marquee__logo" style="--brand-color: {{ $tool['color'] ?? 'var(--md-sys-color-primary)' }};">
+                            <i class="fab fa-{{ $tool['brand'] }}" aria-hidden="true"></i>
+                            <span class="chada-marquee__sr-only">{{ $tool['name'] }}</span>
+                        </span>
+                    @endforeach
+                @endforeach
+            </div>
+        </div>
+        @endif
+
+        @if(config('martech.footnote'))
+            <p class="text-center text-muted small mt-4">{{ config('martech.footnote') }}</p>
+        @endif
     </div>
 </section>
 

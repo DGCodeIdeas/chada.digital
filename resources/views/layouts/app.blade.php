@@ -18,6 +18,17 @@
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css">
 
+    <!-- Web Components (Web Awesome / Shoelace) — used by all card
+         components site-wide. Loaded as ES module (autoloader registers
+         every <sl-*> custom element on the page). Pinned to v2.20.1
+         (the current production version of @shoelace-style/shoelace,
+         which is being renamed to "Web Awesome"). The light theme CSS
+         is loaded separately so the components inherit our MD3 token
+         values via the .sl-style-custom-bridge overrides in
+         resources/sass/_chada-custom.scss. -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/themes/light.css">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.20.1/cdn/shoelace-autoloader.js"></script>
+
     <!-- Styles -->
     <!-- Preload CSS to prevent FOUC (flash of unstyled content) -->
     <link rel="preload" href="{{ mix('css/app.css') }}" as="style">
