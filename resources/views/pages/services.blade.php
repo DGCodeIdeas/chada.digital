@@ -106,6 +106,62 @@
 </section>
 @endforeach
 
+<!-- ===== FAQ =====
+     Renders Q&A pairs from config/faqs.php. Also pushes a FAQPage
+     JSON-LD schema block via @push('structured-data') — the partial
+     at partials/structured-data.blade.php picks it up and emits it
+     in the page <head>. LLM-based answer engines (ChatGPT, Perplexity,
+     Claude, Google AI Overviews) extract Q&A pairs from FAQPage
+     schema and cite them in their generated answers. -->
+@php $faqs = config('faqs', []); @endphp
+@if(!empty($faqs))
+<section style="background: var(--md-sys-color-surface); padding: 4rem 0;">
+    <div class="container" style="max-width: 800px;">
+        <div class="text-center mb-5">
+            <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;">FAQ</p>
+            <h2 class="fw-bold mb-2" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface); font-size: 1.75rem;">Questions we hear often</h2>
+            <p class="mx-auto" style="max-width: 540px; color: var(--md-sys-color-on-surface-variant); font-size: 0.9375rem;">Quick answers on pricing, timelines, and what the work looks like.</p>
+        </div>
+
+        <div class="accordion" id="chadaFaqAccordion">
+            @foreach($faqs as $i => $faq)
+            <div class="accordion-item" style="background: var(--md-sys-color-surface-container-low); border: 1px solid var(--md-sys-color-outline-variant); border-radius: 12px; margin-bottom: 0.75rem; overflow: hidden;">
+                <h3 class="accordion-header" id="faqHeading{{ $i }}">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse{{ $i }}" aria-expanded="false" aria-controls="faqCollapse{{ $i }}" style="background: transparent; color: var(--md-sys-color-on-surface); font-weight: 600; font-size: 0.9375rem; padding: 1rem 1.25rem;">
+                        {{ $faq['q'] }}
+                    </button>
+                </h3>
+                <div id="faqCollapse{{ $i }}" class="accordion-collapse collapse" aria-labelledby="faqHeading{{ $i }}" data-bs-parent="#chadaFaqAccordion">
+                    <div class="accordion-body" style="color: var(--md-sys-color-on-surface-variant); font-size: 0.9375rem; line-height: 1.65; padding: 0 1.25rem 1.25rem;">
+                        {{ $faq['a'] }}
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+
+@push('structured-data')
+<script type="application/ld+json">
+{!! json_encode([
+    '@context' => 'https://schema.org',
+    '@type' => 'FAQPage',
+    'name' => 'Chada Digital — Frequently Asked Questions',
+    'url' => route('services'),
+    'mainEntity' => array_map(fn($f) => [
+        '@type' => 'Question',
+        'name' => $f['q'],
+        'acceptedAnswer' => [
+            '@type' => 'Answer',
+            'text' => $f['a'],
+        ],
+    ], $faqs),
+], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+</script>
+@endpush
+@endif
+
 <!-- Final CTA -->
 <section style="background: linear-gradient(135deg, var(--md-sys-color-primary) 0%, #1a5fd6 100%); padding: 5rem 0;">
     <div class="container text-center">

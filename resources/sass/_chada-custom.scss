@@ -413,17 +413,23 @@ h1, h2, h3, h4, h5, h6 {
     rgba(0, 0, 0, 0.85) 97%,
     transparent 100%
   );
-  // Continuous infinite scroll: track translates from 0 to -50% over
-  // 60 seconds, then loops. The track is rendered twice in the markup
-  // (see pages/home.blade.php) so at the -50% position the second copy
-  // is in the same position the first copy started at — the loop is
-  // seamless, no visible "snap" at the boundary.
+  // PROGRESSIVE ENHANCEMENT: this CSS animation is the NO-JS FALLBACK.
+  // When GSAP loads (via resources/js/modules/marquee-gsap.js), it
+  // calls gsap.killTweensOf(track) + gsap.set(track, {x:0}) + a new
+  // gsap.to() tween that takes over the scroll. GSAP-driven animation
+  // is GPU-accelerated and easier to debug. If GSAP fails to load
+  // (CDN blocked, network error), this CSS animation keeps the marquee
+  // scrolling. The keyframe (chada-marquee-scroll) and the GSAP tween
+  // both translate the track from 0 to -50% over 60s linear infinite
+  // — same behavior, different driver.
   animation: chada-marquee-scroll 60s linear infinite;
   will-change: transform;
 
   // Respect reduced-motion preferences: kill the scroll animation
   // entirely. The track renders at its starting position (translateX(0))
-  // — logos stay visible at their natural positions, no motion.
+  // — logos stay visible at their natural positions, no motion. GSAP
+  // also respects prefers-reduced-motion via matchMedia check in the
+  // marquee-gsap.js module — both drivers agree on this.
   @media (prefers-reduced-motion: reduce) {
     animation: none;
   }

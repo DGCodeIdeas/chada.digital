@@ -35,6 +35,15 @@
     <link rel="stylesheet" href="https://ka-f.webawesome.com/webawesome@3.14.0/styles/native.css">
     <script type="module" src="https://ka-f.webawesome.com/webawesome@3.14.0/webawesome.loader.js"></script>
 
+    <!-- GSAP — GreenSock Animation Platform. Used for all site
+         animations (replaces CSS keyframes for the marquee, plus any
+         future animation work). Loaded as a regular <script> (not
+         type=module) so it's globally available as window.gsap before
+         app.js runs. Pinned to v3.12.5. The ScrollTrigger plugin is
+         NOT loaded — we don't use scroll-driven animations yet. Add
+         it via a separate <script> tag if needed later. -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
     <!-- Styles -->
     <!-- Preload CSS to prevent FOUC (flash of unstyled content) -->
     <link rel="preload" href="{{ mix('css/app.css') }}" as="style">

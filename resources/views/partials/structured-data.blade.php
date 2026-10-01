@@ -42,7 +42,7 @@ $companySameAs = array_filter(array_map('trim', [
 // Organization (the studio)
 $organization = [
     '@context' => 'https://schema.org',
-    '@type' => 'Organization',
+    '@type' => ['Organization', 'LocalBusiness'],
     '@id' => $siteUrl . '#organization',
     'name' => $siteName,
     'url' => $siteUrl,
@@ -53,6 +53,11 @@ $organization = [
         '@type' => 'PostalAddress',
         'addressLocality' => config('contact.location', 'Lagos, Nigeria'),
         'addressCountry' => 'NG',
+    ],
+    'geo' => [
+        '@type' => 'GeoCoordinates',
+        'latitude' => 6.5244,
+        'longitude' => 3.3792,
     ],
     'contactPoint' => [
         '@type' => 'ContactPoint',
@@ -168,6 +173,65 @@ if (!$isHome) {
 }
 
 $blocks = array_filter([$organization, $website, $person, $breadcrumb]);
+
+// HowTo schema — emitted on every page. Describes the "How We Work"
+// process (Discover → Design → Build → Launch) that's rendered on
+// the homepage. LLM-based answer engines extract HowTo steps for
+// "how does X work" type queries. The steps come from config/home.php
+// so the schema stays in sync with the visible content.
+$processSteps = config('home.steps', []);
+if (!empty($processSteps)) {
+    $howTo = [
+        '@context' => 'https://schema.org',
+        '@type' => 'HowTo',
+        'name' => config('home.process_heading', 'How Chada Digital Works'),
+        'description' => 'The four-step process Chada Digital uses to take a project from first call to launch.',
+        'totalTime' => 'P30D',  // ~30 days average — ISO 8601 duration
+        'estimatedCost' => [
+            '@type' => 'MonetaryAmount',
+            'currency' => 'NGN',
+            'value' => '150000',
+        ],
+        'step' => array_map(fn($i, $s) => [
+            '@type' => 'HowToStep',
+            'position' => $i + 1,
+            'name' => $s['title'],
+            'text' => $s['desc'],
+            'url' => $siteUrl . '/#how-we-work',
+        ], array_keys($processSteps), $processSteps),
+    ];
+    $blocks[] = $howTo;
+}
+
+// Service schema — emitted on every page. One block per service
+// category from config/home.php (Website Design, Automation, Branding).
+// Helps LLMs understand what services Chada offers without having to
+// crawl the /services page.
+$services = config('home.services', []);
+foreach ($services as $svc) {
+    $serviceBlock = [
+        '@context' => 'https://schema.org',
+        '@type' => 'Service',
+        'name' => $svc['title'] . ' — Chada Digital',
+        'description' => $svc['desc'],
+        'provider' => ['@id' => $siteUrl . '#organization'],
+        'areaServed' => [
+            '@type' => 'Country',
+            'name' => 'Nigeria',
+        ],
+        'url' => route('services'),
+    ];
+    if (!empty($svc['tools'])) {
+        $serviceBlock['offers'] = array_map(fn($tier) => [
+            '@type' => 'Offer',
+            'name' => $tier . ' tier',
+            'priceCurrency' => 'NGN',
+            'availability' => 'https://schema.org/InStock',
+            'url' => route('services'),
+        ], $svc['tools']);
+    }
+    $blocks[] = $serviceBlock;
+}
 @endphp
 
 @foreach($blocks as $block)
