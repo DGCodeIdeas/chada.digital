@@ -5,7 +5,7 @@
 
 return [
     'name' => 'Chada Digital',
-    'tagline' => 'Websites, automation, and branding. Priced in Naira, built in Lagos.',
-    'footer_tagline' => 'Websites, automation, and branding. Priced in Naira, built in Lagos.',
+    'tagline' => 'A Lagos studio for websites, automation, and brands.',
+    'footer_tagline' => 'A Lagos studio. Websites, automation, and brands for people who need them to work.',
     'founded_year' => 2023,
 ];

@@ -21,7 +21,7 @@
                     <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
                 </div>
                 <h5 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface);">Deadlines are real</h5>
-                <p class="mb-0" style="color: var(--md-sys-color-on-surface-variant); font-size: 0.9375rem;">If we name a date, that is the date. We do not vanish mid-project.</p>
+                <p class="mb-0" style="color: var(--md-sys-color-on-surface-variant); font-size: 0.9375rem;">If a date is named, that is the date. The team does not vanish mid-project.</p>
             </div>
             <div class="col-md-4">
                 <div class="rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 64px; height: 64px; background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container);">
@@ -34,8 +34,8 @@
                 <div class="rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 64px; height: 64px; background: var(--md-sys-color-tertiary-container); color: var(--md-sys-color-on-tertiary-container);">
                     <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
                 </div>
-                <h5 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface);">We bill the job, not the clock</h5>
-                <p class="mb-0" style="color: var(--md-sys-color-on-surface-variant); font-size: 0.9375rem;">Hourly retainers hide waste. You pay for a finished site, a working workflow, or a brand kit.</p>
+                <h5 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface);">The work is yours</h5>
+                <p class="mb-0" style="color: var(--md-sys-color-on-surface-variant); font-size: 0.9375rem;">When a project is done, files and logins come with it, plus a walkthrough so you can keep it going.</p>
             </div>
         </div>
     </div>
@@ -54,10 +54,10 @@
             Client Stories
         </p>
         <h2 class="display-6 fw-bold mb-3" style="font-family: 'Inter', sans-serif; color: var(--md-sys-color-on-surface);">
-            No testimonials yet, we won&rsquo;t fake them.
+            No testimonials yet. None will be invented.
         </h2>
         <p class="lead mb-0" style="color: var(--md-sys-color-on-surface-variant);">
-            Real client quotes will appear here once we have permission to share them. In the meantime, <a href="{{ route('demos') }}" style="color: var(--md-sys-color-primary); text-decoration: none; font-weight: 500;">see the work</a> or <a href="{{ route('contact') }}" style="color: var(--md-sys-color-primary); text-decoration: none; font-weight: 500;">become our next case study</a>.
+            Real client quotes will appear here once there is permission to share them. Until then, <a href="{{ route('demos') }}" style="color: var(--md-sys-color-primary); text-decoration: none; font-weight: 500;">see the work</a> or <a href="{{ route('contact') }}" style="color: var(--md-sys-color-primary); text-decoration: none; font-weight: 500;">start a conversation</a>.
         </p>
     </div>
 </section>

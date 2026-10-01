@@ -120,7 +120,7 @@
         <div class="text-center mb-5">
             <p class="fw-semibold mb-2" style="color: var(--md-sys-color-primary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;">FAQ</p>
             <h2 class="fw-bold mb-2" style="font-family: 'Outfit', sans-serif; color: var(--md-sys-color-on-surface); font-size: 1.75rem;">Questions we hear often</h2>
-            <p class="mx-auto" style="max-width: 540px; color: var(--md-sys-color-on-surface-variant); font-size: 0.9375rem;">Quick answers on pricing, timelines, and what the work looks like.</p>
+            <p class="mx-auto" style="max-width: 540px; color: var(--md-sys-color-on-surface-variant); font-size: 0.9375rem;">Timelines, handover, and who does the work.</p>
         </div>
 
         <div class="accordion" id="chadaFaqAccordion">

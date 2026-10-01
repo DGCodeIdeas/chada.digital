@@ -2,25 +2,25 @@
     $services = [
         [
             'title' => 'Web Development',
-            'desc' => 'High-converting websites and web apps built for speed, SEO, and conversion.',
+            'desc' => 'Websites and web apps that load quickly and that people can actually use.',
             'stack' => ['Laravel', 'React', 'WordPress', 'Shopify'],
             'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="size-6"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>',
         ],
         [
             'title' => 'Funnel & Automation',
-            'desc' => 'Smart workflows and AI integrations that save time and close deals while you sleep.',
+            'desc' => 'Workflows that notify you and follow up, so the next step does not wait on a person sitting at a desk.',
             'stack' => ['ManyChat', 'HubSpot', 'Zapier', 'Make'],
             'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="size-6"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.555C21.965 6.012 17.461 2 12 2z"/></svg>',
         ],
         [
             'title' => 'Paid Advertising',
-            'desc' => 'Meta, Google, and LinkedIn campaigns that deliver measurable ROI, not just impressions.',
+            'desc' => 'Meta, Google, and LinkedIn campaigns aimed at real enquiries, not just impressions.',
             'stack' => ['Meta Ads', 'Google Ads', 'LinkedIn Ads'],
             'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="size-6"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>',
         ],
         [
             'title' => 'Brand & Strategy',
-            'desc' => 'Strategic branding and data-driven roadmaps that align your digital presence with revenue goals.',
+            'desc' => 'A look and a plan the business can use on the site, on social, and in print.',
             'stack' => ['Figma', 'Brand Strategy', 'CRO'],
             'icon' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="size-6"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>',
         ],
@@ -31,8 +31,8 @@
     <div class="mx-auto max-w-7xl">
         <div class="mb-14 text-center">
             <span class="text-xs font-semibold uppercase tracking-[0.3em] text-primary">What We Do</span>
-            <h2 class="mt-4 font-display text-3xl font-bold tracking-tight md:text-5xl">Services Engineered for <span class="text-primary">Growth</span></h2>
-            <p class="mt-4 max-w-2xl mx-auto text-base text-muted-foreground">From concept to launch, we build digital products that are fast, beautiful, and built to convert.</p>
+            <h2 class="mt-4 font-display text-3xl font-bold tracking-tight md:text-5xl">What the studio builds</h2>
+            <p class="mt-4 max-w-2xl mx-auto text-base text-muted-foreground">From first conversation to launch: sites, workflows, and brands people can use.</p>
         </div>
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             @foreach($services as $service)

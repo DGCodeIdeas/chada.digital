@@ -138,7 +138,7 @@ if (!$isHome) {
     // be overridden by pushing a more detailed breadcrumb via @push.
     $sectionLabel = match(true) {
         str_starts_with($currentPath, 'about')         => 'About',
-        str_starts_with($currentPath, 'services')      => 'Services & Pricing',
+        str_starts_with($currentPath, 'services')      => 'Services',
         str_starts_with($currentPath, 'contact')      => 'Contact',
         str_starts_with($currentPath, 'case-studies')  => 'Case Studies',
         str_starts_with($currentPath, 'case-study/')   => 'Case Studies',
