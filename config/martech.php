@@ -13,17 +13,21 @@ return [
     //   - 'icon' (string) — Font Awesome SOLID slug (rendered as <i class="fas fa-{icon}">).
     //     Used for category headers and as a fallback for tools without a brand logo
     //     (e.g. Paystack, Flutterwave, Ahrefs — these are not in Font Awesome Brands).
+    //   - 'color' (string) — Official brand color (hex). Used by the marquee's
+    //     "muted by default, native color on hover" treatment. Set on every tool
+    //     that has a brand slug. Brand-less tools don't appear in the marquee,
+    //     so they don't need a color.
     //
-    // FA brand slugs were verified against the live FA 6.7.2 brands.min.css at
+    // FA brand slugs verified against the live FA 6.7.2 brands.min.css at
     // https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/brands.min.css
-    // Solid slugs were verified against all.min.css.
+    // Brand colors sourced from each company's official brand guidelines.
     'categories' => [
         [
             'name' => 'Payments',
             'icon' => 'fa-credit-card',
             'tools' => [
                 ['name' => 'Paystack',       'brand' => null,         'icon' => 'fa-credit-card'],
-                ['name' => 'Stripe',         'brand' => 'stripe',     'icon' => 'fa-credit-card'],
+                ['name' => 'Stripe',         'brand' => 'stripe',     'icon' => 'fa-credit-card',     'color' => '#635bff'],
                 ['name' => 'Flutterwave',    'brand' => null,         'icon' => 'fa-money-bill-wave'],
             ],
         ],
@@ -31,7 +35,7 @@ return [
             'name' => 'Analytics',
             'icon' => 'fa-chart-line',
             'tools' => [
-                ['name' => 'Google Analytics 4', 'brand' => 'google', 'icon' => 'fa-chart-line'],
+                ['name' => 'Google Analytics 4', 'brand' => 'google', 'icon' => 'fa-chart-line', 'color' => '#4285f4'],
                 ['name' => 'Plausible',          'brand' => null,      'icon' => 'fa-chart-line'],
                 ['name' => 'PostHog',            'brand' => null,      'icon' => 'fa-piggy-bank'],
             ],
@@ -40,18 +44,18 @@ return [
             'name' => 'CRM & Marketing',
             'icon' => 'fa-users',
             'tools' => [
-                ['name' => 'HubSpot',    'brand' => 'hubspot',   'icon' => 'fa-users'],
+                ['name' => 'HubSpot',    'brand' => 'hubspot',   'icon' => 'fa-users',     'color' => '#ff7a59'],
                 ['name' => 'Brevo',      'brand' => null,        'icon' => 'fa-envelope'],
-                ['name' => 'Mailchimp',  'brand' => 'mailchimp', 'icon' => 'fa-envelope'],
+                ['name' => 'Mailchimp',  'brand' => 'mailchimp', 'icon' => 'fa-envelope', 'color' => '#ffe01b'],
             ],
         ],
         [
             'name' => 'Advertising',
             'icon' => 'fa-bullhorn',
             'tools' => [
-                ['name' => 'Meta Ads',     'brand' => 'meta',   'icon' => 'fa-bullhorn'],
-                ['name' => 'Google Ads',   'brand' => 'google', 'icon' => 'fa-bullhorn'],
-                ['name' => 'TikTok Ads',   'brand' => 'tiktok',  'icon' => 'fa-bullhorn'],
+                ['name' => 'Meta Ads',     'brand' => 'meta',   'icon' => 'fa-bullhorn', 'color' => '#0866ff'],
+                ['name' => 'Google Ads',   'brand' => 'google', 'icon' => 'fa-bullhorn', 'color' => '#4285f4'],
+                ['name' => 'TikTok Ads',   'brand' => 'tiktok',  'icon' => 'fa-bullhorn', 'color' => '#000000'],
             ],
         ],
         [
@@ -67,9 +71,9 @@ return [
             'name' => 'CMS & E-Commerce',
             'icon' => 'fa-cart-shopping',
             'tools' => [
-                ['name' => 'Laravel',   'brand' => 'laravel',   'icon' => 'fa-cart-shopping'],
-                ['name' => 'WordPress', 'brand' => 'wordpress', 'icon' => 'fa-cart-shopping'],
-                ['name' => 'Shopify',   'brand' => 'shopify',   'icon' => 'fa-cart-shopping'],
+                ['name' => 'Laravel',   'brand' => 'laravel',   'icon' => 'fa-cart-shopping', 'color' => '#ff2d20'],
+                ['name' => 'WordPress', 'brand' => 'wordpress', 'icon' => 'fa-cart-shopping', 'color' => '#21759b'],
+                ['name' => 'Shopify',   'brand' => 'shopify',   'icon' => 'fa-cart-shopping', 'color' => '#95bf47'],
             ],
         ],
         [
@@ -85,8 +89,8 @@ return [
             'name' => 'Infrastructure',
             'icon' => 'fa-server',
             'tools' => [
-                ['name' => 'AWS',         'brand' => 'aws',         'icon' => 'fa-server'],
-                ['name' => 'Cloudflare',  'brand' => 'cloudflare',  'icon' => 'fa-shield-halved'],
+                ['name' => 'AWS',         'brand' => 'aws',         'icon' => 'fa-server',         'color' => '#ff9900'],
+                ['name' => 'Cloudflare',  'brand' => 'cloudflare',  'icon' => 'fa-shield-halved', 'color' => '#f38020'],
                 ['name' => 'Vercel',      'brand' => null,          'icon' => 'fa-rocket'],
             ],
         ],

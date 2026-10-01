@@ -17,7 +17,7 @@
                 <p class="text-muted" style="font-size: 0.9375rem;">Primary outcome</p>
             </div>
             <div class="col-lg-4">
-                <div class="card border-0" style="background: var(--md-sys-color-surface); border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.06);">
+                <sl-card class="card border-0" style="--sl-card-background-color: var(--md-sys-color-surface); --sl-card-border-radius: 16px; --sl-card-border-width: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.06);">
                     <div class="card-body p-4">
                         <h6 class="fw-semibold mb-3" style="color: var(--md-sys-color-on-surface); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em;">Tech Stack</h6>
                         <div class="d-flex flex-wrap gap-2">
@@ -32,7 +32,7 @@
                         </a>
                         @endif
                     </div>
-                </div>
+                </sl-card>
             </div>
         </div>
     </div>
@@ -72,7 +72,7 @@
             <div class="d-none d-md-flex align-items-center justify-content-center gap-3 flex-wrap">
                 @foreach($study['workflow'] as $index => $step)
                 <div class="text-center" style="flex: 1; min-width: 160px; max-width: 200px;">
-                    <div class="card border-0 mx-auto" style="background: var(--md-sys-color-surface); border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+                    <sl-card class="card border-0 mx-auto" style="--sl-card-background-color: var(--md-sys-color-surface); --sl-card-border-radius: 16px; --sl-card-border-width: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
                         <div class="card-body p-3">
                             <div class="rounded-circle d-flex align-items-center justify-content-center mx-auto mb-2" style="width: 40px; height: 40px; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); font-weight: 700; font-size: 0.875rem;">
                                 {{ $index + 1 }}
@@ -80,7 +80,7 @@
                             <p class="fw-semibold mb-1" style="font-size: 0.875rem; color: var(--md-sys-color-on-surface);">{{ $step['step'] }}</p>
                             <p class="mb-0" style="font-size: 0.75rem; color: var(--md-sys-color-on-surface-variant);">{{ $step['tool'] }}</p>
                         </div>
-                    </div>
+                    </sl-card>
                 </div>
                 @if(!$loop->last)
                 <div class="d-flex align-items-center" style="color: var(--md-sys-color-outline);">
@@ -97,12 +97,12 @@
                     <div class="rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 40px; height: 40px; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); font-weight: 700; font-size: 0.875rem;">
                         {{ $index + 1 }}
                     </div>
-                    <div class="card border-0 flex-grow-1" style="background: var(--md-sys-color-surface); border-radius: 12px;">
+                    <sl-card class="card border-0 flex-grow-1" style="--sl-card-background-color: var(--md-sys-color-surface); --sl-card-border-radius: 12px; --sl-card-border-width: 0;">
                         <div class="card-body p-3">
                             <p class="fw-semibold mb-1" style="font-size: 0.875rem; color: var(--md-sys-color-on-surface);">{{ $step['step'] }}</p>
                             <p class="mb-0" style="font-size: 0.75rem; color: var(--md-sys-color-on-surface-variant);">{{ $step['tool'] }}</p>
                         </div>
-                    </div>
+                    </sl-card>
                 </div>
                 @if(!$loop->last)
                 <div class="d-flex justify-content-center mb-3" style="color: var(--md-sys-color-outline);">
@@ -123,14 +123,14 @@
         <div class="row g-4">
             @foreach($related as $rel)
             <div class="col-md-6 col-lg-4">
-                <div class="card h-100 border-0" style="background: var(--md-sys-color-surface-container-low); border-radius: 16px; transition: transform 0.2s ease;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+                <sl-card class="card h-100 border-0" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'" style="--sl-card-background-color: var(--md-sys-color-surface-container-low); --sl-card-border-radius: 16px; --sl-card-border-width: 0; transition: transform 0.2s ease;">
                     <div class="card-body p-4">
                         <p class="fw-bold mb-2" style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; color: var(--md-sys-color-primary);">{{ $rel['metric'] }}</p>
                         <h5 class="fw-semibold mb-2" style="color: var(--md-sys-color-on-surface);">{{ $rel['client'] }}</h5>
                         <p class="mb-3" style="font-size: 0.9375rem; color: var(--md-sys-color-on-surface-variant);">{{ $rel['excerpt'] }}</p>
                         <a href="{{ route('case-study.show', $rel['slug']) }}" class="text-decoration-none fw-medium" style="color: var(--md-sys-color-primary);">Read Story →</a>
                     </div>
-                </div>
+                </sl-card>
             </div>
             @endforeach
         </div>

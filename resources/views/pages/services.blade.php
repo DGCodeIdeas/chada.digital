@@ -64,7 +64,7 @@
                      style, so a border here would never actually render.
                      This was a real bug: the "Most Popular" card looked
                      identical to the others except for the badge. --}}
-                <div class="card h-100 border-0 position-relative" style="background: var(--md-sys-color-surface); border-radius: 12px; box-shadow: {{ $tier['highlight'] ? '0 6px 20px rgba(37,99,235,0.12)' : '0 1px 4px rgba(0,0,0,0.04)' }}; {{ $tier['highlight'] ? 'transform: scale(1.02);' : '' }}">
+                <sl-card class="card h-100 border-0 position-relative" style="--sl-card-background-color: var(--md-sys-color-surface); --sl-card-border-radius: 12px; --sl-card-border-width: 0; box-shadow: {{ $tier['highlight'] ? '0 6px 20px rgba(37,99,235,0.12)' : '0 1px 4px rgba(0,0,0,0.04)' }}; {{ $tier['highlight'] ? 'transform: scale(1.02);' : '' }};">
                     @if($tier['highlight'])
                     <div class="position-absolute top-0 start-50 translate-middle-x">
                         <span class="badge rounded-pill px-2 py-1" style="background: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); font-size: 0.6875rem; font-weight: 600;">Most Popular</span>
@@ -98,7 +98,7 @@
                             {{ $tier['cta'] }}
                         </a>
                     </div>
-                </div>
+                </sl-card>
             </div>
             @endforeach
         </div>

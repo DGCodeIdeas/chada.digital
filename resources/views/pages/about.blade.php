@@ -73,7 +73,7 @@
         <div class="row g-4">
             @foreach($marTech as $cat)
             <div class="col-md-6 col-lg-3">
-                <div class="card h-100 border-0" style="background: var(--md-sys-color-surface-container-low); border-radius: 16px;">
+                <sl-card class="card h-100 border-0" style="--sl-card-background-color: var(--md-sys-color-surface-container-low); --sl-card-border-radius: 16px; --sl-card-border-width: 0;">
                     <div class="card-body p-4">
                         <h6 class="fw-semibold mb-3" style="color: var(--md-sys-color-on-surface); font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em;">{{ $cat['category'] }}</h6>
                         <div class="d-flex flex-wrap gap-2">
@@ -97,7 +97,7 @@
                             @endforeach
                         </div>
                     </div>
-                </div>
+                </sl-card>
             </div>
             @endforeach
         </div>
