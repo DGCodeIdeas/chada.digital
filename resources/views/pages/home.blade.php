@@ -184,12 +184,18 @@
 </section>
 
 <!-- ===== TECHNOLOGIES — Marquee Logo Cloud =====
-     Dual-row marquee: top scrolls R→L, bottom L→R, ~40s/loop.
-     Logos are muted by default; hovering lights them up in the
-     brand's native color (per-tool 'color' field in config/martech.php).
-     Edges fade + blur via CSS mask-image gradient. Animation pauses
-     on hover and is fully disabled under prefers-reduced-motion.
-     See resources/sass/_chada-custom.scss for the keyframes + styles. -->
+     Single row, deterministic (alphabetical) order, no logo duplication.
+     Each brand appears exactly once. The track is a flex row that
+     scrolls horizontally on mobile (overflow-x: auto + scroll-snap).
+     On desktop the track fits naturally (no scroll).
+     One-shot entrance animation: the strip fades + slides up briefly
+     on first paint. No infinite animation (satisfies "non-repeating").
+     Logos muted by default; hovering lights them up in the brand's
+     native color AND fades in a text label next to the glyph.
+     On touch devices (no hover), the label is always visible below
+     the glyph so users on mobile still see the brand name.
+     prefers-reduced-motion disables the entrance animation.
+     See resources/sass/_chada-custom.scss for the styles. -->
 <section style="background: var(--md-sys-color-surface-container-low); padding: 3.5rem 0;">
     <div class="container">
         <div class="text-center mb-4">
@@ -199,43 +205,30 @@
         </div>
 
         @php
+            // Single deterministic list: flatten all categories, keep only
+            // tools with an FA brand slug, dedupe by brand slug (Google is
+            // referenced twice — for GA4 and Google Ads — appears once),
+            // then SORT ALPHABETICALLY by brand slug for true determinism
+            // (so the order doesn't depend on which category a tool was
+            // listed under in config/martech.php — only on the slug name).
             $brandTools = collect(config('martech.categories', []))
                 ->flatMap(fn($cat) => $cat['tools'])
                 ->filter(fn($t) => !empty($t['brand']))
                 ->unique('brand')
+                ->sortBy('brand')   // deterministic alphabetical order
                 ->values();
-            $half = (int) ceil($brandTools->count() / 2);
-            $row1 = $brandTools->take($half);
-            $row2 = $brandTools->slice($half);
         @endphp
 
-        <div class="chada-marquee" aria-label="Technology stack logos, row 1">
-            <div class="chada-marquee__track">
-                @foreach([$row1, $row1] as $row)
-                    @foreach($row as $tool)
-                        <span class="chada-marquee__logo" style="--brand-color: {{ $tool['color'] ?? 'var(--md-sys-color-primary)' }};">
-                            <i class="fab fa-{{ $tool['brand'] }}" aria-hidden="true"></i>
-                            <span class="chada-marquee__sr-only">{{ $tool['name'] }}</span>
-                        </span>
-                    @endforeach
+        <div class="chada-marquee" aria-label="Technology stack logos — alphabetical">
+            <ul class="chada-marquee__track" role="list">
+                @foreach($brandTools as $tool)
+                    <li class="chada-marquee__logo" style="--brand-color: {{ $tool['color'] ?? 'var(--md-sys-color-primary)' }};">
+                        <i class="fab fa-{{ $tool['brand'] }}" aria-hidden="true"></i>
+                        <span class="chada-marquee__label">{{ $tool['name'] }}</span>
+                    </li>
                 @endforeach
-            </div>
+            </ul>
         </div>
-
-        @if($row2->isNotEmpty())
-        <div class="chada-marquee chada-marquee--reverse" aria-label="Technology stack logos, row 2">
-            <div class="chada-marquee__track">
-                @foreach([$row2, $row2] as $row)
-                    @foreach($row as $tool)
-                        <span class="chada-marquee__logo" style="--brand-color: {{ $tool['color'] ?? 'var(--md-sys-color-primary)' }};">
-                            <i class="fab fa-{{ $tool['brand'] }}" aria-hidden="true"></i>
-                            <span class="chada-marquee__sr-only">{{ $tool['name'] }}</span>
-                        </span>
-                    @endforeach
-                @endforeach
-            </div>
-        </div>
-        @endif
 
         @if(config('martech.footnote'))
             <p class="text-center text-muted small mt-4">{{ config('martech.footnote') }}</p>
