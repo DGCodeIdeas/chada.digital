@@ -108,7 +108,7 @@
 
 <!-- ===== FAQ =====
      Renders Q&A pairs from config/faqs.php. Also pushes a FAQPage
-     JSON-LD schema block via @push('structured-data') — the partial
+     JSON-LD schema block via @@push('structured-data') — the partial
      at partials/structured-data.blade.php picks it up and emits it
      in the page <head>. LLM-based answer engines (ChatGPT, Perplexity,
      Claude, Google AI Overviews) extract Q&A pairs from FAQPage

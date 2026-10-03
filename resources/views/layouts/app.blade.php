@@ -26,13 +26,45 @@
         wa-card:defined {
             visibility: visible;
         }
-        /* Font Awesome Kit injects CSS/SVG after JS runs. Hide glyphs until then. */
-        html:not(.fontawesome-i2svg-complete):not(.fontawesome-i2svg-active) .fab,
-        html:not(.fontawesome-i2svg-complete):not(.fontawesome-i2svg-active) .fas,
-        html:not(.fontawesome-i2svg-complete):not(.fontawesome-i2svg-active) .far {
+        /* Font Awesome Kit (method:"js" / i2svg mode) injects SVGs after
+           the deferred Kit script runs. The Kit adds two classes to <html>:
+             - .fontawesome-i2svg-active  — added at the START of the scan
+                                            (icons are still <i> elements,
+                                             NOT yet replaced by SVGs)
+             - .fontawesome-i2svg-complete — added when ALL icons have been
+                                              replaced with inline SVGs
+
+           The previous rule used :not(.complete):not(.active) which means
+           "hide if NEITHER class is present" — i.e. show icons when EITHER
+           is added. That was wrong: as soon as .fontawesome-i2svg-active
+           was added (at scan START), the icons became visible as empty
+           italic <i> boxes for the brief moment before SVG replacement.
+           That was the FOUC.
+
+           Fixed: only reveal when .fontawesome-i2svg-complete is present
+           (scan is DONE, all icons are SVGs). If the Kit fails to add
+           the class (Kit blocked, errored, etc.), a 2s fallback timer in
+           the inline script below adds .fa-fallback-ready so icons
+           become visible even without the Kit completing. */
+        html:not(.fontawesome-i2svg-complete):not(.fa-fallback-ready) .fab,
+        html:not(.fontawesome-i2svg-complete):not(.fa-fallback-ready) .fas,
+        html:not(.fontawesome-i2svg-complete):not(.fa-fallback-ready) .far {
             visibility: hidden;
         }
     </style>
+
+    {{-- Fallback: if the FA Kit never adds .fontawesome-i2svg-complete
+         (script blocked, errored, slow CDN, etc.), reveal icons after
+         a 2s delay so they don't stay hidden forever. The Kit's own
+         completion class still wins (it's added by the Kit before
+         the 2s elapses in the normal case). --}}
+    <script>
+        (function() {
+            setTimeout(function() {
+                document.documentElement.classList.add('fa-fallback-ready');
+            }, 2000);
+        })();
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -72,9 +104,25 @@
     @include('partials.footer')
     @include('partials.chat-widget')
 
-    {{-- GSAP after content so it cannot delay first paint. --}}
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="{{ mix('js/app.js') }}"></script>
+    {{-- GSAP + app.js with `defer` — non-blocking. Without `defer`, these
+         regular <script> tags block HTML parsing while they download +
+         execute. On a slow connection (app.js = 164 KB / ~14s without
+         gzip), this delays the WA loader module (which is `type=module`
+         = implicitly deferred) from executing. The WA loader registers
+         <wa-card> as a custom element — until it does, `wa-card` stays
+         `:not(:defined)` and the anti-FOUC CSS keeps it
+         `visibility: hidden`. That's why /services showed "no CSS" —
+         the cards were invisible for 16+ seconds while the blocking
+         scripts downloaded.
+
+         With `defer`: scripts download in parallel with HTML parsing,
+         execute in document order AFTER parsing is complete (but before
+         DOMContentLoaded). The WA loader (also deferred, earlier in the
+         document) executes FIRST, registering wa-card immediately.
+         Cards become visible as soon as HTML parsing finishes — no more
+         16-second blank-cards delay. --}}
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="{{ mix('js/app.js') }}" defer></script>
     @stack('scripts')
 </body>
 </html>

@@ -1,3 +1,6 @@
+/* Cache-bust: forces Mix to generate a new CSS hash so browsers
+   re-request the stylesheet instead of using a potentially stale
+   cached copy. Remove this comment after the next deploy if desired. */
 // ============================================================
 // Chada Digital — Custom Components
 // Styles that don't exist in Bootstrap or MD3.
