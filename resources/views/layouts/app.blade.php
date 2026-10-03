@@ -104,9 +104,25 @@
     @include('partials.footer')
     @include('partials.chat-widget')
 
-    {{-- GSAP after content so it cannot delay first paint. --}}
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="{{ mix('js/app.js') }}"></script>
+    {{-- GSAP + app.js with `defer` — non-blocking. Without `defer`, these
+         regular <script> tags block HTML parsing while they download +
+         execute. On a slow connection (app.js = 164 KB / ~14s without
+         gzip), this delays the WA loader module (which is `type=module`
+         = implicitly deferred) from executing. The WA loader registers
+         <wa-card> as a custom element — until it does, `wa-card` stays
+         `:not(:defined)` and the anti-FOUC CSS keeps it
+         `visibility: hidden`. That's why /services showed "no CSS" —
+         the cards were invisible for 16+ seconds while the blocking
+         scripts downloaded.
+
+         With `defer`: scripts download in parallel with HTML parsing,
+         execute in document order AFTER parsing is complete (but before
+         DOMContentLoaded). The WA loader (also deferred, earlier in the
+         document) executes FIRST, registering wa-card immediately.
+         Cards become visible as soon as HTML parsing finishes — no more
+         16-second blank-cards delay. --}}
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="{{ mix('js/app.js') }}" defer></script>
     @stack('scripts')
 </body>
 </html>
